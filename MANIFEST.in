@@ -1,0 +1,20 @@
+# MANIFEST.in - Include additional files in the distribution
+
+# Documentation
+include README.md
+include CHANGELOG.md
+include LICENSE
+include TODO.md
+
+# Documentation directory
+recursive-include docs *.md
+
+# Tests (optional - usually excluded in production)
+# recursive-include tests *.py
+
+# Exclude common files
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.sqlite
+global-exclude *.db
