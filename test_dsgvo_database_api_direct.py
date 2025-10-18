@@ -6,7 +6,7 @@ Testet die Korrektur von direkten SQLite-Zugriffen zu database_api/database_mana
 """
 
 try:
-    from uds3_dsgvo_core import UDS3DSGVOCore, PIIType, DSGVOProcessingBasis
+    from uds3.compliance.dsgvo_core import UDS3DSGVOCore, PIIType, DSGVOProcessingBasis
     from database.database_manager import DatabaseManager
     
     print("✅ Alle Imports erfolgreich")

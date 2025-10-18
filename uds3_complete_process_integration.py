@@ -87,7 +87,7 @@ class UDS3UnifiedProcessParser:
         """Initialisiert UDS3 Parser-Module"""
         try:
             # UDS3 BPMN Parser
-            from uds3_bpmn_process_parser import BPMNProcessParser, BPMNValidator
+            from uds3.vpb.parser_bpmn import BPMNProcessParser, BPMNValidator
 
             self.parsers["bpmn"] = BPMNProcessParser()
             self.validators["bpmn"] = BPMNValidator()
@@ -99,7 +99,7 @@ class UDS3UnifiedProcessParser:
 
         try:
             # UDS3 EPK Parser
-            from uds3_epk_process_parser import EPKProcessParser, EPKValidator
+            from uds3.vpb.parser_epk import EPKProcessParser, EPKValidator
 
             self.parsers["epk"] = EPKProcessParser()
             self.validators["epk"] = EPKValidator()

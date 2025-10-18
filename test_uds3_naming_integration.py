@@ -22,7 +22,7 @@ def test_uds3_with_naming():
     print("="*80 + "\n")
     
     try:
-        from uds3_core import UnifiedDatabaseStrategy
+        from uds3.legacy.core import UnifiedDatabaseStrategy
         
         # Test 1: Ohne Naming (Default)
         print("1️⃣  Test: UDS3 ohne Dynamic Naming")

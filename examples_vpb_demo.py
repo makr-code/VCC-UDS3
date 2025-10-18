@@ -15,7 +15,7 @@ Date: 2. Oktober 2025
 """
 
 from datetime import datetime, timedelta
-from uds3_vpb_operations import (
+from uds3.vpb.operations import (
     # Domain Models
     VPBProcess,
     VPBTask,
@@ -395,7 +395,7 @@ def demo_integration():
     print_section("5. INTEGRATION WITH UDS3 CORE")
     
     try:
-        from uds3_core import UnifiedDatabaseStrategy, VPB_OPERATIONS_AVAILABLE
+        from uds3.legacy.core import UnifiedDatabaseStrategy, VPB_OPERATIONS_AVAILABLE
         
         print(f"VPB Operations Available: {VPB_OPERATIONS_AVAILABLE}")
         

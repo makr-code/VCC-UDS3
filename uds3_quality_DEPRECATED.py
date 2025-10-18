@@ -13,7 +13,7 @@ OLD:
     from uds3_quality import DataQualityManager, QualityMetric, QualityConfig
 
 NEW:
-    from uds3_security_quality import DataQualityManager, QualityMetric, QualityConfig
+    from uds3.compliance.security_quality import DataQualityManager, QualityMetric, QualityConfig
 
 Why this change?
 ----------------
@@ -30,7 +30,7 @@ import warnings
 # Show deprecation warning
 warnings.warn(
     "uds3_quality module is deprecated. "
-    "Use 'from uds3_security_quality import DataQualityManager, QualityMetric, QualityConfig' instead. "
+    "Use 'from uds3.compliance.security_quality import DataQualityManager, QualityMetric, QualityConfig' instead. "
     "This compatibility wrapper will be removed in a future version.",
     DeprecationWarning,
     stacklevel=2
@@ -38,7 +38,7 @@ warnings.warn(
 
 # Re-export from uds3_security_quality for backward compatibility
 try:
-    from uds3_security_quality import (
+    from uds3.compliance.security_quality import (
         # Main Classes
         DataQualityManager,
         QualityConfig,

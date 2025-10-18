@@ -257,7 +257,7 @@ class DatabaseManager:
                 backend=DatabaseBackend.COUCHDB,
                 enabled=True,
                 host=os.getenv('COUCHDB_HOST', '192.168.178.94'),
-                port=int(os.getenv('COUCHDB_PORT', 32931)),
+                port=int(os.getenv('COUCHDB_PORT', 32769)),
                 username=os.getenv('COUCHDB_USER', 'couchdb'),
                 password=os.getenv('COUCHDB_PASSWORD', 'couchdb'),
                 database=os.getenv('COUCHDB_DB', make_name('couch')),

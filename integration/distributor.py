@@ -36,8 +36,8 @@ from datetime import datetime
 try:
     from .adaptive_multi_db_strategy import AdaptiveMultiDBStrategy, StrategyType, FlexibleMultiDBDistributor
     from .monolithic_fallback_strategies import SQLiteMonolithStrategy
-    from .database.database_manager import DatabaseManager
-    from .database.database_api_base import DatabaseBackend
+    from uds3.database.database_manager import DatabaseManager
+    from uds3.database.database_api_base import DatabaseBackend
     UDS3_AVAILABLE = True
 except ImportError:
     logging.debug("UDS3 imports not fully available - running in standalone mode")

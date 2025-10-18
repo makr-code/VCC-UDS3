@@ -32,7 +32,7 @@ if str(project_root / "tests") not in sys.path:
 import pytest
 
 # Import UDS3 Core
-from uds3_core import UnifiedDatabaseStrategy
+from uds3.legacy.core import UnifiedDatabaseStrategy
 
 # Import DatabaseManager and backends
 try:

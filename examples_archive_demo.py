@@ -649,7 +649,7 @@ def demo_uds3_integration():
     print("🔧 This demo shows how Archive Operations integrate with UDS3 Core")
     print("\n📦 Archive Manager is automatically initialized in UDS3:")
     print("   ```python")
-    print("   from uds3_core import UnifiedDatabaseStrategy")
+    print("   from uds3.legacy.core import UnifiedDatabaseStrategy")
     print("   ")
     print("   uds = UnifiedDatabaseStrategy(...)")
     print("   # Archive manager is available as uds.archive_manager")

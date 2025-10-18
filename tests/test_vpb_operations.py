@@ -20,7 +20,7 @@ Date: 2. Oktober 2025
 import pytest
 from datetime import datetime, timedelta
 
-from uds3_vpb_operations import (
+from uds3.vpb.operations import (
     # Domain Models
     VPBProcess,
     VPBTask,

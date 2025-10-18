@@ -13,7 +13,7 @@ MIGRATION: Alle Imports wurden konsolidiert nach uds3_security_quality.py
 
 Verwende stattdessen:
 ```python
-from uds3_security_quality import (
+from uds3.compliance.security_quality import (
     SecurityLevel,
     DataSecurityManager,
     SecurityConfig,
@@ -39,7 +39,7 @@ warnings.warn(
 
 # Re-export für Backward Compatibility
 try:
-    from uds3_security_quality import (
+    from uds3.compliance.security_quality import (
         SecurityLevel,
         AdministrativeClassification,  # Falls vorhanden
         SecurityConfig,

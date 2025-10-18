@@ -1,4 +1,4 @@
-from uds3.uds3_core import UnifiedDatabaseStrategy
+from uds3.legacy.core import UnifiedDatabaseStrategy
 
 
 def test_generate_and_format_document_id():
