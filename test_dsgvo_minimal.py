@@ -6,7 +6,7 @@ Testet die Korrektur mit einfacherer Konfiguration.
 """
 
 try:
-    from uds3_dsgvo_core import UDS3DSGVOCore, PIIType, DSGVOProcessingBasis
+    from uds3.compliance.dsgvo_core import UDS3DSGVOCore, PIIType, DSGVOProcessingBasis
     
     print("✅ DSGVO Core Import erfolgreich")
     

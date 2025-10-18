@@ -36,7 +36,7 @@ try:
         FileType, SizeUnit, SortOrder,
         create_file_storage_filter, create_local_backend, create_search_query,
     )
-    from uds3_core import UnifiedDatabaseStrategy
+    from uds3.legacy.core import UnifiedDatabaseStrategy
     
     FILE_STORAGE_AVAILABLE = True
 except ImportError as e:

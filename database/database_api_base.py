@@ -21,7 +21,7 @@ RelationshipIdentifier = Union[str, Tuple[str, Any], Dict[str, Any]]
 
 # UDS3 v3.0 Import mit Fallback
 try:
-    from uds3_core import UnifiedDatabaseStrategy, DatabaseRole, OperationType
+    from uds3.legacy.core import UnifiedDatabaseStrategy, DatabaseRole, OperationType
     UDS3_AVAILABLE = True
 except ImportError:
     UDS3_AVAILABLE = False

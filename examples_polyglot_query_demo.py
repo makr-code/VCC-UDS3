@@ -35,7 +35,7 @@ try:
         DatabaseType,
         create_polyglot_query
     )
-    from uds3_core import UnifiedDatabaseStrategy
+    from uds3.legacy.core import UnifiedDatabaseStrategy
     
     POLYGLOT_QUERY_AVAILABLE = True
 except ImportError as e:

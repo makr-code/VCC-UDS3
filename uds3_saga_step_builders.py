@@ -34,7 +34,7 @@ except ImportError:
     SecurityLevel = None  # type: ignore
 
 try:
-    from uds3_identity_service import IdentityServiceError
+    from uds3.compliance.identity_service import IdentityServiceError
     IDENTITY_SERVICE_AVAILABLE = True
 except ImportError:
     IDENTITY_SERVICE_AVAILABLE = False

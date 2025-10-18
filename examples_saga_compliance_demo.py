@@ -12,7 +12,7 @@ Author: UDS3 Team
 Date: 2. Oktober 2025
 """
 
-from uds3_core import UnifiedDatabaseStrategy
+from uds3.legacy.core import UnifiedDatabaseStrategy
 from datetime import datetime
 import json
 

@@ -16,7 +16,7 @@ from dataclasses import dataclass
 
 # UDS3 Integration
 try:
-    from uds3_core import get_optimized_unified_strategy
+    from uds3.legacy.core import get_optimized_unified_strategy
 
     UDS3_AVAILABLE = True
 except ImportError:

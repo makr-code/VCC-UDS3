@@ -557,7 +557,7 @@ def demo_uds3_integration():
     
     print("\n1. Importing UDS3 Core...")
     try:
-        from uds3_core import UnifiedDatabaseStrategy
+        from uds3.legacy.core import UnifiedDatabaseStrategy
         print("✓ UDS3 Core imported successfully")
     except ImportError as e:
         print(f"✗ Failed to import UDS3 Core: {e}")

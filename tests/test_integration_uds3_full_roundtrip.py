@@ -8,7 +8,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from uds3_core import UnifiedDatabaseStrategy
+from uds3.legacy.core import UnifiedDatabaseStrategy
 from database.database_manager import DatabaseManager
 # Ensure tests/ directory is importable for helper modules
 TESTS_DIR = str(pathlib.Path(__file__).resolve().parents[0])

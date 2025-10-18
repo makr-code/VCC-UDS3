@@ -1,6 +1,6 @@
 import pytest
 
-from uds3_core import UnifiedDatabaseStrategy
+from uds3.legacy.core import UnifiedDatabaseStrategy
 from uds3_api_backend import UDS3APIBackend
 
 

@@ -17,7 +17,7 @@ from uds3.database.database_api_base import RelationalDatabaseBackend
 
 # UDS3 v3.0 Import mit Fallback (wie in anderen Adaptern)
 try:
-	from uds3.uds3_core import UnifiedDatabaseStrategy
+	from uds3.legacy.core import UnifiedDatabaseStrategy
 	get_unified_database_strategy: Optional[callable] = UnifiedDatabaseStrategy
 	UDS3_AVAILABLE = True
 except Exception:

@@ -1,7 +1,7 @@
 import pytest
 from typing import Any, Dict, List
 
-from uds3_core import UnifiedDatabaseStrategy, OperationType
+from uds3.legacy.core import UnifiedDatabaseStrategy, OperationType
 
 
 class SimpleMockManager:

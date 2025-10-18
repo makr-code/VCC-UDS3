@@ -48,7 +48,7 @@ from pathlib import Path
 
 # UDS3 Core System
 try:
-    from uds3_core import UDS3CoreSystem, DatabaseRole
+    from uds3.legacy.core import UDS3CoreSystem, DatabaseRole
 
     UDS3_CORE_AVAILABLE = True
 except ImportError:

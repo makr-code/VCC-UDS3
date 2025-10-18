@@ -18,7 +18,7 @@ Features:
 - Type Safety - Dataclasses
 
 Usage:
-    from uds3.uds3_core import get_optimized_unified_strategy
+    from uds3.legacy.core import get_optimized_unified_strategy
     from uds3.uds3_search_api import UDS3SearchAPI, SearchQuery
     
     strategy = get_optimized_unified_strategy()
@@ -554,7 +554,7 @@ async def quick_search(query_text: str, top_k: int = 10, search_type: str = "hyb
     Returns:
         List of SearchResult objects
     """
-    from uds3.uds3_core import get_optimized_unified_strategy
+    from uds3.legacy.core import get_optimized_unified_strategy
     
     strategy = get_optimized_unified_strategy()
     api = UDS3SearchAPI(strategy)

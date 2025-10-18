@@ -32,9 +32,9 @@ from pathlib import Path
 
 # UDS3 Integration
 try:
-    from .database.database_manager import DatabaseManager
-    from .database.config import DatabaseType, DatabaseBackend, DatabaseConnection
-    from .database.database_api_base import DatabaseBackend as BaseBackend
+    from uds3.database.database_manager import DatabaseManager
+    from uds3.database.config import DatabaseType, DatabaseBackend, DatabaseConnection
+    from uds3.database.database_api_base import DatabaseBackend as BaseBackend
 except ImportError:
     # Fallback für standalone testing
     logging.debug("UDS3 database imports not available - running in standalone mode")
