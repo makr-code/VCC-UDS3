@@ -1,7 +1,7 @@
 """Database adapters and utilities package."""
 
-from database.database_manager import DatabaseManager
-from database.extensions import (
+from uds3.database.database_manager import DatabaseManager
+from uds3.database.extensions import (
     DatabaseManagerExtensions,
     create_extended_database_manager,
     ExtensionStatus
