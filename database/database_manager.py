@@ -22,6 +22,9 @@ from .database_api_base import (
 import uuid
 from .adapter_governance import AdapterGovernance, AdapterGovernanceError
 
+# Zentrale Database-Konfiguration laden
+from .config import DatabaseManager as DBConfigManager, DatabaseType
+
 # Module Status Manager Import
 try:
     from module_status_manager import (
@@ -64,6 +67,19 @@ class DatabaseManager:
         self._backends_to_start = {}
         self._backend_factories = {}
         self.autostart = bool(autostart)
+        
+        # ============================================================================
+        # ZENTRALE KONFIGURATION LADEN
+        # ============================================================================
+        # Die zentrale config.py enthält die ECHTEN DB-Credentials
+        # VERITAS übergibt nur: {"vector": {"enabled": True}, "graph": {"enabled": True}, ...}
+        # DatabaseManager holt die echten Credentials aus der zentralen Config
+        self.db_config = DBConfigManager()
+        self.logger.info("📋 Zentrale Database-Konfiguration geladen")
+        
+        # Merge: VERITAS sagt "enabled", Config liefert Credentials
+        backend_dict = self._merge_config_with_request(backend_dict)
+        
         governance_conf = {}
         if isinstance(backend_dict, dict):
             governance_conf = backend_dict.get('governance', {}) or {}
@@ -81,6 +97,30 @@ class DatabaseManager:
                 # Nur Status updaten wenn bereits registriert
                 if STATUS_MANAGER_AVAILABLE:
                     update_status("db_manager", ModuleStatus.INITIALIZING, "Database Manager wird re-initialisiert")
+    
+    def _merge_config_with_request(self, backend_dict: Dict) -> Dict:
+        """
+        Merge Request (welche Backends aktiviert) mit zentraler Config (echte Credentials).
+        
+        VERITAS sagt: {"vector": {"enabled": True}, "graph": {"enabled": True}}
+        Config liefert: {host, port, username, password, ...}
+        Result: {vector: {enabled: True, host: ..., port: ..., username: ..., password: ...}}
+        """
+        merged = {}
+        
+        for db_conn in self.db_config.databases:
+            db_type_str = db_conn.db_type.value  # 'vector', 'graph', 'relational', 'file'
+            
+            # Prüfe ob VERITAS diesen Backend-Typ angefordert hat
+            requested = backend_dict.get(db_type_str, {})
+            if isinstance(requested, dict) and requested.get('enabled', False):
+                # VERITAS will diesen Backend - nutze zentrale Config
+                merged[db_type_str] = db_conn.to_dict()
+                self.logger.info(f"✅ {db_type_str.upper()}: {db_conn.backend.value} @ {db_conn.host}:{db_conn.port}")
+            else:
+                self.logger.debug(f"⏭️  {db_type_str.upper()}: Nicht von VERITAS angefordert")
+        
+        return merged
     # ...existing code...
     # Vector Backend initialisieren
         vector_conf = backend_dict.get('vector')
@@ -547,9 +587,10 @@ class DatabaseManager:
     
     def get_vector_backend(self) -> Optional[VectorDatabaseBackend]:
         """Hole Vector Database Backend mit verbesserter Fehlerbehandlung"""
-        self.logger.debug(f"[DEBUG] get_vector_backend aufgerufen, Rückgabe: {self.vector_backend}")
+        vector_backend = getattr(self, 'vector_backend', None)
+        self.logger.debug(f"[DEBUG] get_vector_backend aufgerufen, Rückgabe: {vector_backend}")
         
-        if self.vector_backend is None:
+        if vector_backend is None:
             error_msg = "Vector Backend ist nicht initialisiert"
             self.backend_errors.append(f"Vector: {error_msg}")
             if self.module_status_enabled:
@@ -562,10 +603,10 @@ class DatabaseManager:
                 return None
         
         # Verfügbarkeit prüfen wenn Backend vorhanden
-        if hasattr(self.vector_backend, 'is_available'):
+        if hasattr(vector_backend, 'is_available'):
             try:
-                if not self.vector_backend.is_available():
-                    error_msg = f"Vector Backend nicht verfügbar: {self.vector_backend.get_backend_type()}"
+                if not vector_backend.is_available():
+                    error_msg = f"Vector Backend nicht verfügbar: {vector_backend.get_backend_type()}"
                     self.backend_errors.append(f"Vector: {error_msg}")
                     if self.module_status_enabled:
                         update_status("db_vector", ModuleStatus.ERROR, error_msg)
@@ -587,13 +628,14 @@ class DatabaseManager:
                     self.logger.error(f"❌ {error_msg}")
                     return None
         
-        return self.vector_backend
+        return vector_backend
     
     def get_graph_backend(self) -> Optional[GraphDatabaseBackend]:
         """Hole Graph Database Backend mit verbesserter Fehlerbehandlung"""
-        self.logger.debug(f"[DEBUG] get_graph_backend aufgerufen, Rückgabe: {self.graph_backend}")
+        graph_backend = getattr(self, 'graph_backend', None)
+        self.logger.debug(f"[DEBUG] get_graph_backend aufgerufen, Rückgabe: {graph_backend}")
         
-        if self.graph_backend is None:
+        if graph_backend is None:
             error_msg = "Graph Backend ist nicht initialisiert"
             self.backend_errors.append(f"Graph: {error_msg}")
             if self.module_status_enabled:
@@ -606,10 +648,10 @@ class DatabaseManager:
                 return None
         
         # Verfügbarkeit prüfen wenn Backend vorhanden
-        if hasattr(self.graph_backend, 'is_available'):
+        if hasattr(graph_backend, 'is_available'):
             try:
-                if not self.graph_backend.is_available():
-                    error_msg = f"Graph Backend nicht verfügbar: {self.graph_backend.get_backend_type()}"
+                if not graph_backend.is_available():
+                    error_msg = f"Graph Backend nicht verfügbar: {graph_backend.get_backend_type()}"
                     self.backend_errors.append(f"Graph: {error_msg}")
                     if self.module_status_enabled:
                         update_status("db_graph", ModuleStatus.ERROR, error_msg)
@@ -631,17 +673,19 @@ class DatabaseManager:
                     self.logger.error(f"❌ {error_msg}")
                     return None
         
-        return self.graph_backend
+        return graph_backend
     
     def get_relational_backend(self) -> Optional[RelationalDatabaseBackend]:
-        self.logger.debug(f"[DEBUG] get_relational_backend aufgerufen, Rückgabe: {self.relational_backend}")
         """Hole Relational Database Backend"""
-        return self.relational_backend
+        backend = getattr(self, 'relational_backend', None)
+        self.logger.debug(f"[DEBUG] get_relational_backend aufgerufen, Rückgabe: {backend}")
+        return backend
     
     def get_key_value_backend(self) -> Optional[DatabaseBackend]:
-        self.logger.debug(f"[DEBUG] get_key_value_backend aufgerufen, Rückgabe: {self.keyvalue_backend}")
         """Hole Key-Value Database Backend"""
-        return self.keyvalue_backend
+        keyvalue_backend = getattr(self, 'keyvalue_backend', None)
+        self.logger.debug(f"[DEBUG] get_key_value_backend aufgerufen, Rückgabe: {keyvalue_backend}")
+        return keyvalue_backend
     
     def get_backend_errors(self) -> List[str]:
         """Gibt alle Backend-Fehler zurück"""
