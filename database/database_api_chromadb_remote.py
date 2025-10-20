@@ -44,6 +44,13 @@ from uds3.database.database_exceptions import (
     log_operation_warning
 )
 
+# ✅ NEW: Transformer embeddings support
+try:
+    from uds3.embeddings.transformer_embeddings import get_default_embeddings
+    EMBEDDINGS_AVAILABLE = True
+except ImportError:
+    EMBEDDINGS_AVAILABLE = False
+
 logger = logging.getLogger(__name__)
 
 
@@ -88,7 +95,13 @@ class ChromaRemoteVectorBackend(VectorDatabaseBackend):
         # ✅ FIX: Collection UUID für v2 API
         self.collection_id = None  # Wird in _ensure_collection_exists() gesetzt
         
+        # ✅ NEW: Embedding support (optional)
+        self._embedder = None
+        self._use_embeddings = cfg.get('use_embeddings', True)  # Default: Use embeddings
+        
         logger.info(f"ChromaDB Remote Client initialized: {self.base_url} (tenant: {self.tenant}, db: {self.database}) - NO FALLBACK MODE")
+        if EMBEDDINGS_AVAILABLE and self._use_embeddings:
+            logger.info(f"[EMBEDDINGS] Transformer embeddings enabled (lazy loading)")
     
     def _ensure_collection_exists(self, collection_name: Optional[str] = None) -> bool:
         """
@@ -223,6 +236,53 @@ class ChromaRemoteVectorBackend(VectorDatabaseBackend):
         logger.debug("✅ ChromaDB als verfügbar gewertet (Server erreichbar)")
         return True
     
+    def get_embedding(self, text: str) -> Optional[List[float]]:
+        """
+        Generate embedding for text using transformer model
+        
+        ✅ NEW: Real semantic embeddings (384-dim)
+        
+        Features:
+        - Lazy loading (model loaded only when needed)
+        - Thread-safe initialization
+        - Automatic fallback to hash-based on error
+        
+        Args:
+            text: Input text to embed
+        
+        Returns:
+            List of floats (384-dim vector) or None if embeddings disabled
+        """
+        # Check if embeddings are enabled
+        if not self._use_embeddings:
+            logger.debug("[EMBEDDINGS] Disabled via config")
+            return None
+        
+        if not EMBEDDINGS_AVAILABLE:
+            logger.debug("[EMBEDDINGS] Not available (module not imported)")
+            return None
+        
+        # Lazy load embedder (thread-safe)
+        if self._embedder is None:
+            logger.debug("[EMBEDDINGS] Lazy loading transformer model...")
+            self._embedder = get_default_embeddings()
+        
+        # Generate embedding
+        try:
+            vector = self._embedder.embed(text)
+            
+            # Log if using fallback mode
+            if self._embedder.is_fallback_mode():
+                logger.debug(f"[EMBEDDINGS] Using fallback (hash-based) for: {text[:50]}...")
+            else:
+                logger.debug(f"[EMBEDDINGS] Generated real embedding for: {text[:50]}...")
+            
+            return vector
+        
+        except Exception as e:
+            logger.error(f"[EMBEDDINGS] Error generating embedding: {e}")
+            return None
+    
     def add_documents(self, documents: List[Dict], collection: Optional[str] = None) -> bool:
         """
         Dokumente zu ChromaDB Collection hinzufügen
@@ -268,12 +328,41 @@ class ChromaRemoteVectorBackend(VectorDatabaseBackend):
             logger.error(f"❌ add_documents Error: {e}")
             return False
     
-    def add_vector(self, vector: List[float], metadata: Dict, doc_id: str, collection: Optional[str] = None) -> bool:
+    def add_vector(
+        self, 
+        vector: List[float], 
+        metadata: Dict, 
+        doc_id: str, 
+        collection: Optional[str] = None,
+        text: Optional[str] = None
+    ) -> bool:
         """
         Einzelnen Vektor zu ChromaDB Collection hinzufügen
+        
         ❌ NO FALLBACK: Raises exception bei Fehlern
+        ✅ NEW: Optional text parameter for automatic embedding generation
+        
+        Args:
+            vector: Pre-computed vector (used if provided)
+            metadata: Document metadata
+            doc_id: Unique document identifier
+            collection: Collection name (default: self.collection_name)
+            text: Optional text for automatic embedding generation
+                  (used if vector is None or empty)
+        
+        Returns:
+            True if successful, False otherwise
         """
         # ❌ REMOVED: Fallback-Modus Check
+        
+        # ✅ NEW: Auto-generate embedding from text if no vector provided
+        if (not vector or len(vector) == 0) and text:
+            logger.debug(f"[EMBEDDINGS] Auto-generating embedding for doc_id: {doc_id}")
+            vector = self.get_embedding(text)
+            
+            if not vector:
+                logger.error(f"[EMBEDDINGS] Failed to generate embedding for doc_id: {doc_id}")
+                return False
             
         try:
             col_name = collection or self.collection_name
