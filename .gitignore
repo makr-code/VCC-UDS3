@@ -29,3 +29,98 @@ Thumbs.db
 # Project specific
 wandb/
 *.pyc
+
+# ==========================================
+# UDS3 Project-Specific Ignores (Added during cleanup 21.10.2025)
+# ==========================================
+
+# Backup files
+*.bak
+*.backup
+*_ORIGINAL.py
+*_BEFORE_*.py
+
+# Deprecated files
+*_DEPRECATED.py
+*_old.py
+
+# Session documentation (temporary)
+SESSION_*.md
+NEXT_SESSION_*.md
+TODO*_SUMMARY.md
+TODO*_IMPLEMENTATION_SUMMARY.md
+TODO*_FINAL_*.md
+TODO*_COMPLETE*.md
+
+# Temporary files
+critical_failures.json
+failed_cleanups.json
+rollback_alerts.json
+*_demo_output.txt
+startup.log
+
+# Build artifacts (comprehensive)
+build/
+dist/
+*.egg-info/
+.eggs/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+sqlite_db/
+database_backup/
+
+# IDE files (comprehensive)
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Environment files
+venv/
+env/
+ENV/
+.venv/
+.env
+.env.local
+.env.*.local
+
+# Logs (comprehensive)
+*.log
+*.log.*
+logs/
+log/
+
+# Documentation (temporary)
+*_PLAN.md.backup
+*_SUMMARY.md.backup
+CLEANUP_PLAN.md.backup
