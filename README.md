@@ -269,9 +269,26 @@ pytest tests/test_search_api.py -v
 
 Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 
+**Government & Public Sector Partners:**  
+Organizations working in government or public administration are especially encouraged to contribute improvements back to the project. See our [Government Partnership Commons Clause](LICENSE) for details. Contributors are recognized in [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+**MIT License with Government Partnership Commons Clause**
+
+This project is licensed under the permissive MIT License, with a non-binding request for government and public sector users to share improvements back to the community. 
+
+- ✅ **Free to use** commercially and privately
+- ✅ **No legal obligation** to share modifications
+- 🤝 **Encouraged to contribute** improvements, especially for public sector use cases
+
+See [LICENSE](LICENSE) file for complete details.
+
+**Why this license?** UDS3 is designed for government partnerships and public administration. Shared improvements strengthen security and reduce duplicate efforts across agencies, while respecting the freedom granted by MIT.
+
+## 👥 Contributors
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for organizations and individuals who have contributed to UDS3.
 
 ## 🔗 Related Projects
 

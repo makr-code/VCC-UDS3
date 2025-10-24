@@ -2,8 +2,9 @@
 
 # Core documentation
 include README.md
-include CHANGELOG.md
 include LICENSE
+include PYPI_RELEASE_GUIDE.md
+include IMPLEMENTATION_STATUS.md
 include TODO.md
 include *.toml
 include *.ini
