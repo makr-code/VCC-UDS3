@@ -22,7 +22,7 @@ License: MIT with Government Partnership Commons Clause
 Repository: https://github.com/makr-code/VCC-UDS3
 """
 
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 import logging
 from typing import Dict, List, Any, Optional, Callable
 from dataclasses import dataclass

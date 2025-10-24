@@ -127,7 +127,7 @@ class UDS3RelationInstance:
     def _generate_instance_id(self) -> str:
         """Generiert eindeutige Instance-ID"""
         content = f"{self.relation_type}:{self.source_id}:{self.target_id}:{self.created_at.isoformat()}"
-        return hashlib.md5(content.encode()).hexdigest()[:16]
+        return hashlib.md5(content.encode(), usedforsecurity=False).hexdigest()[:16]
 
 
 class UDS3RelationsDataFramework:

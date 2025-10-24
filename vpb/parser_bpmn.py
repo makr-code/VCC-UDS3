@@ -37,7 +37,7 @@ Unterstützt:
 - Verwaltungsattribute nach PMT-Katalog
 """
 
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 import logging
 from typing import Dict, List, Any
 from typing import Optional, Any

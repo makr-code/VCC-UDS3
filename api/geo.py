@@ -1004,7 +1004,7 @@ def create_geo_hash(location: GeoLocation, precision: int = 8) -> str:
     """Erstellt einen Geo-Hash für räumliche Indizierung"""
 
     coord_string = f"{location.latitude:.6f},{location.longitude:.6f}"
-    return hashlib.md5(coord_string.encode()).hexdigest()[:precision]
+    return hashlib.md5(coord_string.encode(), usedforsecurity=False).hexdigest()[:precision]
 
 
 # Export der wichtigsten Klassen

@@ -151,7 +151,7 @@ def _hash_based_fallback(text: str, dimensions: int = 384) -> List[float]:
     Returns:
         List of floats (normalized to [0, 1])
     """
-    text_hash = hashlib.md5(text.encode()).hexdigest()
+    text_hash = hashlib.md5(text.encode(), usedforsecurity=False).hexdigest()
     
     # Generate vector from hash (deterministic, but no semantic meaning)
     vector = []

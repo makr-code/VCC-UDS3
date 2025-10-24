@@ -387,7 +387,7 @@ class NamingStrategy:
     def _shorten_with_hash(self, name: str) -> str:
         """Kürzt Namen und fügt Hash-Suffix hinzu"""
         # Hash der vollen Namen
-        hash_val = hashlib.md5(name.encode()).hexdigest()[:8]
+        hash_val = hashlib.md5(name.encode(), usedforsecurity=False).hexdigest()[:8]
         
         # Kürze auf max_length - 9 (für _hash)
         shortened = name[:self.max_length - 9]

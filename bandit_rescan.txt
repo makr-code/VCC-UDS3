@@ -1,0 +1,245 @@
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.13.6
+[warnings]	WARNING	invalid escape sequence '\V'
+
+Working... ---------------------------------------- 100% 0:00:04
+Run started:2025-10-24 17:11:27.906711
+
+Test results:
+>> Issue: [B301:blacklist] Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_calls.html#b301-pickle
+   Location: .\core\embeddings.py:335:32
+334	                with open(cache_file, 'rb') as f:
+335	                    embedding = pickle.load(f)
+336	                return embedding
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\batch_operations.py:1079:22
+1078	            placeholders = ','.join(['%s'] * len(doc_ids))
+1079	            query = f"SELECT {field_list} FROM {table} WHERE id IN ({placeholders})"
+1080	            
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\batch_operations.py:1185:22
+1184	            placeholders = ','.join(['%s'] * len(doc_ids))
+1185	            query = f"SELECT id FROM {table} WHERE id IN ({placeholders})"
+1186	            
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_postgresql.py:706:24
+705	            # Execute update
+706	            query = f"""
+707	                UPDATE {self.table_name} 
+708	                SET 
+709	                    {', '.join(case_clauses)},
+710	                    updated_at = NOW()
+711	                WHERE document_id IN ('{doc_ids_str}')
+712	            """
+713	            
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_postgresql.py:763:28
+762	                # Soft delete: UPDATE deleted = TRUE
+763	                query = f"""
+764	                    UPDATE {self.table_name} 
+765	                    SET 
+766	                        deleted = TRUE,
+767	                        updated_at = NOW()
+768	                    WHERE document_id IN ('{doc_ids_str}')
+769	                """
+770	            else:
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_postgresql.py:772:26
+771	                # Hard delete: DELETE FROM
+772	                query = f"DELETE FROM {self.table_name} WHERE document_id IN ('{doc_ids_str}')"
+773	            
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_postgresql.py:857:32
+856	                update_clauses = [f"{field} = EXCLUDED.{field}" for field in all_fields]
+857	                on_conflict = f"ON CONFLICT (document_id) DO UPDATE SET {', '.join(update_clauses)}, updated_at = NOW()"
+858	            elif conflict_resolution == "ignore":
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_postgresql.py:864:24
+863	            # Execute upsert
+864	            query = f"""
+865	                INSERT INTO {self.table_name} (document_id, {field_list})
+866	                VALUES {', '.join(values_clauses)}
+867	                {on_conflict}
+868	            """
+869	            
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_sqlite.py:177:11
+176				values = tuple(data[k] for k in keys)
+177				sql = f"INSERT INTO {table_name} ({cols}) VALUES ({placeholders})"
+178				res = self.execute_query(sql, values)
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_sqlite.py:195:11
+194				params.append(record_id)
+195				sql = f"UPDATE {table_name} SET {', '.join(set_parts)} WHERE id = ?"
+196				res = self.execute_query(sql, tuple(params))
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_sqlite.py:221:11
+220			try:
+221				sql = f"SELECT * FROM {table}"
+222				params = []
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\database_api_sqlite.py:245:11
+244					params.append(v)
+245				sql = f"DELETE FROM {table} WHERE {' AND '.join(where)}"
+246				res = self.execute_query(sql, tuple(params))
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\saga_compensations.py:64:55
+63	                    try:
+64	                        rows = backend.execute_query(f"SELECT id FROM {table} WHERE id = ?", (record_id,))
+65	                        if not rows:
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\saga_compensations.py:76:36
+75	        try:
+76	            backend.execute_query(f"DELETE FROM {table} WHERE id = ?", (record_id,))
+77	            return True
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\saga_crud.py:405:47
+404	                    col_list = ', '.join(insert_keys)
+405	                    relational.execute_query(f"INSERT INTO {table} ({col_list}) VALUES ({placeholders})", values)
+406	                    return True
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\saga_crud.py:421:43
+420	                placeholders = ', '.join(['?' for _ in cols])
+421	                relational.execute_query(f"INSERT INTO {table} ({', '.join(cols)}) VALUES ({placeholders})", tuple(record.values()))
+422	                return True
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\database\saga_orchestrator.py:157:48
+156	                            params = tuple(filtered.values())
+157	                            rel.execute_query(f'INSERT INTO uds3_sagas ({cols}) VALUES ({placeholders})', params)
+158	                    else:
+
+--------------------------------------------------
+>> Issue: [B615:huggingface_unsafe_download] Unsafe Hugging Face Hub download without revision pinning in from_pretrained()
+   Severity: Medium   Confidence: High
+   CWE: CWE-494 (https://cwe.mitre.org/data/definitions/494.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b615_huggingface_unsafe_download.html
+   Location: .\legacy\rag_enhanced.py:231:33
+230	                model_name = self.config.get('tokenizer_model', 'bert-base-german-cased')
+231	                self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+232	            else:
+
+--------------------------------------------------
+>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False
+   Severity: High   Confidence: High
+   CWE: CWE-327 (https://cwe.mitre.org/data/definitions/327.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b324_hashlib.html
+   Location: .\legacy\rag_enhanced.py:585:15
+584	        key_string = json.dumps(key_data, sort_keys=True)
+585	        return hashlib.md5(key_string.encode()).hexdigest()
+586	    
+
+--------------------------------------------------
+>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False
+   Severity: High   Confidence: High
+   CWE: CWE-327 (https://cwe.mitre.org/data/definitions/327.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b324_hashlib.html
+   Location: .\legacy\rag_enhanced.py:957:26
+956	            # Check Response Cache
+957	            prompt_hash = hashlib.md5(enhanced_prompt.encode()).hexdigest()
+958	            if use_cache and prompt_hash in self.response_cache:
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 59486
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 127
+		Medium: 18
+		High: 2
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 16
+		Medium: 31
+		High: 100
+Files skipped (0):

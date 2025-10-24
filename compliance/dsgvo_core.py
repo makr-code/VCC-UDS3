@@ -481,7 +481,7 @@ class UDS3DSGVOCore:
     def _generate_anonymized_value(self, original_value: str, pii_type: PIIType) -> str:
         """Generiert anonymisierten Wert basierend auf PII-Typ"""
         # Konsistente anonyme Werte basierend auf Hash
-        hash_obj = hashlib.md5(original_value.encode())
+        hash_obj = hashlib.md5(original_value.encode(), usedforsecurity=False)
         hash_hex = hash_obj.hexdigest()
         
         if pii_type == PIIType.EMAIL:

@@ -219,7 +219,7 @@ class DataSecurityManager:
         elif self.config.hash_algorithm == "sha512":
             return hashlib.sha512(hash_input.encode("utf-8")).hexdigest()
         else:
-            return hashlib.md5(hash_input.encode("utf-8")).hexdigest()
+            return hashlib.md5(hash_input.encode("utf-8"), usedforsecurity=False).hexdigest()
 
     def _derive_hmac_key(self, document_uuid: str, salt: str) -> str:
         """Ableitung eines HMAC-Schlüssels"""
@@ -228,7 +228,7 @@ class DataSecurityManager:
 
     def _calculate_checksum(self, data: str) -> str:
         """Berechnet einfache Checksum für schnelle Validation"""
-        return hashlib.md5(data.encode("utf-8")).hexdigest()[:16]
+        return hashlib.md5(data.encode("utf-8"), usedforsecurity=False).hexdigest()[:16]
 
     def encrypt_sensitive_data(self, data: str, data_type: str = "document") -> Dict:
         """

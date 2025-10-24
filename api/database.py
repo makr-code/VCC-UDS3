@@ -276,7 +276,7 @@ class UDS3DatabaseAPI(UDS3DatabaseSchemasMixin):
         """Generiert Cache-Schlüssel für Query"""
         data_str = json.dumps(query_data, sort_keys=True)
         cache_input = f"{query_type.value}:{data_str}"
-        return hashlib.md5(cache_input.encode()).hexdigest()
+        return hashlib.md5(cache_input.encode(), usedforsecurity=False).hexdigest()
     
     def _mock_query_execution(self, query_type: QueryType, query_data: Dict) -> List[Dict]:
         """Mock Query-Ausführung für Demo"""
@@ -394,7 +394,7 @@ class UDS3DatabaseAPI(UDS3DatabaseSchemasMixin):
         Args:
             database_types: Databases für Transaction
         """
-        transaction_id = hashlib.md5(str(datetime.now()).encode()).hexdigest()[:8]
+        transaction_id = hashlib.md5(str(datetime.now()).encode(), usedforsecurity=False).hexdigest()[:8]
         
         try:
             self.logger.info(f"🔄 Starting transaction {transaction_id}")
