@@ -4,11 +4,12 @@ This file recognizes individuals and organizations who have contributed to the U
 
 ## Core Development Team
 
-- **UDS3 Development Team** - Original development and ongoing maintenance
+- **Martin Krüger** (ma.krueger@outlook.com) - Lead Developer & Architect
   - Security Layer (PKI, RBAC, RLS)
   - Search API
   - Multi-Database backends
   - SAGA pattern implementation
+  - Initial release and ongoing maintenance
 
 ## Government Partners & Public Sector Contributors
 

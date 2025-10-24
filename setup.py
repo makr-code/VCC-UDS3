@@ -19,8 +19,8 @@ setup(
     description="UDS3 - Unified Database Strategy v3: Enterprise Multi-Database Distribution System",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="UDS3 Development Team",
-    author_email="uds3@covina.local", 
+    author="Martin Krüger",
+    author_email="ma.krueger@outlook.com", 
     url="https://github.com/makr-code/VCC-UDS3",
     license="MIT",
     project_urls={

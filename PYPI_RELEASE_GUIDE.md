@@ -329,4 +329,4 @@ git push origin v1.4.0
 
 **Erstellt:** 24. Oktober 2025  
 **Version:** 1.4.0  
-**Autor:** UDS3 Team
+**Autor:** Martin Krüger (ma.krueger@outlook.com)

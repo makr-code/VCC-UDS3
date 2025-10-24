@@ -585,7 +585,7 @@ Use this checklist for secure UDS3 deployments:
 
 For security issues or questions:
 
-- **Security Team**: security@vcc.local
+- **Author**: Martin Krüger (ma.krueger@outlook.com)
 - **Documentation**: `/docs/SECURITY.md`
 - **Issue Tracker**: https://github.com/makr-code/VCC-UDS3/issues
 

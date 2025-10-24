@@ -298,4 +298,5 @@ See [CONTRIBUTORS.md](CONTRIBUTORS.md) for organizations and individuals who hav
 
 ---
 
-**Made with ❤️ by the UDS3 Team**
+**Developed by Martin Krüger** (ma.krueger@outlook.com)  
+**Made with ❤️ for Government & Public Sector**

@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
-    {name = "UDS3 Development Team", email = "uds3@covina.local"}
+    {name = "Martin Krüger", email = "ma.krueger@outlook.com"}
 ]
 keywords = ["database", "multi-db", "vector-search", "graph-database", "rag", "search-api", "security", "pki", "rbac", "rls"]
 classifiers = [
