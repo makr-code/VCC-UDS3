@@ -261,6 +261,271 @@ class CouchDBAdapter(DatabaseBackend):
         """
         return self.delete_document(asset_id)
 
+    # ================================================================
+    # BATCH OPERATIONS
+    # ================================================================
+    
+    def batch_update(
+        self,
+        updates: List[Dict[str, Any]],
+        mode: str = "partial"
+    ) -> Dict[str, Any]:
+        """
+        Batch update documents using CouchDB _bulk_docs API
+        
+        Args:
+            updates: List of update dicts with:
+                - document_id: Document ID to update
+                - fields: Dict of fields to update
+            mode: Update mode ("partial" or "full")
+            
+        Returns:
+            Dict with keys: success, updated, failed, errors
+        """
+        if not updates or not self.is_available():
+            return {"success": True, "updated": 0, "failed": 0, "errors": []}
+        
+        try:
+            bulk_docs = []
+            errors = []
+            
+            for update in updates:
+                doc_id = update.get("document_id")
+                fields = update.get("fields", {})
+                
+                try:
+                    # Get existing document (need _rev for update)
+                    if doc_id in self.db:
+                        doc = self.db[doc_id]
+                        
+                        if mode == "partial":
+                            # Merge fields
+                            doc.update(fields)
+                        else:
+                            # Replace (keep _id and _rev)
+                            doc = {"_id": doc["_id"], "_rev": doc["_rev"]}
+                            doc.update(fields)
+                        
+                        bulk_docs.append(doc)
+                    else:
+                        errors.append({"document_id": doc_id, "error": "Document not found"})
+                        
+                except Exception as e:
+                    errors.append({"document_id": doc_id, "error": str(e)})
+            
+            # Execute bulk update
+            if bulk_docs:
+                results = self.db.update(bulk_docs)
+                
+                # Count successes and failures
+                updated = sum(1 for success, doc_id, rev_or_error in results if success)
+                failed = len(bulk_docs) - updated
+                
+                # Collect errors from bulk operation
+                for success, doc_id, rev_or_error in results:
+                    if not success:
+                        errors.append({"document_id": doc_id, "error": str(rev_or_error)})
+                
+                logger.info(f"✅ CouchDB batch updated {updated}/{len(updates)} documents")
+                
+                return {
+                    "success": updated > 0,
+                    "updated": updated,
+                    "failed": failed + len(errors),
+                    "errors": errors
+                }
+            else:
+                return {
+                    "success": False,
+                    "updated": 0,
+                    "failed": len(updates),
+                    "errors": errors
+                }
+            
+        except Exception as e:
+            logger.error(f"❌ CouchDB batch update failed: {e}")
+            return {
+                "success": False,
+                "updated": 0,
+                "failed": len(updates),
+                "errors": [{"error": str(e)}]
+            }
+    
+    def batch_delete(
+        self,
+        document_ids: List[str],
+        soft_delete: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Batch delete documents using CouchDB _bulk_docs API
+        
+        Args:
+            document_ids: List of document IDs to delete
+            soft_delete: If True, mark as deleted; if False, remove documents
+            
+        Returns:
+            Dict with keys: success, deleted, failed, errors
+        """
+        if not document_ids or not self.is_available():
+            return {"success": True, "deleted": 0, "failed": 0, "errors": []}
+        
+        try:
+            bulk_docs = []
+            errors = []
+            
+            for doc_id in document_ids:
+                try:
+                    if doc_id in self.db:
+                        doc = self.db[doc_id]
+                        
+                        if soft_delete:
+                            # Soft delete: Set deleted flag
+                            doc["deleted"] = True
+                            bulk_docs.append(doc)
+                        else:
+                            # Hard delete: Set _deleted flag for CouchDB
+                            bulk_docs.append({
+                                "_id": doc["_id"],
+                                "_rev": doc["_rev"],
+                                "_deleted": True
+                            })
+                    else:
+                        errors.append({"document_id": doc_id, "error": "Document not found"})
+                        
+                except Exception as e:
+                    errors.append({"document_id": doc_id, "error": str(e)})
+            
+            # Execute bulk delete
+            if bulk_docs:
+                results = self.db.update(bulk_docs)
+                
+                # Count successes
+                deleted = sum(1 for success, doc_id, rev_or_error in results if success)
+                failed = len(bulk_docs) - deleted
+                
+                # Collect errors
+                for success, doc_id, rev_or_error in results:
+                    if not success:
+                        errors.append({"document_id": doc_id, "error": str(rev_or_error)})
+                
+                delete_type = "Soft deleted" if soft_delete else "Hard deleted"
+                logger.info(f"✅ CouchDB {delete_type} {deleted}/{len(document_ids)} documents")
+                
+                return {
+                    "success": deleted > 0,
+                    "deleted": deleted,
+                    "failed": failed + len(errors),
+                    "errors": errors
+                }
+            else:
+                return {
+                    "success": False,
+                    "deleted": 0,
+                    "failed": len(document_ids),
+                    "errors": errors
+                }
+            
+        except Exception as e:
+            logger.error(f"❌ CouchDB batch delete failed: {e}")
+            return {
+                "success": False,
+                "deleted": 0,
+                "failed": len(document_ids),
+                "errors": [{"error": str(e)}]
+            }
+    
+    def batch_upsert(
+        self,
+        documents: List[Dict[str, Any]],
+        conflict_resolution: str = "update"
+    ) -> Dict[str, Any]:
+        """
+        Batch upsert documents using CouchDB _bulk_docs API
+        
+        Args:
+            documents: List of document dicts with:
+                - document_id: Document ID
+                - fields: Dict of fields to insert/update
+            conflict_resolution: How to handle conflicts ("update", "ignore")
+            
+        Returns:
+            Dict with keys: success, inserted, updated, failed, errors
+        """
+        if not documents or not self.is_available():
+            return {"success": True, "inserted": 0, "updated": 0, "failed": 0, "errors": []}
+        
+        try:
+            bulk_docs = []
+            errors = []
+            existing_count = 0
+            
+            for doc in documents:
+                doc_id = doc.get("document_id")
+                fields = doc.get("fields", {})
+                
+                try:
+                    if doc_id in self.db:
+                        # Document exists - update
+                        existing_count += 1
+                        if conflict_resolution == "update":
+                            existing_doc = self.db[doc_id]
+                            existing_doc.update(fields)
+                            bulk_docs.append(existing_doc)
+                        # else: ignore (don't add to bulk)
+                    else:
+                        # Document doesn't exist - insert
+                        new_doc = {"_id": doc_id}
+                        new_doc.update(fields)
+                        bulk_docs.append(new_doc)
+                        
+                except Exception as e:
+                    errors.append({"document_id": doc_id, "error": str(e)})
+            
+            # Execute bulk upsert
+            if bulk_docs:
+                results = self.db.update(bulk_docs)
+                
+                # Count successes
+                success_count = sum(1 for success, doc_id, rev_or_error in results if success)
+                failed = len(bulk_docs) - success_count
+                
+                # Estimate inserts vs updates
+                inserted = success_count - existing_count if success_count > existing_count else 0
+                updated = success_count - inserted
+                
+                # Collect errors
+                for success, doc_id, rev_or_error in results:
+                    if not success:
+                        errors.append({"document_id": doc_id, "error": str(rev_or_error)})
+                
+                logger.info(f"✅ CouchDB batch upserted {success_count} documents (est. {inserted} inserts, {updated} updates)")
+                
+                return {
+                    "success": success_count > 0,
+                    "inserted": inserted,
+                    "updated": updated,
+                    "failed": failed + len(errors),
+                    "errors": errors
+                }
+            else:
+                return {
+                    "success": False,
+                    "inserted": 0,
+                    "updated": 0,
+                    "failed": len(documents),
+                    "errors": errors
+                }
+            
+        except Exception as e:
+            logger.error(f"❌ CouchDB batch upsert failed: {e}")
+            return {
+                "success": False,
+                "inserted": 0,
+                "updated": 0,
+                "failed": len(documents),
+                "errors": [{"error": str(e)}]
+            }
+
 
 def get_backend_class():
     return CouchDBAdapter

@@ -22,18 +22,30 @@ DATABASES: Dict[str, Dict[str, Any]] = {
     },
     "vector": {
         "provider": "chromadb",
-        "endpoint": "http://localhost:8000",
+        "uri": "http://localhost:8000",
         "api_key": "",
+        "user": "",
+        "password": ""
     },
     "graph": {
         "provider": "neo4j",
         "uri": "bolt://localhost:7687",
-        "user": "neo4j",
+        "user": "",
         "password": "",
     },
     "relational": {
         "provider": "postgresql",
+        "uri": "192.168.178.94:5432",
+        "database": "",
+        "user": "",  
+        "password": "",
     },
+    "file":{
+        "provider": "couchdb",
+        "uri": "http://192.168.178.94:5984",
+        "user": "",
+        "password": ""
+    }
 }
 
 # Feature flags and adapter switches (explicit, no os.getenv())

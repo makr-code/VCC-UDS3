@@ -15,7 +15,7 @@ from enum import Enum
 import logging
 
 try:
-    from uds3_query_filters import (
+    from ..api.filters import (
         BaseFilter,
         FilterOperator,
         FilterCondition,

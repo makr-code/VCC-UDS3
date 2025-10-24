@@ -28,7 +28,7 @@ from datetime import datetime
 from enum import Enum
 from dataclasses import dataclass
 
-from uds3_streaming_operations import (
+from ..manager.streaming import (
     StreamingManager,
     StreamingSagaConfig,
     SagaRollbackRequired,

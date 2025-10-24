@@ -22,7 +22,7 @@ from typing import Dict, List, Any, Optional, Set, Tuple
 from dataclasses import dataclass, field
 from enum import Enum
 
-from uds3_process_parser_base import (
+from ..api.parser_base import (
     ProcessParserBase,
     ProcessElement,
     ValidationResult,

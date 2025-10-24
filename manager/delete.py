@@ -1110,7 +1110,7 @@ class HardDeleteManager:
 
 # Import ArchiveManager if available
 try:
-    from uds3_archive_operations import (
+    from ..manager.archive import (
         ArchiveManager,
         create_archive_manager,
         ArchiveResult,

@@ -10,6 +10,7 @@ Siehe auch: DATABASE_API_SUMMARY.md
 """
 
 import logging
+import os
 import importlib
 import concurrent.futures
 from typing import Dict, Optional, Union, List
@@ -223,9 +224,16 @@ class DatabaseManager:
                     try:
                         # PostgreSQL Backend für Remote-DB (192.168.178.94)
                         if backend_name == 'postgresql':
-                            from uds3.database.database_api_postgresql import PostgreSQLRelationalBackend
-                            backend_cls_rel = PostgreSQLRelationalBackend
-                            self.logger.info("🔗 PostgreSQL Backend aktiviert (Remote DB)")
+                            # Optional: Verbindungspooling aktivieren (default: true)
+                            use_pool = os.getenv('POSTGRES_USE_POOL', 'true').lower() in ('1', 'true', 'yes')
+                            if use_pool:
+                                from uds3.database.database_api_postgresql_pooled import PostgreSQLRelationalBackend
+                                backend_cls_rel = PostgreSQLRelationalBackend
+                                self.logger.info("🔗 PostgreSQL Backend (Pooled) aktiviert (Remote DB)")
+                            else:
+                                from uds3.database.database_api_postgresql import PostgreSQLRelationalBackend
+                                backend_cls_rel = PostgreSQLRelationalBackend
+                                self.logger.info("🔗 PostgreSQL Backend (Single-Connection) aktiviert (Remote DB)")
                         elif backend_name == 'mongodb':
                             from uds3.database.database_api_mongodb import MongoDBDocumentBackend
                             backend_cls_rel = MongoDBDocumentBackend

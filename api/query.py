@@ -36,28 +36,28 @@ logger = logging.getLogger(__name__)
 
 # Try to import all filter modules with fallback support
 try:
-    from uds3_vector_filter import VectorFilter, VectorFilterResult
+    from ..api.vector_filter import VectorFilter, VectorFilterResult
     VECTOR_FILTER_AVAILABLE = True
 except ImportError:
     VECTOR_FILTER_AVAILABLE = False
     logger.debug("VectorFilter not available for PolyglotQuery - using fallback mode")
 
 try:
-    from uds3_graph_filter import GraphFilter, GraphFilterResult
+    from ..api.graph_filter import GraphFilter, GraphFilterResult
     GRAPH_FILTER_AVAILABLE = True
 except ImportError:
     GRAPH_FILTER_AVAILABLE = False
     logger.debug("GraphFilter not available for PolyglotQuery - using fallback mode")
 
 try:
-    from uds3_relational_filter import RelationalFilter, RelationalQueryResult
+    from ..api.relational_filter import RelationalFilter, RelationalQueryResult
     RELATIONAL_FILTER_AVAILABLE = True
 except ImportError:
     RELATIONAL_FILTER_AVAILABLE = False
     logger.warning("RelationalFilter not available for PolyglotQuery")
 
 try:
-    from uds3_file_storage_filter import FileStorageFilter, FileFilterResult
+    from ..api.file_filter import FileStorageFilter, FileFilterResult
     FILE_STORAGE_FILTER_AVAILABLE = True
 except ImportError:
     FILE_STORAGE_FILTER_AVAILABLE = False
@@ -1034,7 +1034,7 @@ class FileStorageQueryBuilder:
         
         # Create search query
         try:
-            from uds3_file_storage_filter import create_search_query
+            from ..api.file_filter import create_search_query
             
             query = create_search_query(
                 extensions=extensions,

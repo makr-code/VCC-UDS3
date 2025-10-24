@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 import logging
 
-from uds3_query_filters import (
+from ..api.filters import (
     BaseFilter,
     FilterOperator,
     FilterCondition,

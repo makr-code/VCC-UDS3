@@ -44,7 +44,7 @@ class MockResult:
         return []
 
 # Import Core Framework (backend-agnostisch)
-from uds3_relations_data_framework import (
+from .framework import (
     UDS3RelationsDataFramework,
     UDS3RelationPriority,
     UDS3RelationStatus,

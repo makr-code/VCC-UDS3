@@ -17,7 +17,7 @@ import logging
 from datetime import datetime
 
 try:
-    from uds3_query_filters import (
+    from ..api.filters import (
         BaseFilter,
         FilterOperator,
         FilterCondition,

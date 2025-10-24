@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from collections import deque
 
-from uds3_petrinet_parser import (
+from ..api.petrinet import (
     PetriNet,
     Place,
     Transition,

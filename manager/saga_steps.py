@@ -41,7 +41,7 @@ except ImportError:
     IdentityServiceError = Exception  # type: ignore
 
 try:
-    from uds3_saga_orchestrator import SagaExecutionError
+    from ..manager.saga import SagaExecutionError
     SAGA_AVAILABLE = True
 except ImportError:
     SAGA_AVAILABLE = True

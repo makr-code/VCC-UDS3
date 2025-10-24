@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 import logging
 
 # Import Naming Strategy
-from uds3_naming_strategy import (
+from ..api.naming import (
     NamingStrategy,
     OrganizationContext,
     NamingConvention,
