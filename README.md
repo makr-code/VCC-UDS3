@@ -2,7 +2,7 @@
 
 **Enterprise-ready Multi-Database Distribution System with PKI-Integrated Security**
 
-UDS3 ist ein hochmodernes Multi-Database Framework für administrative und rechtliche Dokumente mit voller SAGA-Unterstützung, DSGVO-Compliance, Search API und umfassender Sicherheitsarchitektur.
+UDS3 ist ein hochmodernes Multi-Database Framework für administrative und rechtliche Dokumente AI LLM RAG Framework mit voller SAGA-Unterstützung, DSGVO-Compliance, Search API und umfassender Sicherheitsarchitektur.
 
 ---
 
