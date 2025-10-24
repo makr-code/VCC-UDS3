@@ -1,8 +1,18 @@
-"""Run the conservative module-level annotation codemod on a targeted file list.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+run_target_codmod.py
 
+Run the conservative module-level annotation codemod on a targeted file list.
 This wrapper imports the functions from `tools/add_module_var_annotations.py` and
 applies `process_file` to each path in TARGETS. It prints a short summary per file.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from pathlib import Path
 import runpy
 

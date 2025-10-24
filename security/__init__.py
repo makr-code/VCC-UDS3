@@ -1,23 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+__init__.py
+
+__init__.py
 UDS3 Security Layer - PKI-Integrated Authentication & Authorization
 ===================================================================
-
 Production-grade security implementation with:
 - PKI Certificate-based Authentication (mTLS)
-- Role-Based Access Control (RBAC) 
+- Role-Based Access Control (RBAC)
 - Least Privilege Access Control
 - Row-Level Security (RLS) für Database APIs
 - Audit Logging
 - API Rate Limiting
 - JWT Token Support (fallback)
-
 Integration:
 - PKI Package für Certificate Management
 - UDS3 Database APIs mit Access Control
 - Multi-Backend Security (PostgreSQL RLS, Neo4j, CouchDB, ChromaDB)
-
 Author: UDS3 Security Team
 Created: 2025-10-24
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from enum import Enum

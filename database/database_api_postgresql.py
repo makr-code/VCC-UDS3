@@ -1,15 +1,27 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-PostgreSQL Relational Backend für UDS3
+database_api_postgresql.py
 
+database_api_postgresql.py
+PostgreSQL Relational Backend für UDS3
 Implementiert PostgreSQL-Backend analog zu SQLiteRelationalBackend.
 Verwendet für Corvina Backend die migrierte PostgreSQL-Datenbank.
-
 Error-Handling:
 - Connection Pool Management (ThreadedConnectionPool)
 - Deadlock Detection + Retry
 - Transaction Rollback bei Failures
 - Structured Error Logging
 - Pool Metrics Tracking (_used, _free connections)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

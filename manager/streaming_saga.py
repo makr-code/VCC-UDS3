@@ -1,21 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+streaming_saga.py
+
+streaming_saga.py
 UDS3 Streaming Saga Integration
 ================================
-
 Integriert Streaming Operations mit Saga Pattern für große Dateien (300+ MB).
-
 Features:
 - Saga Steps mit Streaming Support
 - Automatischer Rollback bei Resume-Fehlschlag
 - Integrity Verification nach Upload
 - Compensation mit Best-Effort Cleanup
 - Monitoring & Alerting für Rollback-Failures
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
 Version: 1.0.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

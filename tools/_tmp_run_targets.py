@@ -1,3 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+_tmp_run_targets.py
+
+ Tmp Run Targets module
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 from pathlib import Path
 import runpy
 ROOT = Path(__file__).resolve().parents[1]

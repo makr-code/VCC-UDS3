@@ -1,10 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+query.py
+
+query.py
 UDS3 Polyglot Query Module
 ===========================
-
-Multi-database query coordinator for executing queries across Vector, Graph, 
+Multi-database query coordinator for executing queries across Vector, Graph,
 Relational, and File Storage databases with intelligent result joining.
-
 Features:
 - Cross-database query coordination
 - Multiple join strategies (INTERSECTION, UNION, SEQUENTIAL)
@@ -12,14 +15,21 @@ Features:
 - Result merging and deduplication
 - Performance tracking and optimization
 - Integration with all UDS3 filter modules
-
 Join Strategies:
 - INTERSECTION: Return results present in ALL databases (AND logic)
 - UNION: Return results present in ANY database (OR logic)
 - SEQUENTIAL: Use results from one DB to filter the next (pipeline)
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from __future__ import annotations

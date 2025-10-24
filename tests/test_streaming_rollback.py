@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+test_streaming_rollback.py
+
+test_streaming_rollback.py
 Test Suite: Streaming Saga Rollback
 ====================================
-
 Tests für Rollback-Szenarien im Streaming Saga System:
 - Resume-Failure nach max retries
 - Hash-Mismatch Detection
@@ -11,10 +13,18 @@ Tests für Rollback-Szenarien im Streaming Saga System:
 - Rollback-Failure Scenarios
 - Compensation Verification
 - Edge Cases
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
 Version: 1.0.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

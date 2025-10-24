@@ -1,20 +1,31 @@
-"""PostgreSQL Backend mit Connection Pooling für UDS3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+database_api_postgresql_pooled.py
 
+database_api_postgresql_pooled.py
+PostgreSQL Backend mit Connection Pooling für UDS3
 Diese Version verwendet psycopg2 ThreadedConnectionPool statt einzelner Connections
 für deutlich verbesserte Performance bei konkurrenten Zugriffen.
-
 Performance Improvements vs. Single Connection:
 - Database Latency: -58% (Connection-Reuse statt Create)
 - Query Throughput: +50-80% (Pool statt Blocking)
 - Concurrent Requests: +100-200% (Thread-safe Pool)
-
 Migration Guide:
 1. Importiere dieses Modul statt database_api_postgresql.py
 2. Alle APIs bleiben identisch (drop-in replacement)
 3. Connection Pool wird automatisch beim ersten connect() initialisiert
 4. Pool-Größe konfigurierbar via ENV (min=5, max=50)
-
 Backward Compatibility: 100% (alle bestehenden Tests funktionieren)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+database_api_couchdb.py
+
+database_api_couchdb.py
 CouchDB adapter - lightweight Document DB adapter using `couchdb` package.
 Provides full CRUD: create_document, get_document, update_document, delete_document, query.
-
 Config keys:
 - url: http://user:pass@host:5984
 - db: database name
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import logging

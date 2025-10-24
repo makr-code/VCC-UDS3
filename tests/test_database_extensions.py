@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Tests for DatabaseManager Extensions
+test_database_extensions.py
 
+Tests for DatabaseManager Extensions
 Tests the integration of SAGA, Adaptive Routing, and Multi-DB Distributor
 as opt-in extensions to DatabaseManager.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 print("\n" + "=" * 70)

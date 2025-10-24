@@ -1,27 +1,36 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+database_api_chromadb_remote.py
+
+database_api_chromadb_remote.py
 ChromaDB Remote HTTP Client
 ===========================
-
 HTTP-basierter ChromaDB Client für Remote-Server ohne lokale chromadb-Abhängigkeit.
 Unterstützt ChromaDB HTTP API für Vector-Operationen.
-
 Error-Handling:
 - HTTP 400/500 Error Detection mit Details
 - Collection-ID UUID Validation
 - Batch Operation Partial Success Handling
 - Session Persistence mit Auto-Reconnect
 - API Version Compatibility Checks
-
 Verwendung für Remote ChromaDB Server (z.B. 192.168.178.94:8000):
 - Keine lokale chromadb-Installation erforderlich
 - HTTP/REST API basierte Kommunikation
 - Kompatibel mit UDS3 VectorDatabaseBackend Interface
-
 Author: Covina System
 Date: Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import json

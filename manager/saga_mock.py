@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""UDS3 Mock SAGA Orchestrator
+"""
+saga_mock.py
 
+UDS3 Mock SAGA Orchestrator
 Mock implementation for testing and fallback scenarios when database.saga_orchestrator is not available.
 This should only be used for testing or when the real SAGA backend is intentionally disabled.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from typing import Any, Dict, List, Optional
 from dataclasses import dataclass
 import logging

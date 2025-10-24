@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 Multi-Backend Flexibility Test
+test_multi_backend_flexibility.py
 
+UDS3 Multi-Backend Flexibility Test
 Testet ob UDS3 mit komplexen Backend-Konstellationen klar kommt:
 - 2x Graph Databases
-- 6x Relational Databases 
+- 6x Relational Databases
 - 3x File Servers
 - 4x Vector Databases
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from database.config import (

@@ -1,13 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+rag_enhanced.py
+
+rag_enhanced.py
 UDS3 RAG-Enhanced LLM Integration
 Multi-Database RAG Context Aggregation with Token Optimization
-
 Erweitert bestehende LLM-Services mit Multi-Database RAG Capabilities:
 - Intelligente Kontext-Aggregation aus PostgreSQL, CouchDB, ChromaDB, Neo4j
-- Token-optimierte Prompt Generation 
+- Token-optimierte Prompt Generation
 - Adaptive Query Routing basierend auf verfügbaren Datenbanken
 - Semantic Search Enhancement mit Cross-Database Context
 - Performance-optimierte RAG Pipeline mit Caching
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import asyncio

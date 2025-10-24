@@ -1,10 +1,24 @@
-"""Kleines CLI-Tool: db_health_check
-
-Usage:
-    python scripts/db_health_check.py
-
-Gibt eine Kurzübersicht über konfigurierte Backends, deren Status und optionale ModuleStatus-Informationen.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+db_health_check.py
+
+db_health_check.py
+Kleines CLI-Tool: db_health_check
+Usage:
+python scripts/db_health_check.py
+Gibt eine Kurzübersicht über konfigurierte Backends, deren Status und optionale ModuleStatus-Informationen.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 import sys
 from pathlib import Path
 

@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+adaptive_batch_processor.py
+
+adaptive_batch_processor.py
 Adaptive Batch Processor Implementation
 ======================================
-
 Hochperformanter Batch-Prozessor mit adaptiver Größenanpassung,
 Performance-Monitoring und intelligenter Optimierung.
-
 Author: UDS3 Framework
 Date: Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

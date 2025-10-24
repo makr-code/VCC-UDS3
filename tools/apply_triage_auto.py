@@ -1,11 +1,25 @@
-"""Apply Auto-classified fix snippets from need_type_triage.csv to repo files.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+apply_triage_auto.py
 
+apply_triage_auto.py
+Apply Auto-classified fix snippets from need_type_triage.csv to repo files.
 Only applies rows where classification == 'Auto' and file path starts with 'uds3/'.
 It searches for a matching context line or variable assignment and replaces that line
 with the provided fix_snippet.
-
 This is conservative: it writes a backup file with .bak before changing.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import csv
 from pathlib import Path
 import re

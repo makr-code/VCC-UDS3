@@ -1,7 +1,15 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 Compliance Module - DSGVO, Security, and Identity Services
+__init__.py
 
+UDS3 Compliance Module - DSGVO, Security, and Identity Services
 Dieses Modul ist Teil der UDS3 Polyglot Persistence Architecture.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from compliance.dsgvo_core import UDS3DSGVOCore, PIIType, DSGVOProcessingBasis, DSGVOOperationType

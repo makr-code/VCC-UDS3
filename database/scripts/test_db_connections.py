@@ -1,17 +1,30 @@
 #!/usr/bin/env python3
-"""Erweitertes Diagnose-Skript zum Überprüfen der Datenbankverbindungen.
+# -*- coding: utf-8 -*-
+"""
+test_db_connections.py
 
+test_db_connections.py
+Erweitertes Diagnose-Skript zum Überprüfen der Datenbankverbindungen.
 Funktionen:
 - Lädt die Standard-Konfiguration aus ``database.config``
 - Optionaler Netzwerkvorab-Check (TCP / HTTP) pro Backend
 - Verbindungsaufbau über ``DatabaseManager.start_all_backends``
 - Ausgabe als Tabelle oder JSON
 - Steuerung via CLI-Argumente (z. B. ``--only vector graph``)
-
 Ausführung (Beispiele):
 - ``python -m database.scripts.test_db_connections``
 - ``python -m database.scripts.test_db_connections --network --json``
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import argparse

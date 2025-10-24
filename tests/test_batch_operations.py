@@ -1,14 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+test_batch_operations.py
+
+test_batch_operations.py
 Unit Tests for UDS3 Batch Operations
 =====================================
-
 Mock-based unit tests for batch operations (no server dependency).
 Tests batch logic, thread safety, error handling, and statistics.
-
 Author: UDS3 Framework
 Date: Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

@@ -1,10 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+adapter.py
+
+adapter.py
 UDS3 VPB Adapter
 Bridge zwischen VPB Domain Models und UDS3 Polyglot Manager
-
 Dieser Adapter integriert die VPB-spezifischen Domain Models
 (VPBProcess, VPBTask, VPBDocument, VPBParticipant) mit der
 UDS3 Polyglot Persistence Architecture.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Any, Dict, List, Optional, Tuple

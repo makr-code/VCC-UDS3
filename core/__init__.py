@@ -1,7 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+__init__.py
+
+__init__.py
 UDS3 Core Module - Kernkomponenten
 ==================================
-
 Reorganisiert: 24. Oktober 2025
 Kernkomponenten mit verkürzten Namen:
 - database.py: Hauptdatabase-Strategie (ehemals uds3_core.py)
@@ -9,6 +13,15 @@ Kernkomponenten mit verkürzten Namen:
 - relations.py: Relations-Core (ehemals uds3_relations_core.py)
 - framework.py: Relations-Framework (ehemals uds3_relations_data_framework.py)
 - cache.py: Single-Record-Cache (ehemals uds3_single_record_cache.py)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 # Core Database Components (neue Struktur) 

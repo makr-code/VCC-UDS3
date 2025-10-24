@@ -1,12 +1,24 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+simple_benchmark_batch_read.py
+
+simple_benchmark_batch_read.py
 Simplified Performance Benchmark for Batch READ Operations
 Demonstrates performance characteristics without requiring real databases.
-
 This benchmark simulates database operations to show the performance
 improvement of batch operations vs sequential operations.
-
 Usage:
-    python tests/simple_benchmark_batch_read.py
+python tests/simple_benchmark_batch_read.py
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import time

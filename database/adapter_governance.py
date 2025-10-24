@@ -1,12 +1,27 @@
-"""Governance-Richtlinien für Datenbank-Adapter.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+adapter_governance.py
 
+adapter_governance.py
+Governance-Richtlinien für Datenbank-Adapter.
 Dieses Modul bündelt nachvollziehbare Regeln, welche Operationen auf den
 Backend-Adaptern erlaubt sind und welche Felder bzw. Datentypen in den
 Payloads auftreten dürfen. Es dient als zentrale Stelle für die
 Governance-Prüfungen, damit sowohl der `DatabaseManager` als auch höhere
 Schichten (z.\u202fB. `UnifiedDatabaseStrategy`) konsistente Entscheidungen
 über Zulässigkeit und Validität treffen können.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass

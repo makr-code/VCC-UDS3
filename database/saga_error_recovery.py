@@ -1,18 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+saga_error_recovery.py
+
+saga_error_recovery.py
 SAGA Orchestrator Error-Handling Hardening
 ===========================================
-
 Erweiterte Error-Recovery-Logic für SAGA Pattern:
 - Compensation Retry mit Exponential Backoff (3 Retries)
 - Transaction Timeout Management (300s)
 - Lock-Acquisition mit Retry-Logic
 - SAGA Status Transitions mit Error-States
-
 Author: UDS3 System
 Date: 2025-10-09
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import time
 import logging
 from typing import Optional, Dict, Any, List

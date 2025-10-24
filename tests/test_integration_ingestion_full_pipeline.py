@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-End-to-End Integration Test: Document Ingestion → Vector + Graph + Relational DB
+test_integration_ingestion_full_pipeline.py
 
+test_integration_ingestion_full_pipeline.py
+End-to-End Integration Test: Document Ingestion → Vector + Graph + Relational DB
 Testet unter Realbedingungen, ob ein Dokument mit Chunks und Metadaten
 korrekt auf alle drei DB-Typen ausgerollt wird:
 - Vector DB: Chunks mit Embeddings
 - Graph DB: Document-Node und Relationships
 - Relational DB: Metadaten und Verfahrensdaten
-
 Anforderungen:
 - Vollständig konfigurierte DatabaseManager-Instanz (config.json oder Umgebungsvariablen)
 - Schreib- und Lesezugriff auf Vector, Graph, Relational Backend
 - Idealerweise: Chromadb (Vector), Neo4j (Graph), SQLite/PostgreSQL (Relational)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import sys

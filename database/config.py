@@ -1,4 +1,26 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+config.py
+
+config.py
+Database-Typen für modulares System
+VECTOR = "vector"
+GRAPH = "graph"
+RELATIONAL = "relational"
+FILE = "file"
+KEY_VALUE = "key_value"
+class DatabaseBackend(Enum):
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
 
 import os
 from typing import Dict, List, Optional, Any

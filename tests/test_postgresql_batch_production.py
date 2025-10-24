@@ -1,13 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+test_postgresql_batch_production.py
+
+test_postgresql_batch_production.py
 PostgreSQL Batch READ Production Test
 Tests real-world batch performance with actual PostgreSQL database.
-
 Requirements:
 - PostgreSQL running on 192.168.178.94:5432
 - Test data available (or will be created)
-
 Usage:
-    pytest tests/test_postgresql_batch_production.py -v -s
+pytest tests/test_postgresql_batch_production.py -v -s
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

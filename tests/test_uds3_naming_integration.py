@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Test: UDS3 Core mit Dynamic Naming Integration
+test_uds3_naming_integration.py
 
+Test: UDS3 Core mit Dynamic Naming Integration
 Testet ob UnifiedDatabaseStrategy korrekt mit NamingStrategy funktioniert.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import sys

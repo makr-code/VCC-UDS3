@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+debug_db_start.py
+
+debug_db_start.py
 Debug runner to trace where DatabaseManager startup hangs.
 Run from project root with PYTHONPATH set, e.g. in PowerShell:
-
 $env:PYTHONPATH = 'C:\VVC\Covina'; python -u -m database.scripts.debug_db_start
-
 This script prints timestamped markers before/after key steps and prints
 tracebacks for exceptions. It helps identify import or connect-time blockers.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import logging

@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""UDS3 Identity Service
+"""
+identity_service.py
 
+identity_service.py
+UDS3 Identity Service
 Stellt das duale Identitätskonzept (UUID ↔ Aktenzeichen) bereit und
 persistiert Cross-Database-Mappings in der relationalen Datenbank.
-
 Der Service kapselt sämtliche Datenbankzugriffe, erzwingt einmalige
 Aktenzeichen und bietet eine konsistente API für andere Module.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from __future__ import annotations

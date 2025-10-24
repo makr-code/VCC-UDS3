@@ -1,21 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+database_api_neo4j.py
+
+database_api_neo4j.py
 Lightweight Neo4j adapter for the Veritas database layer.
 This adapter follows the project's `GraphDatabaseBackend` abstract base and
 uses the official `neo4j` driver when available. It aims to be small and
 easy to read and maintain.
-
 Usage:
-    from database.database_api_neo4j import Neo4jGraphBackend
-    backend = Neo4jGraphBackend({'uri': 'neo4j://localhost:7687', 'user': 'neo4j', 'password': 'pw'})
-    backend.connect()
-    backend.execute_query('MATCH (n) RETURN count(n) as c')
-
+from database.database_api_neo4j import Neo4jGraphBackend
+backend = Neo4jGraphBackend({'uri': 'neo4j://localhost:7687', 'user': 'neo4j', 'password': 'pw'})
+backend.connect()
+backend.execute_query('MATCH (n) RETURN count(n) as c')
 This file intentionally implements a subset of features needed by the
 higher-level manager: connect/disconnect, is_available, get_backend_type,
 execute_query and simple node/relationship helpers.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import logging

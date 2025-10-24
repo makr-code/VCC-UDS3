@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+database_api_chromadb.py
+
+database_api_chromadb.py
 ChromaDB adapter using the official `chromadb` client.
 Provides vector store operations used by the vector backend API.
-
 Config keys:
 - impl: optional 'chromadb' implementation settings
 - collection: default collection name
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import logging

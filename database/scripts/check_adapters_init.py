@@ -1,13 +1,27 @@
 #!/usr/bin/env python3
-"""Check all database_api_* adapters for import/initialization errors.
+# -*- coding: utf-8 -*-
+"""
+check_adapters_init.py
 
+check_adapters_init.py
+Check all database_api_* adapters for import/initialization errors.
 The script imports each module under the `database` package matching
 `database_api_*.py`, locates classes whose name ends with 'Backend' or a
 `get_backend_class` function, and attempts a safe instantiation with a
 minimal config. It catches and reports any exceptions so we can find
 adapters that call non-callable globals or rely on missing optional
 dependencies.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import sys
 import traceback
 import importlib

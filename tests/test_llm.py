@@ -1,6 +1,39 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Test Script für UDS3 Ollama LLM Client"""
+"""
+test_llm.py
+
+test_llm.py
+Test Script für UDS3 Ollama LLM Client
+import sys
+import logging
+logging.basicConfig(level=logging.INFO)
+print('🧪 Testing UDS3 Ollama LLM Client...')
+print()
+from uds3.core.llm_ollama import OllamaClient
+# Test 1: Initialize
+print('1️⃣ Initialisiere Ollama Client...')
+client = OllamaClient(default_model="llama3.1:8b")
+print(f'   Base URL: {client.base_url}')
+print(f'   Model: {client.default_model}')
+print()
+# Test 2: List Models
+print('2️⃣ Liste verfügbare Modelle...')
+models = client.list_models()
+print(f'   Anzahl Modelle: {len(models)}')
+for m in models[:3]:
+print(f'   - {m["name"]}')
+print()
+# Test 3: Simple Generation
+print('3️⃣ Einfache Text-Generation...')
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
 
 import sys
 import logging

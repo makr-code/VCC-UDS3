@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
-"""Run saga migrations against a local SQLite file for testing.
+# -*- coding: utf-8 -*-
+"""
+run_saga_migrations_sqlite.py
 
+Run saga migrations against a local SQLite file for testing.
 This is a safe, non-destructive way to verify the idempotent migration helpers
 in `db_migrations.py` without touching remote Postgres.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import logging
 from pathlib import Path
 import sys

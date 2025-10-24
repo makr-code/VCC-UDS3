@@ -1,15 +1,27 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+benchmark_batch_read_performance.py
+
+benchmark_batch_read_performance.py
 Performance Benchmark Tests for UDS3 Batch READ Operations
 Tests real-world performance scenarios with actual data volumes.
-
 Scenarios:
 1. Dashboard Queries (100 docs) - Expected: 23s → 0.1s (230x)
 2. Search Operations (10 queries) - Expected: 600ms → 300ms (2x)
 3. Bulk Export (1000 docs) - Expected: 3.8min → 0.1s (2,300x)
 4. Existence Checks (500 docs) - Expected: 5s → 0.05s (100x)
-
 Usage:
-    pytest tests/benchmark_batch_read_performance.py -v -s
+pytest tests/benchmark_batch_read_performance.py -v -s
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

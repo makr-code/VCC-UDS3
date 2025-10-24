@@ -1,17 +1,28 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+filters.py
+
+filters.py
 UDS3 Query Filters Module
 ==========================
-
 Base filter classes and operators for querying across all databases.
-
 Provides:
 - Abstract BaseFilter with fluent API
 - FilterOperator enum for common operations
 - Query builders for Vector, Graph, Relational, File Storage
 - PolyglotQuery coordinator for cross-database queries
-
 Author: UDS3 Team
 Date: 1. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from abc import ABC, abstractmethod

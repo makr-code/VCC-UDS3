@@ -1,20 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+database.py
+
+database.py
 UDS3 Database API - Enhanced Database Interface
 ==============================================
 Verbesserte und konsolidierte Database-API für UDS3
-
 Bietet einheitliche Schnittstellen für:
 - Multi-Database Operations (Vector, Graph, Relational, File Storage)
 - Schema Management und Validation
 - Query Optimization und Caching
 - Transaction Management
 - Performance Monitoring
-
 Author: UDS3 Team
 Date: 24. Oktober 2025
 Version: 3.1.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

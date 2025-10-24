@@ -1,14 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 Vector Database Filter Module
+vector_filter.py
 
+vector_filter.py
+UDS3 Vector Database Filter Module
 Filter-Implementierung für Vector Database (ChromaDB/Pinecone) Queries:
 - Similarity Search mit Embeddings
 - Metadata Filtering
 - Collection-basierte Queries
 - Kombinierte Queries (Similarity + Metadata)
-
 Autor: UDS3 Team
 Datum: 1. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Any, Dict, List, Optional, Union

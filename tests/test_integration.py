@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Integration Test für UDS3 Polyglot Manager + RAG Pipeline
+test_integration.py
 
+test_integration.py
+Integration Test für UDS3 Polyglot Manager + RAG Pipeline
 Testet:
 1. Polyglot Manager Initialisierung
 2. Prozess speichern (mit Embeddings)
 3. Semantische Suche
 4. RAG Query (LLM-basiert)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import sys

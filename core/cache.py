@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+cache.py
+
+cache.py
 UDS3 Single Record Cache Module
 Optimiert Single Record Read Operations mit LRU Cache + TTL
-
 Features:
 - LRU (Least Recently Used) Eviction Policy
 - TTL (Time-To-Live) für automatische Invalidierung
@@ -11,6 +13,15 @@ Features:
 - Cache Statistics & Performance Monitoring
 - Flexible Invalidierung (Single, Pattern, Full)
 - Warmup-Mechanismus für häufig genutzte Records
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

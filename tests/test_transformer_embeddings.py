@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+test_transformer_embeddings.py
+
+test_transformer_embeddings.py
 Tests for UDS3 Transformer Embeddings
 ======================================
-
 Test cases:
 - Model loading (lazy + thread-safe)
 - Embedding generation (384-dim validation)
@@ -11,9 +13,17 @@ Test cases:
 - Fallback logic (hash-based)
 - GPU detection
 - Semantic similarity validation
-
 Author: UDS3 Framework
 Date: Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Database Manager – verwaltet dynamisch geladene Backend-Instanzen
+database_manager.py
 
+database_manager.py
+Database Manager – verwaltet dynamisch geladene Backend-Instanzen
 Die Backends werden über die zentrale Konfiguration (server_config.json) und die Factory-Methode
 config.create_backend_instances_dynamisch() erzeugt. Die Basisklassen befinden sich in database_api_base.py,
 die konkreten Implementierungen in den jeweiligen Backend-Modulen (z.B. database_api_chromadb.py).
 Siehe auch: DATABASE_API_SUMMARY.md
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

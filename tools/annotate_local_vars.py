@@ -1,17 +1,30 @@
-"""Annotate simple untyped assignments to lists/dicts/queues with conservative Any types.
-
-Targets:
- - name = [] or name = {}
- - self.name = [] or self.name = {}
- - name = PriorityQueue()
- - self.name = PriorityQueue()
-
-Behaviour: insert an inline annotation if possible:
- - self.name: list[Any] = []
- - name: dict[Any, Any] = {}
-
-This is conservative: uses Any for element types and avoids changing logic.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+annotate_local_vars.py
+
+annotate_local_vars.py
+Annotate simple untyped assignments to lists/dicts/queues with conservative Any types.
+Targets:
+- name = [] or name = {}
+- self.name = [] or self.name = {}
+- name = PriorityQueue()
+- self.name = PriorityQueue()
+Behaviour: insert an inline annotation if possible:
+- self.name: list[Any] = []
+- name: dict[Any, Any] = {}
+This is conservative: uses Any for element types and avoids changing logic.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 import re
 from pathlib import Path
 from typing import Tuple

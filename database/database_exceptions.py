@@ -1,13 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+database_exceptions.py
+
+database_exceptions.py
 Database API Exception Framework
 =================================
-
 Zentrale Exception-Klassen für alle Database Backends
 mit detailliertem Error-Handling und Logging.
-
 Author: UDS3 System
 Date: 2025-10-09
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import logging
 from typing import Optional, Dict, Any
 

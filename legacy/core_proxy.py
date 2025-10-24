@@ -1,12 +1,24 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+core_proxy.py
+
+core_proxy.py
 UDS3 Legacy Core Proxy
 Deprecation-Wrapper für legacy/core.py → core/polyglot_manager.py
-
 Dieser Proxy ermöglicht Backwards Compatibility für bestehenden Code,
 der noch UnifiedDatabaseStrategy nutzt, leitet aber zur neuen API weiter.
-
 WICHTIG: Dieser Code ist DEPRECATED und wird in zukünftigen Versionen entfernt.
 Migrieren Sie zu: from uds3.core.polyglot_manager import UDS3PolyglotManager
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import warnings

@@ -1,10 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Data Security & Quality Framework für Unified Database Strategy v3.0
+security_quality.py
 
+security_quality.py
+Data Security & Quality Framework für Unified Database Strategy v3.0
 Erweitert die Unified Database Strategy um:
 1. Comprehensive Data Security (Hashing, UUIDs, Checksums, Encryption)
 2. Advanced Data Quality Management (Validation, Scoring, Monitoring)
 3. Integrity Verification across all database types
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

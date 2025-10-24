@@ -1,30 +1,38 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+archive.py
+
+archive.py
 UDS3 Archive Operations Module
 ===============================
-
 Provides comprehensive archiving strategies for polyglot persistence:
 - Archive: Move documents to long-term storage
 - Restore: Recover archived documents
 - Retention Policies: Automatic expiration based on rules
 - Batch Operations: Efficient bulk archiving/restoration
 - Archive Metadata: Track archive history and retention info
-
 Supports all 4 databases:
 - Vector DB (ChromaDB/Pinecone)
 - Graph DB (Neo4j/ArangoDB)
 - Relational DB (PostgreSQL/SQLite)
 - File Storage
-
 Design Philosophy:
 - Archive preserves data in a separate storage layer
 - Different from soft delete (deleted vs archived status)
 - Supports compliance requirements (data retention laws)
 - Automatic expiration after retention period
 - Full audit trail for regulatory compliance
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
 Version: 1.0.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from enum import Enum

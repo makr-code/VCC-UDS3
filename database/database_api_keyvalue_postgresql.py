@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""PostgreSQL Key-Value Backend.
+"""
+database_api_keyvalue_postgresql.py
 
+PostgreSQL Key-Value Backend.
 Leichtgewichtiger Adapter, der ein Key-Value-Interface auf einer PostgreSQL-Tabelle
 bereitstellt. Nutzt ``psycopg`` (v3) und speichert Werte als JSONB.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import json

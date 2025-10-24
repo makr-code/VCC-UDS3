@@ -1,17 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+database_api_file_storage.py
+
+database_api_file_storage.py
 FileSystem Storage Backend
 --------------------------
-
 Ein einfaches, lokales dateibasiertes Storage-Backend für Binär-Assets.
 Ziele:
 - Speichert Binärdateien unter einem Root-Pfad deterministisch nach Content-Hash
 - Liefert stabile URIs (file:// oder Pfad) zurück
 - Keine Rohdaten in DBs; nur Pfad/URI und Metadaten werden anrufseitig persistiert
-
 Hinweis: Dieses Backend implementiert nur die für Asset-Speicherung relevanten Methoden und
 erbt von der generischen DatabaseBackend-Basis. Es stellt KEINE Vektor/Graph/SQL-Funktionen bereit.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

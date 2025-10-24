@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Test UDS3 Search API Integration in Core
+test_search_api_integration.py
 
+Test UDS3 Search API Integration in Core
 Tests both old and new import methods to verify backward compatibility.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import sys

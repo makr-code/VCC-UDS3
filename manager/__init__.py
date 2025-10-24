@@ -1,7 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+__init__.py
+
+__init__.py
 UDS3 Manager Module - Management & Orchestrierung
 =================================================
-
 Dieses Modul enthält alle Management- und Orchestrierungskomponenten:
 - saga.py: SAGA-Orchestrator (ehemals uds3_saga_orchestrator.py)
 - saga_mock.py: Mock SAGA-Orchestrator (ehemals uds3_saga_mock_orchestrator.py)
@@ -13,6 +17,15 @@ Dieses Modul enthält alle Management- und Orchestrierungskomponenten:
 - delete.py: Delete-Operationen (ehemals uds3_delete_operations.py)
 - followup.py: Follow-up-Orchestrator (ehemals uds3_follow_up_orchestrator.py)
 - process.py: Process-Integration (ehemals uds3_complete_process_integration.py)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 # Manager components - modular imports

@@ -1,3 +1,27 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+test_integration_uds3_database.py
+
+test_integration_uds3_database.py
+Instantiating the strategy should work and expose basic attributes.
+s = UnifiedDatabaseStrategy()
+assert hasattr(s, "document_mapping")
+assert isinstance(s.document_mapping, dict)
+assert hasattr(s, "batch_operations")
+assert isinstance(s.batch_operations, list)
+def test_resolve_database_manager_and_get_adapter_governance():
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 import pytest
 
 from uds3.legacy.core import UnifiedDatabaseStrategy

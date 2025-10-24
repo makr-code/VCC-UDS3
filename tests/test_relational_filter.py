@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+test_relational_filter.py
+
+test_relational_filter.py
 Tests for UDS3 Relational Filter Module
 ========================================
-
 Comprehensive test suite for RelationalFilter with SQL query building.
-
 Test Coverage:
 - SELECT clause (fields, aggregates, DISTINCT)
 - FROM clause
@@ -13,9 +16,17 @@ Test Coverage:
 - ORDER BY, LIMIT, OFFSET
 - SQL generation and parameter binding
 - Edge cases and error handling
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

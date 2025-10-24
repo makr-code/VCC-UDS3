@@ -1,19 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 Dynamic Naming Strategy
+naming.py
 
+naming.py
+UDS3 Dynamic Naming Strategy
 Dynamische, kontextbezogene Benennung für Collections, Tables, Node-Labels
 und Relationships basierend auf:
 - Behörden-Kontext (Bund, Land, Kommune)
 - Rechtsgebiet (Baurecht, Umweltrecht, etc.)
 - Organisationsstruktur (Abteilung, Referat, etc.)
-
 Vermeidet statische Namen wie "document_chunks", "documents_metadata"
 und generiert stattdessen kontextspezifische Namen wie:
 - "bauamt_muenster_baugenehmigungen_chunks"
 - "umweltamt_nrw_umweltgenehmigungen"
 - "landesverwaltung_nrw_raumplaene"
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from __future__ import annotations

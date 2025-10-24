@@ -1,16 +1,28 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+rag_dataminer.py
+
+rag_dataminer.py
 VPB RAG DataMiner
 =================
-
 Automatische Extraktion von Prozess-Wissen aus VPB-Dokumenten für RAG Pipeline:
 - BPMN/EPK Parser Integration
 - Knowledge Graph Construction
 - Semantic Embedding Generation
 - Gap Detection Algorithms
 - Process Mining & Analytics
-
 Autor: UDS3 Team
 Version: 1.0.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import List, Dict, Any, Optional, Tuple, Set

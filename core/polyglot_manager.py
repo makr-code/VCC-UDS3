@@ -1,19 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 Polyglot Manager - High-Level Wrapper für DatabaseManager + RAG
+polyglot_manager.py
 
+polyglot_manager.py
+UDS3 Polyglot Manager - High-Level Wrapper für DatabaseManager + RAG
 Kombiniert:
 - Existierenden DatabaseManager (database/)
 - German BERT Embeddings (embeddings.py)
 - RAG Pipeline (rag_pipeline.py)
 - LLM Client (llm_ollama.py)
-
 Bietet High-Level APIs für Apps (VPB, Legal DB, etc.):
 - save_process() - Speichert Prozess in allen DBs
 - semantic_search() - Semantische Suche
 - answer_query() - LLM-basierte Query-Antwort
 - get_process_details() - Detaillierte Prozess-Infos
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

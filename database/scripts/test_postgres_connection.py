@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-"""Test connectivity to PostgreSQL instance.
-
-Tries psycopg2 if available, otherwise does a TCP probe.
+# -*- coding: utf-8 -*-
 """
+test_postgres_connection.py
+
+Test connectivity to PostgreSQL instance.
+Tries psycopg2 if available, otherwise does a TCP probe.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 import sys
 import socket
 import traceback

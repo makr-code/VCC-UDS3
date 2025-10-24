@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 SAGA Multi-Database Integration
+saga_integration.py
 
+UDS3 SAGA Multi-Database Integration
 Implementiert das SAGA Pattern für transactional Multi-Database Operations.
 Koordiniert distributed Transactions über PostgreSQL, CouchDB, ChromaDB und Neo4j
 mit comprehensive Compensation Logic, Transaction Coordination und Rollback
 Mechanisms für die UDS3 Multi-Database Distribution.
-
 Das SAGA Pattern ermöglicht:
 - Distributed Transaction Management ohne 2PC
 - Automatic Compensation bei Partial Failures
 - Transaction State Tracking und Recovery
 - Performance-optimierte Database Coordination
 - Eventual Consistency mit Strong Compensation Guarantees
-
 Features:
 - Multi-Database SAGA Orchestrator
 - Compensation Action Registry
@@ -22,10 +21,14 @@ Features:
 - Rollback und Recovery Mechanisms
 - Performance Monitoring und Error Tracking
 - Integration mit UDS3MultiDBDistributor
-
-Autor: Covina Development Team  
+Autor: Covina Development Team
 Datum: 3. Oktober 2025
 Version: 1.0.0
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import asyncio

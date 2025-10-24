@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+transformer_embeddings.py
+
+transformer_embeddings.py
 Transformer-Based Embeddings for UDS3
 ======================================
-
 Provides real semantic embeddings using sentence-transformers.
-
 Features:
 - sentence-transformers integration (384-dim multilingual)
 - Lazy loading (model loaded only when needed)
@@ -13,16 +14,23 @@ Features:
 - GPU acceleration with automatic CUDA detection
 - Fallback to hash-based vectors on error
 - Configurable model selection via ENV
-
 Default Model: all-MiniLM-L6-v2
 - Dimensions: 384
 - Languages: Multilingual (Deutsch, Englisch, 50+ languages)
 - Speed: ~40ms per chunk (CPU), ~10ms (GPU)
 - Quality: High semantic similarity accuracy
-
 Author: UDS3 Framework
 Date: Oktober 2025
 Version: 2.1.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import os

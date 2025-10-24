@@ -1,17 +1,28 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+compliance.py
+
+compliance.py
 UDS3 Saga Compliance & Governance Module
 =========================================
-
 Compliance-Überwachung, Monitoring, Admin-Kontrolle und Reporting für Saga-Transaktionen.
-
 Features:
 - Compliance Engine: Policy enforcement, governance rules, audit logs
 - Monitoring Interface: Real-time saga monitoring, metrics, alerts
 - Admin Interface: Saga control operations (pause, cancel, retry)
 - Reporting Interface: Compliance reports, audit trails, GDPR compliance
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Dict, List, Optional, Any, Callable

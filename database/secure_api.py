@@ -1,21 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+secure_api.py
+
+secure_api.py
 UDS3 Database API Security Wrapper
 ==================================
-
 Secure wrapper for all database operations with:
 - Row-Level Security (RLS)
 - Least Privilege Access Control
 - Audit Logging
 - Automatic owner_user_id injection
-
 Usage:
-    from database.secure_api import SecureDatabaseAPI
-    
-    secure_api = SecureDatabaseAPI(underlying_api, security_manager)
-    
-    # All operations require user context
-    result = secure_api.create(user, data)
-    records = secure_api.read(user, filters)
+from database.secure_api import SecureDatabaseAPI
+secure_api = SecureDatabaseAPI(underlying_api, security_manager)
+# All operations require user context
+result = secure_api.create(user, data)
+records = secure_api.read(user, filters)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Dict, List, Optional, Any

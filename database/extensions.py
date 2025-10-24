@@ -1,36 +1,38 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 DatabaseManager Extensions - Multi-DB Features Integration
+extensions.py
 
+extensions.py
+UDS3 DatabaseManager Extensions - Multi-DB Features Integration
 Extends DatabaseManager with opt-in integration features:
 - SAGA Pattern for distributed transactions
 - Adaptive Query Routing for performance
 - Multi-DB Distributor for load balancing
-
 These features are loaded on-demand and can be enabled/disabled at runtime.
-
 Usage:
-    from database.database_manager import DatabaseManager
-    from database.extensions import DatabaseManagerExtensions
+from database.database_manager import DatabaseManager
+from database.extensions import DatabaseManagerExtensions
+# Initialize DatabaseManager
+db_manager = DatabaseManager(backend_dict)
+# Create extensions wrapper
+extensions = DatabaseManagerExtensions(db_manager)
+# Enable SAGA Pattern
+extensions.enable_saga()
+# Use SAGA for multi-DB transaction
+result = extensions.execute_saga_transaction(
+transaction_name="save_process_multi_db",
+steps=[
+{"db": "relational", "operation": "insert", "data": {...}},
+{"db": "vector", "operation": "add_document", "data": {...}},
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
 
-    # Initialize DatabaseManager
-    db_manager = DatabaseManager(backend_dict)
-    
-    # Create extensions wrapper
-    extensions = DatabaseManagerExtensions(db_manager)
-    
-    # Enable SAGA Pattern
-    extensions.enable_saga()
-    
-    # Use SAGA for multi-DB transaction
-    result = extensions.execute_saga_transaction(
-        transaction_name="save_process_multi_db",
-        steps=[
-            {"db": "relational", "operation": "insert", "data": {...}},
-            {"db": "vector", "operation": "add_document", "data": {...}},
-            {"db": "graph", "operation": "create_node", "data": {...}}
-        ]
-    )
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

@@ -1,11 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Tests for UDS3 Polyglot Query Module
+test_polyglot_query.py
 
+test_polyglot_query.py
+Tests for UDS3 Polyglot Query Module
 Comprehensive test suite for multi-database query coordination,
 join strategies, and result merging.
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

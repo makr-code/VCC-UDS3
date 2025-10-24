@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Tests for UDS3 Single Record Cache Module
+test_single_record_cache.py
 
+test_single_record_cache.py
+Tests for UDS3 Single Record Cache Module
 Test Coverage:
 - Basic cache operations (get/put/invalidate)
 - LRU eviction policy
@@ -12,6 +14,15 @@ Test Coverage:
 - Pattern-based invalidation
 - Statistics & monitoring
 - Performance benchmarks
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

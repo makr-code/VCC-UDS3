@@ -1,10 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 - Unified Data Strategy 3.0
-Clean Modular Architecture
+__init__.py
 
 Reorganisiert: 24. Oktober 2025
 Neue Struktur: core/, manager/, api/, docs/
 Verkürzte Dateinamen, klare Trennung
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 # Core Components (neue Struktur)

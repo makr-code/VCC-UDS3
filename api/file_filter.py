@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+file_filter.py
+
+file_filter.py
 UDS3 File Storage Filter Module
 ================================
-
 Provides comprehensive file filtering and search capabilities for the UDS3 system.
-
 Core Features:
 - File metadata extraction and indexing
 - Multi-criteria filtering (extension, size, date, hash)
 - Advanced search patterns (glob, regex)
 - Storage backend abstraction (local filesystem, extensible to cloud)
 - CRUD operations for file management
-
 Author: UDS3 Development Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import os

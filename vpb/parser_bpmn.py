@@ -1,7 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+parser_bpmn.py
+
 VERITAS Protected Module
 WARNING: This file contains embedded protection keys.
 Modification will be detected and may result in license violations.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 # === VERITAS PROTECTION KEYS (DO NOT MODIFY) ===

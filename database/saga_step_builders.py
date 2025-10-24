@@ -1,13 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+saga_step_builders.py
+
+saga_step_builders.py
 UDS3 Saga Step Builders - Database CRUD Fallback
 ================================================
-
 Lightweight fallback implementation für SagaDatabaseCRUD.
 Wird verwendet wenn database.saga_crud nicht verfügbar ist.
-
 Author: UDS3 Framework
 Date: 1. Oktober 2025
 Status: Extrahiert aus uds3_core.py (Todo #6a)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Any, Callable, Dict, Optional

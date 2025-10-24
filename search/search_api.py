@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+search_api.py
+
+search_api.py
 UDS3 Search API - High-Level Search Interface
-
 Provides unified search APIs across Vector, Graph and Relational backends.
-
 Architecture:
 - Layer 1: Database API (database_api_neo4j.py, database_api_chromadb_remote.py)
 - Layer 2: Search API (THIS FILE - uds3_search_api.py) ✅
 - Layer 3: Application (veritas_uds3_hybrid_agent.py)
-
 Features:
 - Vector Search (ChromaDB) - Semantic similarity
 - Graph Search (Neo4j) - Text + Relationships
@@ -16,28 +17,22 @@ Features:
 - Hybrid Search - Weighted combination
 - Error Handling - Retry logic, graceful degradation
 - Type Safety - Dataclasses
-
 Usage:
-    from uds3.legacy.core import get_optimized_unified_strategy
-    from uds3.uds3_search_api import UDS3SearchAPI, SearchQuery
-    
-    strategy = get_optimized_unified_strategy()
-    search_api = UDS3SearchAPI(strategy)
-    
-    # Vector search
-    results = await search_api.vector_search(embedding, top_k=10)
-    
-    # Graph search
-    results = await search_api.graph_search("Photovoltaik", top_k=10)
-    
-    # Hybrid search
-    query = SearchQuery(
-        query_text="Was regelt § 58 LBO BW?",
-        top_k=10,
-        search_types=["vector", "graph"],
-        weights={"vector": 0.5, "graph": 0.5}
-    )
-    results = await search_api.hybrid_search(query)
+from uds3.legacy.core import get_optimized_unified_strategy
+from uds3.uds3_search_api import UDS3SearchAPI, SearchQuery
+strategy = get_optimized_unified_strategy()
+search_api = UDS3SearchAPI(strategy)
+# Vector search
+results = await search_api.vector_search(embedding, top_k=10)
+# Graph search
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

@@ -1,21 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+delete.py
+
+delete.py
 UDS3 Delete Operations Module
 ==============================
-
 Provides comprehensive deletion strategies for polyglot persistence:
 - Soft Delete: Mark as deleted, preserve data
 - Hard Delete: Permanently remove data
 - Archive: Move to long-term storage
 - Restore: Recover soft-deleted documents
-
 Supports all 4 databases:
 - Vector DB (ChromaDB/Pinecone)
 - Graph DB (Neo4j/ArangoDB)
 - Relational DB (PostgreSQL/SQLite)
 - File Storage
-
 Author: UDS3 Team
 Date: 1. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from enum import Enum

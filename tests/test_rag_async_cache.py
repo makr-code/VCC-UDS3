@@ -1,7 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+test_rag_async_cache.py
+
 Test Suite für UDS3 RAG Async & Caching Layer
 Testet erweiterte RAG-Funktionen: Async, Caching, Parallel Queries, Performance
 ERWEITERT: Performance-Benchmarks, Token-Optimization, Cache Hit Rate
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import asyncio

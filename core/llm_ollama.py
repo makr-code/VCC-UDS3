@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 Ollama LLM Client - Integration mit lokalem Ollama Server
+llm_ollama.py
 
+llm_ollama.py
+UDS3 Ollama LLM Client - Integration mit lokalem Ollama Server
 Ollama: https://ollama.ai
 - Lokal betriebene LLMs (keine Cloud)
 - Unterstützt: Llama 2, Mistral, CodeLlama, etc.
 - REST API: http://localhost:11434
-
 Features:
 - Streaming Support
 - Temperature/Top-P Control
 - Error Handling & Retries
 - Token Counting (approximativ)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

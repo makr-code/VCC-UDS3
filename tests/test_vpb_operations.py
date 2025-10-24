@@ -1,10 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+test_vpb_operations.py
+
+test_vpb_operations.py
 UDS3 VPB Operations Tests
 ==========================
-
 Comprehensive test suite for VPB domain models, CRUD operations,
 process mining, and reporting.
-
 Test Coverage:
 - Domain Models (10 tests)
 - CRUD Operations (15 tests)
@@ -12,9 +15,17 @@ Test Coverage:
 - Reporting (10 tests)
 - Integration (5 tests)
 Total: 55 tests
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

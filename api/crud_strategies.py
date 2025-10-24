@@ -1,15 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 CRUD Strategies - Extracted from uds3_core.py
+crud_strategies.py
 
+crud_strategies.py
+UDS3 CRUD Strategies - Extracted from uds3_core.py
 EXTRACTION: Lines 3194-3394 aus uds3_core.py (~200 LOC)
 PURPOSE: Reduziere uds3_core.py Komplexität durch CRUD-Strategie-Extraktion
 DATE: 1. Oktober 2025
-
 Enthält:
 - _create_crud_strategies(): CRUD-Operationsstrategien für alle DB-Typen
 - _create_conflict_resolution_rules(): Konfliktlösungsstrategien
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Dict

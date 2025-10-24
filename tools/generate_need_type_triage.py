@@ -1,14 +1,28 @@
-"""Parse mypy output and generate a triage CSV for remaining 'Need type annotation' errors.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+generate_need_type_triage.py
 
+generate_need_type_triage.py
+Parse mypy output and generate a triage CSV for remaining 'Need type annotation' errors.
 Reads: tools/mypy_output_after_codmod.txt
 Writes: tools/need_type_triage.csv
-
 Heuristics:
- - Files under 'database\' -> classification External
- - Known var names mapped to likely collection types -> Auto
- - operation_plan, word_freq -> Manual
- - Otherwise -> Auto (conservative)
+- Files under 'database\' -> classification External
+- Known var names mapped to likely collection types -> Auto
+- operation_plan, word_freq -> Manual
+- Otherwise -> Auto (conservative)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import re
 from pathlib import Path
 import csv

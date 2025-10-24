@@ -1,11 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+test_delete_operations.py
+
+test_delete_operations.py
 Unit Tests for Delete Operations Module
 ========================================
-
 Tests soft delete, hard delete, restore, and purge operations.
-
 Author: UDS3 Team
 Date: 1. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

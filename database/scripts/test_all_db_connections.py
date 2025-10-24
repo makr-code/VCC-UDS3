@@ -1,15 +1,28 @@
 #!/usr/bin/env python3
-"""Probe all configured database backends for relevant ports and drivers.
+# -*- coding: utf-8 -*-
+"""
+test_all_db_connections.py
 
+test_all_db_connections.py
+Probe all configured database backends for relevant ports and drivers.
 This script attempts to read the project's DB configuration via
 `database.config.get_database_backend_dict()` (preferred) and falls back to
 `server_config.json`. For each backend it will try:
 - TCP connect on listed host/port
 - HTTP probe for HTTP-based services (Chroma, CouchDB)
 - Attempt a driver connect where a Python driver is available (Postgres, Neo4j)
-
 The script is PowerShell-friendly and avoids complex quoting.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import json
 import os
 import socket

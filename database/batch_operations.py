@@ -1,30 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+batch_operations.py
+
+batch_operations.py
 UDS3 Batch Operations for Database Backends
 ============================================
-
 Optimized batch insert/update operations for ChromaDB and Neo4j.
-
 Features:
 - ChromaDB: Batch vector insertion (100+ vectors per API call)
 - Neo4j: Batch relationship creation with UNWIND (1000+ rels per query)
 - Environment-driven toggles (ENABLE_CHROMA_BATCH_INSERT, ENABLE_NEO4J_BATCHING)
 - Automatic fallback to single-item operations on error
 - Thread-safe batch accumulation
-
 Performance Gains:
 - ChromaDB: -93% API calls (100 items → 1 call)
 - Neo4j: +15-25% throughput (1000 rels/query vs 1 rel/query)
-
 Integration:
 - Compatible with UDS3 database backends
 - Works with database_api_chromadb_remote.py
 - Works with database_api_neo4j.py
-
 Author: UDS3 Framework
 Date: Oktober 2025
 Version: 2.1.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import os

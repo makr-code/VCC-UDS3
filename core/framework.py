@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+framework.py
+
+framework.py
 UDS3 Relations Framework - Programmatische Vereinheitlichung
 ===========================================================
 Datentechnische Vereinheitlichung der Relations ohne direkte DB-Anbindung
 Integriert in UDS3 Core für konsistente Relations-Verwaltung
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Dict, List, Optional, Any

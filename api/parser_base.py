@@ -1,13 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+parser_base.py
+
+parser_base.py
 UDS3 Process Parser Base Classes
 ================================
-
 Gemeinsame Basis-Funktionalität für BPMN und EPK Parser.
 Reduziert Code-Duplikation und standardisiert Parser-Architektur.
-
 Author: UDS3 Framework
 Date: 1. Oktober 2025
 Status: Neu erstellt (Todo #5)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import xml.etree.ElementTree as ET

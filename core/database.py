@@ -1,24 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+database.py
+
+database.py
 Optimized Unified Database Strategy v3.0 - With Security & Quality Framework
 Umfassende Verwaltung ALLER verwaltungsrechtlicher Dokumente
-
 DOKUMENTBEREICH:
 - Normative Ebene: Gesetze, Verordnungen, Ausführungsbestimmungen, Richtlinien
 - Verwaltungsentscheidungen: Bescheide, Verfügungen, Planfeststellungen
 - Gerichtsentscheidungen: VG/OVG/BVerwG/BVerfG-Entscheidungen (nur ein Teilbereich!)
 - Verwaltungsinterne Dokumente: Aktennotizen, Gutachten, Korrespondenz
-
 DATENBANKROLLEN:
 Vector DB: Semantische Suche über alle Dokumenttypen, Cross-Domain-Ähnlichkeit
 Graph DB: Normenhierarchien, Verwaltungsverfahren, Behördenstrukturen, Präzedenzfälle
 Relational DB: Metadaten, Fristen, Verfahrensstatus, Compliance-Monitoring
-
 Erweitert um:
 - Advanced Data Security (Hash-Werte, UUIDs, Verschlüsselung)
 - Data Quality Management (Scoring, Validation, Monitoring)
 - Integrity Verification und Quality Assurance
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

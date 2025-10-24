@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Simplified Tests for UDS3 Compliance Adapter
+test_compliance_adapter_simplified.py
 
+Simplified Tests for UDS3 Compliance Adapter
 Focuses on API surface and integration points without requiring full backend.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 print("\n" + "=" * 70)

@@ -1,12 +1,27 @@
-"""Saga-orientierte CRUD-Helfer für alle Covina-Datenbank-Typen.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+saga_crud.py
 
+saga_crud.py
+Saga-orientierte CRUD-Helfer für alle Covina-Datenbank-Typen.
 Dieses Modul stellt abstrakte CRUD-Operationen bereit, die über den
 `DatabaseManager` auf die konkreten Backend-Adapter zugreifen. Die
 Funktionen sind so gestaltet, dass sie in Saga-Schritten verwendet werden
 können: Jede Methode gibt ein `CrudResult` zurück, das neben dem
 Erfolgsstatus auch strukturierte Metadaten enthält, die in weiteren
 Saga-Schritten (z.\u202fB. für Kompensationen) genutzt werden können.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import glob

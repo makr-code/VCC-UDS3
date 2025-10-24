@@ -1,34 +1,39 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 Phase 3: Batch READ Operations - Comprehensive Test Suite
+test_batch_read_operations.py
 
+test_batch_read_operations.py
+UDS3 Phase 3: Batch READ Operations - Comprehensive Test Suite
 Tests:
 - Unit Tests (20): 4 readers × 5 tests each
-  - PostgreSQL: batch_get, batch_query, batch_exists, field_selection, thread_safety
-  - CouchDB: batch_get, batch_exists, batch_get_revisions, limit_handling, error_handling
-  - ChromaDB: batch_get, batch_search, include_embeddings, where_filter, error_handling
-  - Neo4j: batch_get_nodes, batch_get_relationships, label_filter, direction_filter, error_handling
-
+- PostgreSQL: batch_get, batch_query, batch_exists, field_selection, thread_safety
+- CouchDB: batch_get, batch_exists, batch_get_revisions, limit_handling, error_handling
+- ChromaDB: batch_get, batch_search, include_embeddings, where_filter, error_handling
+- Neo4j: batch_get_nodes, batch_get_relationships, label_filter, direction_filter, error_handling
 - Integration Tests (10): Parallel execution, timeout, failures
-  - Parallel batch_get_all (all 4 DBs)
-  - Parallel batch_search_all (all 4 DBs)
-  - Timeout handling
-  - Partial failure (1 DB fails, others succeed)
-  - Error aggregation
-  - Empty results
-  - Large batch (1000+ documents)
-  - Concurrent parallel requests
-  - Memory efficiency
-  - Graceful degradation
-
+- Parallel batch_get_all (all 4 DBs)
+- Parallel batch_search_all (all 4 DBs)
+- Timeout handling
+- Partial failure (1 DB fails, others succeed)
+- Error aggregation
+- Empty results
+- Large batch (1000+ documents)
+- Concurrent parallel requests
+- Memory efficiency
+- Graceful degradation
 - Performance Benchmarks (3):
-  - Sequential vs Batch speedup (20x expected)
-  - Sequential vs Parallel speedup (2.3x expected)
-  - Combined Batch + Parallel speedup (45-60x expected)
-
+- Sequential vs Batch speedup (20x expected)
+- Sequential vs Parallel speedup (2.3x expected)
+- Combined Batch + Parallel speedup (45-60x expected)
 Total: 33 tests
 Author: UDS3 Team
 Date: 2025-10-21
-Version: 2.3.0
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

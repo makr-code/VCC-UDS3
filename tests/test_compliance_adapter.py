@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Tests for UDS3 Compliance Adapter
+test_compliance_adapter.py
 
+Tests for UDS3 Compliance Adapter
 Tests compliance middleware integration with UDS3PolyglotManager,
 including PII detection, audit logging, DSGVO rights, and identity management.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

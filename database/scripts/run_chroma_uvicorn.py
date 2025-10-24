@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
-"""Start helper for chromadb server using the installed chromadb package or fallback to python -m chromadb.
-
-This script performs inspection of `chromadb.server` to find a suitable entrypoint. By default it will only print what it would do; pass --execute to actually run the discovered entrypoint.
-
-Usage:
-  python database/scripts/run_chroma_uvicorn.py [--execute]
+# -*- coding: utf-8 -*-
 """
+run_chroma_uvicorn.py
+
+run_chroma_uvicorn.py
+Start helper for chromadb server using the installed chromadb package or fallback to python -m chromadb.
+This script performs inspection of `chromadb.server` to find a suitable entrypoint. By default it will only print what it would do; pass --execute to actually run the discovered entrypoint.
+Usage:
+python database/scripts/run_chroma_uvicorn.py [--execute]
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 import argparse
 import importlib
 import inspect

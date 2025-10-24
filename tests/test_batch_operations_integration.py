@@ -1,19 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+test_batch_operations_integration.py
+
+test_batch_operations_integration.py
 Integration Tests for UDS3 Batch Operations
 ============================================
-
 Tests batch operations with real UDS3 database backends:
 - ChromaDB: Batch vector insert (add_vectors)
 - Neo4j: Batch relationship creation (UNWIND)
-
 Prerequisites:
 - ChromaDB server running (192.168.178.94:8000)
 - Neo4j server running (192.168.178.94:7687)
-
 Author: UDS3 Framework
 Date: Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

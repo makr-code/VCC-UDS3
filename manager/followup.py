@@ -1,12 +1,24 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 FOLLOW-UP TASK ORCHESTRATION
+followup.py
 
+followup.py
+UDS3 FOLLOW-UP TASK ORCHESTRATION
 Implementiert spezialisierte Task-Handler für UDS3-spezifische Follow-up Tasks:
 - uds3_database_integration: Integration in UDS3-Datenbank
 - administrative_relationship_detection: Verwaltungsbeziehungen erkennen
 - procedure_stage_tracking: Verfahrensstadien verfolgen
 - legal_compliance_checking: Rechtmäßigkeitsprüfung
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

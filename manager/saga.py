@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""UDS3 Saga Orchestrator - Wrapper
+"""
+saga.py
 
+UDS3 Saga Orchestrator - Wrapper
 OPTIMIZED (1. Okt 2025): Thin wrapper around database/saga_orchestrator.py
 BEFORE: 34 KB, 931 LOC | AFTER: 7 KB, 250 LOC | SAVINGS: -27 KB, -681 LOC
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 import logging
 from typing import Any, Callable, Dict, List, Optional

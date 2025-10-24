@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+update_imports_new.py
+
 UDS3 Import Update Script
 Aktualisiert alle alten uds3_* Imports auf die neue modulare Struktur
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import os

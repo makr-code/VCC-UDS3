@@ -1,7 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+__init__.py
+
+__init__.py
 UDS3 API Module - API-Schnittstellen
 ====================================
-
 Dieses Modul enthält alle API-Schnittstellen und -komponenten:
 - manager.py: Unified API Manager (ehemals uds3_api_manager.py)
 - database.py: Database API (ehemals uds3_database_api.py)
@@ -20,6 +24,15 @@ Dieses Modul enthält alle API-Schnittstellen und -komponenten:
 - parser_base.py: Process Parser Base (ehemals uds3_process_parser_base.py)
 - petrinet.py: Petrinet Parser (ehemals uds3_petrinet_parser.py)
 - workflow.py: Workflow Net Analyzer (ehemals uds3_workflow_net_analyzer.py)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 # API components - graceful imports

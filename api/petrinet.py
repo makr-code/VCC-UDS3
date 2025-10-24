@@ -1,19 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+petrinet.py
+
+petrinet.py
 UDS3 Petri-Netz Parser (PNML Format)
 ====================================
-
 Parser für Petri-Netze im PNML-Format (Petri Net Markup Language).
 Basiert auf ISO/IEC 15909-2:2011 Standard.
-
 Unterstützt:
 - Place/Transition Netze (P/T-Netze)
 - Colored Petri Nets (CPN)
 - Timed Petri Nets
 - Workflow-Nets (WF-Nets)
-
 Author: UDS3 Framework
 Date: 1. Oktober 2025
 Status: Prototyp (Research Feature)
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import xml.etree.ElementTree as ET

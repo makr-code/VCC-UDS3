@@ -1,17 +1,28 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+operations.py
+
+operations.py
 UDS3 VPB Operations Module
 ===========================
-
 Comprehensive domain models and operations for Verwaltungsprozessbearbeitung (VPB).
-
 Features:
 - Domain Models: VPBProcess, VPBTask, VPBDocument, VPBParticipant
 - CRUD Operations: Create, Read, Update, Delete, Batch operations
 - Process Mining: Complexity analysis, automation potential, bottleneck detection
 - Reporting: Process reports, compliance exports, analytics
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from dataclasses import dataclass, field

@@ -1,10 +1,25 @@
-"""Lightweight schema helpers for saga-related tables.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+db_migrations.py
 
+db_migrations.py
+Lightweight schema helpers for saga-related tables.
 This module intentionally keeps the migrations minimal and idempotent so it can
 be executed in unit tests and development environments without requiring an
 external migration framework.  The helpers operate against the relational
 backend abstraction that is already used by the orchestrator/saga tooling.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from __future__ import annotations
 
 import logging

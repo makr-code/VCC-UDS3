@@ -1,15 +1,26 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 DSGVO Core - Zentrale DSGVO-Compliance Engine für UDS3
+dsgvo_core.py
 
+dsgvo_core.py
+UDS3 DSGVO Core - Zentrale DSGVO-Compliance Engine für UDS3
 Implementiert umfassende DSGVO-Compliance auf UDS3-Core-Ebene:
 - PII-Erkennung und -Anonymisierung
 - DSGVO-Rechte (Art. 15, 17, 20)
 - Audit-Trail mit Tamper-Detection
 - Consent-Management
 - Data-Breach-Notification
-
 Nutzt database_api für konsistente UDS3-Architektur.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import uuid

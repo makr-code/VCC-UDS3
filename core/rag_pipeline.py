@@ -1,20 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 Generic RAG Pipeline - Retrieval-Augmented Generation
+rag_pipeline.py
 
+rag_pipeline.py
+UDS3 Generic RAG Pipeline - Retrieval-Augmented Generation
 Kombiniert:
 - Vector DB (semantische Suche via Embeddings)
 - Graph DB (Relationship Traversal)
 - Relational DB (strukturierte Details)
 - LLM (Reasoning & Generation)
-
 Pipeline:
 1. Query Classification → Identifiziere Query-Typ
 2. Multi-DB Retrieval → Hole relevante Daten
 3. Context Assembly → Baue LLM-Context
 4. Prompt Engineering → Format für LLM
 5. LLM Generation → Generiere Antwort
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

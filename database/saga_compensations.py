@@ -1,3 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+saga_compensations.py
+
+saga_compensations.py
+Register a compensation handler by name.
+_REGISTRY[name] = handler
+def get(name: str) -> Optional[Callable[[Dict[str, Any], Dict[str, Any]], bool]]:
+return _REGISTRY.get(name)
+# Default handlers
+def relational_delete_handler(payload: Dict[str, Any], ctx: Dict[str, Any]) -> bool:
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 import logging
 from typing import Callable, Dict, Optional, Any
 

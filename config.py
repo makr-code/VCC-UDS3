@@ -1,13 +1,21 @@
-"""Zentrale Konfigurationsdatei für das UDS3 Projekt.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+config.py
 
-Diese Datei enthält Basis-Konfigurationsklassen und Factory-Pattern für alle 
+Zentrale Konfigurationsdatei für das UDS3 Projekt.
+Diese Datei enthält Basis-Konfigurationsklassen und Factory-Pattern für alle
 Adapter (Datenbanken, Geo, Identity, Security, Quality, Batch-Optimierungen etc.).
-
 Design Pattern:
 - Basiskonfigurationen als Dataclasses/Factories
 - config_local.py erbt/implementiert davon für produktive Umgebungen
 - Keine Umgebungsvariablen direkt im Code
 - Overrides durch Vererbung in config_local.py
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Dict, Any, Optional

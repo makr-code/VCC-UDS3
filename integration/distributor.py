@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 Multi-Database Distributor
+distributor.py
 
+UDS3 Multi-Database Distributor
 Intelligente Verteilung von UDS3 Processor Results auf die verfügbaren Datenbanken
 basierend auf der AdaptiveMultiDBStrategy. Koordiniert die Distribution von
 Dokumenteninhalten, Metadaten, Embeddings und Beziehungen auf PostgreSQL,
 CouchDB, ChromaDB und Neo4j.
-
 Features:
 - Adaptive Strategy-basierte Distribution
 - Processor-spezifische Routing Logic
@@ -16,10 +16,14 @@ Features:
 - Performance-optimierte Batch Processing
 - Comprehensive Error Handling und Recovery
 - Integration mit UDS3 SAGA Pattern
-
 Autor: Covina Development Team
 Datum: 3. Oktober 2025
 Version: 1.0.0
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import asyncio

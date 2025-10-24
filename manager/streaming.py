@@ -1,24 +1,35 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+streaming.py
+
+streaming.py
 UDS3 Streaming Operations Module
 =================================
-
 Provides efficient streaming capabilities for large files (300+ MB):
 - Chunked Upload/Download (memory-efficient)
 - Resume Support (continue after interruption)
 - Progress Tracking (real-time monitoring)
 - Large File Processing (PDFs with embedded images)
 - Chunked Vector DB Operations (large embeddings)
-
 Design Philosophy:
 - Never load entire file into memory
 - Support files >1GB
 - Resumable operations (fault-tolerant)
 - Progress callbacks for UI integration
 - Memory-efficient chunking
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
 Version: 1.0.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import os

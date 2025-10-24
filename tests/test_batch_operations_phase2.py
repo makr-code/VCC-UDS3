@@ -1,19 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Unit Tests for Phase 2 Batch Operations (PostgreSQL + CouchDB)
+test_batch_operations_phase2.py
 
+test_batch_operations_phase2.py
+Unit Tests for Phase 2 Batch Operations (PostgreSQL + CouchDB)
 Tests PostgreSQLBatchInserter and CouchDBBatchInserter classes
 with mock backends to validate functionality without database dependencies.
-
 Test Coverage:
 - PostgreSQL: 15 unit tests
 - CouchDB: 15 unit tests
 - Total: 30 tests
-
 Author: UDS3 Framework
 Date: Oktober 2025
 Version: 2.2.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

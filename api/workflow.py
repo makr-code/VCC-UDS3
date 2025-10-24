@@ -1,18 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+workflow.py
+
+workflow.py
 UDS3 Workflow-Net Analyzer
 ===========================
-
 Analyzer für Workflow-Nets mit Soundness-Verifikation nach van der Aalst.
-
 Funktionen:
 - Soundness-Verifikation (formale Korrektheit)
 - Structural Analysis (S/T-Invarianten)
 - Performance Analysis (Token-Flow-Simulation)
 - BPMN/EPK → Petri-Netz Konvertierung
-
 Author: UDS3 Framework
 Date: 1. Oktober 2025
 Status: Research Feature
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

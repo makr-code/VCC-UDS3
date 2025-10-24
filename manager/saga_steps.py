@@ -1,19 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+saga_steps.py
+
+saga_steps.py
 UDS3 Saga Step Builders - Extracted from uds3_core.py
 ======================================================
 OPTIMIZED (1. Oktober 2025): Saga Step Builder Logik aus uds3_core.py extrahiert
-
 EXTRACTION: Lines 1253-2660 aus uds3_core.py (~1400 LOC)
 PURPOSE: Reduziere uds3_core.py von 4097 LOC auf <3000 LOC
-
 Dieses Modul enthält die Saga Step Builder-Methoden:
 - _build_create_document_step_specs()
 - _build_update_document_step_specs()
 - _build_delete_document_step_specs()
-
 Pattern: Mixin-Class für saubere Integration in UnifiedDatabaseStrategy
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

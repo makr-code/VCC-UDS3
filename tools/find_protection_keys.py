@@ -1,3 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+find_protection_keys.py
+
+find_protection_keys.py
+Find files containing protection/license key markers and report them.
+This tool intentionally does NOT print or store key values. It only records
+which files contain the markers (e.g. module_licence_key, module_file_key,
+VERITAS PROTECTION KEYS) so they can be reviewed with legal/licensing.
+Usage:
+python tools/find_protection_keys.py > security/key_inventory.md
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+"""
+
 from typing import Any
 #!/usr/bin/env python3
 """Find files containing protection/license key markers and report them.

@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Adaptive Multi-Database Strategy für UDS3 Covina Backend
+adaptive_strategy.py
 
-Implementiert eine flexible Multi-Database Strategie die sich automatisch an verfügbare 
+Adaptive Multi-Database Strategy für UDS3 Covina Backend
+Implementiert eine flexible Multi-Database Strategie die sich automatisch an verfügbare
 Database-Backends anpasst. Unterstützt administrative Flexibilität für unvorhersehbare
 Deployment-Szenarien in Verwaltungsumgebungen.
-
 Features:
 - Runtime DB Discovery mit Health Checks
-- 5 Fallback-Strategien (full_polyglot bis sqlite_monolith)  
+- 5 Fallback-Strategien (full_polyglot bis sqlite_monolith)
 - Automatic Strategy Selection basierend auf verfügbaren DBs
 - Compensation Logic für fehlende Database Capabilities
 - Zero-Configuration Startup mit optimaler Performance
 - Graduelle Migration Paths zwischen Strategien
-
 Autor: Covina Development Team
 Datum: 3. Oktober 2025
 Version: 1.0.0
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import asyncio

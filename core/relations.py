@@ -1,19 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+relations.py
+
+relations.py
 UDS3 Relations Core - Neo4j Adapter Wrapper
 ============================================
 OPTIMIZED (1. Oktober 2025): Neo4j-spezifischer Adapter für UDS3 Relations Data Framework
-
 BEFORE: 38 KB, 787 LOC - Vollständige eigenständige Implementierung mit Neo4j Backend
 AFTER: ~8 KB, ~200 LOC - Thin wrapper delegiert an uds3_relations_data_framework.py
 SAVINGS: -30 KB, -587 LOC (-75%)
-
 Dieser Wrapper:
 - Delegiert Core-Funktionalität an UDS3RelationsDataFramework
 - Fügt Neo4j-spezifische Backend-Operationen hinzu
 - Behält alle Type-Definitionen für Backward Compatibility
 - Ist der einzige Adapter mit direkter DB-Anbindung
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

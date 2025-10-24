@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-SQLite Relational Database Backend
+database_api_sqlite.py
 
+database_api_sqlite.py
+SQLite Relational Database Backend
 Implementiert die abstrakte `RelationalDatabaseBackend`-Schnittstelle für lokale
 SQLite-Dateien. Ziel ist ein einfach nutzbarer Adapter, der von Migrationen und
 Tests verwendet werden kann.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+schemas.py
+
+schemas.py
 UDS3 Database Schemas - Extracted from uds3_core.py
 ====================================================
 OPTIMIZED (1. Oktober 2025): Schema Definitions aus uds3_core.py extrahiert
-
 EXTRACTION: Lines 512-841 + 4156-4170 aus uds3_core.py (~350 LOC)
 PURPOSE: Reduziere uds3_core.py Komplexität durch Schema-Extraktion
-
 Dieses Modul enthält alle Database Schema-Definitionen:
 - _create_vector_schema() - Vector DB (ChromaDB/Pinecone)
 - _create_graph_schema() - Graph DB (Neo4j/ArangoDB)
 - _create_relational_schema() - Relational DB (SQLite/PostgreSQL)
 - _create_file_storage_schema() - File Storage Backend
-
 Pattern: Mixin-Class für saubere Integration in UnifiedDatabaseStrategy
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Dict

@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 Import Fix Script
+fix_imports.py
 
+UDS3 Import Fix Script
 Korrigiert die relativen Import-Probleme in der UDS3 Struktur nach der Reorganisation.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import os

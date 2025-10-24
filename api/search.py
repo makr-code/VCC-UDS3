@@ -1,24 +1,32 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+search.py
+
+search.py
 UDS3 Search API - Backward Compatibility Wrapper
-
 DEPRECATED: This import path is deprecated and will be removed in UDS3 v1.5.0 (~ 3 months).
-
 OLD WAY (DEPRECATED):
-    from uds3.uds3_search_api import UDS3SearchAPI
-    search_api = UDS3SearchAPI(strategy)
-
+from uds3.uds3_search_api import UDS3SearchAPI
+search_api = UDS3SearchAPI(strategy)
 NEW WAY (RECOMMENDED):
-    from uds3 import get_optimized_unified_strategy
-    strategy = get_optimized_unified_strategy()
-    results = await strategy.search_api.hybrid_search(query)
-
+from uds3 import get_optimized_unified_strategy
+strategy = get_optimized_unified_strategy()
+results = await strategy.search_api.hybrid_search(query)
 ALTERNATIVE (if you need explicit import):
-    from uds3.search import UDS3SearchAPI
-    search_api = UDS3SearchAPI(strategy)
-
+from uds3.search import UDS3SearchAPI
+search_api = UDS3SearchAPI(strategy)
 Migration Guide:
-    See docs/UDS3_SEARCH_API_MIGRATION.md for complete migration instructions.
+See docs/UDS3_SEARCH_API_MIGRATION.md for complete migration instructions.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import warnings

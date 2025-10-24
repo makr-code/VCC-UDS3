@@ -1,18 +1,31 @@
-"""Conservative codemod to annotate module-level variables.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+add_module_var_annotations.py
 
+add_module_var_annotations.py
+Conservative codemod to annotate module-level variables.
 It searches for top-level assignments like:
-  name = None
-  items: list[Any] = []
-  mapping: dict[Any, Any] = {}
-
+name = None
+items: list[Any] = []
+mapping: dict[Any, Any] = {}
 and rewrites them to include a typing annotation:
-  name: Any = None
-  items: list[Any] = []
-  mapping: dict[Any, Any] = {}
-
+name: Any = None
+items: list[Any] = []
+mapping: dict[Any, Any] = {}
 The script avoids magic names (dunder), uppercase constants, and files in venv/docs/security.
 Run, review changes and run mypy to observe progress.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import re
 from pathlib import Path
 from typing import Tuple, Any

@@ -1,12 +1,26 @@
-"""Quick script to convert parameter annotations like `name: str = None` into
-`name: Optional[str] = None` across the codebase.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+annotate_optionals.py
 
+annotate_optionals.py
+Quick script to convert parameter annotations like `name: str = None` into
+`name: Optional[str] = None` across the codebase.
 This is a pragmatic codemod to reduce common mypy "Incompatible default" noise.
 It handles common builtin and typing names (str,int,float,bool,list,dict,Dict,List,Any).
 It will also add `from typing import Optional` at the top of modules that need it.
-
 Run carefully and review changes in a PR. It's intentionally conservative.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import re
 from pathlib import Path
 

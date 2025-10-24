@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 Compliance Adapter - Integration Layer for Compliance Modules
+adapter.py
 
+adapter.py
+UDS3 Compliance Adapter - Integration Layer for Compliance Modules
 Connects DSGVO, Security, and Identity Services with UDS3PolyglotManager
 to provide comprehensive compliance middleware for all UDS3 operations.
-
 This adapter ensures:
 - PII Detection & Masking for all saved documents
 - Audit Logging for all CRUD operations
@@ -12,29 +14,25 @@ This adapter ensures:
 - Multi-User Identity Management
 - Security Quality Validation
 - DSGVO Rights (Access, Erasure, Portability)
-
 Usage:
-    from uds3.core import UDS3PolyglotManager
-    from uds3.compliance import ComplianceAdapter
+from uds3.core import UDS3PolyglotManager
+from uds3.compliance import ComplianceAdapter
+polyglot = UDS3PolyglotManager(backend_config=db_manager)
+compliance = ComplianceAdapter(
+polyglot_manager=polyglot,
+auto_pii_detection=True,
+audit_enabled=True
+)
+# Save document with automatic PII detection & audit
+doc = compliance.save_document_secure(
+collection="contracts",
+data={"name": "Max Mustermann", "email": "max@example.com"}
+Part of UDS3 (Unified Database Strategy v3)
 
-    polyglot = UDS3PolyglotManager(backend_config=db_manager)
-    compliance = ComplianceAdapter(
-        polyglot_manager=polyglot,
-        auto_pii_detection=True,
-        audit_enabled=True
-    )
-
-    # Save document with automatic PII detection & audit
-    doc = compliance.save_document_secure(
-        collection="contracts",
-        data={"name": "Max Mustermann", "email": "max@example.com"}
-    )
-
-    # Query with compliance filtering
-    results = compliance.search_documents_secure(
-        query="contract",
-        filter_pii=True
-    )
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

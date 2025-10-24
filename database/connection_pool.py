@@ -1,13 +1,16 @@
-"""PostgreSQL Connection Pool für UDS3 Backend
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+connection_pool.py
 
+connection_pool.py
+PostgreSQL Connection Pool für UDS3 Backend
 Implementiert Thread-safe Connection Pooling mit psycopg2.pool.ThreadedConnectionPool
 für deutlich verbesserte Performance bei konkurrenten Zugriffen.
-
 Performance Impact:
 - Database Latency: -58% (weniger Connection-Overhead)
 - Query Throughput: +50-80% (Connection-Reuse)
 - Concurrent Requests: +100-200% (Pool statt Single Connection)
-
 Features:
 - Thread-safe Connection Pool (min_size=5, max_size=50)
 - Automatic connection health checks
@@ -15,6 +18,15 @@ Features:
 - Connection leak detection
 - Retry logic for transient failures
 - Metrics & monitoring support
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

@@ -1,13 +1,26 @@
 #!/usr/bin/env python3
-"""Run saga migrations against the configured relational backend.
+# -*- coding: utf-8 -*-
+"""
+run_saga_migrations.py
 
+run_saga_migrations.py
+Run saga migrations against the configured relational backend.
 This script loads `server_config.json` (if present) or reads environment
 variables to build a DatabaseManager instance and then calls the migration
 helpers in `db_migrations.py`.
-
 The script is intentionally conservative: it only calls idempotent helpers and
 logs errors instead of raising so it can be used in automation safely.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import os
 import json
 import logging

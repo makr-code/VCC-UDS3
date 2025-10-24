@@ -1,16 +1,28 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+test_uds3_security.py
+
+test_uds3_security.py
 UDS3 Security Testing Suite
 ===========================
-
 Comprehensive security tests for:
 - Unauthorized access attempts
-- Privilege escalation prevention  
+- Privilege escalation prevention
 - Row-Level Security (RLS) enforcement
 - Audit log verification
 - Rate limiting
 - PKI certificate validation (when available)
-
 Run with: pytest tests/test_uds3_security.py -v
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

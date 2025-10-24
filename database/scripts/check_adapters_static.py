@@ -1,10 +1,24 @@
 #!/usr/bin/env python3
-"""Static scan of adapter sources to find unsafe calls to optional factories.
+# -*- coding: utf-8 -*-
+"""
+check_adapters_static.py
 
+check_adapters_static.py
+Static scan of adapter sources to find unsafe calls to optional factories.
 Searches for direct calls like `get_unified_database_strategy()` which may raise
 `NoneType is not callable` if the name is None during runtime. Reports file and
 line numbers to guide small defensive fixes.
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 from pathlib import Path
 import re
 import sys

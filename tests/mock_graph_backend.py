@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-In-Memory Mock Graph Backend für Tests
+mock_graph_backend.py
 
+In-Memory Mock Graph Backend für Tests
 Implementiert GraphDatabaseBackend für Tests ohne echte Neo4j-Instanz.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

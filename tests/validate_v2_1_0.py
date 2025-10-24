@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+validate_v2_1_0.py
+
+validate_v2_1_0.py
 UDS3 v2.1.0 Integration Validation
 ===================================
-
 Comprehensive validation of all Phase 1 features:
 1. Real Embeddings (semantic quality)
 2. Batch Operations (API call reduction)
 3. Backward Compatibility
 4. ENV Toggles
 5. Performance
-
 Author: UDS3 Framework
 Date: 20. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import time

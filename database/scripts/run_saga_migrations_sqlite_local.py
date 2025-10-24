@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
-"""Run SAGA migrations against a local SQLite backend for quick verification.
+# -*- coding: utf-8 -*-
+"""
+run_saga_migrations_sqlite_local.py
 
+Run SAGA migrations against a local SQLite backend for quick verification.
 This script uses the new `SQLiteRelationalBackend` implementation and calls the
 helpers in `db_migrations.py`. It's safe, idempotent and intended for dev use.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
+
 import logging
 import sys
 from pathlib import Path

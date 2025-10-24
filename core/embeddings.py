@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-UDS3 German Embeddings - Optimiert für deutsche Verwaltungssprache
+embeddings.py
 
+embeddings.py
+UDS3 German Embeddings - Optimiert für deutsche Verwaltungssprache
 Nutzt German BERT Modelle für semantische Embeddings:
 - deutsche-telekom/gbert-base (primär)
 - deutsche-telekom/gbert-large (optional, höhere Qualität)
 - deepset/gbert-base (fallback)
-
 Features:
 - Batch Processing
 - Memory + Disk Caching (SHA256)
 - 768-dim Vektoren
 - Optimiert für deutsche Verwaltungstexte
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

@@ -1,15 +1,27 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Unit Tests für UDS3 Advanced CRUD Operations
+test_advanced_crud.py
 
+test_advanced_crud.py
+Unit Tests für UDS3 Advanced CRUD Operations
 Testet:
 - Batch Read Operations
 - Conditional Update Operations
 - Upsert Operations
 - Batch Update Operations
 - Edge Cases & Error Handling
-
 Autor: UDS3 Team
 Datum: 1. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

@@ -1,18 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+test_saga_compliance.py
+
+test_saga_compliance.py
 UDS3 Saga Compliance & Governance Tests
 ========================================
-
 Comprehensive test suite for saga compliance, monitoring, admin, and reporting.
-
 Test Coverage:
 - SagaComplianceEngine (15 tests)
 - SagaMonitoringInterface (12 tests)
 - SagaAdminInterface (13 tests)
 - SagaReportingInterface (10 tests)
 Total: 50 tests
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import pytest

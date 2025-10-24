@@ -1,21 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+manager.py
+
+manager.py
 UDS3 API Manager - Unified API Interface
 ========================================
 Konsolidierte API-Schnittstelle für alle UDS3-Komponenten
-
 Dieses Modul bietet eine einheitliche API-Schnittstelle für:
 - Database Operations (Vector, Graph, Relational, File Storage)
 - CRUD Operations (Basic, Advanced, Batch)
-- Streaming Operations 
+- Streaming Operations
 - Archive Operations
 - SAGA Pattern Implementation
 - Query & Filter Systems
-
 Author: UDS3 Team
 Date: 24. Oktober 2025
 Version: 3.1.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging

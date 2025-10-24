@@ -1,14 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-UDS3 Advanced CRUD Operations Module
+crud.py
 
+crud.py
+UDS3 Advanced CRUD Operations Module
 Erweiterte CRUD-Funktionalität für UDS3 Polyglot Persistence:
 - Batch Read: Paralleles Lesen mehrerer Dokumente
 - Conditional Update: Updates mit Preconditions (version check, field conditions)
 - Upsert: Atomic Update-or-Insert Operation
 - Batch Update: Parallele Updates mehrerer Dokumente
-
 Autor: UDS3 Team
 Datum: 1. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from dataclasses import dataclass, field

@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
+relational_filter.py
+
+relational_filter.py
 UDS3 Relational Filter Module
 ==============================
-
 SQL Query Builder for SQLite and PostgreSQL with fluent API.
-
 Features:
 - SELECT clause with field selection and aggregates
 - FROM clause with table specification
@@ -13,9 +16,17 @@ Features:
 - ORDER BY and LIMIT/OFFSET
 - SQL injection protection via parameter binding
 - Multiple SQL dialect support
-
 Author: UDS3 Team
 Date: 2. Oktober 2025
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 from typing import Dict, List, Optional, Any, Union, Tuple

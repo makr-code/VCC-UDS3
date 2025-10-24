@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Test der UDS3 DSGVO Core Database API Integration (von UDS3-Verzeichnis)
+test_dsgvo_database_api_direct.py
 
+Test der UDS3 DSGVO Core Database API Integration (von UDS3-Verzeichnis)
 Testet die Korrektur von direkten SQLite-Zugriffen zu database_api/database_manager.
+
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 try:
