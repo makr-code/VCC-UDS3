@@ -582,7 +582,7 @@ class MultiDatabaseRAGContextAggregator:
         }
         
         key_string = json.dumps(key_data, sort_keys=True)
-        return hashlib.md5(key_string.encode()).hexdigest()
+        return hashlib.md5(key_string.encode(), usedforsecurity=False).hexdigest()
     
     def _is_cache_valid(self, cache_key: str, ttl_minutes: int) -> bool:
         """Prüft ob Cache Entry noch gültig ist"""
@@ -954,7 +954,7 @@ Die verwendeten Quellen haben verschiedene Relevanzscores und wurden entsprechen
             enhanced_prompt = self._build_enhanced_prompt(user_query, rag_context)
             
             # Check Response Cache
-            prompt_hash = hashlib.md5(enhanced_prompt.encode()).hexdigest()
+            prompt_hash = hashlib.md5(enhanced_prompt.encode(), usedforsecurity=False).hexdigest()
             if use_cache and prompt_hash in self.response_cache:
                 cached_response = self.response_cache[prompt_hash]
                 self.logger.info("📋 Returning cached LLM response")
