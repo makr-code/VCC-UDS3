@@ -1,6 +1,6 @@
 # UDS3 Implementation Status Report
 
-**Version:** 1.4.0  
+**Version:** 1.5.0  
 **Date:** 24. Oktober 2025  
 **Status:** Production Ready ✅
 
@@ -8,16 +8,17 @@
 
 ## Executive Summary
 
-UDS3 v1.4.0 ist ein **enterprise-ready Multi-Database Framework** mit vollständiger PKI-integrierter Sicherheitsarchitektur, Search API, SAGA Pattern, und DSGVO-Compliance. Das System ist produktionsreif und vollständig getestet.
+UDS3 v1.5.0 ist ein **enterprise-ready Multi-Database Framework** mit vollständiger PKI-integrierter Sicherheitsarchitektur, Search API, SAGA Pattern, und DSGVO-Compliance. Alle Backends sind produktionsreif und vollständig getestet.
 
 ### Key Achievements
 
+- ✅ **All Backends Production-Ready:** ChromaDB, Neo4j, PostgreSQL, CouchDB
 - ✅ **Security Layer:** PKI-integrated RBAC/RLS with audit logging
 - ✅ **Search API:** Unified search across Vector/Graph/Relational backends
 - ✅ **SAGA Pattern:** Distributed transactions with automatic compensation
 - ✅ **DSGVO Compliance:** Complete data protection framework
-- ✅ **Python Package:** Distributable wheel package (v1.4.0)
-- ✅ **Multi-Database:** PostgreSQL, Neo4j, ChromaDB, CouchDB support
+- ✅ **Python Package:** Distributable wheel package (v1.5.0)
+- ✅ **Clean Deprecations:** Removed outdated code paths
 
 ---
 
@@ -154,7 +155,7 @@ tests/test_uds3_security.py::TestRowLevelSecurity
 |---------|--------|------|-------|-------|-------|
 | **PostgreSQL** | ✅ Production | ✅ | ✅ | 5/5 | Primary metadata storage |
 | **Neo4j** | ✅ Production | ✅ | ✅ | 4/4 | 1930 documents indexed |
-| **ChromaDB** | ⚠️ Remote API | ✅ | ✅ | 3/3 | Fallback to HTTP client |
+| **ChromaDB** | ✅ Remote API | ✅ | ✅ | 3/3 | HTTP client (v2 API) |
 | **CouchDB** | ✅ Production | ✅ | ✅ | 3/3 | File storage backend |
 | **SQLite** | ✅ Development | ✅ | ✅ | 2/2 | Local testing only |
 
@@ -466,17 +467,17 @@ uds3/
 
 ### Known Limitations
 
-1. **ChromaDB Remote API:**
-   - Status: ⚠️ Fallback to HTTP client
-   - Impact: Slightly slower than local instance
-   - Workaround: Use remote HTTP API (implemented)
-   - Future: Wait for official remote client support
-
-2. **Monitoring:**
+1. **Monitoring:**
    - Status: ⚠️ Basic logging only
    - Impact: No real-time metrics dashboard
    - Workaround: Log analysis scripts
    - Future: Prometheus/Grafana integration
+
+2. **Advanced Reranking:**
+   - Status: ⚠️ Basic score fusion only
+   - Impact: Suboptimal search result ranking
+   - Workaround: Manual score weighting
+   - Future: Cross-encoder models for reranking
 
 3. **Load Testing:**
    - Status: ⚠️ Not yet performed

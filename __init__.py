@@ -54,7 +54,7 @@ except ImportError:
     LEGACY_SUPPORT_AVAILABLE = False
 
 # Version Info
-__version__ = "3.1.0"
+__version__ = "1.5.0"
 __author__ = "UDS3 Team"
 __updated__ = "2025-10-24"
 

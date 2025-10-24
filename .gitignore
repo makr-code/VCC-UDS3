@@ -32,7 +32,35 @@ wandb/
 
 # ==========================================
 # UDS3 Project-Specific Ignores (Added during cleanup 21.10.2025)
+# Updated: 24.10.2025 - Enhanced security for public GitHub
 # ==========================================
+
+# 🔒 CRITICAL SECURITY - NEVER COMMIT THESE FILES!
+# -------------------------------------------------
+# Local configuration with real credentials
+config_local.py
+database/config_local.py
+**/config_local.py
+*.local.py
+
+# Environment variables with secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Private keys and certificates (redundant with PKI, but safe)
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+*_private_key.*
+
+# Session tokens and API keys
+*token*.json
+*apikey*.txt
+*secret*.txt
 
 # Backup files
 *.bak
@@ -82,13 +110,27 @@ pip-delete-this-directory.txt
 .coverage.*
 htmlcov/
 *.cover
+.mypy_cache/
+.ruff_cache/
 
-# Database files
+# Database files - NEVER COMMIT LIVE DATA!
 *.db
 *.sqlite
 *.sqlite3
+*.db-journal
 sqlite_db/
 database_backup/
+*.dump
+*.sql.gz
+
+# Archive backups (already committed - remove manually if needed)
+# Note: archive/backups/*.bak should be reviewed for sensitive data
+archive/backups/*.bak
+
+# Local data directories
+data/
+local_data/
+temp_data/
 
 # IDE files (comprehensive)
 .vscode/

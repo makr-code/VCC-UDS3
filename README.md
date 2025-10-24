@@ -4,6 +4,179 @@
 
 UDS3 ist ein hochmodernes Multi-Database Framework für administrative und rechtliche Dokumente mit voller SAGA-Unterstützung, DSGVO-Compliance, Search API und umfassender Sicherheitsarchitektur.
 
+---
+
+## 🏛️ Das VCC-Ökosystem
+
+### Vision: Digitale Verwaltungstransformation
+
+Das **VCC (Verwaltungs-Cloud-Collaboration) Ökosystem** ist eine integrierte Plattform für die Digitalisierung öffentlicher Verwaltung mit Fokus auf Rechtssicherheit, Datenschutz und Interoperabilität.
+
+### Kernkomponenten
+
+#### 🔐 **VCC PKI (Public Key Infrastructure)**
+*Repository: VCC-PKI*
+
+- **Funktion:** Enterprise-grade Zertifikatsverwaltung und mTLS-Kommunikation
+- **Features:**
+  - Root CA und Intermediate CA Management
+  - Automatische Zertifikatserstellung für Services
+  - Certificate Revocation Lists (CRL)
+  - Web-GUI und CLI für Administration
+- **Integration:** Alle VCC-Services nutzen PKI-Zertifikate für sichere Kommunikation
+- **Status:** Production-Ready ✅
+
+#### 👤 **User Service (.NET/C#)**
+*Repository: VCC-User*
+
+- **Funktion:** Zentrale Benutzerverwaltung und Authentifizierung
+- **Features:**
+  - Keycloak-Integration für SSO
+  - Active Directory Anbindung
+  - Rollen- und Rechteverwaltung
+  - JWT-basierte Authentifizierung
+- **Integration:** Authentifiziert Zugriffe auf alle VCC-Services
+- **Status:** Production-Ready ✅
+
+#### 🗄️ **UDS3 (Unified Database Strategy)**
+*Repository: VCC-UDS3 (dieses Projekt)*
+
+- **Funktion:** Multi-Database Backend für strukturierte und unstrukturierte Daten
+- **Aufgaben im Ökosystem:**
+  - **Datenpersistenz:** Zentrale Speicherebene für alle VCC-Anwendungen
+  - **Polyglot Persistence:** Optimale Datenbankwahl je Anwendungsfall
+    - **Neo4j:** Rechtshierarchien, Verweisstrukturen, Prozessgraphen
+    - **ChromaDB:** Semantische Suche über Rechtsdokumente
+    - **PostgreSQL:** Strukturierte Metadaten, Audit-Logs
+    - **CouchDB:** Binäre Anhänge, Original-Dokumente
+  - **Search API:** Hochleistungs-Suche mit Hybrid-Retrieval (Vector + Graph + Relational)
+  - **SAGA Transactions:** Verteilte Transaktionssicherheit über mehrere Datenbanken
+  - **DSGVO-Compliance:** Automatische Datenklassifizierung und Löschfristen
+  - **Security Layer:** Row-Level Security und RBAC für alle Datenzugriffe
+- **Konsumenten:** VERITAS, Clara, Covina (siehe unten)
+- **Status:** Production-Ready ✅
+
+#### ⚖️ **VERITAS (Verwaltungsrecht Information & Textanalyse AI System)**
+*Repository: VCC-User/services/veritas*
+
+- **Funktion:** AI-gestütztes Rechtsauskunftssystem für Verwaltungsrecht
+- **Features:**
+  - RAG (Retrieval-Augmented Generation) über Gesetze, Verordnungen, Urteile
+  - Natürlichsprachliche Q&A für Verwaltungsmitarbeiter
+  - Quellenangaben mit Paragraphen-Verweisen
+- **UDS3-Nutzung:**
+  - Neo4j: Rechtshierarchien (BauGB → LBO BW → Gemeindesatzung)
+  - ChromaDB: Semantische Ähnlichkeitssuche
+  - PostgreSQL: Metadaten-Filterung (Geltungsbereich, Datum)
+- **Status:** Prototype ⚠️
+
+#### 📄 **Clara (Document Processing & Classification)**
+*Repository: VCC-User/services/clara*
+
+- **Funktion:** Automatische Dokumentenverarbeitung und -klassifizierung
+- **Features:**
+  - OCR für eingescannte Dokumente
+  - Automatische Klassifizierung (Bauantrag, Bescheid, Einspruch, etc.)
+  - Metadaten-Extraktion (Datum, Aktenzeichen, Beteiligte)
+  - Workflow-Routing basierend auf Dokumenttyp
+- **UDS3-Nutzung:**
+  - PostgreSQL: Dokument-Metadaten und Workflow-Status
+  - CouchDB: Original-Dokumente und OCR-Ergebnisse
+  - Neo4j: Dokumenten-Beziehungen (Antwort auf Antrag, etc.)
+- **Status:** Prototype ⚠️
+
+#### 🔄 **Covina (Process Mining & Orchestration)**
+*Repository: VCC-User/services/covina*
+
+- **Funktion:** Verwaltungsprozess-Analyse und -Optimierung
+- **Features:**
+  - Process Mining über historische Vorgänge
+  - Bottleneck-Erkennung in Genehmigungsverfahren
+  - BPMN-Import und -Export
+  - Workflow-Orchestrierung
+- **UDS3-Nutzung:**
+  - Neo4j: Prozessgraphen und Ablaufmodelle
+  - PostgreSQL: Event-Logs und Performance-Metriken
+- **Status:** Prototype ⚠️
+
+### Systemarchitektur
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      VCC Ökosystem                              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   │
+│  │ VERITAS  │   │  Clara   │   │ Covina   │   │  User    │   │
+│  │   AI     │   │  Docs    │   │ Process  │   │  Mgmt    │   │
+│  └────┬─────┘   └────┬─────┘   └────┬─────┘   └────┬─────┘   │
+│       │              │              │              │          │
+│       └──────────────┴──────────────┴──────────────┘          │
+│                           │                                    │
+│              ┌────────────▼────────────┐                       │
+│              │    UDS3 Backend         │                       │
+│              │  (Multi-DB Strategy)    │                       │
+│              └─┬─────┬─────┬─────┬────┘                       │
+│                │     │     │     │                             │
+│         ┌──────▼┐ ┌──▼──┐ ┌▼───┐ ┌▼────┐                     │
+│         │ Neo4j │ │Chroma││PgSQL││Couch│                     │
+│         └───────┘ └─────┘ └────┘ └─────┘                     │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐ │
+│  │           VCC PKI (Certificate Authority)                │ │
+│  │    - Root CA  - Service Certs  - mTLS  - CRL            │ │
+│  └──────────────────────────────────────────────────────────┘ │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐ │
+│  │         Keycloak SSO + Active Directory Stub             │ │
+│  └──────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### UDS3 als Herzstück des Ökosystems
+
+**Warum Multi-Database?**
+
+Verwaltungsdaten sind heterogen:
+- **Strukturiert:** Bürgerdaten, Aktenzeichen → PostgreSQL
+- **Graphbasiert:** Gesetzeshierarchien, Prozessabläufe → Neo4j  
+- **Semantisch:** Volltext-Rechtsdokumente → ChromaDB (Vector Search)
+- **Binär:** Scans, PDFs, Unterschriften → CouchDB (File Storage)
+
+UDS3 vereint diese Speichertypen unter einer einheitlichen API und ermöglicht:
+- **Transaktionssicherheit** über Datenbank-Grenzen (SAGA Pattern)
+- **Optimale Performance** durch Spezialisierung (Right Tool for the Job)
+- **DSGVO-Konformität** durch zentrale Compliance-Schicht
+- **Sicherheit** durch PKI-Integration und Row-Level Security
+
+### Deployment-Modell
+
+**Containerisiert mit Docker Compose:**
+```yaml
+services:
+  uds3-backend:     # UDS3 API Gateway
+  neo4j:            # Graph Database
+  chromadb:         # Vector Database
+  postgresql:       # Relational Database
+  couchdb:          # Document Database
+  
+  veritas:          # AI Legal Assistant
+  clara:            # Document Processor
+  covina:           # Process Mining
+  
+  user-service:     # User Management
+  keycloak:         # SSO Provider
+  pki-manager:      # Certificate Authority
+```
+
+**Produktiv-Umgebung (geplant):**
+- Kubernetes mit Helm Charts
+- Automatisches Scaling für UDS3 und AI-Services
+- Hochverfügbarkeit: PostgreSQL (Patroni), Neo4j (Cluster)
+- Monitoring: Prometheus + Grafana
+
+---
+
 ## 🚀 Quick Start
 
 ### Installation
@@ -203,13 +376,21 @@ pytest tests/test_search_api.py -v
 ## 📊 Backends Status
 
 - **Neo4j:** 1930 documents, PRODUCTION-READY ✅
-- **ChromaDB:** Remote API (fallback mode) ⚠️
+- **ChromaDB:** Remote API, PRODUCTION-READY ✅
 - **PostgreSQL:** Active (metadata storage) ✅
 - **CouchDB:** Active (file storage) ✅
 
 ## 🎯 Roadmap
 
-### v1.4.0 (Current)
+### v1.5.0 (Current - October 2025)
+- ✅ All backends production-ready (ChromaDB, Neo4j, PostgreSQL, CouchDB)
+- ✅ Removed deprecated `uds3.uds3_search_api` import
+- ✅ Documentation improvements and status updates
+- 🔄 PostgreSQL execute_sql() API (in progress)
+- 🔄 Enhanced search filters (planned)
+- 🔄 Advanced reranking algorithms (planned)
+
+### v1.4.0 (Completed - October 2025)
 - ✅ Search API integrated into core
 - ✅ Property-based access (`strategy.search_api`)
 - ✅ Backward-compatible migration path
@@ -217,12 +398,6 @@ pytest tests/test_search_api.py -v
 - ✅ **Security Layer:** PKI-integrated RBAC/RLS with audit logging
 - ✅ **Secure Database API:** Row-level security for all database operations
 - ✅ **Zero-Trust Architecture:** Certificate-based authentication
-
-### v1.5.0 (Planned - ~3 months)
-- Remove deprecated `uds3.uds3_search_api` import
-- PostgreSQL execute_sql() API
-- ChromaDB Remote API fix
-- Enhanced search filters
 
 ### v2.0.0 (Future)
 - Complete RAG Framework
@@ -232,7 +407,25 @@ pytest tests/test_search_api.py -v
 
 ## 📝 Changelog
 
-### v1.4.0 (2025-10-24)
+### v1.5.0 (2025-10-24) 🚀 PRODUCTION RELEASE
+
+**All Backends Production-Ready:**
+- ✅ **ChromaDB:** Remote API fully operational (removed fallback mode)
+- ✅ **Neo4j:** 1930+ documents validated
+- ✅ **PostgreSQL:** Active metadata storage
+- ✅ **CouchDB:** Active file storage
+
+**Breaking Changes:**
+- ⚠️ **Removed:** Deprecated `uds3.uds3_search_api` module
+  - Migration: Use `strategy.search_api` property instead
+  - Deprecation period: 3 months (announced in v1.4.0)
+
+**Documentation:**
+- 📄 Updated backend status across all documentation
+- 📄 Removed obsolete "fallback mode" warnings
+- 📄 Updated roadmap and version information
+
+### v1.4.0 (2025-10-24) 🔒 SECURITY RELEASE
 
 **Security Features (NEW ⭐):**
 - ✨ **Row-Level Security (RLS):** Automatic data ownership filtering

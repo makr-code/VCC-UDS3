@@ -15,7 +15,7 @@ long_description = read_file('docs/DEVELOPER_HOWTO.md') if os.path.exists('docs/
 
 setup(
     name="uds3",
-    version="1.4.0",  # Sync with pyproject.toml
+    version="1.5.0",  # Sync with pyproject.toml
     description="UDS3 - Unified Database Strategy v3: Enterprise Multi-Database Distribution System",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -95,5 +95,4 @@ setup(
     },
     zip_safe=False,  # Package contains data files
     platforms=["any"],
-    license="Proprietary",
 )

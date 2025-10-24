@@ -5,6 +5,48 @@ All notable changes to the Unified Database Strategy v3 will be documented in th
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2025-10-24 🚀 PRODUCTION RELEASE
+
+### Added
+
+**🚀 All Backends Production-Ready**
+- ✅ **ChromaDB:** Remote API fully operational (no fallback mode)
+- ✅ **Neo4j:** 1930+ documents, PRODUCTION-READY
+- ✅ **PostgreSQL:** Active metadata storage
+- ✅ **CouchDB:** Active file storage
+
+### Changed
+
+**📚 Documentation Improvements**
+- Updated backend status in README.md (ChromaDB now production-ready)
+- Removed "fallback mode" warnings for ChromaDB
+- Updated roadmap to reflect v1.5.0 as current release
+- Clarified IMPLEMENTATION_STATUS.md backend table
+
+### Removed
+
+**⚠️ Breaking Changes - Deprecation Cleanup**
+- Removed deprecated `uds3.uds3_search_api` module (deprecated in v1.4.0)
+  - Migration path: Use `strategy.search_api` instead
+  - Old code: `from uds3.uds3_search_api import UDS3SearchAPI`
+  - New code: `strategy = get_optimized_unified_strategy()` → `strategy.search_api`
+
+### Migration Guide (v1.4.x → v1.5.0)
+
+**Search API (Breaking Change)**
+```python
+# OLD (no longer works):
+from uds3.uds3_search_api import UDS3SearchAPI
+search_api = UDS3SearchAPI(strategy)
+
+# NEW (required):
+from uds3 import get_optimized_unified_strategy
+strategy = get_optimized_unified_strategy()
+results = await strategy.search_api.hybrid_search(query)
+```
+
+---
+
 ## [1.4.0] - 2025-10-24 🔒 SECURITY RELEASE
 
 ### Added - Enterprise Security Layer
