@@ -171,3 +171,5 @@ log/
 *_PLAN.md.backup
 *_SUMMARY.md.backup
 CLEANUP_PLAN.md.backup
+
+bandit_report.txt
