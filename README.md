@@ -1,8 +1,8 @@
 # UDS3 - Unified Database Strategy v3.0
 
-**Enterprise-ready Multi-Database Distribution System**
+**Enterprise-ready Multi-Database Distribution System with PKI-Integrated Security**
 
-UDS3 ist ein hochmodernes Multi-Database Framework für administrative und rechtliche Dokumente mit voller SAGA-Unterstützung, DSGVO-Compliance und Search API.
+UDS3 ist ein hochmodernes Multi-Database Framework für administrative und rechtliche Dokumente mit voller SAGA-Unterstützung, DSGVO-Compliance, Search API und umfassender Sicherheitsarchitektur.
 
 ## 🚀 Quick Start
 
@@ -35,7 +35,40 @@ results = await strategy.search_api.hybrid_search(
 
 ## ✨ Features
 
-### 🔍 Search API (NEW in v1.4.0)
+### � Security Layer (NEW in v1.4.0 ⭐)
+
+Enterprise-grade security with PKI integration and least privilege access control:
+
+```python
+from security import User, UserRole, UDS3SecurityManager
+from database.secure_api import SecureDatabaseAPI
+
+# Initialize security with PKI
+security = UDS3SecurityManager(
+    pki_ca_cert_path="/path/to/ca.pem",
+    enable_pki_auth=True
+)
+
+# Wrap database API with security
+secure_api = SecureDatabaseAPI(database_api, security)
+
+# All operations require authenticated user
+user = User("alice", "alice", "alice@vcc.local", UserRole.USER)
+doc_id = secure_api.create(user, {"title": "My Document"})
+docs = secure_api.read(user, {})  # Only sees own documents
+```
+
+**Security Features:**
+- ✅ **Row-Level Security (RLS):** Users can only access their own data
+- ✅ **Role-Based Access Control (RBAC):** 5 roles, 15 granular permissions
+- ✅ **PKI Certificate Authentication:** Integration with VCC PKI system
+- ✅ **Comprehensive Audit Logging:** All operations tracked
+- ✅ **API Rate Limiting:** DOS protection and fair resource allocation
+- ✅ **Zero-Trust Architecture:** Every request authenticated and authorized
+
+See [Security Documentation](docs/SECURITY.md) for complete details.
+
+### �🔍 Search API (NEW in v1.4.0)
 
 High-level search interface across Vector, Graph and Relational backends:
 
@@ -120,9 +153,10 @@ strategy.dsgvo_core.anonymize_expired_data()
 
 ## 📚 Documentation
 
-- [Search API Production Guide](docs/UDS3_SEARCH_API_PRODUCTION_GUIDE.md) - Complete search API documentation
-- [Search API Integration Decision](docs/UDS3_SEARCH_API_INTEGRATION_DECISION.md) - Architecture decision
-- [PostgreSQL/CouchDB Integration](docs/POSTGRES_COUCHDB_INTEGRATION.md) - Backend integration guide
+- **[Security Architecture](docs/SECURITY.md)** - Complete security layer documentation (PKI, RBAC, RLS, Audit)
+- **[Search API Production Guide](docs/UDS3_SEARCH_API_PRODUCTION_GUIDE.md)** - Complete search API documentation
+- **[Search API Integration Decision](docs/UDS3_SEARCH_API_INTEGRATION_DECISION.md)** - Architecture decision
+- **[PostgreSQL/CouchDB Integration](docs/POSTGRES_COUCHDB_INTEGRATION.md)** - Backend integration guide
 
 ## 🔄 Migration from v1.3.x
 
@@ -180,6 +214,9 @@ pytest tests/test_search_api.py -v
 - ✅ Property-based access (`strategy.search_api`)
 - ✅ Backward-compatible migration path
 - ✅ 100% test coverage
+- ✅ **Security Layer:** PKI-integrated RBAC/RLS with audit logging
+- ✅ **Secure Database API:** Row-level security for all database operations
+- ✅ **Zero-Trust Architecture:** Certificate-based authentication
 
 ### v1.5.0 (Planned - ~3 months)
 - Remove deprecated `uds3.uds3_search_api` import
@@ -195,9 +232,18 @@ pytest tests/test_search_api.py -v
 
 ## 📝 Changelog
 
-### v1.4.0 (2025-10-11)
+### v1.4.0 (2025-10-24)
 
-**New Features:**
+**Security Features (NEW ⭐):**
+- ✨ **Row-Level Security (RLS):** Automatic data ownership filtering
+- ✨ **RBAC System:** 5 roles (SYSTEM, ADMIN, SERVICE, USER, READONLY) with 15 granular permissions
+- ✨ **PKI Authentication:** Certificate-based authentication with VCC PKI integration
+- ✨ **Audit Logging:** Complete audit trail for all database operations
+- ✨ **Rate Limiting:** DOS protection with per-role quotas
+- ✨ **Secure Database API:** Security wrapper for all database backends
+- ✨ **Zero-Trust Architecture:** Every request authenticated and authorized
+
+**Search Features:**
 - ✨ **Search API Property:** Direct access via `strategy.search_api` (lazy-loaded)
 - ✨ **Improved DX:** -50% imports, +100% discoverability
 - ✨ **Type Safety:** Enhanced dataclasses for SearchQuery and SearchResult
@@ -209,13 +255,15 @@ pytest tests/test_search_api.py -v
 
 **Testing:**
 - ✅ 100% test coverage for Search API
+- ✅ 3/3 security test suites passed
 - ✅ 3/3 integration test suites passed
 - ✅ Production validation with 1930 Neo4j documents
 
 **Documentation:**
+- 📄 New: docs/SECURITY.md (680 LOC) - Complete security architecture
 - 📄 New: UDS3_SEARCH_API_PRODUCTION_GUIDE.md (1950 LOC)
 - 📄 New: UDS3_SEARCH_API_INTEGRATION_DECISION.md (2000 LOC)
-- 📄 Updated: README.md with Search API examples
+- 📄 Updated: README.md with Security and Search API examples
 
 ## 🤝 Contributing
 

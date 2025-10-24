@@ -3,7 +3,7 @@ UDS3 - Unified Data Strategy 3.0
 Clean Modular Architecture
 
 Reorganisiert: 24. Oktober 2025
-Neue Struktur: core/, manager/, api/, doku/
+Neue Struktur: core/, manager/, api/, docs/
 Verkürzte Dateinamen, klare Trennung
 """
 
@@ -208,5 +208,47 @@ __all__.extend([
     "health_check",
     "get_api", 
     "get_database_api",
-    "get_core"
+    "get_core",
+    "main"
 ])
+
+def main():
+    """Main CLI entry point for UDS3 package"""
+    import sys
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="UDS3 - Unified Database Strategy v3")
+    parser.add_argument("--version", action="version", version=f"UDS3 {__version__}")
+    parser.add_argument("--health", action="store_true", help="Run health check")
+    parser.add_argument("--info", action="store_true", help="Show system info")
+    
+    args = parser.parse_args()
+    
+    if args.health:
+        health_status = health_check()
+        print("🔍 UDS3 Health Check:")
+        for component, status in health_status.items():
+            status_icon = "✅" if status else "❌"
+            print(f"  {status_icon} {component}: {'Available' if status else 'Not Available'}")
+        sys.exit(0 if all(health_status.values()) else 1)
+    
+    if args.info:
+        print(f"🚀 UDS3 v{__version__}")
+        print(f"📦 Package Location: {__file__}")
+        print(f"🐍 Python: {sys.version}")
+        
+        print("\n📊 Available Components:")
+        components = {
+            "Core": CORE_AVAILABLE,
+            "API": API_AVAILABLE, 
+            "Manager": MANAGER_AVAILABLE,
+            "Legacy": LEGACY_SUPPORT_AVAILABLE
+        }
+        for name, available in components.items():
+            status = "✅ Available" if available else "❌ Not Available"
+            print(f"  {name}: {status}")
+        sys.exit(0)
+    
+    # Default: show help
+    parser.print_help()
+    sys.exit(0)

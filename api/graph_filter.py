@@ -15,7 +15,7 @@ from enum import Enum
 import logging
 
 try:
-    from ..api.filters import (
+    from api.filters import (
         BaseFilter,
         FilterOperator,
         FilterCondition,

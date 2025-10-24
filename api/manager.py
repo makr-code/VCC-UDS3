@@ -25,15 +25,14 @@ from dataclasses import dataclass
 from enum import Enum
 
 # Core imports
-from ..core.database import UnifiedDatabaseStrategy
-from ..core.schemas import UDS3DatabaseSchemasMixin
+from core.schemas import UDS3DatabaseSchemasMixin
 
 # Operational imports
 try:
-    from ..api.crud import AdvancedCRUDManager
-    from ..manager.streaming import StreamingManager
-    from ..manager.archive import ArchiveManager
-    from ..manager.saga import SagaOrchestrator
+    from api.crud import AdvancedCRUDManager
+    from manager.streaming import StreamingManager
+    from manager.archive import ArchiveManager
+    from manager.saga import SagaOrchestrator
     ADVANCED_OPERATIONS_AVAILABLE = True
 except ImportError:
     ADVANCED_OPERATIONS_AVAILABLE = False
@@ -103,7 +102,8 @@ class UDS3APIManager:
     def _initialize_components(self):
         """Initialisiert alle verfügbaren Komponenten"""
         try:
-            # Core database strategy
+            # Core database strategy (lazy import to avoid circular imports)
+            from core.database import UnifiedDatabaseStrategy
             self.database_strategy = UnifiedDatabaseStrategy()
             self.logger.info("✅ Database strategy initialized")
             

@@ -32,8 +32,8 @@ from enum import Enum
 
 # Import Security & Quality Framework
 try:
-    # KONSOLIDIERT: Nur noch uds3_security_quality.py verwenden
-    from uds3_security_quality import (
+    # KONSOLIDIERT: Nur noch compliance/security_quality.py verwenden
+    from compliance.security_quality import (
         SecurityLevel,
         DataSecurityManager,
         create_security_manager,
@@ -91,7 +91,7 @@ def get_dsgvo_class(class_name: str):
 
 # Import Delete Operations Module
 try:
-    from ..manager.delete import (
+    from manager.delete import (
         SoftDeleteManager,
         HardDeleteManager,
         DeleteStrategy,
@@ -108,7 +108,7 @@ except ImportError:
 
 # Import Archive Operations Module
 try:
-    from ..manager.archive import (
+    from manager.archive import (
         ArchiveManager,
         create_archive_manager,
         ArchiveResult,
@@ -124,7 +124,7 @@ except ImportError:
 
 # Import Streaming Operations Module
 try:
-    from ..manager.streaming import (
+    from manager.streaming import (
         StreamingManager,
         create_streaming_manager,
         StreamingProgress,
@@ -144,7 +144,7 @@ except ImportError:
 
 # Import Streaming Saga Integration
 try:
-    from ..manager.streaming_saga import (
+    from manager.streaming_saga import (
         SagaStatus,
         SagaStep,
         SagaDefinition,
@@ -161,7 +161,7 @@ except ImportError:
 
 # Import Advanced CRUD Operations Module
 try:
-    from ..api.crud import (
+    from api.crud import (
         AdvancedCRUDManager,
         BatchReadResult,
         ConditionalUpdateResult,
@@ -178,13 +178,13 @@ except ImportError:
 
 # Import Vector Filter Module
 try:
-    from ..api.vector_filter import (
+    from api.vector_filter import (
         VectorFilter,
         SimilarityQuery,
         VectorQueryResult,
         create_vector_filter,
     )
-    from ..api.filters import FilterOperator, SortOrder
+    from api.filters import FilterOperator, SortOrder
     VECTOR_FILTER_AVAILABLE = True
 except ImportError:
     VECTOR_FILTER_AVAILABLE = False
@@ -192,7 +192,7 @@ except ImportError:
 
 # Import Graph Filter Module
 try:
-    from ..api.graph_filter import (
+    from api.graph_filter import (
         GraphFilter,
         NodeFilter,
         RelationshipFilter,
@@ -207,7 +207,7 @@ except ImportError:
 
 # Import Relational Filter Module
 try:
-    from ..api.relational_filter import (
+    from api.relational_filter import (
         RelationalFilter,
         SelectField,
         JoinClause,
@@ -257,7 +257,7 @@ try:
 except ImportError:
     try:
         # Fallback: Relative Import
-        from ..api.crud_strategies import UDS3CRUDStrategiesMixin
+        from api.crud_strategies import UDS3CRUDStrategiesMixin
         CRUD_STRATEGIES_MIXIN_AVAILABLE = True
     except ImportError:
         CRUD_STRATEGIES_MIXIN_AVAILABLE = False
@@ -290,7 +290,7 @@ try:
     SAGA_ORCHESTRATOR_AVAILABLE = True
 except ImportError:
     try:
-        from ..manager.saga import (
+        from manager.saga import (
             get_saga_orchestrator,
             SagaDefinition,
             SagaExecutionError,
@@ -311,7 +311,7 @@ except ImportError:
 
 # Saga Compliance & Governance Integration
 try:
-    from ..manager.compliance import (
+    from manager.compliance import (
         SagaComplianceEngine,
         SagaMonitoringInterface,
         SagaAdminInterface,
@@ -332,41 +332,12 @@ except ImportError:
     SAGA_COMPLIANCE_AVAILABLE = False
     print("Warning: Saga Compliance & Governance module not available")
 
-# Import VPB Operations Module
-try:
-    from uds3_vpb_operations import (
-        VPBProcess,
-        VPBTask,
-        VPBDocument,
-        VPBParticipant,
-        ProcessStatus,
-        TaskStatus,
-        ParticipantRole,
-        AuthorityLevel,
-        LegalContext,
-        ProcessComplexity,
-        VPBCRUDManager,
-        VPBProcessMiningEngine,
-        VPBReportingInterface,
-        ProcessAnalysisResult,
-        BottleneckAnalysis,
-        AutomationAnalysis,
-        create_vpb_crud_manager,
-        create_vpb_process_mining_engine,
-        create_vpb_reporting_interface,
-        create_vpb_process,
-        create_vpb_task,
-        create_vpb_participant,
-        create_vpb_document,
-    )
-    VPB_OPERATIONS_AVAILABLE = True
-except ImportError:
-    VPB_OPERATIONS_AVAILABLE = False
-    print("Warning: VPB Operations module not available")
+# Import VPB Operations Module - Not implemented
+VPB_OPERATIONS_AVAILABLE = False
 
 # Import File Storage Filter Module
 try:
-    from ..api.file_filter import (
+    from api.file_filter import (
         FileMetadata,
         FileSearchQuery,
         FileFilterResult,
@@ -388,7 +359,7 @@ except ImportError:
 
 # Import Polyglot Query Module
 try:
-    from ..api.query import (
+    from api.query import (
         PolyglotQuery,
         JoinStrategy,
         ExecutionMode,
@@ -680,7 +651,7 @@ class UnifiedDatabaseStrategy(UDS3DatabaseSchemasMixin, UDS3CRUDStrategiesMixin)
         self.naming_manager = None
         if enable_dynamic_naming:
             try:
-                from ..api.naming_integration import NamingContextManager
+                from api.naming_integration import NamingContextManager
                 self.naming_manager = NamingContextManager(**(naming_config or {}))
                 logger.info("✅ UDS3 Dynamic Naming Strategy aktiviert")
             except ImportError as exc:
@@ -702,7 +673,7 @@ class UnifiedDatabaseStrategy(UDS3DatabaseSchemasMixin, UDS3CRUDStrategiesMixin)
         # Wrap SagaCRUD with Dynamic Naming (falls aktiviert)
         if self.enable_dynamic_naming and self.naming_manager:
             try:
-                from ..api.naming_integration import create_naming_enabled_saga_crud
+                from api.naming_integration import create_naming_enabled_saga_crud
                 self.saga_crud = create_naming_enabled_saga_crud(
                     saga_crud_instance=self.saga_crud,
                     naming_manager=self.naming_manager
@@ -3172,7 +3143,7 @@ class UnifiedDatabaseStrategy(UDS3DatabaseSchemasMixin, UDS3CRUDStrategiesMixin)
         
         try:
             # Convert string strategy to enum
-            from ..manager.archive import RestoreStrategy
+            from manager.archive import RestoreStrategy
             strategy_map = {
                 'replace': RestoreStrategy.REPLACE,
                 'merge': RestoreStrategy.MERGE,
@@ -3224,7 +3195,7 @@ class UnifiedDatabaseStrategy(UDS3DatabaseSchemasMixin, UDS3CRUDStrategiesMixin)
             # Convert string status to enum
             archive_status = None
             if status:
-                from ..manager.archive import ArchiveStatus
+                from manager.archive import ArchiveStatus
                 status_map = {
                     'archived': ArchiveStatus.ARCHIVED,
                     'restoring': ArchiveStatus.RESTORING,
@@ -3309,7 +3280,7 @@ class UnifiedDatabaseStrategy(UDS3DatabaseSchemasMixin, UDS3CRUDStrategiesMixin)
             return False
         
         try:
-            from ..manager.archive import RetentionPolicy
+            from manager.archive import RetentionPolicy
             policy = RetentionPolicy(
                 name=name,
                 retention_days=retention_days,

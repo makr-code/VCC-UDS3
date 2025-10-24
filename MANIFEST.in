@@ -1,20 +1,47 @@
-# MANIFEST.in - Include additional files in the distribution
+# MANIFEST.in - Include additional files in the UDS3 distribution package
 
-# Documentation
+# Core documentation
 include README.md
 include CHANGELOG.md
 include LICENSE
 include TODO.md
+include *.toml
+include *.ini
+include requirements.txt
 
-# Documentation directory
+# Documentation directory (new structure)
 recursive-include docs *.md
 
-# Tests (optional - usually excluded in production)
-# recursive-include tests *.py
+# Configuration files
+include config.py
+recursive-include api *.json
+recursive-include api *.yaml
+recursive-include api *.yml
 
-# Exclude common files
+# SQL and database schemas
+recursive-include sql *.sql
+recursive-include database *.sql *.json
+
+# Example configurations (but not actual secrets)
+recursive-include examples *.py *.json *.yaml *.md
+
+# Include package data
+recursive-include uds3 *.json *.yaml *.yml *.md
+
+# Tests for development installs only
+recursive-include tests *.py
+
+# Exclude sensitive and temporary files  
 global-exclude __pycache__
 global-exclude *.py[co]
 global-exclude .DS_Store
 global-exclude *.sqlite
 global-exclude *.db
+global-exclude config_local.py
+global-exclude .env
+global-exclude .venv
+global-exclude venv/
+global-exclude .git/
+global-exclude .pytest_cache/
+global-exclude *.log
+global-exclude .mypy_cache/

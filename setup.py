@@ -1,19 +1,38 @@
 from setuptools import setup, find_packages
-from glob import glob
+import os
+import sys
 
-# UDS3 als Package mit allen Submodulen
-py_modules = [p[:-3] for p in glob("*.py") if p.endswith(".py") and p not in ["setup.py", "conftest.py"]]
+# Add current directory to path to import version
+sys.path.insert(0, os.path.dirname(__file__))
+
+def read_file(filename):
+    """Read a file and return its contents"""
+    with open(os.path.join(os.path.dirname(__file__), filename), encoding='utf-8') as f:
+        return f.read()
+
+# Get long description from README
+long_description = read_file('docs/DEVELOPER_HOWTO.md') if os.path.exists('docs/DEVELOPER_HOWTO.md') else read_file('README.md') if os.path.exists('README.md') else ""
 
 setup(
     name="uds3",
-    version="1.0.0",
-    description="UDS3 - Unified Data Strategy 3.0: Polyglot Persistence with Batch Operations",
-    author="UDS3 Team",
-    author_email="uds3@covina.local",
-    url="https://github.com/makr-code/VCC-Covina",
-    packages=find_packages(where="."),
-    py_modules=py_modules,
-    package_dir={"": "."},
+    version="1.4.0",  # Sync with pyproject.toml
+    description="UDS3 - Unified Database Strategy v3: Enterprise Multi-Database Distribution System",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    author="UDS3 Development Team",
+    author_email="uds3@covina.local", 
+    url="https://github.com/makr-code/VCC-UDS3",
+    project_urls={
+        "Documentation": "https://github.com/makr-code/VCC-UDS3/tree/main/doku",
+        "Source": "https://github.com/makr-code/VCC-UDS3",
+        "Tracker": "https://github.com/makr-code/VCC-UDS3/issues",
+    },
+    packages=find_packages(exclude=["tests", "tests.*", "examples", "examples.*"]),
+    package_data={
+        "uds3": ["*.json", "*.yaml", "*.yml"],
+        "api": ["*.json", "geo_config.json"],
+        "docs": ["*.md"],
+    },
     include_package_data=True,
     python_requires=">=3.10",
     install_requires=[
@@ -64,7 +83,11 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "uds3=uds3.cli:main",  # Optional CLI tool
+            "uds3=uds3:main",  # Main UDS3 CLI entry point
+            "uds3-manager=api.manager:main",  # API Manager CLI
         ],
     },
+    zip_safe=False,  # Package contains data files
+    platforms=["any"],
+    license="Proprietary",
 )

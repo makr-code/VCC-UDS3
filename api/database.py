@@ -27,7 +27,7 @@ import hashlib
 from contextlib import contextmanager
 
 # Core imports
-from ..core.schemas import UDS3DatabaseSchemasMixin
+from core.schemas import UDS3DatabaseSchemasMixin
 
 
 class DatabaseType(Enum):

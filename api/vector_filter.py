@@ -17,7 +17,7 @@ import logging
 from datetime import datetime
 
 try:
-    from ..api.filters import (
+    from api.filters import (
         BaseFilter,
         FilterOperator,
         FilterCondition,
