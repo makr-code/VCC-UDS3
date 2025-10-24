@@ -10,7 +10,12 @@ UDS3 ist ein hochmodernes Multi-Database Framework für administrative und recht
 
 ### Vision: Digitale Verwaltungstransformation
 
-Das **VCC (Verwaltungs-Cloud-Collaboration) Ökosystem** ist eine integrierte Plattform für die Digitalisierung öffentlicher Verwaltung mit Fokus auf Rechtssicherheit, Datenschutz und Interoperabilität.
+Das **VCC (Veritas-Covina-Clara) Ökosystem** ist ein selbstoptimierendes KI-System für die Digitalisierung öffentlicher Verwaltung mit Fokus auf digitale Souveränität, Rechtssicherheit und kontinuierliches Lernen.
+
+**VCC = Drei symbiotische AI-Komponenten:**
+- **Veritas:** AI-Rechtsauskunftssystem (Human-in-the-Loop)
+- **Covina:** Automatisierte Wissensaktualisierung (Knowledge Update)
+- **Clara:** Kontinuierliches Modell-Training (Continuous Learning)
 
 ### Kernkomponenten
 
@@ -57,7 +62,7 @@ Das **VCC (Verwaltungs-Cloud-Collaboration) Ökosystem** ist eine integrierte Pl
 - **Status:** Production-Ready ✅
 
 #### ⚖️ **VERITAS (Verwaltungsrecht Information & Textanalyse AI System)**
-*Repository: VCC-User/services/veritas*
+*Repository: VCC-Veritas*
 
 - **Funktion:** AI-gestütztes Rechtsauskunftssystem für Verwaltungsrecht
 - **Features:**
@@ -71,7 +76,7 @@ Das **VCC (Verwaltungs-Cloud-Collaboration) Ökosystem** ist eine integrierte Pl
 - **Status:** Prototype ⚠️
 
 #### 📄 **Clara (Document Processing & Classification)**
-*Repository: VCC-User/services/clara*
+*Repository: VCC-Clara*
 
 - **Funktion:** Automatische Dokumentenverarbeitung und -klassifizierung
 - **Features:**
@@ -86,7 +91,7 @@ Das **VCC (Verwaltungs-Cloud-Collaboration) Ökosystem** ist eine integrierte Pl
 - **Status:** Prototype ⚠️
 
 #### 🔄 **Covina (Process Mining & Orchestration)**
-*Repository: VCC-User/services/covina*
+*Repository: VCC-Covina*
 
 - **Funktion:** Verwaltungsprozess-Analyse und -Optimierung
 - **Features:**
@@ -103,12 +108,14 @@ Das **VCC (Verwaltungs-Cloud-Collaboration) Ökosystem** ist eine integrierte Pl
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      VCC Ökosystem                              │
+│                  VCC: Veritas-Covina-Clara                      │
+│              (Souveränes Verwaltungs-KI-System)                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   │
 │  │ VERITAS  │   │  Clara   │   │ Covina   │   │  User    │   │
-│  │   AI     │   │  Docs    │   │ Process  │   │  Mgmt    │   │
+│  │   AI     │   │  Learn   │   │Knowledge │   │  Mgmt    │   │
+│  │ Legal Q&A│   │  Loop    │   │  Update  │   │  Auth    │   │
 │  └────┬─────┘   └────┬─────┘   └────┬─────┘   └────┬─────┘   │
 │       │              │              │              │          │
 │       └──────────────┴──────────────┴──────────────┘          │
@@ -120,6 +127,7 @@ Das **VCC (Verwaltungs-Cloud-Collaboration) Ökosystem** ist eine integrierte Pl
 │                │     │     │     │                             │
 │         ┌──────▼┐ ┌──▼──┐ ┌▼───┐ ┌▼────┐                     │
 │         │ Neo4j │ │Chroma││PgSQL││Couch│                     │
+│         │ (VPB) │ │(Vect)││(Txn)││(Bin)│                     │
 │         └───────┘ └─────┘ └────┘ └─────┘                     │
 │                                                                 │
 │  ┌──────────────────────────────────────────────────────────┐ │
@@ -382,15 +390,315 @@ pytest tests/test_search_api.py -v
 
 ## 🎯 Roadmap
 
+**Siehe [ROADMAP.md](ROADMAP.md) für detaillierte Entwicklungsplanung (v1.6.0 - v3.0.0).**
+
 ### v1.5.0 (Current - October 2025)
 - ✅ All backends production-ready (ChromaDB, Neo4j, PostgreSQL, CouchDB)
 - ✅ Removed deprecated `uds3.uds3_search_api` import
 - ✅ Documentation improvements and status updates
+- ✅ VCC ecosystem documentation (Veritas-Covina-Clara)
 - 🔄 PostgreSQL execute_sql() API (in progress)
 - 🔄 Enhanced search filters (planned)
 - 🔄 Advanced reranking algorithms (planned)
 
-### v1.4.0 (Completed - October 2025)
+### Future Versions
+
+**Nächste Meilensteine:**
+- **v1.6.0 (Q1 2026):** RAG-Pipeline Maturity (Hybrid Search, RRF, Cross-Encoder Re-Ranking)
+- **v2.0.0 (Q2-Q3 2026):** Clara Continuous Learning (PEFT/LoRA), VPB Integration
+- **v2.5.0 (Q4 2026):** Governance & Compliance (EU AI Act, Formal Data Governance)
+- **v3.0.0 (2027+):** Production Readiness (Security Audits, K8s, High Availability)
+
+Detaillierte Feature-Planung, technische Anforderungen und Implementierungsschritte finden Sie in [ROADMAP.md](ROADMAP.md).
+
+---
+
+## 🏛️ UDS3 im VCC-Ökosystem: Strategische Rolle
+
+### Das VCC-Dreieck: Souveräne Verwaltungs-KI
+
+UDS3 ist nicht nur eine Datenbank-Abstraktion – es ist das **fundamentale Rückgrat** des VCC (Veritas-Covina-Clara) Ökosystems, einem strategischen KI-System für die digitale Souveränität der öffentlichen Verwaltung.
+
+**Strategische Positionierung:**
+- **Politische Verankerung:** Teil des "Digitalprogramm 2025" Brandenburg (DABB)
+- **Primäres Ziel:** Digitale Souveränität (Vendor Lock-in Vermeidung)
+- **Architektur-Prinzip:** On-Premise, Open-Source, Zero-Trust
+- **Zweck:** Personalaugmentation (nicht -reduktion) angesichts Fachkräftemangel (93,9% Stellenüberhangsquote)
+
+### Die drei symbiotischen Kreisläufe (powered by UDS3)
+
+```
+┌────────────────────────────────────────────────────────────┐
+│            VCC: Selbstoptimierendes Ökosystem              │
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│  ┌──────────┐      ┌──────────┐      ┌──────────┐       │
+│  │ VERITAS  │─────▶│  Clara   │◀────│ Covina   │       │
+│  │ (Human-  │      │ (Learning│      │(Knowledge│       │
+│  │   Loop)  │      │   Loop)  │      │  Update) │       │
+│  └────┬─────┘      └────┬─────┘      └────┬─────┘       │
+│       │                 │                  │             │
+│       │    ┌────────────▼──────────────────┘             │
+│       │    │         UDS3 Backend                        │
+│       │    │   (Unified Database Strategy)               │
+│       │    └─┬─────┬──────┬──────┬────┐                 │
+│       │      │     │      │      │    │                 │
+│       └──────┼─────┼──────┼──────┼────┘                 │
+│              │     │      │      │                       │
+│       ┌──────▼┐ ┌──▼───┐ ┌▼────┐ ┌▼────┐               │
+│       │ Neo4j │ │Chroma│ │PgSQL│ │Couch│               │
+│       │ (VPB) │ │(Vect)│ │(Txn)│ │(Bin)│               │
+│       └───────┘ └──────┘ └─────┘ └─────┘               │
+└────────────────────────────────────────────────────────────┘
+```
+
+#### 1. **Veritas** (Benutzerinteraktion-Kreislauf)
+**Funktion:** KI-gestütztes Rechtsauskunftssystem für Verwaltungsexperten
+
+**UDS3-Rolle:**
+- **Neo4j (VPB):** Traversierung von Rechtshierarchien (BauGB → LBO BW → Gemeindesatzung)
+- **ChromaDB:** Semantische Suche über Gesetze, Verordnungen, Urteile
+- **PostgreSQL:** Metadaten-Filterung (Geltungsbereich, Gültigkeitsdatum, Jurisdiktion)
+- **Graph-RAG:** Multi-Hop-Reasoning über vernetzte Rechtsstrukturen
+
+**Output:** Nicht nur "Was" (Inhalt), sondern auch "Wo" (Position im Prozess), "Wer" (Akteure), "Warum" (rechtliche Grundlage)
+
+**Kritisches Feature:** Human-in-the-Loop (rechtlich & ethisch zwingend)
+- Feedback-Erfassung für Clara-Training
+- Schutz gegen "Automation Bias"
+- Gewährleistung der Rechenschaftspflicht
+
+#### 2. **Covina** (Wissens-Update-Kreislauf)
+**Funktion:** Automatisierte Ingestion-Pipeline zur Bekämpfung von Wissensobsoletenz
+
+**UDS3-Rolle:**
+- **Worker-basierte Pipeline:** Asynchrone Verarbeitung mit Saga-Kompensation
+- **PostgreSQL:** Transaktionale Sicherheit für Metadaten-Updates
+- **ChromaDB:** Kontinuierliche Aktualisierung der Vektordatenbank
+- **Neo4j (VPB):** Inkrementelle Erweiterung des Prozess-Wissensgraphen
+- **CouchDB:** Versionierung von Original-Dokumenten (Rechtssicherheit)
+
+**DSGVO-Integration:**
+- Automatische Pseudonymisierung personenbezogener Daten
+- Datenminimierende Sichten (Art. 25 DSGVO)
+- Löschfristen-Management
+
+**Risiko-Mitigation:**
+- **Bias-Verstärkung:** Historische Verwaltungsdaten können systemische Vorurteile perpetuieren
+- **Lösung:** Qualitätskontrolle vor Aufnahme in Wissensbasis
+
+#### 3. **Clara** (Continuous Learning-Kreislauf)
+**Funktion:** "Selbstverbesserndes Gehirn" des Systems
+
+**Technologie:**
+- **Parameter-Efficient Fine-Tuning (PEFT):** LoRA/QLoRA Adapter
+- **Vorteil:** Extrem ressourcenschonend (nur kleine Adapter-Module statt Volltraining)
+- **Input:** Von Veritas gesammeltes Nutzerfeedback
+- **Validation:** Golden Dataset (kuratierter Referenzdatensatz)
+
+**UDS3-Rolle:**
+- **PostgreSQL:** Speicherung von Feedback-Daten und Trainingsmetriken
+- **CouchDB:** Versionierung trainierter Modell-Adapter
+- **SAGA-Log:** Lückenloser Audit-Trail aller Modell-Updates (gerichtsverwertbar)
+
+**Kritische Sicherheitsherausforderung:**
+- **Kaskadierende Integritätskompromittierung:** Falschinformation in Wissensbasis → Validierung durch Nutzerfeedback → Permanent ins Modell "eingebrannt"
+- **Backdoor-Injektion:** Bösartiger LoRA-Adapter mit verstecktem Trigger
+- **Lösung:** Just-in-Time Integritätsverifizierung (digitale Signatur unmittelbar vor GPU-Loading)
+
+### Der Verwaltungsprozess-Backbone (VPB): Das Herzstück
+
+**Problem:** Historisch gewachsene "Insellösungen" fragmentieren Prozessdaten
+
+**Lösung:** VPB auf Graph-Datenbank (Neo4j)
+- **Konsolidierung:** Heterogene Quellsysteme → Einheitliche, vernetzte Struktur
+- **Nativ:** Verwaltungsprozesse sind Netzwerke (Akteure, Entitäten, Beziehungen)
+- **Prozessintelligenz:** KI versteht nicht nur Inhalt, sondern Position, Kontext, Rechtsbasis
+
+**UDS3-Architektur-Prinzip: Polyglot Persistence**
+
+Jedes Speichersystem für seine Stärke ("Right Tool for the Job"):
+
+| Datenbank | Spezialisierung | VCC-Anwendungsfall |
+|-----------|----------------|---------------------|
+| **Neo4j** | Graph-Traversierung | VPB: Prozessgraphen, Rechtshierarchien, Multi-Hop-Reasoning |
+| **ChromaDB** | Vektor-Ähnlichkeit | Semantische Suche, RAG, Content Embeddings |
+| **PostgreSQL** | ACID-Transaktionen | Strukturierte Metadaten, Audit-Logs, JSONB für Semi-strukturiert |
+| **CouchDB** | Offline-First, Versionierung | Binäre Anhänge, Original-Dokumente, Rechtssicherheit |
+
+**Transaktionale Integrität: SAGA-Pattern**
+
+Verteilte Transaktionen über Datenbankgrenzen:
+- **Orchestrierung:** Zentraler Orchestrator steuert Prozess
+- **Saga Log:** Lückenloser, gerichtsverwertbarer Audit-Trail (DSGVO Art. 5 Abs. 2)
+- **Kompensation:** Automatische Rollback-Aktionen bei Fehlern
+- **Rechtssicherheit:** Nachvollziehbarkeit staatlichen Handelns
+
+---
+
+## 🔒 Security-by-Design: Zero-Trust-Architektur
+
+UDS3 implementiert "Niemals vertrauen, immer überprüfen" auf allen Ebenen:
+
+### 1. **Identität als neuer Perimeter**
+
+**Hybrid IAM-Strategie:**
+- **On-Premise AD:** Source of Truth für Benutzer
+- **Keycloak:** Moderne Föderation (OIDC/OAuth 2.0)
+- **Kerberos SSO:** Nahtlose Anmeldung im Domänennetzwerk
+- **JWT Propagation:** Signierter "digitaler Pass" durch alle Microservices
+
+### 2. **PKI als Vertrauensanker**
+
+**Souveräne Public Key Infrastructure:**
+- **X.509-Zertifikate:** Für jede Maschinenidentität
+- **Mutual TLS (mTLS):** Gegenseitige Authentifizierung aller Dienste
+- **Zwei-Ebenen-PKI:** Offline Root CA + Online Intermediate CA
+- **HSM-gesichert:** Hardware Security Module für Schlüsselzeremonie
+
+### 3. **Integrität der Software-Lieferkette**
+
+**Manifest-Prinzip:**
+- **Zentrale Manifestdatei:** Hashes aller Codedateien
+- **Digitale Signatur:** Kryptographischer Integritätsnachweis
+- **Clara-Spezial:** Just-in-Time-Verifizierung dynamischer LoRA-Adapter vor GPU-Load
+
+### 4. **Unveränderliche Audit-Logs**
+
+**Qualifizierte Elektronische Zeitstempel (QET):**
+- **eIDAS-konform:** EU-rechtlich verbindlicher Integritätsnachweis
+- **Periodisches Hashing:** Saga Log → Zertifizierte Zeitstempel-Autorität
+- **Manipulation-Detection:** Jede nachträgliche Änderung erkennbar
+
+### 5. **EU-Compliance: AI Act & DSGVO**
+
+**EU AI Act (Hochrisiko-KI):**
+- ✅ Robustheit durch SAGA-Kompensation
+- ✅ Transparenz durch lückenlose Protokollierung
+- ✅ Menschliche Aufsicht (Human-in-the-Loop)
+- ✅ Bias-Monitoring und -Mitigation
+
+**DSGVO-Prinzipien:**
+- ✅ Rechenschaftspflicht (Art. 5 Abs. 2): Saga Log
+- ✅ Privacy-by-Design (Art. 25): Pseudonymisierung, Dateminimierung
+- ⚠️ Eventual Consistency: Spannungsfeld zur Datenrichtigkeit (Art. 5 Abs. 1 lit. d)
+
+---
+
+## 📊 Aktuelle Reifegradlücke: VCC vs. Hyperscaler
+
+**Status:** Stabiler Funktions-Prototyp (14. Oktober 2025)
+
+| Komponente | VCC (UDS3) | AWS/Azure/GCP | Gap |
+|------------|------------|---------------|-----|
+| **Retrieval** | Reine Vektorsuche | Native hybride Suche (Keyword+Vektor) | Hoch |
+| **Result Fusion** | Score-Normalisierung | Reciprocal Rank Fusion (RRF) | Mittel |
+| **Re-Ranking** | Generisches LLM | Spezialisierte Cross-Encoder (managed) | Hoch |
+| **Multi-Hop** | Basic Graph-Traversierung | Optimierte Knowledge Graph Queries | Mittel |
+| **Monitoring** | Basic Logging | Prometheus/Grafana, Distributed Tracing | Hoch |
+| **High Availability** | Single-Instance | Auto-Scaling, Managed Services | Kritisch |
+
+**Strategische Entscheidung erforderlich:**
+1. **Souveräne Eigenentwicklung:** Volle Kontrolle, hoher Aufwand
+2. **Hybrider Ansatz:** Integration Hyperscaler-Dienste (Souveränitätsverlust)
+3. **Gestufte Migration:** Schrittweiser Ausbau mit klarer Roadmap
+
+**UDS3-Philosophie:** Option 1 + 3 (Souveränität bewahren, systematisch aufholen)
+
+---
+
+## 🚨 KI-spezifische Bedrohungsmatrix
+
+| Bedrohung | Mechanismus | Auswirkung | UDS3-Mitigation |
+|-----------|-------------|------------|-----------------|
+| **Backdoor-Adapter** | Vergifteter LoRA-Adapter mit Trigger | Kontrolliertes bösartiges Verhalten | Just-in-Time digitale Signaturprüfung |
+| **Kaskadierende Korruption** | Falschinfo → Feedback → Modell-Lock-in | Systemische Wissensverfälschung | Golden Dataset Validation, Human-Review |
+| **Adapter-Austausch** | Malware ersetzt legitimen Adapter nach Boot | Umgehung initialer Checks | Runtime-Verifizierung vor jedem Load |
+| **Data Poisoning** | Manipulierte Trainingsdaten in Covina | Bias-Verstärkung, Halluzinationen | Qualitätskontrolle vor Wissensbasis-Aufnahme |
+
+---
+
+## 🎓 Change Management & Ethik
+
+**Human-in-the-Loop-Imperativ:**
+- **Technisch:** Feedback-Integration für Clara-Training
+- **Rechtlich:** Rechenschaftspflicht (kein Autopilot)
+- **Ethisch:** KI als Werkzeug der Augmentation, nicht Ersatz
+
+**Risiken:**
+- **Automation Bias:** Unkritisches Vertrauen in KI-Ergebnisse
+- **Verantwortungsdiffusion:** Verwischen von Zuständigkeiten
+- **Bias-Perpetuierung:** Historische Vorurteile im Training
+
+**Lösung:**
+- Mehrstufige Qualifizierung der Mitarbeiter
+- KI-Ethik-Gremium mit formalisiertem Mandat
+- Kontinuierliche Bias-Audits
+
+---
+
+## 📈 Messbarer Erfolg: KPIs & Benchmarks
+
+**Technische KPIs:**
+- `retrieval_latency_ms` < 100ms (95th percentile)
+- `saga_completion_rate` > 99.9%
+- `model_accuracy` > 90% on Golden Dataset
+- `feedback_loop_latency` < 24h (Veritas → Clara)
+
+**Operative KPIs:**
+- Recovery Time Objective (RTO) < 4h
+- Recovery Point Objective (RPO) < 15min
+- Service Availability > 99.5%
+
+**Geschäftswert-KPIs:**
+- Zeitersparnis pro Rechtsanfrage: 30-50%
+- Reduktion Rechtsfehler: 40-60%
+- Mitarbeiter-Zufriedenheit: >4.0/5.0
+
+---
+
+## 🔬 Nächste Schritte zur Produktionsreife
+
+**Detaillierte Entwicklungsplanung siehe [ROADMAP.md](ROADMAP.md)**
+
+**3-Phasen-Plan:**
+
+- **Phase 1 (Q4 2025 - Q1 2026):** Validation
+  - Unabhängiges Sicherheitsaudit, Performance-Benchmarks, Architektur-Review
+  
+- **Phase 2 (Q2 2026):** Hardening
+  - Just-in-Time Adapter-Verifizierung, Data-Governance, Red-Team-Programm
+  
+- **Phase 3 (Q3-Q4 2026):** Production Rollout
+  - Kubernetes-Deployment, High-Availability, Monitoring (Prometheus/Grafana)
+
+---
+
+## 🌟 Strategischer Wert von UDS3
+
+**Souveränität:**
+- On-Premise, Open-Source, Vendor-Lock-in-frei
+- Volle Datenkontrolle (DSGVO, Geheimnisschutz)
+- Unabhängigkeit von US-Hyperscalern
+
+**Innovation:**
+- Graph-RAG für Verwaltungsprozesse
+- Self-Learning Architecture (Clara)
+- Prozess-native KI (VPB-Integration)
+
+**Rechtssicherheit:**
+- eIDAS-konformer Audit-Trail
+- Human-in-the-Loop zwingend
+- Nachvollziehbarkeit staatlichen Handelns
+
+**Wirtschaftlichkeit:**
+- Personalaugmentation bei Fachkräftemangel (93,9% Stellenüberhangsquote)
+- 30-50% Zeitersparnis pro Rechtsanfrage
+- Skalierbar auf Landesebene
+
+---
+
+
 - ✅ Search API integrated into core
 - ✅ Property-based access (`strategy.search_api`)
 - ✅ Backward-compatible migration path
