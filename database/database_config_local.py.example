@@ -1,0 +1,102 @@
+"""
+Produktive Database-Konfiguration (database_config_local.py.example)
+
+Diese Datei dient als Vorlage für database_config_local.py.
+
+WICHTIGE SCHRITTE:
+1. Kopiere diese Datei: cp database_config_local.py.example database_config_local.py
+2. Ersetze ALLE "YOUR_*" Platzhalter mit echten Remote-Werten
+3. database_config_local.py wird automatisch von database/config.py geladen
+4. database_config_local.py wird NICHT ins Git committed!
+"""
+
+from .config import BaseDatabaseManager, DatabaseConnection, DatabaseType, DatabaseBackend
+
+class ProductionDatabaseManager(BaseDatabaseManager):
+    """Produktive Database-Manager mit Remote-Servern."""
+    
+    def get_databases(self) -> list[DatabaseConnection]:
+        """Liefert produktive Remote-Datenbank-Konfigurationen."""
+        return [
+            # Vector Database - ChromaDB REMOTE
+            DatabaseConnection(
+                db_type=DatabaseType.VECTOR,
+                backend=DatabaseBackend.CHROMADB,
+                host="192.168.178.94",  # Remote Server
+                port=8000,
+                username="chroma_user",
+                password="YOUR_CHROMA_PASSWORD",  # ECHTES Passwort hier!
+                settings={
+                    'mode': 'client',
+                    'similarity_threshold': 0.5,  # Produktiver Schwellwert
+                    'default_k': 10,
+                }
+            ),
+            
+            # Graph Database - Neo4j REMOTE
+            DatabaseConnection(
+                db_type=DatabaseType.GRAPH,
+                backend=DatabaseBackend.NEO4J,
+                host="192.168.178.94",  # Remote Server
+                port=7687,
+                username="neo4j",
+                password="YOUR_NEO4J_PASSWORD",  # ECHTES Neo4j Passwort hier!
+                database="neo4j",
+                connection_pool_size=20,  # Größerer Pool für Produktion
+                query_timeout=60,         # Längerer Timeout
+            ),
+            
+            # PostgreSQL REMOTE
+            DatabaseConnection(
+                db_type=DatabaseType.RELATIONAL,
+                backend=DatabaseBackend.POSTGRESQL,
+                host="192.168.178.94",  # Remote Server
+                port=5432,
+                username="postgres",
+                password="YOUR_POSTGRES_PASSWORD",  # ECHTES Postgres Passwort hier!
+                database="veritas_db",  # Produktive DB
+                connection_pool_size=25,
+                query_timeout=45,
+                settings={'sslmode': 'require'}  # SSL für Produktion
+            ),
+            
+            # CouchDB REMOTE
+            DatabaseConnection(
+                db_type=DatabaseType.FILE,
+                backend=DatabaseBackend.COUCHDB,
+                host="192.168.178.94",  # Remote Server
+                port=5984,  # oder 32769 falls Docker
+                username="admin",
+                password="YOUR_COUCHDB_PASSWORD",  # ECHTES CouchDB Passwort hier!
+                database="veritas_files",  # Produktive DB
+                connection_pool_size=15,
+            ),
+            
+            # Key-Value via Redis REMOTE (optional)
+            DatabaseConnection(
+                db_type=DatabaseType.KEY_VALUE,
+                backend=DatabaseBackend.REDIS,
+                enabled=True,  # Aktiviert in Produktion
+                host="192.168.178.94",  # Remote Server
+                port=6379,
+                password="YOUR_REDIS_PASSWORD",  # ECHTES Redis Passwort hier!
+                settings={
+                    'db': 0,
+                    'decode_responses': True,
+                    'socket_connect_timeout': 5,
+                }
+            ),
+        ]
+
+def get_database_manager() -> BaseDatabaseManager:
+    """Factory-Funktion für produktiven Database-Manager."""
+    return ProductionDatabaseManager()
+
+# Beispiel Environment Variables (optional):
+# Diese haben Vorrang vor den Hardcoded-Werten:
+#
+# export NEO4J_HOST="192.168.178.94"
+# export NEO4J_PASSWORD="MySecretNeo4jPassword"
+# export POSTGRES_HOST="192.168.178.94"  
+# export POSTGRES_PASSWORD="MySecretPostgresPassword"
+# export REDIS_PASSWORD="MySecretRedisPassword"

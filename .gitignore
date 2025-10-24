@@ -48,6 +48,11 @@ wandb/
 SESSION_*.md
 NEXT_SESSION_*.md
 TODO*_SUMMARY.md
+
+# Local configuration with real credentials - NEVER COMMIT!
+config_local.py
+database/config_local.py
+**/config_local.py
 TODO*_IMPLEMENTATION_SUMMARY.md
 TODO*_FINAL_*.md
 TODO*_COMPLETE*.md

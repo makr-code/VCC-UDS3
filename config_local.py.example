@@ -1,0 +1,76 @@
+"""
+UDS3 Lokale Konfiguration BEISPIEL (config_local.py.example)
+
+Diese Datei dient als Vorlage für config_local.py.
+
+WICHTIGE SCHRITTE:
+1. Kopiere diese Datei: cp config_local.py.example config_local.py
+2. Ersetze ALLE "YOUR_*" Platzhalter mit echten Werten
+3. config_local.py wird automatisch von config.py geladen
+4. config_local.py wird NICHT ins Git committed!
+
+SECURITY WARNING: 
+- Niemals echte Passwörter ins Git committen!
+- config_local.py steht in .gitignore und wird ignoriert
+"""
+
+from typing import Dict, Any
+
+# Überschreibe DATABASES aus config.py mit ECHTEN Remote-Konfigurationen
+DATABASES: Dict[str, Dict[str, Any]] = {
+    "postgis": {
+        "host": "YOUR_POSTGRES_SERVER_IP",      # z.B. "192.168.178.94"
+        "port": 5432,
+        "database": "YOUR_DATABASE_NAME",       # z.B. "uds3_geo"
+        "user": "YOUR_POSTGRES_USER",           # z.B. "postgres"
+        "password": "YOUR_POSTGRES_PASSWORD",   # ECHTES Passwort hier!
+        "connect_timeout": 10,
+    },
+    "vector": {
+        "provider": "chromadb",
+        "endpoint": "http://YOUR_CHROMA_SERVER:8000",  # z.B. "http://192.168.178.94:8000"
+        "api_key": "YOUR_CHROMA_API_KEY",              # Falls benötigt
+    },
+    "graph": {
+        "provider": "neo4j",
+        "uri": "bolt://YOUR_NEO4J_SERVER:7687",       # z.B. "bolt://192.168.178.94:7687"
+        "user": "YOUR_NEO4J_USER",                    # z.B. "neo4j"
+        "password": "YOUR_NEO4J_PASSWORD",             # ECHTES Neo4j Passwort hier!
+    },
+    "relational": {
+        "provider": "postgresql",
+        "host": "YOUR_POSTGRES_SERVER_IP",             # z.B. "192.168.178.94"
+        "port": 5432,
+        "database": "YOUR_RELATIONAL_DATABASE",        # z.B. "veritas_db"
+        "user": "YOUR_POSTGRES_USER",                  # z.B. "postgres"
+        "password": "YOUR_POSTGRES_PASSWORD",          # ECHTES Passwort hier!
+    },
+    "couchdb": {
+        "host": "YOUR_COUCHDB_SERVER_IP",              # z.B. "192.168.178.94"
+        "port": 5984,                                  # oder 32769 falls Docker
+        "database": "YOUR_COUCHDB_DATABASE",           # z.B. "veritas_files"
+        "user": "YOUR_COUCHDB_USER",                   # z.B. "admin"
+        "password": "YOUR_COUCHDB_PASSWORD",           # ECHTES CouchDB Passwort hier!
+    },
+}
+
+# Feature Flags für Produktionsumgebung
+FEATURES: Dict[str, Any] = {
+    "expect_uds3_backend": True,   # UDS3 läuft als produktives Backend
+    "debug_mode": False,           # Debug-Features deaktivieren
+    "use_stubs": False,            # Echte Implementierungen verwenden
+}
+
+# Optimization Settings für Remote-Verbindungen
+OPTIMIZATION: Dict[str, Any] = {
+    "batch_size": 1000,        # Größere Batches für Remote-DB
+    "vector_batch_size": 200,  # Optimiert für Remote Vector DB
+}
+
+# Beispiel Environment Variables (optional):
+# Umgebungsvariablen haben Vorrang vor diesen Werten:
+#
+# export POSTGRES_HOST="192.168.178.94"
+# export POSTGRES_PASSWORD="MySecretPassword"
+# export NEO4J_URI="bolt://192.168.178.94:7687"
+# export NEO4J_PASSWORD="MyNeo4jPassword"
