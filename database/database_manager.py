@@ -92,6 +92,12 @@ class DatabaseManager:
         # Merge: VERITAS sagt "enabled", Config liefert Credentials
         backend_dict = self._merge_config_with_request(backend_dict)
         
+        # DEBUG: Log merged backend_dict
+        self.logger.debug(f"[DEBUG] Merged backend_dict keys: {list(backend_dict.keys())}")
+        for key, value in backend_dict.items():
+            if isinstance(value, dict):
+                self.logger.debug(f"[DEBUG] {key}: enabled={value.get('enabled')}, backend={value.get('backend')}")
+        
         governance_conf = {}
         if isinstance(backend_dict, dict):
             governance_conf = backend_dict.get('governance', {}) or {}
@@ -109,6 +115,37 @@ class DatabaseManager:
                 # Nur Status updaten wenn bereits registriert
                 if STATUS_MANAGER_AVAILABLE:
                     update_status("db_manager", ModuleStatus.INITIALIZING, "Database Manager wird re-initialisiert")
+        
+        # ============================================================================
+        # BACKEND INITIALIZATION (moved from after _merge_config_with_request)
+        # ============================================================================
+        # Initialize all backends based on merged configuration
+        self._initialize_backends(backend_dict)
+        
+        # Database Manager als gesund markieren nach Initialisierung
+        if self.module_status_enabled:
+            backends_initialized = []
+            if hasattr(self, 'vector_backend') and self.vector_backend: backends_initialized.append("Vector")
+            if hasattr(self, 'graph_backend') and self.graph_backend: backends_initialized.append("Graph")
+            if hasattr(self, 'relational_backend') and self.relational_backend: backends_initialized.append("Relational")
+            if hasattr(self, 'file_backend') and self.file_backend: backends_initialized.append("File")
+            if hasattr(self, 'keyvalue_backend') and self.keyvalue_backend: backends_initialized.append("KeyValue")
+            
+            status_msg = f"Database Manager initialisiert mit: {', '.join(backends_initialized) if backends_initialized else 'Keine Backends'}"
+            update_status("db_manager", ModuleStatus.HEALTHY, status_msg)
+        
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
+        if not self.logger.hasHandlers():
+            self.logger.addHandler(handler)
+        
+        # If autostart requested, start all deferred backends now
+        if self.autostart:
+            try:
+                results = self.start_all_backends(timeout_per_backend=10)
+                self.logger.info(f"Autostart finished: {results}")
+            except Exception as e:
+                self.logger.error(f"Autostart failed: {e}")
     
     def _merge_config_with_request(self, backend_dict: Dict) -> Dict:
         """
@@ -133,8 +170,15 @@ class DatabaseManager:
                 self.logger.debug(f"⏭️  {db_type_str.upper()}: Nicht von VERITAS angefordert")
         
         return merged
-    # ...existing code...
-    # Vector Backend initialisieren
+    
+    def _initialize_backends(self, backend_dict: Dict):
+        """
+        Initialize all database backends based on configuration.
+        
+        This method sets up backend factories and registers them for deferred initialization.
+        Actual connections are established later via start_all_backends().
+        """
+        # Vector Backend initialisieren
         vector_conf = backend_dict.get('vector')
         if isinstance(vector_conf, dict):
             if vector_conf.get('enabled'):
@@ -226,11 +270,20 @@ class DatabaseManager:
     # ...existing code...
     # Relational Backend initialisieren
         rel_conf = backend_dict.get('relational')
+        self.logger.debug(f"[DEBUG] rel_conf type: {type(rel_conf)}, value: {rel_conf}")
+        
         if isinstance(rel_conf, dict):
-            if rel_conf.get('enabled'):
+            enabled = rel_conf.get('enabled')
+            self.logger.debug(f"[DEBUG] rel_conf is dict, enabled={enabled}")
+            
+            if enabled:
+                self.logger.debug(f"[DEBUG] Relational backend enabled, initializing...")
+                
                 # Determine backend implementation from config ('backend' field)
                 conf = {k: v for k, v in rel_conf.items() if k != 'enabled'}
                 backend_name = rel_conf.get('backend', '').lower() if isinstance(rel_conf.get('backend'), str) else ''
+                self.logger.debug(f"[DEBUG] backend_name: '{backend_name}'")
+                
                 try:
                     try:
                         # PostgreSQL Backend für Remote-DB (192.168.178.94)
@@ -377,34 +430,8 @@ class DatabaseManager:
             self.keyvalue_backend = kv_conf
         else:
             self.keyvalue_backend = None
-    # ...existing code...
-    # ...existing code...
-        # Database Manager als gesund markieren nach Initialisierung
-        if self.module_status_enabled:
-            backends_initialized = []
-            if self.vector_backend: backends_initialized.append("Vector")
-            if self.graph_backend: backends_initialized.append("Graph")
-            if self.relational_backend: backends_initialized.append("Relational")
-            if self.file_backend: backends_initialized.append("File")
-            if self.keyvalue_backend: backends_initialized.append("KeyValue")
-            
-            status_msg = f"Database Manager initialisiert mit: {', '.join(backends_initialized) if backends_initialized else 'Keine Backends'}"
-            update_status("db_manager", ModuleStatus.HEALTHY, status_msg)
-        
-        handler = logging.StreamHandler()
-        handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
-        if not self.logger.hasHandlers():
-            self.logger.addHandler(handler)
-        # If autostart requested, start all deferred backends now
-        if self.autostart:
-            try:
-                results = self.start_all_backends(timeout_per_backend=10)
-                self.logger.info(f"Autostart finished: {results}")
-            except Exception as e:
-                self.logger.error(f"Autostart failed: {e}")
 
     def create_database_if_missing(self, db_type: str, name: str) -> bool:
-    # ...existing code...
         """
         Legt die Datenbank/Collection/Knoten an, falls sie fehlt. Meldet Erfolg/Misserfolg und Fehler.
         """

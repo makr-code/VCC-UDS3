@@ -115,10 +115,13 @@ class PostgreSQLRelationalBackend:
         
         Pool wird beim ersten connect() erstellt und wiederverwendet.
         Weitere connect() Calls prüfen nur ob Pool bereits existiert.
+        
+        Returns:
+            bool: True if connection successful
         """
         if self._pool is not None:
             # Pool already initialized
-            return
+            return True
         
         try:
             logger.info(f"🔄 Initialisiere PostgreSQL Connection Pool...")
@@ -141,6 +144,8 @@ class PostgreSQLRelationalBackend:
                 f"✅ PostgreSQL Connection Pool bereit: "
                 f"{self.min_connections} connections erstellt"
             )
+            
+            return True
             
         except Exception as e:
             logger.error(f"❌ Connection Pool Initialisierung fehlgeschlagen: {e}")
