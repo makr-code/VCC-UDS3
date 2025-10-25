@@ -1105,6 +1105,30 @@ class DatabaseManager:
         if graph_backend:
             return graph_backend.create_edge(from_id, to_id, edge_type, properties)
         return None
+    
+    # ===================================================================================
+    # BACKEND GETTERS (Convenience Methods)
+    # ===================================================================================
+    
+    def get_relational_backend(self):
+        """Get PostgreSQL relational backend instance."""
+        return self.relational_backend if hasattr(self, 'relational_backend') else None
+    
+    def get_vector_backend(self):
+        """Get ChromaDB vector backend instance."""
+        return self.vector_backend if hasattr(self, 'vector_backend') else None
+    
+    def get_graph_backend(self):
+        """Get Neo4j graph backend instance."""
+        return self.graph_backend if hasattr(self, 'graph_backend') else None
+    
+    def get_key_value_backend(self):
+        """Get Redis key-value backend instance."""
+        return self.key_value_backend if hasattr(self, 'key_value_backend') else None
+    
+    def get_file_backend(self):
+        """Get CouchDB file backend instance."""
+        return self.file_backend if hasattr(self, 'file_backend') else None
 
 def create_database_manager(config: Dict) -> DatabaseManager:
     """Factory-Funktion für DatabaseManager"""

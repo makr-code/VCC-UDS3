@@ -210,24 +210,93 @@ class StubDatabaseManager(BaseDatabaseManager):
         ]
 
 class DatabaseManager:
-    """Manager für Database-Konfigurationen mit Factory-Pattern."""
+    """Manager für Database-Konfigurationen - lädt aus config_local.py oder Stub."""
     
     def __init__(self, manager: BaseDatabaseManager = None):
-        if manager is None:
-            # Versuche lokale Database-Manager zu laden
-            try:
-                from . import database_config_local
-                if hasattr(database_config_local, 'get_database_manager'):
-                    self._manager = database_config_local.get_database_manager()
-                else:
-                    self._manager = StubDatabaseManager()
-            except ImportError:
-                # Fallback auf Stub-Manager
-                self._manager = StubDatabaseManager()
-        else:
+        if manager is not None:
+            # Explizit übergebener Manager (für Tests)
             self._manager = manager
-        
-        self.databases: List[DatabaseConnection] = self._manager.get_databases()
+            self.databases: List[DatabaseConnection] = self._manager.get_databases()
+        else:
+            # Auto-Load: Versuche config_local.py zu laden
+            self.databases = self._load_databases_from_config()
+    
+    def _load_databases_from_config(self) -> List[DatabaseConnection]:
+        """Lädt Datenbanken direkt aus config_local.py (Production) oder Stub."""
+        try:
+            # Import config_local.py aus UDS3 root
+            import sys
+            import os
+            parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            if parent_dir not in sys.path:
+                sys.path.insert(0, parent_dir)
+            
+            from config_local import DATABASES_LEGACY
+            
+            # Parse config_local.py DATABASES_LEGACY dict
+            databases = []
+            
+            # Vector Database - ChromaDB
+            if 'vector' in DATABASES_LEGACY:
+                vector_conf = DATABASES_LEGACY['vector']
+                databases.append(DatabaseConnection(
+                    db_type=DatabaseType.VECTOR,
+                    backend=DatabaseBackend.CHROMADB,
+                    host=vector_conf.get('host', 'localhost'),
+                    port=vector_conf.get('port', 8000),
+                    username=vector_conf.get('user', ''),
+                    password=vector_conf.get('password', ''),
+                    settings={
+                        'mode': 'persistent',
+                        'similarity_threshold': 0.3,
+                        'default_k': 5,
+                    }
+                ))
+            
+            # Graph Database - Neo4j
+            if 'graph' in DATABASES_LEGACY:
+                graph_conf = DATABASES_LEGACY['graph']
+                databases.append(DatabaseConnection(
+                    db_type=DatabaseType.GRAPH,
+                    backend=DatabaseBackend.NEO4J,
+                    host=graph_conf.get('host', 'localhost'),
+                    port=graph_conf.get('port', 7687),
+                    username=graph_conf.get('user', 'neo4j'),
+                    password=graph_conf.get('password', 'test'),
+                    database=graph_conf.get('database', 'neo4j'),
+                ))
+            
+            # Relational Database - PostgreSQL
+            if 'relational' in DATABASES_LEGACY:
+                rel_conf = DATABASES_LEGACY['relational']
+                databases.append(DatabaseConnection(
+                    db_type=DatabaseType.RELATIONAL,
+                    backend=DatabaseBackend.POSTGRESQL,
+                    host=rel_conf.get('host', 'localhost'),
+                    port=rel_conf.get('port', 5432),
+                    username=rel_conf.get('user', 'postgres'),
+                    password=rel_conf.get('password', 'test'),
+                    database=rel_conf.get('database', 'uds3_local'),
+                ))
+            
+            # File Database - CouchDB
+            if 'file' in DATABASES_LEGACY:
+                file_conf = DATABASES_LEGACY['file']
+                databases.append(DatabaseConnection(
+                    db_type=DatabaseType.FILE,
+                    backend=DatabaseBackend.COUCHDB,
+                    host=file_conf.get('host', 'localhost'),
+                    port=file_conf.get('port', 5984),
+                    username=file_conf.get('user', 'admin'),
+                    password=file_conf.get('password', 'test'),
+                    database=file_conf.get('database', 'uds3_files'),
+                ))
+            
+            return databases
+            
+        except ImportError:
+            # Fallback auf Stub wenn config_local.py nicht existiert
+            return StubDatabaseManager().get_databases()
 
     def get_database_backend_dict(self) -> Dict[str, Any]:
         """Legacy helper: Liefert ein dict mit Backend-Konfigurationen."""
@@ -268,6 +337,53 @@ class DatabaseManager:
                 output.append("  - Keine Datenbanken konfiguriert")
         
         return "\n".join(output)
+    
+    def get_relational_backend(self):
+        """Get PostgreSQL relational backend instance (convenience method)."""
+        from .database_api_postgresql import PostgreSQLRelationalBackend
+        
+        db_conn = self.get_primary_database(DatabaseType.RELATIONAL)
+        if not db_conn:
+            return None
+        
+        # Create and return PostgreSQL backend instance
+        return PostgreSQLRelationalBackend(
+            host=db_conn.host,
+            port=db_conn.port,
+            database=db_conn.database,
+            user=db_conn.username,
+            password=db_conn.password
+        )
+    
+    def get_vector_backend(self):
+        """Get ChromaDB vector backend instance (convenience method)."""
+        from uds3.database.database_api_chromadb_remote import ChromaDBRemoteBackend
+        
+        db_conn = self.get_primary_database(DatabaseType.VECTOR)
+        if not db_conn:
+            return None
+        
+        # Create and return ChromaDB backend instance
+        return ChromaDBRemoteBackend(
+            host=db_conn.host,
+            port=db_conn.port
+        )
+    
+    def get_graph_backend(self):
+        """Get Neo4j graph backend instance (convenience method)."""
+        from .database_api_neo4j import Neo4jGraphBackend
+        
+        db_conn = self.get_primary_database(DatabaseType.GRAPH)
+        if not db_conn:
+            return None
+        
+        # Create and return Neo4j backend instance
+        return Neo4jGraphBackend(
+            uri=f"bolt://{db_conn.host}:{db_conn.port}",
+            user=db_conn.username,
+            password=db_conn.password,
+            database=db_conn.database
+        )
 
 def get_database_backend_dict() -> Dict[str, Any]:
     """Module-level helper für Abwärtskompatibilität."""
