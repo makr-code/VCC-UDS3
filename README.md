@@ -1,116 +1,116 @@
 # UDS3 - Unified Database Strategy v3.0
 
-**Enterprise-ready Multi-Database Distribution System with PKI-Integrated Security**
+**Enterprise-ready multi-database distribution system with PKI-integrated security**
 
-UDS3 ist ein hochmodernes Multi-Database Framework für administrative und rechtliche Dokumente AI LLM RAG Framework mit voller SAGA-Unterstützung, DSGVO-Compliance, Search API und umfassender Sicherheitsarchitektur.
+UDS3 is a state-of-the-art multi-database framework for administrative and legal documents — an AI LLM RAG framework with full SAGA support, GDPR compliance, Search API and comprehensive secu[...]
 
 ---
 
-## 🏛️ Das VCC-Ökosystem
+## 🏛️ The VCC Ecosystem
 
-### Vision: Digitale Verwaltungstransformation
+### Vision: Digital transformation of public administration
 
-Das **VCC (Veritas-Covina-Clara) Ökosystem** ist ein selbstoptimierendes KI-System für die Digitalisierung öffentlicher Verwaltung mit Fokus auf digitale Souveränität, Rechtssicherheit und kontinuierliches Lernen.
+The **VCC (Veritas-Covina-Clara) ecosystem** is a self-optimizing AI system for digitalizing public administration with a focus on digital sovereignty, legal certainty and continuous [...].
 
-**VCC = Drei symbiotische AI-Komponenten:**
-- **Veritas:** AI-Rechtsauskunftssystem (Human-in-the-Loop)
-- **Covina:** Automatisierte Wissensaktualisierung (Knowledge Update)
-- **Clara:** Kontinuierliches Modell-Training (Continuous Learning)
+**VCC = Three symbiotic AI components:**
+- **Veritas:** AI legal advisory system (Human-in-the-Loop)
+- **Covina:** Automated knowledge updating (Knowledge Update)
+- **Clara:** Continuous model training (Continuous Learning)
 
-### Kernkomponenten
+### Core components
 
 #### 🔐 **VCC PKI (Public Key Infrastructure)**
 *Repository: VCC-PKI*
 
-- **Funktion:** Enterprise-grade Zertifikatsverwaltung und mTLS-Kommunikation
+- **Function:** Enterprise-grade certificate management and mTLS communication
 - **Features:**
-  - Root CA und Intermediate CA Management
-  - Automatische Zertifikatserstellung für Services
+  - Root CA and Intermediate CA management
+  - Automatic certificate issuance for services
   - Certificate Revocation Lists (CRL)
-  - Web-GUI und CLI für Administration
-- **Integration:** Alle VCC-Services nutzen PKI-Zertifikate für sichere Kommunikation
-- **Status:** Production-Ready ✅
+  - Web GUI and CLI for administration
+- **Integration:** All VCC services use PKI certificates for secure communication
+- **Status:** Production-ready ✅
 
 #### 👤 **User Service (.NET/C#)**
 *Repository: VCC-User*
 
-- **Funktion:** Zentrale Benutzerverwaltung und Authentifizierung
+- **Function:** Central user management and authentication
 - **Features:**
-  - Keycloak-Integration für SSO
-  - Active Directory Anbindung
-  - Rollen- und Rechteverwaltung
-  - JWT-basierte Authentifizierung
-- **Integration:** Authentifiziert Zugriffe auf alle VCC-Services
-- **Status:** Production-Ready ✅
+  - Keycloak integration for SSO
+  - Active Directory connection
+  - Role and permission management
+  - JWT-based authentication
+- **Integration:** Authenticates access to all VCC services
+- **Status:** Production-ready ✅
 
 #### 🗄️ **UDS3 (Unified Database Strategy)**
-*Repository: VCC-UDS3 (dieses Projekt)*
+*Repository: VCC-UDS3 (this project)*
 
-- **Funktion:** Multi-Database Backend für strukturierte und unstrukturierte Daten
-- **Aufgaben im Ökosystem:**
-  - **Datenpersistenz:** Zentrale Speicherebene für alle VCC-Anwendungen
-  - **Polyglot Persistence:** Optimale Datenbankwahl je Anwendungsfall
-    - **Neo4j:** Rechtshierarchien, Verweisstrukturen, Prozessgraphen
-    - **ChromaDB:** Semantische Suche über Rechtsdokumente
-    - **PostgreSQL:** Strukturierte Metadaten, Audit-Logs
-    - **CouchDB:** Binäre Anhänge, Original-Dokumente
-  - **Search API:** Hochleistungs-Suche mit Hybrid-Retrieval (Vector + Graph + Relational)
-  - **SAGA Transactions:** Verteilte Transaktionssicherheit über mehrere Datenbanken
-  - **DSGVO-Compliance:** Automatische Datenklassifizierung und Löschfristen
-  - **Security Layer:** Row-Level Security und RBAC für alle Datenzugriffe
-- **Konsumenten:** VERITAS, Clara, Covina (siehe unten)
-- **Status:** Production-Ready ✅
+- **Function:** Multi-database backend for structured and unstructured data
+- **Responsibilities in the ecosystem:**
+  - **Data persistence:** Central storage layer for all VCC applications
+  - **Polyglot persistence:** Optimal database choice per use case
+    - **Neo4j:** Legal hierarchies, reference structures, process graphs
+    - **ChromaDB:** Semantic search across legal documents
+    - **PostgreSQL:** Structured metadata, audit logs
+    - **CouchDB:** Binary attachments, original documents
+  - **Search API:** High-performance search with hybrid retrieval (vector + graph + relational)
+  - **SAGA transactions:** Distributed transaction safety across multiple databases
+  - **GDPR compliance:** Automatic data classification and retention periods
+  - **Security layer:** Row-level security and RBAC for all data access
+- **Consumers:** VERITAS, Clara, Covina (see below)
+- **Status:** Production-ready ✅
 
-#### ⚖️ **VERITAS (Verwaltungsrecht Information & Textanalyse AI System)**
+#### ⚖️ **VERITAS (Administrative Law Information & Text Analysis AI System)**
 *Repository: VCC-Veritas*
 
-- **Funktion:** AI-gestütztes Rechtsauskunftssystem für Verwaltungsrecht
+- **Function:** AI-powered legal advisory system for administrative law
 - **Features:**
-  - RAG (Retrieval-Augmented Generation) über Gesetze, Verordnungen, Urteile
-  - Natürlichsprachliche Q&A für Verwaltungsmitarbeiter
-  - Quellenangaben mit Paragraphen-Verweisen
-- **UDS3-Nutzung:**
-  - Neo4j: Rechtshierarchien (BauGB → LBO BW → Gemeindesatzung)
-  - ChromaDB: Semantische Ähnlichkeitssuche
-  - PostgreSQL: Metadaten-Filterung (Geltungsbereich, Datum)
+  - RAG (Retrieval-Augmented Generation) over laws, regulations, court decisions
+  - Natural language Q&A for public administration staff
+  - Source references with paragraph citations
+- **UDS3 usage:**
+  - Neo4j: Legal hierarchies (e.g., Building Code → State Building Regulations → Municipal statutes)
+  - ChromaDB: Semantic similarity search
+  - PostgreSQL: Metadata filtering (scope, date)
 - **Status:** Prototype ⚠️
 
 #### 📄 **Clara (Document Processing & Classification)**
 *Repository: VCC-Clara*
 
-- **Funktion:** Automatische Dokumentenverarbeitung und -klassifizierung
+- **Function:** Automatic document processing and classification
 - **Features:**
-  - OCR für eingescannte Dokumente
-  - Automatische Klassifizierung (Bauantrag, Bescheid, Einspruch, etc.)
-  - Metadaten-Extraktion (Datum, Aktenzeichen, Beteiligte)
-  - Workflow-Routing basierend auf Dokumenttyp
-- **UDS3-Nutzung:**
-  - PostgreSQL: Dokument-Metadaten und Workflow-Status
-  - CouchDB: Original-Dokumente und OCR-Ergebnisse
-  - Neo4j: Dokumenten-Beziehungen (Antwort auf Antrag, etc.)
+  - OCR for scanned documents
+  - Automatic classification (building application, notice, objection, etc.)
+  - Metadata extraction (date, case number, parties)
+  - Workflow routing based on document type
+- **UDS3 usage:**
+  - PostgreSQL: Document metadata and workflow status
+  - CouchDB: Original documents and OCR results
+  - Neo4j: Document relationships (response to an application, etc.)
 - **Status:** Prototype ⚠️
 
 #### 🔄 **Covina (Process Mining & Orchestration)**
 *Repository: VCC-Covina*
 
-- **Funktion:** Verwaltungsprozess-Analyse und -Optimierung
+- **Function:** Administrative process analysis and optimization
 - **Features:**
-  - Process Mining über historische Vorgänge
-  - Bottleneck-Erkennung in Genehmigungsverfahren
-  - BPMN-Import und -Export
-  - Workflow-Orchestrierung
-- **UDS3-Nutzung:**
-  - Neo4j: Prozessgraphen und Ablaufmodelle
-  - PostgreSQL: Event-Logs und Performance-Metriken
+  - Process mining over historical cases
+  - Bottleneck detection in approval procedures
+  - BPMN import and export
+  - Workflow orchestration
+- **UDS3 usage:**
+  - Neo4j: Process graphs and flow models
+  - PostgreSQL: Event logs and performance metrics
 - **Status:** Prototype ⚠️
 
-### Systemarchitektur
+### System architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
+┌─────────────────────────────────────────────────────────────────��[...]
 │                  VCC: Veritas-Covina-Clara                      │
-│              (Souveränes Verwaltungs-KI-System)                 │
-├─────────────────────────────────────────────────────────────────┤
+│              (Sovereign Administration AI System)               │
+├─────────────────────────────────────────────────────────────────��[...]
 │                                                                 │
 │  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   │
 │  │ VERITAS  │   │  Clara   │   │ Covina   │   │  User    │   │
@@ -138,28 +138,28 @@ Das **VCC (Veritas-Covina-Clara) Ökosystem** ist ein selbstoptimierendes KI-Sys
 │  ┌──────────────────────────────────────────────────────────┐ │
 │  │         Keycloak SSO + Active Directory Stub             │ │
 │  └──────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
+└─────────────────────────────────────────────────────────────────��[...]
 ```
 
-### UDS3 als Herzstück des Ökosystems
+### UDS3 as the heart of the ecosystem
 
-**Warum Multi-Database?**
+Why multi-database?
 
-Verwaltungsdaten sind heterogen:
-- **Strukturiert:** Bürgerdaten, Aktenzeichen → PostgreSQL
-- **Graphbasiert:** Gesetzeshierarchien, Prozessabläufe → Neo4j  
-- **Semantisch:** Volltext-Rechtsdokumente → ChromaDB (Vector Search)
-- **Binär:** Scans, PDFs, Unterschriften → CouchDB (File Storage)
+Administrative data is heterogeneous:
+- **Structured:** Citizen data, case numbers → PostgreSQL
+- **Graph-based:** Legal hierarchies, process flows → Neo4j  
+- **Semantic:** Full-text legal documents → ChromaDB (vector search)
+- **Binary:** Scans, PDFs, signatures → CouchDB (file storage)
 
-UDS3 vereint diese Speichertypen unter einer einheitlichen API und ermöglicht:
-- **Transaktionssicherheit** über Datenbank-Grenzen (SAGA Pattern)
-- **Optimale Performance** durch Spezialisierung (Right Tool for the Job)
-- **DSGVO-Konformität** durch zentrale Compliance-Schicht
-- **Sicherheit** durch PKI-Integration und Row-Level Security
+UDS3 unifies these storage types under one API and enables:
+- **Transactional safety** across database boundaries (SAGA pattern)
+- **Optimal performance** through specialization (right tool for the job)
+- **GDPR compliance** via a central compliance layer
+- **Security** through PKI integration and row-level security
 
-### Deployment-Modell
+### Deployment model
 
-**Containerisiert mit Docker Compose:**
+Containerized with Docker Compose:
 ```yaml
 services:
   uds3-backend:     # UDS3 API Gateway
@@ -177,10 +177,10 @@ services:
   pki-manager:      # Certificate Authority
 ```
 
-**Produktiv-Umgebung (geplant):**
-- Kubernetes mit Helm Charts
-- Automatisches Scaling für UDS3 und AI-Services
-- Hochverfügbarkeit: PostgreSQL (Patroni), Neo4j (Cluster)
+Production environment (planned):
+- Kubernetes with Helm charts
+- Automatic scaling for UDS3 and AI services
+- High availability: PostgreSQL (Patroni), Neo4j (Cluster)
 - Monitoring: Prometheus + Grafana
 
 ---
@@ -203,13 +203,13 @@ strategy = get_optimized_unified_strategy()
 
 # Create document
 doc = strategy.saga_crud.create_document(
-    content="Beispiel-Dokument",
+    content="Example document",
     metadata={"type": "regulation"}
 )
 
 # Search documents (NEW in v1.4.0 ⭐)
 results = await strategy.search_api.hybrid_search(
-    query="Photovoltaik Anforderungen",
+    query="Photovoltaics requirements",
     top_k=10
 )
 ```
@@ -218,7 +218,7 @@ results = await strategy.search_api.hybrid_search(
 
 ### � Security Layer (NEW in v1.4.0 ⭐)
 
-Enterprise-grade security with PKI integration and least privilege access control:
+Enterprise-grade security with PKI integration and least-privilege access control:
 
 ```python
 from security import User, UserRole, UDS3SecurityManager
@@ -239,19 +239,19 @@ doc_id = secure_api.create(user, {"title": "My Document"})
 docs = secure_api.read(user, {})  # Only sees own documents
 ```
 
-**Security Features:**
+Security features:
 - ✅ **Row-Level Security (RLS):** Users can only access their own data
 - ✅ **Role-Based Access Control (RBAC):** 5 roles, 15 granular permissions
 - ✅ **PKI Certificate Authentication:** Integration with VCC PKI system
 - ✅ **Comprehensive Audit Logging:** All operations tracked
-- ✅ **API Rate Limiting:** DOS protection and fair resource allocation
+- ✅ **API Rate Limiting:** DoS protection and fair resource allocation
 - ✅ **Zero-Trust Architecture:** Every request authenticated and authorized
 
 See [Security Documentation](docs/SECURITY.md) for complete details.
 
 ### �🔍 Search API (NEW in v1.4.0)
 
-High-level search interface across Vector, Graph and Relational backends:
+High-level search interface across vector, graph and relational backends:
 
 ```python
 from uds3 import get_optimized_unified_strategy
@@ -263,11 +263,11 @@ strategy = get_optimized_unified_strategy()
 results = await strategy.search_api.vector_search(embedding, top_k=10)
 
 # Graph Search (Relationships)
-results = await strategy.search_api.graph_search("Photovoltaik", top_k=10)
+results = await strategy.search_api.graph_search("Photovoltaics", top_k=10)
 
 # Hybrid Search (Best of Both Worlds)
 query = SearchQuery(
-    query_text="Was regelt § 58 LBO BW?",
+    query_text="What does § 58 LBO BW regulate?",
     top_k=10,
     search_types=["vector", "graph"],
     weights={"vector": 0.5, "graph": 0.5}
@@ -275,7 +275,7 @@ query = SearchQuery(
 results = await strategy.search_api.hybrid_search(query)
 ```
 
-**Benefits:**
+Benefits:
 - ✅ **Unified API:** One interface for all search types
 - ✅ **Type Safety:** Dataclasses for queries and results
 - ✅ **Error Handling:** Automatic retry logic and graceful degradation
@@ -288,7 +288,7 @@ See [UDS3 Search API Production Guide](docs/UDS3_SEARCH_API_PRODUCTION_GUIDE.md)
 
 - **Vector DB (ChromaDB):** Semantic search, content embeddings
 - **Graph DB (Neo4j):** Relationships, hierarchies, network analysis
-- **Relational DB (PostgreSQL):** Structured metadata, fast filtering
+- **Relational DB (PostgreSQL):** ACID transactions, fast filtering
 - **File Storage (CouchDB):** Binary assets, original files
 
 ### 🔄 SAGA Pattern
@@ -307,7 +307,7 @@ doc = saga_crud.create_document(
 )
 ```
 
-### 🔒 DSGVO Compliance
+### 🔒 GDPR Compliance
 
 Built-in data protection:
 
@@ -327,8 +327,8 @@ strategy.dsgvo_core.anonymize_expired_data()
 
 ### 🗑️ Advanced CRUD Operations
 
-- **Soft Delete:** Recoverable deletion with archive
-- **Hard Delete:** Permanent removal with cascade
+- **Soft delete:** Recoverable deletion with archive
+- **Hard delete:** Permanent removal with cascade
 - **Restore:** Recover soft-deleted documents
 - **Archive:** Long-term storage with retention policies
 
@@ -343,7 +343,7 @@ strategy.dsgvo_core.anonymize_expired_data()
 
 ### Search API (v1.4.0)
 
-**Old Way (Deprecated):**
+**Old way (deprecated):**
 ```python
 from uds3.uds3_search_api import UDS3SearchAPI
 from uds3.uds3_core import get_optimized_unified_strategy
@@ -353,7 +353,7 @@ search_api = UDS3SearchAPI(strategy)
 results = await search_api.hybrid_search(query)
 ```
 
-**New Way (Recommended ⭐):**
+**New way (recommended ⭐):**
 ```python
 from uds3 import get_optimized_unified_strategy
 
@@ -361,12 +361,12 @@ strategy = get_optimized_unified_strategy()
 results = await strategy.search_api.hybrid_search(query)
 ```
 
-**Benefits:**
+Benefits:
 - -50% imports (2 → 1)
 - -33% code (3 LOC → 2 LOC)
 - +100% discoverability (IDE autocomplete)
 
-The old import path (`uds3.uds3_search_api`) still works with a deprecation warning and will be removed in v1.5.0 (~3 months).
+The old import path (`uds3.uds3_search_api`) still works with a deprecation warning and was removed in v1.5.0 (~3 months).
 
 ## 🧪 Testing
 
@@ -381,7 +381,7 @@ pytest tests/ --cov=uds3 --cov-report=html
 pytest tests/test_search_api.py -v
 ```
 
-## 📊 Backends Status
+## 📊 Backends status
 
 - **Neo4j:** 1930 documents, PRODUCTION-READY ✅
 - **ChromaDB:** Remote API, PRODUCTION-READY ✅
@@ -390,7 +390,7 @@ pytest tests/test_search_api.py -v
 
 ## 🎯 Roadmap
 
-**Siehe [ROADMAP.md](ROADMAP.md) für detaillierte Entwicklungsplanung (v1.6.0 - v3.0.0).**
+See [ROADMAP.md](ROADMAP.md) for detailed development planning (v1.6.0 - v3.0.0).
 
 ### v1.5.0 (Current - October 2025)
 - ✅ All backends production-ready (ChromaDB, Neo4j, PostgreSQL, CouchDB)
@@ -401,35 +401,35 @@ pytest tests/test_search_api.py -v
 - 🔄 Enhanced search filters (planned)
 - 🔄 Advanced reranking algorithms (planned)
 
-### Future Versions
+### Future versions
 
-**Nächste Meilensteine:**
-- **v1.6.0 (Q1 2026):** RAG-Pipeline Maturity (Hybrid Search, RRF, Cross-Encoder Re-Ranking)
-- **v2.0.0 (Q2-Q3 2026):** Clara Continuous Learning (PEFT/LoRA), VPB Integration
-- **v2.5.0 (Q4 2026):** Governance & Compliance (EU AI Act, Formal Data Governance)
-- **v3.0.0 (2027+):** Production Readiness (Security Audits, K8s, High Availability)
+Next milestones:
+- **v1.6.0 (Q1 2026):** RAG pipeline maturity (Hybrid Search, RRF, Cross-Encoder Re-Ranking)
+- **v2.0.0 (Q2-Q3 2026):** Clara continuous learning (PEFT/LoRA), VPB integration
+- **v2.5.0 (Q4 2026):** Governance & compliance (EU AI Act, formal data governance)
+- **v3.0.0 (2027+):** Production readiness (security audits, K8s, high availability)
 
-Detaillierte Feature-Planung, technische Anforderungen und Implementierungsschritte finden Sie in [ROADMAP.md](ROADMAP.md).
+Detailed feature planning, technical requirements and implementation steps are in [ROADMAP.md](ROADMAP.md).
 
 ---
 
-## 🏛️ UDS3 im VCC-Ökosystem: Strategische Rolle
+## 🏛️ UDS3 in the VCC ecosystem: Strategic role
 
-### Das VCC-Dreieck: Souveräne Verwaltungs-KI
+### The VCC triangle: Sovereign administration AI
 
-UDS3 ist nicht nur eine Datenbank-Abstraktion – es ist das **fundamentale Rückgrat** des VCC (Veritas-Covina-Clara) Ökosystems, einem strategischen KI-System für die digitale Souveränität der öffentlichen Verwaltung.
+UDS3 is not just a database abstraction — it is the **fundamental backbone** of the VCC (Veritas-Covina-Clara) ecosystem, a strategic AI system for the digital sovereignty of [...].
 
-**Strategische Positionierung:**
-- **Politische Verankerung:** Teil des "Digitalprogramm 2025" Brandenburg (DABB)
-- **Primäres Ziel:** Digitale Souveränität (Vendor Lock-in Vermeidung)
-- **Architektur-Prinzip:** On-Premise, Open-Source, Zero-Trust
-- **Zweck:** Personalaugmentation (nicht -reduktion) angesichts Fachkräftemangel (93,9% Stellenüberhangsquote)
+**Strategic positioning:**
+- **Political anchoring:** Part of "Digital Program 2025" Brandenburg (DABB)
+- **Primary goal:** Digital sovereignty (avoid vendor lock-in)
+- **Architecture principle:** On-premise, open-source, zero-trust
+- **Purpose:** Personnel augmentation (not replacement) in face of skill shortages (93.9% vacancy gap)
 
-### Die drei symbiotischen Kreisläufe (powered by UDS3)
+### The three symbiotic cycles (powered by UDS3)
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│            VCC: Selbstoptimierendes Ökosystem              │
+│            VCC: Self-optimizing ecosystem                   │
 ├────────────────────────────────────────────────────────────┤
 │                                                            │
 │  ┌──────────┐      ┌──────────┐      ┌──────────┐       │
@@ -452,252 +452,251 @@ UDS3 ist nicht nur eine Datenbank-Abstraktion – es ist das **fundamentale Rüc
 └────────────────────────────────────────────────────────────┘
 ```
 
-#### 1. **Veritas** (Benutzerinteraktion-Kreislauf)
-**Funktion:** KI-gestütztes Rechtsauskunftssystem für Verwaltungsexperten
+#### 1. **Veritas** (User interaction cycle)
+**Function:** AI-supported legal advisory system for administrative experts
 
-**UDS3-Rolle:**
-- **Neo4j (VPB):** Traversierung von Rechtshierarchien (BauGB → LBO BW → Gemeindesatzung)
-- **ChromaDB:** Semantische Suche über Gesetze, Verordnungen, Urteile
-- **PostgreSQL:** Metadaten-Filterung (Geltungsbereich, Gültigkeitsdatum, Jurisdiktion)
-- **Graph-RAG:** Multi-Hop-Reasoning über vernetzte Rechtsstrukturen
+**UDS3 role:**
+- **Neo4j (VPB):** Traversal of legal hierarchies (e.g., Building Code → State Building Regulations → Municipal statutes)
+- **ChromaDB:** Semantic search over laws, regulations, decisions
+- **PostgreSQL:** Metadata filtering (scope, effective date, jurisdiction)
+- **Graph-RAG:** Multi-hop reasoning over connected legal structures
 
-**Output:** Nicht nur "Was" (Inhalt), sondern auch "Wo" (Position im Prozess), "Wer" (Akteure), "Warum" (rechtliche Grundlage)
+**Output:** Not only "what" (content) but also "where" (position in the process), "who" (actors), "why" (legal basis)
 
-**Kritisches Feature:** Human-in-the-Loop (rechtlich & ethisch zwingend)
-- Feedback-Erfassung für Clara-Training
-- Schutz gegen "Automation Bias"
-- Gewährleistung der Rechenschaftspflicht
+Critical feature: Human-in-the-loop (legally & ethically mandatory)
+- Capture feedback for Clara training
+- Protection against "automation bias"
+- Ensuring accountability
 
-#### 2. **Covina** (Wissens-Update-Kreislauf)
-**Funktion:** Automatisierte Ingestion-Pipeline zur Bekämpfung von Wissensobsoletenz
+#### 2. **Covina** (Knowledge update cycle)
+**Function:** Automated ingestion pipeline to combat knowledge obsolescence
 
-**UDS3-Rolle:**
-- **Worker-basierte Pipeline:** Asynchrone Verarbeitung mit Saga-Kompensation
-- **PostgreSQL:** Transaktionale Sicherheit für Metadaten-Updates
-- **ChromaDB:** Kontinuierliche Aktualisierung der Vektordatenbank
-- **Neo4j (VPB):** Inkrementelle Erweiterung des Prozess-Wissensgraphen
-- **CouchDB:** Versionierung von Original-Dokumenten (Rechtssicherheit)
+**UDS3 role:**
+- **Worker-based pipeline:** Asynchronous processing with saga compensation
+- **PostgreSQL:** Transactional safety for metadata updates
+- **ChromaDB:** Continuous updating of the vector database
+- **Neo4j (VPB):** Incremental expansion of the process knowledge graph
+- **CouchDB:** Versioning of original documents (legal certainty)
 
-**DSGVO-Integration:**
-- Automatische Pseudonymisierung personenbezogener Daten
-- Datenminimierende Sichten (Art. 25 DSGVO)
-- Löschfristen-Management
+GDPR integration:
+- Automatic pseudonymization of personal data
+- Data-minimizing views (Art. 25 GDPR)
+- Retention management
 
-**Risiko-Mitigation:**
-- **Bias-Verstärkung:** Historische Verwaltungsdaten können systemische Vorurteile perpetuieren
-- **Lösung:** Qualitätskontrolle vor Aufnahme in Wissensbasis
+Risk mitigation:
+- **Bias amplification:** Historical admin data can perpetuate systemic biases
+- **Solution:** Quality control before ingesting into the knowledge base
 
-#### 3. **Clara** (Continuous Learning-Kreislauf)
-**Funktion:** "Selbstverbesserndes Gehirn" des Systems
+#### 3. **Clara** (Continuous learning cycle)
+**Function:** The system's "self-improving brain"
 
-**Technologie:**
-- **Parameter-Efficient Fine-Tuning (PEFT):** LoRA/QLoRA Adapter
-- **Vorteil:** Extrem ressourcenschonend (nur kleine Adapter-Module statt Volltraining)
-- **Input:** Von Veritas gesammeltes Nutzerfeedback
-- **Validation:** Golden Dataset (kuratierter Referenzdatensatz)
+Technology:
+- **Parameter-Efficient Fine-Tuning (PEFT):** LoRA/QLoRA adapters
+- **Advantage:** Extremely resource-efficient (small adapter modules instead of full training)
+- **Input:** User feedback collected by Veritas
+- **Validation:** Golden dataset (curated reference dataset)
 
-**UDS3-Rolle:**
-- **PostgreSQL:** Speicherung von Feedback-Daten und Trainingsmetriken
-- **CouchDB:** Versionierung trainierter Modell-Adapter
-- **SAGA-Log:** Lückenloser Audit-Trail aller Modell-Updates (gerichtsverwertbar)
+UDS3 role:
+- **PostgreSQL:** Storage of feedback data and training metrics
+- **CouchDB:** Versioning of trained model adapters
+- **SAGA log:** Complete audit trail of all model updates (legally admissible)
 
-**Kritische Sicherheitsherausforderung:**
-- **Kaskadierende Integritätskompromittierung:** Falschinformation in Wissensbasis → Validierung durch Nutzerfeedback → Permanent ins Modell "eingebrannt"
-- **Backdoor-Injektion:** Bösartiger LoRA-Adapter mit verstecktem Trigger
-- **Lösung:** Just-in-Time Integritätsverifizierung (digitale Signatur unmittelbar vor GPU-Loading)
+Critical security challenge:
+- **Cascading integrity compromise:** False information in the knowledge base → feedback → permanently embedded in the model
+- **Backdoor injection:** Malicious LoRA adapter with hidden trigger
+- **Solution:** Just-in-time integrity verification (digital signature immediately before GPU loading)
 
-### Der Verwaltungsprozess-Backbone (VPB): Das Herzstück
+### The Administrative Process Backbone (VPB): The core
 
-**Problem:** Historisch gewachsene "Insellösungen" fragmentieren Prozessdaten
+Problem: Historically grown "island solutions" fragment process data
 
-**Lösung:** VPB auf Graph-Datenbank (Neo4j)
-- **Konsolidierung:** Heterogene Quellsysteme → Einheitliche, vernetzte Struktur
-- **Nativ:** Verwaltungsprozesse sind Netzwerke (Akteure, Entitäten, Beziehungen)
-- **Prozessintelligenz:** KI versteht nicht nur Inhalt, sondern Position, Kontext, Rechtsbasis
+Solution: VPB on a graph database (Neo4j)
+- **Consolidation:** Heterogeneous source systems → unified, connected structure
+- **Native:** Administrative processes are networks (actors, entities, relationships)
+- **Process intelligence:** AI understands not only content but position, context, legal basis
 
-**UDS3-Architektur-Prinzip: Polyglot Persistence**
+**UDS3 architecture principle: Polyglot persistence**
 
-Jedes Speichersystem für seine Stärke ("Right Tool for the Job"):
+Each storage system for its strength ("Right Tool for the Job"):
 
-| Datenbank | Spezialisierung | VCC-Anwendungsfall |
-|-----------|----------------|---------------------|
-| **Neo4j** | Graph-Traversierung | VPB: Prozessgraphen, Rechtshierarchien, Multi-Hop-Reasoning |
-| **ChromaDB** | Vektor-Ähnlichkeit | Semantische Suche, RAG, Content Embeddings |
-| **PostgreSQL** | ACID-Transaktionen | Strukturierte Metadaten, Audit-Logs, JSONB für Semi-strukturiert |
-| **CouchDB** | Offline-First, Versionierung | Binäre Anhänge, Original-Dokumente, Rechtssicherheit |
+| Database | Specialization | VCC use case |
+|----------|----------------|--------------|
+| **Neo4j** | Graph traversal | VPB: process graphs, legal hierarchies, multi-hop reasoning |
+| **ChromaDB** | Vector similarity | Semantic search, RAG, content embeddings |
+| **PostgreSQL** | ACID transactions | Structured metadata, audit logs, JSONB for semi-structured data |
+| **CouchDB** | Offline-first, versioning | Binary attachments, original documents, legal certainty |
 
-**Transaktionale Integrität: SAGA-Pattern**
+Transactional integrity: SAGA pattern
 
-Verteilte Transaktionen über Datenbankgrenzen:
-- **Orchestrierung:** Zentraler Orchestrator steuert Prozess
-- **Saga Log:** Lückenloser, gerichtsverwertbarer Audit-Trail (DSGVO Art. 5 Abs. 2)
-- **Kompensation:** Automatische Rollback-Aktionen bei Fehlern
-- **Rechtssicherheit:** Nachvollziehbarkeit staatlichen Handelns
-
----
-
-## 🔒 Security-by-Design: Zero-Trust-Architektur
-
-UDS3 implementiert "Niemals vertrauen, immer überprüfen" auf allen Ebenen:
-
-### 1. **Identität als neuer Perimeter**
-
-**Hybrid IAM-Strategie:**
-- **On-Premise AD:** Source of Truth für Benutzer
-- **Keycloak:** Moderne Föderation (OIDC/OAuth 2.0)
-- **Kerberos SSO:** Nahtlose Anmeldung im Domänennetzwerk
-- **JWT Propagation:** Signierter "digitaler Pass" durch alle Microservices
-
-### 2. **PKI als Vertrauensanker**
-
-**Souveräne Public Key Infrastructure:**
-- **X.509-Zertifikate:** Für jede Maschinenidentität
-- **Mutual TLS (mTLS):** Gegenseitige Authentifizierung aller Dienste
-- **Zwei-Ebenen-PKI:** Offline Root CA + Online Intermediate CA
-- **HSM-gesichert:** Hardware Security Module für Schlüsselzeremonie
-
-### 3. **Integrität der Software-Lieferkette**
-
-**Manifest-Prinzip:**
-- **Zentrale Manifestdatei:** Hashes aller Codedateien
-- **Digitale Signatur:** Kryptographischer Integritätsnachweis
-- **Clara-Spezial:** Just-in-Time-Verifizierung dynamischer LoRA-Adapter vor GPU-Load
-
-### 4. **Unveränderliche Audit-Logs**
-
-**Qualifizierte Elektronische Zeitstempel (QET):**
-- **eIDAS-konform:** EU-rechtlich verbindlicher Integritätsnachweis
-- **Periodisches Hashing:** Saga Log → Zertifizierte Zeitstempel-Autorität
-- **Manipulation-Detection:** Jede nachträgliche Änderung erkennbar
-
-### 5. **EU-Compliance: AI Act & DSGVO**
-
-**EU AI Act (Hochrisiko-KI):**
-- ✅ Robustheit durch SAGA-Kompensation
-- ✅ Transparenz durch lückenlose Protokollierung
-- ✅ Menschliche Aufsicht (Human-in-the-Loop)
-- ✅ Bias-Monitoring und -Mitigation
-
-**DSGVO-Prinzipien:**
-- ✅ Rechenschaftspflicht (Art. 5 Abs. 2): Saga Log
-- ✅ Privacy-by-Design (Art. 25): Pseudonymisierung, Dateminimierung
-- ⚠️ Eventual Consistency: Spannungsfeld zur Datenrichtigkeit (Art. 5 Abs. 1 lit. d)
+Distributed transactions across database boundaries:
+- **Orchestration:** Central orchestrator drives the process
+- **Saga log:** Complete, legally admissible audit trail (GDPR Art. 5 (2))
+- **Compensation:** Automatic rollback actions on errors
+- **Legal certainty:** Traceability of governmental action
 
 ---
 
-## 📊 Aktuelle Reifegradlücke: VCC vs. Hyperscaler
+## 🔒 Security-by-design: Zero-trust architecture
 
-**Status:** Stabiler Funktions-Prototyp (14. Oktober 2025)
+UDS3 implements "never trust, always verify" at every layer:
 
-| Komponente | VCC (UDS3) | AWS/Azure/GCP | Gap |
-|------------|------------|---------------|-----|
-| **Retrieval** | Reine Vektorsuche | Native hybride Suche (Keyword+Vektor) | Hoch |
-| **Result Fusion** | Score-Normalisierung | Reciprocal Rank Fusion (RRF) | Mittel |
-| **Re-Ranking** | Generisches LLM | Spezialisierte Cross-Encoder (managed) | Hoch |
-| **Multi-Hop** | Basic Graph-Traversierung | Optimierte Knowledge Graph Queries | Mittel |
-| **Monitoring** | Basic Logging | Prometheus/Grafana, Distributed Tracing | Hoch |
-| **High Availability** | Single-Instance | Auto-Scaling, Managed Services | Kritisch |
+### 1. Identity as the new perimeter
 
-**Strategische Entscheidung erforderlich:**
-1. **Souveräne Eigenentwicklung:** Volle Kontrolle, hoher Aufwand
-2. **Hybrider Ansatz:** Integration Hyperscaler-Dienste (Souveränitätsverlust)
-3. **Gestufte Migration:** Schrittweiser Ausbau mit klarer Roadmap
+Hybrid IAM strategy:
+- **On-prem AD:** Source of truth for users
+- **Keycloak:** Modern federation (OIDC/OAuth 2.0)
+- **Kerberos SSO:** Seamless sign-on in the domain network
+- **JWT propagation:** Signed "digital passport" across microservices
 
-**UDS3-Philosophie:** Option 1 + 3 (Souveränität bewahren, systematisch aufholen)
+### 2. PKI as the trust anchor
 
----
+Sovereign public key infrastructure:
+- **X.509 certificates:** For every machine identity
+- **Mutual TLS (mTLS):** Mutual authentication of all services
+- **Two-level PKI:** Offline root CA + online intermediate CA
+- **HSM-backed:** Hardware Security Module for key ceremonies
 
-## 🚨 KI-spezifische Bedrohungsmatrix
+### 3. Software supply chain integrity
 
-| Bedrohung | Mechanismus | Auswirkung | UDS3-Mitigation |
-|-----------|-------------|------------|-----------------|
-| **Backdoor-Adapter** | Vergifteter LoRA-Adapter mit Trigger | Kontrolliertes bösartiges Verhalten | Just-in-Time digitale Signaturprüfung |
-| **Kaskadierende Korruption** | Falschinfo → Feedback → Modell-Lock-in | Systemische Wissensverfälschung | Golden Dataset Validation, Human-Review |
-| **Adapter-Austausch** | Malware ersetzt legitimen Adapter nach Boot | Umgehung initialer Checks | Runtime-Verifizierung vor jedem Load |
-| **Data Poisoning** | Manipulierte Trainingsdaten in Covina | Bias-Verstärkung, Halluzinationen | Qualitätskontrolle vor Wissensbasis-Aufnahme |
+Manifest principle:
+- **Central manifest file:** Hashes of all code files
+- **Digital signature:** Cryptographic integrity proof
+- **Clara special:** Just-in-time verification of dynamic LoRA adapters before GPU load
 
----
+### 4. Immutable audit logs
 
-## 🎓 Change Management & Ethik
+Qualified electronic timestamps (QET):
+- **eIDAS-compliant:** EU-legally binding integrity proof
+- **Periodic hashing:** Saga log → certified timestamp authority
+- **Tamper detection:** Any subsequent modification detectable
 
-**Human-in-the-Loop-Imperativ:**
-- **Technisch:** Feedback-Integration für Clara-Training
-- **Rechtlich:** Rechenschaftspflicht (kein Autopilot)
-- **Ethisch:** KI als Werkzeug der Augmentation, nicht Ersatz
+### 5. EU compliance: AI Act & GDPR
 
-**Risiken:**
-- **Automation Bias:** Unkritisches Vertrauen in KI-Ergebnisse
-- **Verantwortungsdiffusion:** Verwischen von Zuständigkeiten
-- **Bias-Perpetuierung:** Historische Vorurteile im Training
+EU AI Act (high-risk AI):
+- ✅ Robustness via SAGA compensation
+- ✅ Transparency via complete logging
+- ✅ Human oversight (Human-in-the-Loop)
+- ✅ Bias monitoring and mitigation
 
-**Lösung:**
-- Mehrstufige Qualifizierung der Mitarbeiter
-- KI-Ethik-Gremium mit formalisiertem Mandat
-- Kontinuierliche Bias-Audits
+GDPR principles:
+- ✅ Accountability (Art. 5 (2)): Saga log
+- ✅ Privacy-by-design (Art. 25): Pseudonymization, data minimization
+- ⚠️ Eventual consistency: Tension with data accuracy (Art. 5 (1)(d))
 
 ---
 
-## 📈 Messbarer Erfolg: KPIs & Benchmarks
+## 📊 Current maturity gap: VCC vs. hyperscalers
 
-**Technische KPIs:**
+Status: Stable functional prototype (October 14, 2025)
+
+| Component | VCC (UDS3) | AWS/Azure/GCP | Gap |
+|-----------|------------|---------------|-----|
+| **Retrieval** | Pure vector search | Native hybrid search (keyword+vector) | High |
+| **Result fusion** | Score normalization | Reciprocal Rank Fusion (RRF) | Medium |
+| **Re-ranking** | Generic LLM | Specialized cross-encoder (managed) | High |
+| **Multi-hop** | Basic graph traversal | Optimized knowledge graph queries | Medium |
+| **Monitoring** | Basic logging | Prometheus/Grafana, distributed tracing | High |
+| **High availability** | Single-instance | Auto-scaling, managed services | Critical |
+
+Strategic choice required:
+1. **Sovereign in-house development:** Full control, high effort
+2. **Hybrid approach:** Integrate hyperscaler services (loss of sovereignty)
+3. **Phased migration:** Incremental improvement with clear roadmap
+
+UDS3 philosophy: Option 1 + 3 (preserve sovereignty, systematically catch up)
+
+---
+
+## 🚨 AI-specific threat matrix
+
+| Threat | Mechanism | Impact | UDS3 mitigation |
+|--------|-----------|--------|-----------------|
+| **Backdoor adapter** | Poisoned LoRA adapter with trigger | Controlled malicious behavior | Just-in-time digital signature verification |
+| **Cascading corruption** | False information → feedback → model lock-in | Systemic knowledge distortion | Golden dataset validation, human review |
+| **Adapter swap** | Malware replaces legitimate adapter after boot | Bypass initial checks | Runtime verification before each load |
+| **Data poisoning** | Manipulated training data in Covina | Bias amplification, hallucinations | Quality control before knowledge ingestion |
+
+---
+
+## 🎓 Change management & ethics
+
+Human-in-the-loop imperative:
+- **Technical:** Feedback integration for Clara training
+- **Legal:** Accountability (no autopilot)
+- **Ethical:** AI as a tool for augmentation, not replacement
+
+Risks:
+- **Automation bias:** Uncritical trust in AI outputs
+- **Diffusion of responsibility:** Blurring of duties
+- **Bias perpetuation:** Historical prejudices in training data
+
+Solutions:
+- Multistage employee qualification
+- AI ethics board with formal mandate
+- Continuous bias audits
+
+---
+
+## 📈 Measurable success: KPIs & benchmarks
+
+Technical KPIs:
 - `retrieval_latency_ms` < 100ms (95th percentile)
 - `saga_completion_rate` > 99.9%
 - `model_accuracy` > 90% on Golden Dataset
 - `feedback_loop_latency` < 24h (Veritas → Clara)
 
-**Operative KPIs:**
+Operational KPIs:
 - Recovery Time Objective (RTO) < 4h
 - Recovery Point Objective (RPO) < 15min
-- Service Availability > 99.5%
+- Service availability > 99.5%
 
-**Geschäftswert-KPIs:**
-- Zeitersparnis pro Rechtsanfrage: 30-50%
-- Reduktion Rechtsfehler: 40-60%
-- Mitarbeiter-Zufriedenheit: >4.0/5.0
+Business KPIs:
+- Time saved per legal request: 30-50%
+- Reduction in legal errors: 40-60%
+- Employee satisfaction: >4.0/5.0
 
 ---
 
-## 🔬 Nächste Schritte zur Produktionsreife
+## 🔬 Next steps to production readiness
 
-**Detaillierte Entwicklungsplanung siehe [ROADMAP.md](ROADMAP.md)**
+Detailed development planning in [ROADMAP.md](ROADMAP.md)
 
-**3-Phasen-Plan:**
+3-phase plan:
 
 - **Phase 1 (Q4 2025 - Q1 2026):** Validation
-  - Unabhängiges Sicherheitsaudit, Performance-Benchmarks, Architektur-Review
+  - Independent security audit, performance benchmarks, architecture review
   
 - **Phase 2 (Q2 2026):** Hardening
-  - Just-in-Time Adapter-Verifizierung, Data-Governance, Red-Team-Programm
+  - Just-in-time adapter verification, data governance, red-team program
   
-- **Phase 3 (Q3-Q4 2026):** Production Rollout
-  - Kubernetes-Deployment, High-Availability, Monitoring (Prometheus/Grafana)
+- **Phase 3 (Q3-Q4 2026):** Production rollout
+  - Kubernetes deployment, high availability, monitoring (Prometheus/Grafana)
 
 ---
 
-## 🌟 Strategischer Wert von UDS3
+## 🌟 Strategic value of UDS3
 
-**Souveränität:**
-- On-Premise, Open-Source, Vendor-Lock-in-frei
-- Volle Datenkontrolle (DSGVO, Geheimnisschutz)
-- Unabhängigkeit von US-Hyperscalern
+Sovereignty:
+- On-premise, open-source, vendor-lock-in free
+- Full data control (GDPR, secrecy protection)
+- Independence from US hyperscalers
 
-**Innovation:**
-- Graph-RAG für Verwaltungsprozesse
-- Self-Learning Architecture (Clara)
-- Prozess-native KI (VPB-Integration)
+Innovation:
+- Graph-RAG for administrative processes
+- Self-learning architecture (Clara)
+- Process-native AI (VPB integration)
 
-**Rechtssicherheit:**
-- eIDAS-konformer Audit-Trail
-- Human-in-the-Loop zwingend
-- Nachvollziehbarkeit staatlichen Handelns
+Legal certainty:
+- eIDAS-compliant audit trail
+- Human-in-the-Loop mandatory
+- Traceability of government actions
 
-**Wirtschaftlichkeit:**
-- Personalaugmentation bei Fachkräftemangel (93,9% Stellenüberhangsquote)
-- 30-50% Zeitersparnis pro Rechtsanfrage
-- Skalierbar auf Landesebene
+Economics:
+- Personnel augmentation for skill shortages (93.9% vacancy gap)
+- 30-50% time saved per legal request
+- Scalable at the state level
 
 ---
-
 
 - ✅ Search API integrated into core
 - ✅ Property-based access (`strategy.search_api`)
@@ -708,7 +707,7 @@ UDS3 implementiert "Niemals vertrauen, immer überprüfen" auf allen Ebenen:
 - ✅ **Zero-Trust Architecture:** Certificate-based authentication
 
 ### v2.0.0 (Future)
-- Complete RAG Framework
+- Complete RAG framework
 - Reranking API
 - Generation API
 - Evaluation API
@@ -717,13 +716,13 @@ UDS3 implementiert "Niemals vertrauen, immer überprüfen" auf allen Ebenen:
 
 ### v1.5.0 (2025-10-24) 🚀 PRODUCTION RELEASE
 
-**All Backends Production-Ready:**
+**All backends production-ready:**
 - ✅ **ChromaDB:** Remote API fully operational (removed fallback mode)
 - ✅ **Neo4j:** 1930+ documents validated
 - ✅ **PostgreSQL:** Active metadata storage
 - ✅ **CouchDB:** Active file storage
 
-**Breaking Changes:**
+**Breaking changes:**
 - ⚠️ **Removed:** Deprecated `uds3.uds3_search_api` module
   - Migration: Use `strategy.search_api` property instead
   - Deprecation period: 3 months (announced in v1.4.0)
@@ -735,24 +734,24 @@ UDS3 implementiert "Niemals vertrauen, immer überprüfen" auf allen Ebenen:
 
 ### v1.4.0 (2025-10-24) 🔒 SECURITY RELEASE
 
-**Security Features (NEW ⭐):**
+**Security features (NEW ⭐):**
 - ✨ **Row-Level Security (RLS):** Automatic data ownership filtering
-- ✨ **RBAC System:** 5 roles (SYSTEM, ADMIN, SERVICE, USER, READONLY) with 15 granular permissions
+- ✨ **RBAC system:** 5 roles (SYSTEM, ADMIN, SERVICE, USER, READONLY) with 15 granular permissions
 - ✨ **PKI Authentication:** Certificate-based authentication with VCC PKI integration
-- ✨ **Audit Logging:** Complete audit trail for all database operations
-- ✨ **Rate Limiting:** DOS protection with per-role quotas
+- ✨ **Audit logging:** Complete audit trail for all database operations
+- ✨ **Rate limiting:** DoS protection with per-role quotas
 - ✨ **Secure Database API:** Security wrapper for all database backends
 - ✨ **Zero-Trust Architecture:** Every request authenticated and authorized
 
-**Search Features:**
-- ✨ **Search API Property:** Direct access via `strategy.search_api` (lazy-loaded)
+**Search features:**
+- ✨ **Search API property:** Direct access via `strategy.search_api` (lazy-loaded)
 - ✨ **Improved DX:** -50% imports, +100% discoverability
-- ✨ **Type Safety:** Enhanced dataclasses for SearchQuery and SearchResult
+- ✨ **Type safety:** Enhanced dataclasses for SearchQuery and SearchResult
 
 **Migration:**
-- ✅ **Backward Compatible:** Old import path still works with deprecation warning
-- ⏱️ **Deprecation Period:** 3 months (removed in v1.5.0)
-- 📚 **Migration Guide:** See README and docs/UDS3_SEARCH_API_INTEGRATION_DECISION.md
+- ✅ **Backward compatible:** Old import path still works with deprecation warning
+- ⏱️ **Deprecation period:** 3 months (removed in v1.5.0)
+- 📚 **Migration guide:** See README and docs/UDS3_SEARCH_API_INTEGRATION_DECISION.md
 
 **Testing:**
 - ✅ 100% test coverage for Search API
@@ -770,8 +769,8 @@ UDS3 implementiert "Niemals vertrauen, immer überprüfen" auf allen Ebenen:
 
 Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 
-**Government & Public Sector Partners:**  
-Organizations working in government or public administration are especially encouraged to contribute improvements back to the project. See our [Government Partnership Commons Clause](LICENSE) for details. Contributors are recognized in [CONTRIBUTORS.md](CONTRIBUTORS.md).
+**Government & public sector partners:**  
+Organizations working in government or public administration are especially encouraged to contribute improvements back to the project. See our [Government Partnership Commons Clause](LICENSE) for deta[...]
 
 ## 📄 License
 
@@ -785,13 +784,13 @@ This project is licensed under the permissive MIT License, with a non-binding re
 
 See [LICENSE](LICENSE) file for complete details.
 
-**Why this license?** UDS3 is designed for government partnerships and public administration. Shared improvements strengthen security and reduce duplicate efforts across agencies, while respecting the freedom granted by MIT.
+**Why this license?** UDS3 is designed for government partnerships and public administration. Shared improvements strengthen security and reduce duplicated efforts across agencies, while respecting the[...]
 
 ## 👥 Contributors
 
 See [CONTRIBUTORS.md](CONTRIBUTORS.md) for organizations and individuals who have contributed to UDS3.
 
-## 🔗 Related Projects
+## 🔗 Related projects
 
 - **VERITAS:** Administrative law Q&A system using UDS3
 - **Clara:** Document processing pipeline with UDS3
