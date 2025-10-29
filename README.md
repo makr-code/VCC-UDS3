@@ -1,3 +1,4 @@
+<img width="1024" height="1024" alt="uds3_logo" src="https://github.com/user-attachments/assets/4dc14758-78ea-4ce1-8248-36c67a943b82" />
 # UDS3 - Unified Database Strategy v3.0
 
 **Enterprise-ready multi-database distribution system with PKI-integrated security**
