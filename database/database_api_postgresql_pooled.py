@@ -266,6 +266,56 @@ class PostgreSQLRelationalBackend:
             logger.error(f"❌ Index-Erstellung fehlgeschlagen: {e}")
             return False
     
+    def execute_query(self, query: str, params: tuple = None, fetch: bool = False, commit: bool = None):
+        """
+        Execute raw SQL query (for custom operations like gap_database).
+        
+        Args:
+            query: SQL query string
+            params: Query parameters (optional)
+            fetch: If True, return results; if False, just execute
+            commit: If True, commit transaction; if None, auto-detect (commit for DML, not for SELECT)
+            
+        Returns:
+            Query results if fetch=True, otherwise None
+        """
+        self.connect()
+        
+        try:
+            import psycopg2.extras  # For RealDictCursor
+            
+            with self._get_connection() as conn:
+                # Use RealDictCursor for dictionary results
+                cursor_factory = psycopg2.extras.RealDictCursor if fetch else None
+                with conn.cursor(cursor_factory=cursor_factory) as cursor:
+                    if params:
+                        cursor.execute(query, params)
+                    else:
+                        cursor.execute(query)
+                    
+                    # Determine if we need to commit
+                    should_commit = commit if commit is not None else not fetch
+                    
+                    if fetch:
+                        # Fetch results for SELECT/RETURNING queries (as dicts!)
+                        results = cursor.fetchall()
+                        
+                        # Commit if explicitly requested (e.g., INSERT ... RETURNING)
+                        if should_commit:
+                            conn.commit()
+                        
+                        # Convert RealDictRow to regular dict for JSON serialization
+                        return [dict(row) for row in results] if results else []
+                    else:
+                        # Commit for DDL/DML statements
+                        if should_commit:
+                            conn.commit()
+                        return None
+                    
+        except Exception as e:
+            logger.error(f"❌ Query execution failed: {e}")
+            raise
+    
     def insert_document(
         self,
         document_id: str,

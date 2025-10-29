@@ -38,11 +38,18 @@ class ChromaVectorBackend(VectorDatabaseBackend):
         super().__init__(config)
         cfg = config or {}
         self.impl_settings = cfg.get('impl', {})
-        # allow passing Settings via config
+        # allow passing Settings via config; default to telemetry disabled to avoid posthog KeyError
         try:
-            settings = Settings(**self.impl_settings) if isinstance(self.impl_settings, dict) else Settings()
+            settings_kwargs = dict(self.impl_settings) if isinstance(self.impl_settings, dict) else {}
         except Exception:
-            settings = Settings()
+            settings_kwargs = {}
+        # Disable anonymized telemetry unless explicitly set in config
+        settings_kwargs.setdefault('anonymized_telemetry', False)
+        try:
+            settings = Settings(**settings_kwargs)
+        except Exception:
+            # Last resort: fallback to Settings with telemetry disabled
+            settings = Settings(anonymized_telemetry=False)
         self.client = chromadb.Client(settings)
         self.collection_name = cfg.get('collection', 'default')
         self._collection = None
@@ -97,7 +104,12 @@ class ChromaVectorBackend(VectorDatabaseBackend):
     def batch_add_vector(self, vector_id: str, vector: List[float], metadata: Dict = None, collection_name: str = None) -> bool:
         try:
             col = self.client.get_or_create_collection(collection_name or self.collection_name)
-            col.add(ids=[vector_id], embeddings=[vector], metadatas=[metadata or {}], documents=[metadata.get('text') if metadata else None])
+            # Ensure metadata is a dict (handle string case)
+            if isinstance(metadata, str):
+                metadata = {'text': metadata}
+            meta_dict = metadata or {}
+            doc_text = meta_dict.get('text') if isinstance(meta_dict, dict) else None
+            col.add(ids=[vector_id], embeddings=[vector], metadatas=[meta_dict], documents=[doc_text])
             return True
         except Exception as exc:
             logger.exception('Chroma add vector failed: %s', exc)

@@ -64,6 +64,15 @@ ENABLE_REAL_EMBEDDINGS = os.getenv("ENABLE_REAL_EMBEDDINGS", "true").lower() == 
 
 # Model Configuration
 EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2")
+# Map common mis-specified model ids to valid ones
+_MODEL_ALIASES = {
+    "deutsche-telekom/gbert-base": "deepset/gbert-base",
+    "gbert-base": "deepset/gbert-base",
+}
+if EMBEDDING_MODEL_NAME in _MODEL_ALIASES:
+    alias_target = _MODEL_ALIASES[EMBEDDING_MODEL_NAME]
+    logger.warning(f"[ALIAS] Embedding model '{EMBEDDING_MODEL_NAME}' not recognized; using '{alias_target}' instead")
+    EMBEDDING_MODEL_NAME = alias_target
 EMBEDDING_DEVICE = os.getenv("EMBEDDING_DEVICE", "cuda" if _cuda_available() else "cpu")
 
 logger.info(f"[CONFIG] Real Embeddings: {'ENABLED' if ENABLE_REAL_EMBEDDINGS else 'DISABLED'}")
