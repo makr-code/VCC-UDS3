@@ -1,0 +1,47 @@
+site_name: VCC UDS3 Dokumentation
+site_description: Einheitliche UDS3 Doku mit API-Referenz und Leitfäden
+site_url: https://makr-code.github.io/VCC-UDS3/
+repo_url: https://github.com/makr-code/VCC-UDS3
+repo_name: makr-code/VCC-UDS3
+
+theme:
+  name: material
+  language: de
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.action.edit
+    - toc.follow
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_toc_entry: true
+            show_root_heading: true
+            docstring_style: google
+            show_source: false
+            members: true
+            inherited_members: false
+            filters:
+              - '!^_'
+  - autorefs
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+  - def_list
+
+nav:
+  - Start: index.md
+  - API-Referenz:
+      - Übersicht: api/index.md
+
+# Standard docs-Verzeichnis bleibt "docs/"

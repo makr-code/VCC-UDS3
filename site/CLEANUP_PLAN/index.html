@@ -1,0 +1,1052 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/CLEANUP_PLAN/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>UDS3 Folder Cleanup Plan - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uds3-folder-cleanup-plan" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UDS3 Folder Cleanup Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-state-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Current State Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Current State Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#root-directory-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root Directory Issues:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Cleanup Strategy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Cleanup Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-create-archive-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: Create Archive Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-file-movements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: File Movements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-update-gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: Update .gitignore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Impact Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Impact Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#files-to-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files to Move:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#files-to-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files to Delete:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directories-to-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directories to Create:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-rules-to-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      .gitignore Rules to Add:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-root-directory-after-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Clean Root Directory (After Cleanup)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Execution Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Execution Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-archive-structure-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Create Archive Structure (5 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-move-files-with-git-history-20-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Move Files with Git History (20 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-update-gitignore-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Update .gitignore (5 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-delete-temporary-files-2-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Delete Temporary Files (2 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-clean-build-artifacts-2-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Clean Build Artifacts (2 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-git-commit-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Git Commit (5 min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-create-documentation-5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Create Documentation (5 min)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expected-outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Expected Outcome
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-mitigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Risks &amp; Mitigation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/CLEANUP_PLAN.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="uds3-folder-cleanup-plan">UDS3 Folder Cleanup Plan<a class="headerlink" href="#uds3-folder-cleanup-plan" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 21. Oktober 2025
+<strong>Status:</strong> Planning Phase
+<strong>Goal:</strong> Clean repository structure, improve maintainability</p>
+<hr />
+<h2 id="current-state-analysis">📋 Current State Analysis<a class="headerlink" href="#current-state-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="root-directory-issues">Root Directory Issues:<a class="headerlink" href="#root-directory-issues" title="Permanent link">&para;</a></h3>
+<p><strong>Legacy Files (to archive):</strong>
+- <code>*.bak</code> files (8 files: ORIGINAL, FULL, BEFORE_TODO6, etc.)
+- <code>*_DEPRECATED.py</code> files (3 files: quality, security)
+- <code>*_ORIGINAL.py.bak</code> files
+- <code>test_*.py.backup</code> files</p>
+<p><strong>Session Documentation (to archive):</strong>
+- <code>SESSION_COMPLETE*.md</code> (3 files)
+- <code>TODO*_COMPLETE_SUMMARY.md</code> (11 files: TODO9-15)
+- <code>TODO*_IMPLEMENTATION_SUMMARY.md</code>
+- <code>NEXT_SESSION_TODO*.md</code> (2 files)
+- <code>TASK_*_COMPLETE.md</code> (3 files)</p>
+<p><strong>Temporary Documentation (to archive):</strong>
+- <code>MERGE_COMPLETE.md</code>
+- <code>STREAMING_SAGA_*.md</code> (3 files)
+- <code>SYSTEM_COMPLETENESS_CHECK.md</code>
+- <code>PROJECT_COMPLETE_v1.4.0.md</code>
+- <code>RELEASE_v1.4.0.md</code>
+- <code>UDS3_IMPLEMENTATION_COMPLETE.md</code></p>
+<p><strong>Test Files in Root (move to tests/):</strong>
+- <code>test_compliance_adapter.py</code>
+- <code>test_compliance_adapter_simplified.py</code>
+- <code>test_database_extensions.py</code>
+- <code>test_dsgvo_database_api_direct.py</code>
+- <code>test_dsgvo_minimal.py</code>
+- <code>test_embeddings.py</code>
+- <code>test_integration.py</code>
+- <code>test_llm.py</code>
+- <code>test_naming_quick.py</code>
+- <code>test_rag_async_cache.py</code>
+- <code>test_rag_async_cache.py.backup</code>
+- <code>test_search_api_integration.py</code>
+- <code>test_streaming_standalone.py</code>
+- <code>test_uds3_naming_integration.py</code>
+- <code>test_vpb_adapter.py</code>
+- <code>test_vpb_rag_dataminer.py</code></p>
+<p><strong>Build Artifacts (to clean):</strong>
+- <code>.pytest_cache/</code>
+- <code>__pycache__/</code>
+- <code>build/</code>
+- <code>dist/</code>
+- <code>uds3.egg-info/</code></p>
+<p><strong>Database Files (to gitignore):</strong>
+- <code>test_dsgvo.db</code>
+- <code>sqlite_db/</code>
+- <code>*.db</code>, <code>*.sqlite</code></p>
+<p><strong>Log Files (to gitignore):</strong>
+- <code>startup.log</code>
+- <code>*.log</code></p>
+<p><strong>Temporary Files:</strong>
+- <code>critical_failures.json</code>
+- <code>failed_cleanups.json</code>
+- <code>rollback_alerts.json</code>
+- <code>vpb_demo_output.txt</code></p>
+<hr />
+<h2 id="cleanup-strategy">🎯 Cleanup Strategy<a class="headerlink" href="#cleanup-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="phase-1-create-archive-structure">Phase 1: Create Archive Structure<a class="headerlink" href="#phase-1-create-archive-structure" title="Permanent link">&para;</a></h3>
+<pre><code>archive/
+├── backups/                 # *.bak, *.backup files
+├── deprecated/              # *_DEPRECATED.py files
+├── legacy/                  # Already exists (4 files)
+├── releases/                # Old RELEASE_*.md, PROJECT_COMPLETE*.md
+└── sessions/                # SESSION_*, TODO*_SUMMARY.md
+
+docs/
+├── archive/
+│   ├── sessions/           # Detailed session docs
+│   ├── todos/              # TODO completion summaries
+│   └── releases/           # Historical releases
+├── implementation/          # TASK_*, STREAMING_*, etc.
+└── [keep existing structure]
+</code></pre>
+<h3 id="phase-2-file-movements">Phase 2: File Movements<a class="headerlink" href="#phase-2-file-movements" title="Permanent link">&para;</a></h3>
+<p><strong>To <code>archive/backups/</code>:</strong>
+- <code>uds3_core_BEFORE_TODO6.py.bak</code>
+- <code>uds3_quality_DEPRECATED.py.bak</code>
+- <code>uds3_relations_core_ORIGINAL.py.bak</code>
+- <code>uds3_saga_orchestrator_FULL.py.bak</code>
+- <code>uds3_saga_orchestrator_ORIGINAL.py.bak</code>
+- <code>uds3_security_DEPRECATED.py.bak</code>
+- <code>test_rag_async_cache.py.backup</code></p>
+<p><strong>To <code>archive/deprecated/</code>:</strong>
+- <code>uds3_quality_DEPRECATED.py</code>
+- <code>uds3_security_DEPRECATED.py</code>
+- <code>uds3_dsgvo_core_old.py</code></p>
+<p><strong>To <code>docs/archive/sessions/</code>:</strong>
+- <code>SESSION_COMPLETE.md</code>
+- <code>SESSION_COMPLETE_TODO10.md</code>
+- <code>SESSION_COMPLETE_TODO9.md</code>
+- <code>NEXT_SESSION_TODO10.md</code>
+- <code>NEXT_SESSION_TODO7.md</code></p>
+<p><strong>To <code>docs/archive/todos/</code>:</strong>
+- <code>TODO10_COMPLETE_SUMMARY.md</code>
+- <code>TODO11_COMPLETE_SUMMARY.md</code>
+- <code>TODO12_COMPLETE_SUMMARY.md</code>
+- <code>TODO13_COMPLETE_SUMMARY.md</code>
+- <code>TODO14_COMPLETE_SUMMARY.md</code>
+- <code>TODO15_COMPLETE_SUMMARY.md</code>
+- <code>TODO15_IMPLEMENTATION_SUMMARY.md</code>
+- <code>TODO15_FINAL_INTEGRATION_COMPLETE.md</code>
+- <code>TODO_CRUD_COMPLETENESS.md</code></p>
+<p><strong>To <code>docs/archive/releases/</code>:</strong>
+- <code>PROJECT_COMPLETE_v1.4.0.md</code>
+- <code>RELEASE_v1.4.0.md</code>
+- <code>UDS3_IMPLEMENTATION_COMPLETE.md</code>
+- <code>MERGE_COMPLETE.md</code></p>
+<p><strong>To <code>docs/implementation/</code>:</strong>
+- <code>TASK_6_RAG_TESTS_BENCHMARKS_COMPLETE.md</code>
+- <code>TASK_7_DSGVO_INTEGRATION_COMPLETE.md</code>
+- <code>TASK_8_MULTI_DB_INTEGRATION_COMPLETE.md</code>
+- <code>STREAMING_SAGA_CONSISTENCY_ANALYSIS.md</code>
+- <code>STREAMING_SAGA_DESIGN.md</code>
+- <code>STREAMING_SAGA_ROLLBACK.md</code>
+- <code>SYSTEM_COMPLETENESS_CHECK.md</code></p>
+<p><strong>To <code>tests/</code>:</strong>
+- All <code>test_*.py</code> files from root (16 files)</p>
+<p><strong>To DELETE (temp files):</strong>
+- <code>critical_failures.json</code>
+- <code>failed_cleanups.json</code>
+- <code>rollback_alerts.json</code>
+- <code>vpb_demo_output.txt</code>
+- <code>startup.log</code></p>
+<h3 id="phase-3-update-gitignore">Phase 3: Update .gitignore<a class="headerlink" href="#phase-3-update-gitignore" title="Permanent link">&para;</a></h3>
+<p>Add comprehensive rules:</p>
+<pre><code class="language-gitignore"># Backup files
+*.bak
+*.backup
+*_ORIGINAL.py
+*_BEFORE_*.py
+*_DEPRECATED.py
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+sqlite_db/
+
+# Logs
+*.log
+logs/
+startup.log
+
+# Temporary files
+critical_failures.json
+failed_cleanups.json
+rollback_alerts.json
+*_demo_output.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Development
+venv/
+env/
+.env
+.env.local
+
+# Documentation (temporary)
+SESSION_*.md
+TODO*_SUMMARY.md
+NEXT_SESSION_*.md
+</code></pre>
+<hr />
+<h2 id="impact-analysis">📊 Impact Analysis<a class="headerlink" href="#impact-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="files-to-move">Files to Move:<a class="headerlink" href="#files-to-move" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Backups: 7 files</li>
+<li>Deprecated: 3 files</li>
+<li>Session Docs: 5 files</li>
+<li>TODO Summaries: 9 files</li>
+<li>Release Docs: 4 files</li>
+<li>Implementation Docs: 7 files</li>
+<li>Test Files: 16 files</li>
+<li><strong>Total: 51 files</strong></li>
+</ul>
+<h3 id="files-to-delete">Files to Delete:<a class="headerlink" href="#files-to-delete" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Temp JSON: 3 files</li>
+<li>Logs: 1 file</li>
+<li>Demo output: 1 file</li>
+<li><strong>Total: 5 files</strong></li>
+</ul>
+<h3 id="directories-to-create">Directories to Create:<a class="headerlink" href="#directories-to-create" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>archive/backups/</code></li>
+<li><code>archive/deprecated/</code></li>
+<li><code>docs/archive/sessions/</code></li>
+<li><code>docs/archive/todos/</code></li>
+<li><code>docs/archive/releases/</code></li>
+<li><code>docs/implementation/</code></li>
+<li><strong>Total: 6 directories</strong></li>
+</ul>
+<h3 id="gitignore-rules-to-add">.gitignore Rules to Add:<a class="headerlink" href="#gitignore-rules-to-add" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>~25 new patterns</strong></li>
+</ul>
+<hr />
+<h2 id="clean-root-directory-after-cleanup">✅ Clean Root Directory (After Cleanup)<a class="headerlink" href="#clean-root-directory-after-cleanup" title="Permanent link">&para;</a></h2>
+<p><strong>Core Modules (Keep):</strong>
+- <code>uds3_*.py</code> (active modules, ~30 files)
+- <code>config.py</code>, <code>config_local.py</code>
+- <code>__init__.py</code></p>
+<p><strong>Scripts (Keep):</strong>
+- <code>build_release.ps1</code>
+- <code>setup_dev.ps1</code>
+- <code>generate_init_files.py</code>
+- <code>rename_files.py</code>
+- <code>update_imports.py</code></p>
+<p><strong>Documentation (Keep):</strong>
+- <code>README.md</code>
+- <code>CHANGELOG.md</code>
+- <code>CONTRIBUTING.md</code>
+- <code>ROADMAP.md</code>
+- <code>DEVELOPMENT.md</code>
+- Phase 3 docs (recent, keep in root):
+  - <code>COMMIT_MESSAGE_PHASE3.md</code>
+  - <code>GITHUB_RELEASE_v2.3.0.md</code>
+  - <code>GIT_COMMIT_COMMANDS.md</code>
+  - <code>RELEASE_INSTRUCTIONS.md</code></p>
+<p><strong>Build Files (Keep):</strong>
+- <code>setup.py</code>
+- <code>pyproject.toml</code>
+- <code>MANIFEST.in</code>
+- <code>requirements.txt</code>
+- <code>requirements-py313.txt</code>
+- <code>mypy.ini</code></p>
+<p><strong>Workspace (Keep):</strong>
+- <code>uds3.code-workspace</code>
+- <code>todo.md</code>
+- <code>todo_actions.md</code></p>
+<p><strong>Directories (Keep):</strong>
+- <code>core/</code>, <code>database/</code>, <code>query/</code>, <code>search/</code>, etc.
+- <code>docs/</code>
+- <code>tests/</code>
+- <code>examples/</code>
+- <code>.git/</code>, <code>.github/</code></p>
+<hr />
+<h2 id="execution-plan">🚀 Execution Plan<a class="headerlink" href="#execution-plan" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-create-archive-structure-5-min">Step 1: Create Archive Structure (5 min)<a class="headerlink" href="#step-1-create-archive-structure-5-min" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell"># Create archive directories
+New-Item -ItemType Directory -Path &quot;archive/backups&quot; -Force
+New-Item -ItemType Directory -Path &quot;archive/deprecated&quot; -Force
+New-Item -ItemType Directory -Path &quot;docs/archive/sessions&quot; -Force
+New-Item -ItemType Directory -Path &quot;docs/archive/todos&quot; -Force
+New-Item -ItemType Directory -Path &quot;docs/archive/releases&quot; -Force
+New-Item -ItemType Directory -Path &quot;docs/implementation&quot; -Force
+</code></pre>
+<h3 id="step-2-move-files-with-git-history-20-min">Step 2: Move Files with Git History (20 min)<a class="headerlink" href="#step-2-move-files-with-git-history-20-min" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell"># Use git mv to preserve history
+# Backup files
+git mv uds3_core_BEFORE_TODO6.py.bak archive/backups/
+git mv uds3_quality_DEPRECATED.py.bak archive/backups/
+# ... (repeat for all files)
+</code></pre>
+<h3 id="step-3-update-gitignore-5-min">Step 3: Update .gitignore (5 min)<a class="headerlink" href="#step-3-update-gitignore-5-min" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell"># Append new rules to .gitignore
+</code></pre>
+<h3 id="step-4-delete-temporary-files-2-min">Step 4: Delete Temporary Files (2 min)<a class="headerlink" href="#step-4-delete-temporary-files-2-min" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">Remove-Item critical_failures.json -Force
+Remove-Item failed_cleanups.json -Force
+Remove-Item rollback_alerts.json -Force
+Remove-Item vpb_demo_output.txt -Force
+Remove-Item startup.log -Force
+</code></pre>
+<h3 id="step-5-clean-build-artifacts-2-min">Step 5: Clean Build Artifacts (2 min)<a class="headerlink" href="#step-5-clean-build-artifacts-2-min" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">Remove-Item -Recurse -Force .pytest_cache/
+Remove-Item -Recurse -Force build/
+Remove-Item -Recurse -Force dist/
+Remove-Item -Recurse -Force uds3.egg-info/
+Get-ChildItem -Recurse -Filter &quot;__pycache__&quot; | Remove-Item -Recurse -Force
+</code></pre>
+<h3 id="step-6-git-commit-5-min">Step 6: Git Commit (5 min)<a class="headerlink" href="#step-6-git-commit-5-min" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">git add -A
+git commit -m &quot;chore: Clean up repository structure
+
+- Move 51 files to archive/docs structure
+- Delete 5 temporary files
+- Update .gitignore (25+ new patterns)
+- Clean build artifacts
+- Consolidate test files in tests/
+
+Preserves git history with git mv.
+See CLEANUP_SUMMARY.md for details.&quot;
+</code></pre>
+<h3 id="step-7-create-documentation-5-min">Step 7: Create Documentation (5 min)<a class="headerlink" href="#step-7-create-documentation-5-min" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell"># Create CLEANUP_SUMMARY.md with before/after comparison
+</code></pre>
+<hr />
+<h2 id="expected-outcome">🎯 Expected Outcome<a class="headerlink" href="#expected-outcome" title="Permanent link">&para;</a></h2>
+<p><strong>Before:</strong>
+- Root directory: 150+ files
+- Mixed legacy/active code
+- Unclear structure</p>
+<p><strong>After:</strong>
+- Root directory: ~80 files (active only)
+- Clear separation (active/archive)
+- Clean git history
+- Comprehensive .gitignore</p>
+<p><strong>Benefits:</strong>
+- ✅ Easier navigation
+- ✅ Clearer project structure
+- ✅ Reduced git repository size
+- ✅ Better maintainability
+- ✅ Preserved history (git mv)</p>
+<hr />
+<h2 id="risks-mitigation">⚠️ Risks &amp; Mitigation<a class="headerlink" href="#risks-mitigation" title="Permanent link">&para;</a></h2>
+<p><strong>Risk 1: Breaking imports</strong>
+- Mitigation: Test files moved, imports should work (same tests/ dir)
+- Action: Run pytest after cleanup</p>
+<p><strong>Risk 2: Lost history</strong>
+- Mitigation: Use <code>git mv</code> for all moves
+- Action: Verify with <code>git log --follow</code></p>
+<p><strong>Risk 3: Needed files deleted</strong>
+- Mitigation: Only delete temp files (json, logs)
+- Action: Create backup branch before cleanup</p>
+<hr />
+<h2 id="next-steps">📝 Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Review this plan</strong> - Approve/modify</li>
+<li><strong>Create backup branch</strong> - <code>git checkout -b backup-before-cleanup</code></li>
+<li><strong>Execute cleanup</strong> - Follow steps 1-7</li>
+<li><strong>Test everything</strong> - Run pytest, check imports</li>
+<li><strong>Commit &amp; push</strong> - Deploy cleaned structure</li>
+</ol>
+<hr />
+<p><strong>Estimated Time:</strong> 45 minutes
+<strong>Complexity:</strong> Medium
+<strong>Reversibility:</strong> High (backup branch + git mv history)
+<strong>Impact:</strong> High (much cleaner structure!)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

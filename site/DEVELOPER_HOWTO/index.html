@@ -1,0 +1,1159 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/DEVELOPER_HOWTO/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>UDS3 Developer HowTo Guide - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uds3-developer-howto-guide" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UDS3 Developer HowTo Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Quick Start
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-basic-uds3-instance-localhoststubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Basic UDS3 Instance (Localhost/Stubs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-uds3-instance-mit-remote-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. UDS3 Instance mit Remote Backends
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-uds3-mit-expliziten-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. UDS3 mit expliziten Credentials
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialisierungsszenarien" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Initialisierungsszenarien
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Initialisierungsszenarien">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#szenario-1-development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szenario 1: Development Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szenario-2-production-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szenario 2: Production Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szenario-3-cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szenario 3: CI/CD Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szenario-4-microservice-mit-service-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szenario 4: Microservice mit Service Discovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-backend-konfigurationen" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔀 Multi-Backend Konfigurationen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔀 Multi-Backend Konfigurationen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-single-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Single-Backend Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-graph-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Graph Backend Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-relational-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Relational Backend Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-vector-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Vector Backend Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-file-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-File Backend Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backend-selection-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Backend Selection Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Backend Selection Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-1-round-robin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 1: Round Robin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-2-load-based-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 2: Load-Based Selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-3-purpose-based-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy 3: Purpose-Based Selection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Configuration Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Configuration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-production-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Production Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enterprise-multi-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise Multi-Backend Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Debugging &amp; Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Debugging &amp; Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-active-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Active Backends
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-backend-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Backend Connectivity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Performance Tips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Performance Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-connection-pooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Connection Pooling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-async-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Async Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Caching Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-fur-produktive-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Checklist für Produktive Deployments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Checklist für Produktive Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#konfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Konfiguration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Backends
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uds3-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ UDS3 Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/DEVELOPER_HOWTO.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="uds3-developer-howto-guide">UDS3 Developer HowTo Guide<a class="headerlink" href="#uds3-developer-howto-guide" title="Permanent link">&para;</a></h1>
+<p><strong>Unified Database Strategy v3 - Developer Initialization Guide</strong></p>
+<h2 id="quick-start">🚀 Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="1-basic-uds3-instance-localhoststubs">1. Basic UDS3 Instance (Localhost/Stubs)<a class="headerlink" href="#1-basic-uds3-instance-localhoststubs" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Schnellste Initialisierung - verwendet Stub-Konfiguration
+from uds3 import config
+from core import UnifiedDatabaseStrategy
+from manager import UDS3SagaOrchestrator
+
+# Automatische Stub-Konfiguration (localhost, test-passwords)
+uds3 = UnifiedDatabaseStrategy()
+print(&quot;✅ UDS3 initialized with stub backends&quot;)
+
+# Verfügbare Services
+saga = UDS3SagaOrchestrator()
+print(&quot;✅ SAGA orchestrator ready&quot;)
+</code></pre>
+<h3 id="2-uds3-instance-mit-remote-backends">2. UDS3 Instance mit Remote Backends<a class="headerlink" href="#2-uds3-instance-mit-remote-backends" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Mit config_local.py (automatische Remote-Konfiguration)
+from uds3 import config
+from core import UnifiedDatabaseStrategy
+
+# config_local.py wird automatisch geladen wenn vorhanden
+uds3 = UnifiedDatabaseStrategy()
+print(&quot;✅ UDS3 initialized with remote backends&quot;)
+
+# Prüfe aktive Konfiguration
+print(&quot;Graph Host:&quot;, config.DATABASES['graph']['host'])
+print(&quot;Production Mode:&quot;, config.FEATURES['expect_uds3_backend'])
+</code></pre>
+<h3 id="3-uds3-mit-expliziten-credentials">3. UDS3 mit expliziten Credentials<a class="headerlink" href="#3-uds3-mit-expliziten-credentials" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Direkte Übergabe von DB-Zugangsdaten
+from core import UnifiedDatabaseStrategy
+from database.config import DatabaseConnection, DatabaseType, DatabaseBackend
+
+# Custom Backend-Konfiguration
+custom_backends = [
+    DatabaseConnection(
+        db_type=DatabaseType.GRAPH,
+        backend=DatabaseBackend.NEO4J,
+        host=&quot;my-neo4j-server.com&quot;,
+        port=7687,
+        username=&quot;neo4j_user&quot;,
+        password=&quot;secure_password&quot;,
+        database=&quot;production_graph&quot;
+    ),
+    DatabaseConnection(
+        db_type=DatabaseType.RELATIONAL,
+        backend=DatabaseBackend.POSTGRESQL,
+        host=&quot;my-postgres-server.com&quot;, 
+        port=5432,
+        username=&quot;pg_user&quot;,
+        password=&quot;secure_pg_password&quot;,
+        database=&quot;production_db&quot;
+    )
+]
+
+# UDS3 mit Custom Backends
+uds3 = UnifiedDatabaseStrategy(custom_backends=custom_backends)
+print(&quot;✅ UDS3 initialized with custom credentials&quot;)
+</code></pre>
+<h2 id="initialisierungsszenarien">🔧 Initialisierungsszenarien<a class="headerlink" href="#initialisierungsszenarien" title="Permanent link">&para;</a></h2>
+<h3 id="szenario-1-development-environment">Szenario 1: Development Environment<a class="headerlink" href="#szenario-1-development-environment" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># Keine config_local.py vorhanden
+# → Automatisch localhost/stub backends
+git clone uds3-repo
+cd uds3
+python -c &quot;from core import UnifiedDatabaseStrategy; uds3 = UnifiedDatabaseStrategy()&quot;
+# ✅ Läuft mit ChromaDB/Neo4j/PostgreSQL localhost stubs
+</code></pre>
+<h3 id="szenario-2-production-environment">Szenario 2: Production Environment<a class="headerlink" href="#szenario-2-production-environment" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># Mit config_local.py für Remote-Server
+git clone uds3-repo
+cd uds3
+cp config_local.py.example config_local.py
+# Editiere config_local.py mit echten Credentials
+python -c &quot;from core import UnifiedDatabaseStrategy; uds3 = UnifiedDatabaseStrategy()&quot;
+# ✅ Läuft mit Remote-Servern aus config_local.py
+</code></pre>
+<h3 id="szenario-3-cicd-pipeline">Szenario 3: CI/CD Pipeline<a class="headerlink" href="#szenario-3-cicd-pipeline" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># Mit Environment Variables
+export NEO4J_HOST=&quot;ci-neo4j.internal&quot;
+export NEO4J_PASSWORD=&quot;ci_password&quot; 
+export POSTGRES_HOST=&quot;ci-postgres.internal&quot;
+export POSTGRES_PASSWORD=&quot;ci_pg_password&quot;
+
+python -c &quot;from core import UnifiedDatabaseStrategy; uds3 = UnifiedDatabaseStrategy()&quot;
+# ✅ Environment Variables überschreiben config_local.py
+</code></pre>
+<h3 id="szenario-4-microservice-mit-service-discovery">Szenario 4: Microservice mit Service Discovery<a class="headerlink" href="#szenario-4-microservice-mit-service-discovery" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Integration mit Service Discovery
+from core import UnifiedDatabaseStrategy
+from database.config import DatabaseManager, ProductionDatabaseManager
+
+class ServiceDiscoveryDatabaseManager(ProductionDatabaseManager):
+    def get_databases(self):
+        # Service Discovery Logic hier
+        neo4j_host = discover_service(&quot;neo4j&quot;)
+        postgres_host = discover_service(&quot;postgresql&quot;)
+
+        return self._create_discovered_databases(neo4j_host, postgres_host)
+
+# Custom Manager verwenden
+custom_manager = ServiceDiscoveryDatabaseManager()
+uds3 = UnifiedDatabaseStrategy(database_manager=custom_manager)
+</code></pre>
+<h2 id="multi-backend-konfigurationen">🔀 Multi-Backend Konfigurationen<a class="headerlink" href="#multi-backend-konfigurationen" title="Permanent link">&para;</a></h2>
+<h3 id="standard-single-backend-setup">Standard Single-Backend Setup<a class="headerlink" href="#standard-single-backend-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Eine Datenbank pro Typ (Standard)
+backends = [
+    DatabaseConnection(DatabaseType.GRAPH, DatabaseBackend.NEO4J, ...),
+    DatabaseConnection(DatabaseType.RELATIONAL, DatabaseBackend.POSTGRESQL, ...),
+    DatabaseConnection(DatabaseType.VECTOR, DatabaseBackend.CHROMADB, ...),
+    DatabaseConnection(DatabaseType.FILE, DatabaseBackend.COUCHDB, ...)
+]
+</code></pre>
+<h3 id="multi-graph-backend-setup">Multi-Graph Backend Setup<a class="headerlink" href="#multi-graph-backend-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># 2 Graph Databases für Load Balancing/Redundancy
+backends = [
+    # Primary Graph DB
+    DatabaseConnection(
+        db_type=DatabaseType.GRAPH,
+        backend=DatabaseBackend.NEO4J,
+        host=&quot;neo4j-primary.com&quot;,
+        settings={'role': 'primary', 'priority': 1}
+    ),
+    # Secondary Graph DB
+    DatabaseConnection(
+        db_type=DatabaseType.GRAPH, 
+        backend=DatabaseBackend.ARANGODB,
+        host=&quot;arangodb-secondary.com&quot;,
+        settings={'role': 'secondary', 'priority': 2}
+    )
+]
+</code></pre>
+<h3 id="multi-relational-backend-setup">Multi-Relational Backend Setup<a class="headerlink" href="#multi-relational-backend-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># 6 Relational Databases für verschiedene Zwecke
+backends = [
+    # User Data
+    DatabaseConnection(DatabaseType.RELATIONAL, DatabaseBackend.POSTGRESQL, 
+                      host=&quot;users-db.com&quot;, database=&quot;users&quot;, 
+                      settings={'purpose': 'user_data'}),
+
+    # Analytics Data  
+    DatabaseConnection(DatabaseType.RELATIONAL, DatabaseBackend.POSTGRESQL,
+                      host=&quot;analytics-db.com&quot;, database=&quot;analytics&quot;,
+                      settings={'purpose': 'analytics'}),
+
+    # Audit Logs
+    DatabaseConnection(DatabaseType.RELATIONAL, DatabaseBackend.POSTGRESQL,
+                      host=&quot;audit-db.com&quot;, database=&quot;audit&quot;,
+                      settings={'purpose': 'audit'}),
+
+    # Cache/Sessions
+    DatabaseConnection(DatabaseType.RELATIONAL, DatabaseBackend.POSTGRESQL,
+                      host=&quot;cache-db.com&quot;, database=&quot;sessions&quot;, 
+                      settings={'purpose': 'cache'}),
+
+    # Reporting
+    DatabaseConnection(DatabaseType.RELATIONAL, DatabaseBackend.POSTGRESQL,
+                      host=&quot;reports-db.com&quot;, database=&quot;reports&quot;,
+                      settings={'purpose': 'reporting'}),
+
+    # Archive
+    DatabaseConnection(DatabaseType.RELATIONAL, DatabaseBackend.POSTGRESQL, 
+                      host=&quot;archive-db.com&quot;, database=&quot;archive&quot;,
+                      settings={'purpose': 'archive'})
+]
+</code></pre>
+<h3 id="multi-vector-backend-setup">Multi-Vector Backend Setup<a class="headerlink" href="#multi-vector-backend-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># 4 Vector Databases für verschiedene Embedding-Modelle
+backends = [
+    # German Embeddings
+    DatabaseConnection(DatabaseType.VECTOR, DatabaseBackend.CHROMADB,
+                      host=&quot;german-vectors.com&quot;,
+                      settings={'model': 'german-bert', 'language': 'de'}),
+
+    # English Embeddings  
+    DatabaseConnection(DatabaseType.VECTOR, DatabaseBackend.PINECONE,
+                      settings={'model': 'openai-ada', 'language': 'en',
+                               'api_key': 'pinecone_key'}),
+
+    # Code Embeddings
+    DatabaseConnection(DatabaseType.VECTOR, DatabaseBackend.WEAVIATE,
+                      host=&quot;code-vectors.com&quot;,
+                      settings={'model': 'code-bert', 'purpose': 'code_search'}),
+
+    # Image Embeddings
+    DatabaseConnection(DatabaseType.VECTOR, DatabaseBackend.CHROMADB,
+                      host=&quot;image-vectors.com&quot;, 
+                      settings={'model': 'clip', 'purpose': 'image_search'})
+]
+</code></pre>
+<h3 id="multi-file-backend-setup">Multi-File Backend Setup<a class="headerlink" href="#multi-file-backend-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># 3 File Servers für verschiedene Dateitypen
+backends = [
+    # Document Storage
+    DatabaseConnection(DatabaseType.FILE, DatabaseBackend.COUCHDB,
+                      host=&quot;docs-couchdb.com&quot;,
+                      settings={'purpose': 'documents', 'max_size': '100MB'}),
+
+    # Media Storage
+    DatabaseConnection(DatabaseType.FILE, DatabaseBackend.S3,
+                      settings={'bucket': 'media-files', 'region': 'eu-central-1',
+                               'purpose': 'media'}),
+
+    # Archive Storage
+    DatabaseConnection(DatabaseType.FILE, DatabaseBackend.S3,
+                      settings={'bucket': 'archive-files', 'region': 'eu-central-1',
+                               'storage_class': 'GLACIER', 'purpose': 'archive'})
+]
+</code></pre>
+<h2 id="backend-selection-strategies">🎯 Backend Selection Strategies<a class="headerlink" href="#backend-selection-strategies" title="Permanent link">&para;</a></h2>
+<h3 id="strategy-1-round-robin">Strategy 1: Round Robin<a class="headerlink" href="#strategy-1-round-robin" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class RoundRobinDatabaseManager(BaseDatabaseManager):
+    def select_backend(self, db_type: DatabaseType, operation: str):
+        backends = self.get_databases_by_type(db_type)
+        return backends[self.round_robin_counter % len(backends)]
+</code></pre>
+<h3 id="strategy-2-load-based-selection">Strategy 2: Load-Based Selection<a class="headerlink" href="#strategy-2-load-based-selection" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class LoadBalancedDatabaseManager(BaseDatabaseManager):
+    def select_backend(self, db_type: DatabaseType, operation: str):
+        backends = self.get_databases_by_type(db_type)
+        return min(backends, key=lambda b: b.get_current_load())
+</code></pre>
+<h3 id="strategy-3-purpose-based-selection">Strategy 3: Purpose-Based Selection<a class="headerlink" href="#strategy-3-purpose-based-selection" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class PurposeDatabaseManager(BaseDatabaseManager):
+    def select_backend(self, db_type: DatabaseType, purpose: str):
+        backends = self.get_databases_by_type(db_type)
+        return next(b for b in backends 
+                   if b.settings.get('purpose') == purpose)
+</code></pre>
+<h2 id="configuration-examples">📊 Configuration Examples<a class="headerlink" href="#configuration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="minimal-development-setup">Minimal Development Setup<a class="headerlink" href="#minimal-development-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># config.py - nur localhost stubs
+config_factory = UDS3ConfigFactory()  # 4 backends, alle localhost
+uds3 = UnifiedDatabaseStrategy()      # ✅ 2 minutes setup
+</code></pre>
+<h3 id="standard-production-setup">Standard Production Setup<a class="headerlink" href="#standard-production-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># config_local.py - eine DB pro Typ
+backends = 4  # Graph, Relational, Vector, File
+uds3 = UnifiedDatabaseStrategy()  # ✅ Production ready
+</code></pre>
+<h3 id="enterprise-multi-backend-setup">Enterprise Multi-Backend Setup<a class="headerlink" href="#enterprise-multi-backend-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Custom Manager - viele DBs pro Typ
+enterprise_manager = EnterpriseDatabaseManager()
+backends = 15  # 2 Graph + 6 Relational + 4 Vector + 3 File
+uds3 = UnifiedDatabaseStrategy(database_manager=enterprise_manager)
+# ✅ Enterprise scale
+</code></pre>
+<h2 id="debugging-monitoring">🔍 Debugging &amp; Monitoring<a class="headerlink" href="#debugging-monitoring" title="Permanent link">&para;</a></h2>
+<h3 id="check-active-backends">Check Active Backends<a class="headerlink" href="#check-active-backends" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from database.config import database_manager
+
+# Liste alle aktiven Backends
+print(database_manager.list_databases())
+
+# Prüfe spezifische Backend-Typen
+vector_dbs = database_manager.get_databases_by_type(DatabaseType.VECTOR)
+print(f&quot;Vector DBs: {len(vector_dbs)}&quot;)
+
+for db in vector_dbs:
+    print(f&quot;  - {db.backend.value} @ {db.host}:{db.port}&quot;)
+</code></pre>
+<h3 id="test-backend-connectivity">Test Backend Connectivity<a class="headerlink" href="#test-backend-connectivity" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def test_all_backends():
+    for db_type in DatabaseType:
+        backends = database_manager.get_databases_by_type(db_type)
+        print(f&quot;{db_type.value.upper()}: {len(backends)} backends&quot;)
+
+        for backend in backends:
+            try:
+                # Test connection
+                success = backend.test_connection()
+                status = &quot;✅&quot; if success else &quot;❌&quot;
+                print(f&quot;  {status} {backend.backend.value} @ {backend.host}&quot;)
+            except Exception as e:
+                print(f&quot;  ❌ {backend.backend.value}: {e}&quot;)
+
+test_all_backends()
+</code></pre>
+<h2 id="performance-tips">🚀 Performance Tips<a class="headerlink" href="#performance-tips" title="Permanent link">&para;</a></h2>
+<h3 id="1-connection-pooling">1. Connection Pooling<a class="headerlink" href="#1-connection-pooling" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Größere Pools für Multi-Backend Setups
+DatabaseConnection(
+    connection_pool_size=50,  # Statt default 10
+    query_timeout=120,        # Längere Timeouts
+    cache_ttl=1800           # Längeres Caching
+)
+</code></pre>
+<h3 id="2-async-operations">2. Async Operations<a class="headerlink" href="#2-async-operations" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># UDS3 unterstützt async für Multi-Backend Operations
+async def parallel_operations():
+    tasks = [
+        uds3.vector_search_async(&quot;query1&quot;),
+        uds3.graph_traversal_async(&quot;query2&quot;), 
+        uds3.relational_query_async(&quot;query3&quot;)
+    ]
+    results = await asyncio.gather(*tasks)
+    return results
+</code></pre>
+<h3 id="3-caching-strategies">3. Caching Strategies<a class="headerlink" href="#3-caching-strategies" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Backend-spezifisches Caching
+DatabaseConnection(
+    settings={
+        'cache_strategy': 'redis',
+        'cache_ttl': 3600,
+        'cache_prefix': f'{purpose}_{model}'
+    }
+)
+</code></pre>
+<h2 id="checklist-fur-produktive-deployments">📋 Checklist für Produktive Deployments<a class="headerlink" href="#checklist-fur-produktive-deployments" title="Permanent link">&para;</a></h2>
+<h3 id="konfiguration">✅ Konfiguration<a class="headerlink" href="#konfiguration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <code>config_local.py</code> erstellt und konfiguriert</li>
+<li>[ ] Alle Passwörter aus Default-Werten geändert</li>
+<li>[ ] SSL/TLS für Remote-Verbindungen aktiviert</li>
+<li>[ ] Connection Pools angemessen dimensioniert</li>
+</ul>
+<h3 id="backends">✅ Backends<a class="headerlink" href="#backends" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Alle Backend-Services erreichbar</li>
+<li>[ ] Authentifizierung funktioniert</li>
+<li>[ ] Backup-Strategien implementiert</li>
+<li>[ ] Monitoring eingerichtet</li>
+</ul>
+<h3 id="uds3-application">✅ UDS3 Application<a class="headerlink" href="#uds3-application" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Backend-Selection Strategy definiert</li>
+<li>[ ] Error Handling für Backend-Ausfälle</li>
+<li>[ ] Health Checks implementiert</li>
+<li>[ ] Logging konfiguriert</li>
+</ul>
+<hr />
+<p><strong>Ready to scale</strong>: UDS3 unterstützt von 1 bis 100+ Backends pro Typ! 🚀</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

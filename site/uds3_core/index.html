@@ -1,0 +1,1100 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/uds3_core/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>UDS3_core.py - Unified Database Strategy v3.0 - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uds3_corepy-unified-database-strategy-v30" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UDS3_core.py - Unified Database Strategy v3.0
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uberblick" class="md-nav__link">
+    <span class="md-ellipsis">
+      Überblick
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aktueller-stand" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aktueller Stand
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aktueller Stand">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kernarchitektur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernarchitektur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dokumentbereich-erweitert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dokumentbereich (Erweitert)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datenbankrollen-spezialisiert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datenbankrollen (Spezialisiert)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datenbankrollen (Spezialisiert)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector-database-chromadbpinecone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Database (ChromaDB/Pinecone)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-database-neo4jarangodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Database (Neo4j/ArangoDB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relational-database-sqlitepostgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relational Database (SQLite/PostgreSQL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architektur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architektur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architektur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-definitionen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enum Definitionen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimierungsstrategien" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimierungsstrategien
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features-v30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features (v3.0)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Features (v3.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-framework-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Framework Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-management-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Management System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-database-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-Database Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap-2025-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roadmap 2025-2026
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roadmap 2025-2026">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-2025-performance-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1 2025: Performance &amp; Scalability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-2025-ai-enhanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2 2025: AI-Enhanced Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-2025-enterprise-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3 2025: Enterprise Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-2025-advanced-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q4 2025: Advanced Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1-2026-next-generation-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1 2026: Next-Generation Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-strategy-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Strategy Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Characteristics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-performance-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target Performance (2026)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#framework-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Framework Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/uds3_core.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="uds3_corepy-unified-database-strategy-v30">UDS3_core.py - Unified Database Strategy v3.0<a class="headerlink" href="#uds3_corepy-unified-database-strategy-v30" title="Permanent link">&para;</a></h1>
+<h2 id="uberblick">Überblick<a class="headerlink" href="#uberblick" title="Permanent link">&para;</a></h2>
+<p>Die erweiterte Unified Database Strategy v3.0 mit integriertem Security &amp; Quality Framework für umfassende Verwaltung aller verwaltungsrechtlicher Dokumente.</p>
+<h2 id="aktueller-stand">Aktueller Stand<a class="headerlink" href="#aktueller-stand" title="Permanent link">&para;</a></h2>
+<h3 id="kernarchitektur">Kernarchitektur<a class="headerlink" href="#kernarchitektur" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Multi-Database Strategy</strong>: Vector, Graph, Relational optimiert für Verwaltungsrecht</li>
+<li><strong>Security Framework</strong>: Hash-basierte Integrität, UUIDs, Verschlüsselung</li>
+<li><strong>Quality Management</strong>: Multi-dimensionale Qualitätsbewertung</li>
+<li><strong>Cross-Database Validation</strong>: Konsistenzprüfung zwischen allen DBs</li>
+</ul>
+<h3 id="dokumentbereich-erweitert">Dokumentbereich (Erweitert)<a class="headerlink" href="#dokumentbereich-erweitert" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Normative Ebene</strong>: Gesetze, Verordnungen, Ausführungsbestimmungen, Richtlinien</li>
+<li><strong>Verwaltungsentscheidungen</strong>: Bescheide, Verfügungen, Planfeststellungen</li>
+<li><strong>Gerichtsentscheidungen</strong>: VG/OVG/BVerwG/BVerfG-Entscheidungen</li>
+<li><strong>Verwaltungsinterne Dokumente</strong>: Aktennotizen, Gutachten, Korrespondenz</li>
+</ul>
+<h3 id="datenbankrollen-spezialisiert">Datenbankrollen (Spezialisiert)<a class="headerlink" href="#datenbankrollen-spezialisiert" title="Permanent link">&para;</a></h3>
+<h4 id="vector-database-chromadbpinecone">Vector Database (ChromaDB/Pinecone)<a class="headerlink" href="#vector-database-chromadbpinecone" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Semantische Suche</strong>: Über alle Dokumenttypen</li>
+<li><strong>Cross-Domain-Ähnlichkeit</strong>: Dokumentübergreifende Ähnlichkeit</li>
+<li><strong>Content-Embedding</strong>: Granulare Chunk-basierte Vektoren</li>
+<li><strong>Similarity Search</strong>: Cosine/Euclidean Similarity</li>
+</ul>
+<h4 id="graph-database-neo4jarangodb">Graph Database (Neo4j/ArangoDB)<a class="headerlink" href="#graph-database-neo4jarangodb" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Normenhierarchien</strong>: Rechtliche Hierarchien und Abhängigkeiten</li>
+<li><strong>Verwaltungsverfahren</strong>: Prozessdarstellung und Workflow</li>
+<li><strong>Behördenstrukturen</strong>: Organisatorische Beziehungen</li>
+<li><strong>Präzedenzfälle</strong>: Rechtsprechungsnetze und Zitationen</li>
+</ul>
+<h4 id="relational-database-sqlitepostgresql">Relational Database (SQLite/PostgreSQL)<a class="headerlink" href="#relational-database-sqlitepostgresql" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Metadaten</strong>: Strukturierte Dokumentinformationen</li>
+<li><strong>Fristen</strong>: Zeitbasierte Verfahrensdaten</li>
+<li><strong>Verfahrensstatus</strong>: Workflow-Status und Tracking</li>
+<li><strong>Compliance-Monitoring</strong>: Regelkonformitätsprüfung</li>
+</ul>
+<h2 id="architektur">Architektur<a class="headerlink" href="#architektur" title="Permanent link">&para;</a></h2>
+<h3 id="core-components">Core Components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h3>
+<pre><code>OptimizedUnifiedDatabaseStrategy
+├── Database Orchestration
+│   ├── Vector DB Strategy
+│   ├── Graph DB Strategy
+│   └── Relational DB Strategy
+├── Security Framework
+│   ├── Hash-based Integrity
+│   ├── UUID Management
+│   ├── Data Encryption
+│   └── Access Control
+├── Quality Framework
+│   ├── Multi-dimensional Scoring
+│   ├── Validation Rules
+│   ├── Quality Monitoring
+│   └── Quality Assurance
+└── Cross-Database Operations
+    ├── Synchronization
+    ├── Consistency Checks
+    ├── Data Migration
+    └── Backup/Recovery
+</code></pre>
+<h3 id="enum-definitionen">Enum Definitionen<a class="headerlink" href="#enum-definitionen" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class DatabaseRole(Enum):
+    VECTOR = &quot;semantic_search&quot;      # Semantische Suche
+    GRAPH = &quot;admin_relationships&quot;   # Verwaltungsstrukturen
+    RELATIONAL = &quot;admin_metadata&quot;   # Metadaten/Fristen
+
+class OperationType(Enum):
+    CREATE, READ, UPDATE, DELETE, BATCH_CREATE,
+    BATCH_UPDATE, BATCH_DELETE, MERGE, ARCHIVE, RESTORE
+
+class SyncStrategy(Enum):
+    IMMEDIATE, DEFERRED, EVENTUAL, MANUAL
+</code></pre>
+<h3 id="optimierungsstrategien">Optimierungsstrategien<a class="headerlink" href="#optimierungsstrategien" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">@dataclass
+class DatabaseOptimization:
+    vector_dimensions: int = 1536           # OpenAI Ada-002 Standard
+    vector_similarity_metric: str = &quot;cosine&quot;
+    graph_index_properties: List[str]
+    relational_indexes: List[str]
+    batch_sizes: Dict[str, int]
+</code></pre>
+<h2 id="features-v30">Features (v3.0)<a class="headerlink" href="#features-v30" title="Permanent link">&para;</a></h2>
+<h3 id="security-framework-integration">Security Framework Integration<a class="headerlink" href="#security-framework-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Data Integrity</strong>: SHA-256 Hash Verification</li>
+<li><strong>UUID Management</strong>: Eindeutige Identifier-Strategie</li>
+<li><strong>Encryption Support</strong>: Sensible Daten Verschlüsselung</li>
+<li><strong>Access Control</strong>: Role-based Database Access</li>
+<li><strong>Audit Logging</strong>: Vollständige Operation-Protokollierung</li>
+</ul>
+<h3 id="quality-management-system">Quality Management System<a class="headerlink" href="#quality-management-system" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Quality Scoring</strong>: Multi-dimensionale Bewertung</li>
+<li><strong>Validation Rules</strong>: Automated Data Validation</li>
+<li><strong>Quality Monitoring</strong>: Real-time Quality Tracking</li>
+<li><strong>Quality Assurance</strong>: Continuous Quality Improvement</li>
+<li><strong>Error Detection</strong>: Automatische Fehlererkennung</li>
+</ul>
+<h3 id="cross-database-operations">Cross-Database Operations<a class="headerlink" href="#cross-database-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Smart Synchronization</strong>: Intelligent sync strategies</li>
+<li><strong>Consistency Validation</strong>: Cross-DB consistency checks</li>
+<li><strong>Data Migration</strong>: Seamless data movement</li>
+<li><strong>Backup Coordination</strong>: Multi-DB backup orchestration</li>
+</ul>
+<h2 id="roadmap-2025-2026">Roadmap 2025-2026<a class="headerlink" href="#roadmap-2025-2026" title="Permanent link">&para;</a></h2>
+<h3 id="q1-2025-performance-scalability">Q1 2025: Performance &amp; Scalability<a class="headerlink" href="#q1-2025-performance-scalability" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>Advanced Indexing</strong></li>
+<li>Multi-dimensional Vector Indexes</li>
+<li>Graph Traversal Optimization</li>
+<li>Composite Relational Indexes</li>
+<li>
+<p>Query Performance Tuning</p>
+</li>
+<li>
+<p>[ ] <strong>Intelligent Caching</strong></p>
+</li>
+<li>Multi-level Cache Strategy</li>
+<li>Predictive Caching</li>
+<li>Cache Invalidation Logic</li>
+<li>Memory-efficient Caching</li>
+</ul>
+<h3 id="q2-2025-ai-enhanced-features">Q2 2025: AI-Enhanced Features<a class="headerlink" href="#q2-2025-ai-enhanced-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>Machine Learning Integration</strong></li>
+<li>Automated Quality Assessment</li>
+<li>Predictive Data Relationships</li>
+<li>Smart Data Classification</li>
+<li>
+<p>Anomaly Detection AI</p>
+</li>
+<li>
+<p>[ ] <strong>Semantic Enhancement</strong></p>
+</li>
+<li>Advanced Embedding Models</li>
+<li>Multi-language Vector Support</li>
+<li>Context-aware Similarity</li>
+<li>Semantic Relationship Discovery</li>
+</ul>
+<h3 id="q3-2025-enterprise-integration">Q3 2025: Enterprise Integration<a class="headerlink" href="#q3-2025-enterprise-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>Distributed Architecture</strong></li>
+<li>Multi-Node Database Clusters</li>
+<li>Distributed Query Processing</li>
+<li>Load Balancing Strategies</li>
+<li>
+<p>Fault-Tolerant Operations</p>
+</li>
+<li>
+<p>[ ] <strong>API Gateway Integration</strong></p>
+</li>
+<li>RESTful API Layer</li>
+<li>GraphQL Interface</li>
+<li>Real-time Subscriptions</li>
+<li>API Rate Limiting</li>
+</ul>
+<h3 id="q4-2025-advanced-security">Q4 2025: Advanced Security<a class="headerlink" href="#q4-2025-advanced-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>Enhanced Encryption</strong></li>
+<li>End-to-End Encryption</li>
+<li>Key Management System</li>
+<li>Secure Multi-Party Computation</li>
+<li>
+<p>Privacy-Preserving Queries</p>
+</li>
+<li>
+<p>[ ] <strong>Compliance Framework</strong></p>
+</li>
+<li>GDPR Compliance Tools</li>
+<li>Data Lineage Tracking</li>
+<li>Right to be Forgotten</li>
+<li>Audit Trail Enhancement</li>
+</ul>
+<h3 id="q1-2026-next-generation-features">Q1 2026: Next-Generation Features<a class="headerlink" href="#q1-2026-next-generation-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>Quantum-Ready Security</strong></li>
+<li>Post-Quantum Cryptography</li>
+<li>Quantum-Safe Key Exchange</li>
+<li>Future-proof Encryption</li>
+<li>
+<p>Quantum Computing Integration</p>
+</li>
+<li>
+<p>[ ] <strong>Autonomous Operations</strong></p>
+</li>
+<li>Self-Healing Database Systems</li>
+<li>Automated Performance Tuning</li>
+<li>Intelligent Data Lifecycle</li>
+<li>Autonomous Backup/Recovery</li>
+</ul>
+<h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
+<h3 id="database-strategy-configuration">Database Strategy Configuration<a class="headerlink" href="#database-strategy-configuration" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">strategy = OptimizedUnifiedDatabaseStrategy(
+    vector_config={
+        'provider': 'chromadb',
+        'dimensions': 1536,
+        'similarity_metric': 'cosine'
+    },
+    graph_config={
+        'provider': 'neo4j',
+        'index_properties': ['document_id', 'legal_area']
+    },
+    relational_config={
+        'provider': 'postgresql',
+        'indexes': ['created_at', 'document_type', 'authority']
+    }
+)
+</code></pre>
+<h3 id="security-integration">Security Integration<a class="headerlink" href="#security-integration" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">security_manager = DataSecurityManager(
+    hash_algorithm='sha256',
+    encryption_key=os.getenv('ENCRYPTION_KEY'),
+    access_control_enabled=True
+)
+</code></pre>
+<h3 id="quality-management">Quality Management<a class="headerlink" href="#quality-management" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">quality_manager = DataQualityManager(
+    quality_thresholds={
+        'completeness': 0.8,
+        'accuracy': 0.9,
+        'consistency': 0.85
+    }
+)
+</code></pre>
+<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
+<h3 id="current-performance">Current Performance<a class="headerlink" href="#current-performance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Vector Search</strong>: &lt; 100ms für 1M Dokumente</li>
+<li><strong>Graph Traversal</strong>: &lt; 50ms für komplexe Beziehungen</li>
+<li><strong>Relational Queries</strong>: &lt; 10ms für Metadaten-Abfragen</li>
+<li><strong>Cross-DB Sync</strong>: &lt; 1s für kleine Batches</li>
+</ul>
+<h3 id="target-performance-2026">Target Performance (2026)<a class="headerlink" href="#target-performance-2026" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Vector Search</strong>: &lt; 50ms für 10M Dokumente</li>
+<li><strong>Graph Traversal</strong>: &lt; 25ms für komplexe Beziehungen</li>
+<li><strong>Relational Queries</strong>: &lt; 5ms für Metadaten-Abfragen</li>
+<li><strong>Cross-DB Sync</strong>: &lt; 500ms für große Batches</li>
+</ul>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<h3 id="core-dependencies">Core Dependencies<a class="headerlink" href="#core-dependencies" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>logging</code>: System logging</li>
+<li><code>hashlib</code>: Security hashing</li>
+<li><code>uuid</code>: Unique identifiers</li>
+<li><code>json</code>: Data serialization</li>
+<li><code>datetime</code>: Temporal operations</li>
+</ul>
+<h3 id="framework-dependencies">Framework Dependencies<a class="headerlink" href="#framework-dependencies" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>uds3_security</code>: Security Framework</li>
+<li><code>uds3_quality</code>: Quality Framework</li>
+<li>Database providers (ChromaDB, Neo4j, PostgreSQL)</li>
+</ul>
+<h3 id="optional-dependencies">Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Machine learning libraries</li>
+<li>Advanced encryption libraries</li>
+<li>Monitoring tools</li>
+</ul>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Version</strong>: 3.0 Production</li>
+<li><strong>Architecture</strong>: ✅ Multi-DB ✅ Security ✅ Quality</li>
+<li><strong>Integration</strong>: ✅ Security Framework ✅ Quality Management</li>
+<li><strong>Performance</strong>: ✅ Optimized ✅ Scalable</li>
+<li><strong>Features</strong>: ✅ Cross-DB Sync ✅ Validation ✅ Monitoring</li>
+<li><strong>Stability</strong>: Production Ready ✅</li>
+<li><strong>Maintainer</strong>: VERITAS Core Team</li>
+<li><strong>Last Update</strong>: 31. August 2025</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

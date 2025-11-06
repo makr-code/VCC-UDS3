@@ -1,0 +1,1076 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/UDS3_VERWALTUNGSARCHITEKTUR/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Generische Verwaltungsarchitektur auf Basis von UDS3 - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#generische-verwaltungsarchitektur-auf-basis-von-uds3" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Generische Verwaltungsarchitektur auf Basis von UDS3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-leitprinzipien" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Leitprinzipien
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-architekturuberblick" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Architekturüberblick
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-komponenten" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Komponenten
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Komponenten">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-verwaltungs-kern" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Verwaltungs-Kern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Verwaltungs-Kern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementierungsstand-verwaltungs-kern-stand-2025-09-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementierungsstand Verwaltungs-Kern (Stand 2025-09-28)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-governance-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Governance &amp; Observability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Governance &amp; Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identitatszentrierte-telemetrie-neu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identitätszentrierte Telemetrie (Neu)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-erweiterungs-hubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Erweiterungs-Hubs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-vector-db-management-neu-in-draft-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Vector-DB Management (Neu in Draft 0.1)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-daten-kontrollflusse" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Daten- &amp; Kontrollflüsse
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-change-by-contract-mechanismus" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Change-by-Contract Mechanismus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-schnittstellenubersicht" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Schnittstellenübersicht
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erweiterungs-verfeinerungspfade" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Erweiterungs- &amp; Verfeinerungspfade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-dokumentation-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Dokumentation &amp; Governance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-nachste-schritte-hands-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Nächste Schritte (Hands-On)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Nächste Schritte (Hands-On)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-umsetzungskalender-kw-3946-q42025" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Umsetzungskalender (KW 39–46 · Q4/2025)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-arbeitspaket-backlog-priorisiert" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Arbeitspaket-Backlog (priorisiert)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-risiko-mitigationsubersicht" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 Risiko- &amp; Mitigationsübersicht
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-reporting-artefakte" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.4 Reporting &amp; Artefakte
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/UDS3_VERWALTUNGSARCHITEKTUR.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="generische-verwaltungsarchitektur-auf-basis-von-uds3">Generische Verwaltungsarchitektur auf Basis von UDS3<a class="headerlink" href="#generische-verwaltungsarchitektur-auf-basis-von-uds3" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Version: Draft 0.1 · Stand: 25.09.2025  \
+Zweck: Leitfaden für die Einführung eines adaptiven Verwaltungs-Backends, das auf der Unified Database Strategy (UDS3) aufsetzt und gezielt Erweiterungen/Änderungen in späteren Phasen ermöglicht.</p>
+</blockquote>
+<hr />
+<h2 id="1-leitprinzipien">1. Leitprinzipien<a class="headerlink" href="#1-leitprinzipien" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Schichten-Trennung:</strong> Klare Trennung zwischen Orchestrierung, fachlicher Verwaltung und Datenpersistenz (Vector / Graph / Relational / File).</li>
+<li><strong>Provider-Neutralität:</strong> Alle Integrationen (z. B. Graph-Adapter) implementieren gemeinsame Interfaces (<code>database_api_base.py</code>), sodass Backend-Wechsel ohne Prozessbruch möglich sind.</li>
+<li><strong>Change-by-Contract:</strong> Änderungen erfolgen über versionierte Verträge (APIs, Events, Schema-IDs) statt impliziter Kopplung.</li>
+<li><strong>Governance-First:</strong> Qualitäts-, Sicherheits- und Audit-Funktionen sind integraler Bestandteil jeder Stufe.</li>
+<li><strong>Observability &amp; Feedback:</strong> Jede Operation liefert Telemetrie (Timing, Qualität, Status), die sich in Dashboards und Reports widerspiegelt.</li>
+<li><strong>Iterative Verfeinerung:</strong> Architektur erlaubt Teil-Deployments (Phase 3 Graph, Phase 4 Vector, …) ohne Big Bang.</li>
+</ol>
+<hr />
+<h2 id="2-architekturuberblick">2. Architekturüberblick<a class="headerlink" href="#2-architekturuberblick" title="Permanent link">&para;</a></h2>
+<pre><code>┌────────────────────────────────────────────────────────────────────┐
+│ Nutzer &amp; Fachprozesse (Portale, Behörden, Integrationen)           │
+└────────────────────────────────────────────────────────────────────┘
+                 │            ▲                             
+                 │ Events/API │                             │ Insights
+                 ▼            │                             │
+┌────────────────────────────────────────────────────────────────────┐
+│ Verwaltungs-Service-Layer (dieses Dokument)                        │
+│  • Verwaltungs-Kern (Lifecycle-, Policy-, Registry-Service)        │
+│  • Governance &amp; Quality (Security, Audit, QA, Compliance)          │
+│  • Orchestrierungs-Anschluss (UDS3 Core, Ingestion Pipelines)      │
+│  • Erweiterungs-Hubs (Domänen-Module, Prozess-Engines)             │
+└────────────────────────────────────────────────────────────────────┘
+                 │            ▲
+                 │ Commands/  │ Telemetrie
+                 │ Plans      │
+                 ▼            │
+┌────────────────────────────────────────────────────────────────────┐
+│ UDS3 Ausführungsschicht                                            │
+│  • UnifiedDatabaseStrategy (Plans, Cross-DB Validation)            │
+│  • Security-/Quality-/Relations-Layer                              │
+│  • Adapter-API (`database_api_*`)                                  │
+└────────────────────────────────────────────────────────────────────┘
+                 │
+                 ▼
+┌────────────────────────────────────────────────────────────────────┐
+│ Datenplattformen                                                   │
+│  Vector · Graph · Relational · File · Externe Systeme              │
+└────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="3-komponenten">3. Komponenten<a class="headerlink" href="#3-komponenten" title="Permanent link">&para;</a></h2>
+<h3 id="31-verwaltungs-kern">3.1 Verwaltungs-Kern<a class="headerlink" href="#31-verwaltungs-kern" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Komponente</th>
+<th>Aufgabe</th>
+<th>Erweiterungspunkt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lifecycle Manager</strong></td>
+<td>Verfolgt Status eines Verwaltungsobjekts (z. B. Vorgang, Dokument, Prozess) über alle Phasen.</td>
+<td>Neue Lifecycle-States via Konfiguration.</td>
+</tr>
+<tr>
+<td><strong>Policy Engine</strong></td>
+<td>Erzwingt Governance-Regeln (Retention, Zugriffsrechte, Qualitäts-Schwellen).</td>
+<td>Policies versionieren, Evaluierungs-Hooks bereitstellen.</td>
+</tr>
+<tr>
+<td><strong>Registry Service</strong></td>
+<td>Führt Metaregister über Verwaltungsobjekte, verweist auf UDS3-IDs, Versionen, Historie.</td>
+<td>Registrierung neuer Objektklassen via Schema-Definition.</td>
+</tr>
+<tr>
+<td><strong>Change Orchestrator</strong></td>
+<td>Plant und überwacht Änderungen (z. B. Datenmigration, neue Fachservices).</td>
+<td>Change-Playbooks (siehe Abschnitt 5).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="implementierungsstand-verwaltungs-kern-stand-2025-09-28">Implementierungsstand Verwaltungs-Kern (Stand 2025-09-28)<a class="headerlink" href="#implementierungsstand-verwaltungs-kern-stand-2025-09-28" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Vorhandene Basis:</strong> <code>management_core</code> stellt produktionsnahe Implementierungen für Lifecycle-, Policy- und Registry-Management bereit; Integrationen für Vector-, Graph-, Relational- und Filesystem-Backends sind als eigenständige Services verfügbar und lassen sich über den <code>ManagementCore</code> orchestrieren.</li>
+<li><strong>Erste Kopplungen:</strong> Lifecycle-Übergänge synchronisieren sich bereits mit Registry-Einträgen, optionale Policy-Prüfungen können bei Registrierung und Statuswechsel erzwungen werden, Referenzen zu Backend-IDs werden konsistent abgelegt.</li>
+<li><strong>Identifizierte Lücken:</strong></li>
+<li>AuthZ-Guardrails auf Scope-Basis werden schrittweise ergänzt, um differenzierte Berechtigungen zu ermöglichen.</li>
+<li>Observability- und Governance-Hooks sind vorbereitet, aber noch nicht mit dem bestehenden Telemetrie-Bus (Saga-/Identity-Metriken) verdrahtet.</li>
+<li>Konfigurierbare Provisionierung/Dependency Injection für Backend-Services steht aus; derzeit müssen Adapter manuell injiziert werden.</li>
+<li>Testabdeckung konzentriert sich auf Unit-Niveau der Einzelservices; integrierte Tests und Contract-Prüfungen sind zu etablieren.</li>
+</ul>
+<p><strong>Update 28.09.2025:</strong>
+- REST-Zugriff erfolgt jetzt über eine FastAPI-App (<code>management_core.api.create_app</code>), abgesichert via Header <code>X-API-Key</code>; Endpunkte für Registrierung, Lifecycle-Transition, Objekt-/State-Liste vorhanden.
+- Kommandozeilen-Zugriff über <code>ManagementCoreCLI</code> ermöglicht Registrieren/Transition/Show/List ohne REST-Hop; Pytests decken beide Pfade ab.</p>
+<h3 id="32-governance-observability">3.2 Governance &amp; Observability<a class="headerlink" href="#32-governance-observability" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Security Gateway:</strong> Aggregiert Security Events aus <code>uds3_security</code>, ergänzt Verwaltungs-spezifische Logs (z. B. Zuständigkeitsprüfungen).</li>
+<li><strong>Quality Hub:</strong> Nutzt Scorecards aus <code>uds3_quality</code> und verknüpft sie mit Verwaltungskennzahlen (z. B. SLA-Erfüllung).</li>
+<li><strong>Audit Layer:</strong> Schreibt revisionssichere Journale, unterstützt Export (JSONL) und Reports.</li>
+<li><strong>Observability Bus:</strong> Standardisiert Metriken (Prometheus/OpenTelemetry), Events und Alerts.</li>
+</ul>
+<p><strong>MC-OBS Planung (Stand 2025-09-28):</strong>
+- <code>management_core.observability</code> (neu) wird als zentraler Emitter implementiert und über Listener an Lifecycle-, Registry- und Policy-Komponenten angebunden (<code>LifecycleManager.add_listener</code>, <code>RegistryService.add_listener</code>, <code>PolicyEngine.add_listener</code>).
+- Ereignisse erzeugen OpenTelemetry-konforme Spans/Metriken mit Namensraum <code>management_core.*</code> (z. B. <code>management_core.lifecycle.transition</code>, <code>management_core.policy.result</code>, <code>management_core.registry.changed</code>) und reichen Identitätskontext (<code>identity_key</code>, <code>object_type</code>) weiter.
+- Für Systeme ohne OTEL-Collector stellt das Modul einen austauschbaren Sink bereit (Logger, Event-Bus oder UDS3 Saga Observability), konfigurierbar via ManagementCoreConfig.
+- Tests prüfen, dass Hooks bei Transition/Policy-Auswertung/Registry-Änderung ausgelöst werden und Payload-Schema (<code>event_type</code>, <code>object_id</code>, <code>metadata</code>) einhalten.</p>
+<ul>
+<li><strong>MC-AUDIT Umsetzung (Stand 2025-09-28):</strong></li>
+<li>REST-Eingänge erzeugen strukturierte Audit-Events über <code>ManagementCoreAuditRecorder</code>. Ereignisse enthalten <code>action</code>, <code>result</code>, <code>object_id</code>, <code>object_type</code>, <code>actor</code>, <code>scope</code>, <code>request_id</code> sowie Metadaten zu Fehlern/Transitions und werden kanalisiert (<code>channel="api"</code>).</li>
+<li>Audit-Sink lässt sich via <code>MANAGEMENT_CORE_AUDIT_SINK</code> konfigurieren (<code>logger</code>, <code>stdout</code>, <code>file</code>, <code>sqlite</code> inkl. <code>MANAGEMENT_CORE_AUDIT_PATH</code>); Recorder kann für Governance-Bus/DB erweitert werden.</li>
+<li>Header <code>X-Actor</code> und <code>X-Request-Id</code> reichern Audit-Log und Observability um Identitätskontext an; fehlgeschlagene Authentifizierungen werden mit <code>result="denied"</code> protokolliert.</li>
+<li>CLI-Befehle nutzen denselben Recorder (Channel <code>cli</code>), generieren Request-IDs on-the-fly und auditieren Erfolg, Fehler sowie Scope-Denials.</li>
+</ul>
+<p><strong>Auth-Scopes (Stand 2025-09-28):</strong>
+- API verwendet Default-Scopes (<code>management:read</code>, <code>management:write</code>, <code>management:lifecycle:transition</code>, <code>management:policies:evaluate</code>), konfigurierbar über <code>MANAGEMENT_CORE_DEFAULT_SCOPES</code>. Fehlende Scopes führen zu HTTP 403 und Audit <code>result="denied"</code> (<code>metadata.reason = "missing_scope"</code>).
+- Token-Validierung bleibt über <code>X-API-Key</code>; bei fehlendem/fehlerhaftem Token werden HTTP 401 sowie Audit-Ereignisse <code>action="auth"</code>, <code>result="denied"</code> geschrieben.
+- CLI übernimmt identische Scopes (<code>MANAGEMENT_CORE_CLI_SCOPES</code>, <code>MANAGEMENT_CORE_CLI_ACTOR</code>) und erlaubt über <code>MANAGEMENT_CORE_CLI_SCOPE_MAP</code> oder <code>MANAGEMENT_CORE_TOKEN_SCOPES</code> eine benutzerspezifische Scope-Zuweisung (JSON-Mapping). Scope-Fehler erzeugen <code>PermissionError</code> und Audit <code>result="denied"</code>.
+- Token-Registry persistent: <code>administrative_token_scopes</code> wird via <code>TokenScopeRegistry</code>/<code>TokenScopeCache</code> geladen (<code>MANAGEMENT_CORE_TOKEN_DB_PATH</code>, Fallback <code>./var/management_core_tokens.db</code>), Hot-Reload erfolgt über Dateimtime oder TTL (<code>MANAGEMENT_CORE_TOKEN_RELOAD_SECONDS</code>). CLI stellt <code>tokens list|sync</code> bereit und kann Actor-Scopes über <code>actor_hint</code> aktualisieren.</p>
+<h4 id="identitatszentrierte-telemetrie-neu">Identitätszentrierte Telemetrie (Neu)<a class="headerlink" href="#identitatszentrierte-telemetrie-neu" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Schemaerweiterung:</strong> Relationale Backends erhalten die Tabellen <code>administrative_identity_metrics</code> und <code>administrative_identity_traces</code> inklusive Indexierung auf <code>identity_key</code>, <code>stage</code> bzw. <code>trace_id</code>.</li>
+<li><strong>Instrumentierung:</strong> <code>SagaDatabaseCRUD</code> erzeugt für jede CRUD-Operation identitätsbezogene Metriken (<code>*.attempt</code>, <code>*.success</code>, <code>*.error</code>, <code>*.governance_blocked</code>, <code>*.duration_ms</code>, optionale <code>*.chunk_count</code>) und Trace-Events (Stage, Status, Payload-Auszug). Governance-Checks markieren blockierte Operationen explizit.</li>
+<li><strong>Saga-Verankerung:</strong> <code>UDS3SagaOrchestrator</code> schreibt Audit-/Metrik-Events mit <code>saga_name</code>, <code>identity_key</code> und <code>document_id</code>, sodass Sagas auf Personen- bzw. Dokumentkontext rückführbar bleiben; Tests (<code>tests/test_saga_orchestrator.py</code>) validieren die neuen Spalten.</li>
+<li><strong>Kontext-Anreicherung:</strong> <code>UnifiedDatabaseStrategy</code> füllt Saga-Kontexte vor Ausführung mit <code>identity_key</code>, <code>identity_uuid</code> und relationalen Referenzen aus Security-/Metadata-Schritten, wodurch Start-Events bereits identitätsgebundene Telemetrie liefern und <code>document_mapping</code> Identity-Daten versioniert.</li>
+<li><strong>Statusmodell:</strong> Der Trace-Status unterscheidet <code>success</code>, <code>error</code> und <code>governance_blocked</code> und erlaubt dadurch Dashboards, Policy-Verletzungen separat auszuwerten.</li>
+<li><strong>Tracing-Fluss:</strong> Die Telemetrie wird backendagnostisch sammelbar (Vector/Graph/Relational/File), sodass Dashboards Identitäten über mehrere Speicher hinweg verfolgen können.</li>
+<li><strong>Tests:</strong> <code>tests/test_saga_crud.py</code> validiert, dass Observability-Daten bei Relational-Operationen geschrieben werden (Happy Path, Fehlerfall, Governance-Block) und schützt die Schema-Kontrakte.</li>
+</ul>
+<h3 id="33-erweiterungs-hubs">3.3 Erweiterungs-Hubs<a class="headerlink" href="#33-erweiterungs-hubs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Domänen-Module:</strong> Spezifische Verwaltungsbereiche (Bauwesen, Gewerbe, Umwelt). Werden über API-Verträge eingebunden.</li>
+<li><strong>Process Engines:</strong> Binden <code>uds3_process_mining</code> und Folgeprozessoren ein (z. B. BPMN/EPK).</li>
+<li><strong>Analytics &amp; Insights:</strong> Verwendet <code>uds3_strategic_insights_analysis</code> und Datenprodukte in Vector/Graph/Relational DBs.</li>
+</ul>
+<h3 id="34-vector-db-management-neu-in-draft-01">3.4 Vector-DB Management (Neu in Draft 0.1)<a class="headerlink" href="#34-vector-db-management-neu-in-draft-01" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Modul:</strong> <code>management_core.vector_management.VectorManagementService</code></li>
+<li><strong>Aufgabe:</strong> Abstrakte Verwaltungs- und Governance-Schicht für Vektor-Indizes (z. B. Chroma, Pinecone). Koordiniert Collection-Registrierung, Metadaten-Anreicherung via UDS3-Strategie sowie Lifecycle-Hooks.</li>
+<li><strong>Konfigurierbarkeit:</strong> <code>VectorManagementConfig</code> erlaubt Auto-Provisioning, Dimension-Validierung und Metadaten-Overrides.</li>
+<li><strong>Erweiterungspunkte:</strong> Hooks <code>on_before_store</code>, <code>on_after_store</code>, <code>on_failure</code> erlauben spätere Policy-/Observability-Einbindung. Collections lassen sich über <code>VectorCollectionDefinition</code> versionieren.</li>
+<li><strong>Nächste Schritte:</strong> Siehe Kapitel 9 (P1–P4) sowie Tests in <code>tests/test_vector_management_service.py</code>.</li>
+</ul>
+<hr />
+<h2 id="4-daten-kontrollflusse">4. Daten- &amp; Kontrollflüsse<a class="headerlink" href="#4-daten-kontrollflusse" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Eingang</strong> (z. B. digitales Dokument, Vorgang aus externem System) gelangt via Ingestion-Pipeline zu UDS3 Core.</li>
+<li><strong>UDS3 Core</strong> erzeugt Pläne für Vector/Graph/Relational/File und führt Security- &amp; Quality-Prüfungen durch.</li>
+<li><strong>Verwaltungs-Kern</strong> registriert den Vorgang, ordnet ihn einem Lifecycle zu und speichert Referenzen auf UDS3 IDs.</li>
+<li><strong>Governance-Ebene</strong> überwacht Policies: Sind Qualitäts-Mindestwerte erfüllt? Bestehen Sicherheitsauflagen?</li>
+<li><strong>Domänenerweiterungen</strong> können zusätzliche Metadaten einbringen, automatisierte Prozessschritte auslösen oder externe Systeme informieren.</li>
+<li><strong>Feedback Loop:</strong> Telemetrie fließt an Observability Bus → Dashboards, Alerts, Entscheidungsgrundlagen.</li>
+</ol>
+<hr />
+<h2 id="5-change-by-contract-mechanismus">5. Change-by-Contract Mechanismus<a class="headerlink" href="#5-change-by-contract-mechanismus" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Beschreibung</th>
+<th>Artefakte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Change Intake</td>
+<td>Änderungsidee erfassen, betroffene Domänen/Objekte benennen.</td>
+<td>Change Ticket (z. B. <code>changes/CHG-####.md</code>).</td>
+</tr>
+<tr>
+<td>2. Impact Analyse</td>
+<td>Betroffene Verträge (APIs, Schemas, Policies) identifizieren.</td>
+<td>Decision Log Update (<code>docs/PHASE4_DECISIONS.md</code>).</td>
+</tr>
+<tr>
+<td>3. Contract Draft</td>
+<td>Neue/angepasste Verträge definieren (Version, Fallback, Deprecation).</td>
+<td>API-/Schema-Spezifikation.</td>
+</tr>
+<tr>
+<td>4. Pilot Deployment</td>
+<td>Feature Flags / Shadow Mode / Canary.</td>
+<td>Konfigurationsdateien, Tests.</td>
+</tr>
+<tr>
+<td>5. Rollout &amp; Monitoring</td>
+<td>Aktivierung gemäß Policy, Telemetrie überwachen.</td>
+<td>Dashboard, Alert-Konfiguration.</td>
+</tr>
+<tr>
+<td>6. Review &amp; Learnings</td>
+<td>Wirksamkeit prüfen, Lessons Learned dokumentieren.</td>
+<td>Review-Protokoll.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Versionierung:</strong> Jede Schnittstelle erhält SemVer + Ablaufdatum. Binding über <code>Contract Registry</code> (Teil des Registry Service).</p>
+<hr />
+<h2 id="6-schnittstellenubersicht">6. Schnittstellenübersicht<a class="headerlink" href="#6-schnittstellenubersicht" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Schnittstelle</th>
+<th>Richtung</th>
+<th>Technologie</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ingestion ↔ Verwaltungs-Kern</strong></td>
+<td>Pull (REST/Queue)</td>
+<td>JSON/Events</td>
+<td>Übergibt neue Dokumente/Vorgänge + Status.</td>
+</tr>
+<tr>
+<td><strong>Verwaltungs-Kern ↔ UDS3 Core</strong></td>
+<td>Command + Callback</td>
+<td>Python SDK / REST</td>
+<td>Startet <code>create_secure_document</code>, verarbeitet Resultate &amp; IDs.</td>
+</tr>
+<tr>
+<td><strong>Verwaltungs-Kern ↔ Governance</strong></td>
+<td>Events</td>
+<td>Event Bus (Kafka/AMQP)</td>
+<td>Lifecycle Events, Policy-Verletzungen, Quality Alerts.</td>
+</tr>
+<tr>
+<td><strong>Verwaltungs-Kern ↔ Domänen-Module</strong></td>
+<td>REST/gRPC</td>
+<td>JSON/Proto</td>
+<td>Veröffentlicht Registry-Events, empfängt Fachentscheidungen.</td>
+</tr>
+<tr>
+<td><strong>Observability</strong></td>
+<td>Push/Pull</td>
+<td>OpenTelemetry, Prometheus</td>
+<td>Einheitliche Metriken und Logs.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-erweiterungs-verfeinerungspfade">7. Erweiterungs- &amp; Verfeinerungspfade<a class="headerlink" href="#7-erweiterungs-verfeinerungspfade" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Neue Domänenmodule:</strong> Registrieren eigenen Handler, Policies und Observability-Kennzahlen.</li>
+<li><strong>Backend-Wechsel:</strong> Adapter über <code>database_api_base.py</code> austauschen (z. B. Neo4j → ArangoDB) ohne Verwaltungs-Kern anzupassen.</li>
+<li><strong>Policy-Erweiterungen:</strong> Neue Regeln per Konfiguration, Policy-Engine wertet sie per DSL/Skript aus.</li>
+<li><strong>Lifecycle-Verfeinerung:</strong> Zusätzliche Stati über Registry + Dokumentation definieren, Tasks in Pipelines erweitern.</li>
+<li><strong>Qualitätsmetriken:</strong> Scorecards erweitern, <code>uds3_quality</code> liefert zusätzliche Dimensionen. Verwaltungs-Kern übernimmt Routing/Thresholds.</li>
+<li><strong>Change Automation:</strong> Playbooks in <code>changes/</code> ablegen, Orchestrator kann wiederkehrende Tätigkeiten automatisieren.</li>
+</ol>
+<hr />
+<h2 id="8-dokumentation-governance">8. Dokumentation &amp; Governance<a class="headerlink" href="#8-dokumentation-governance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Quelle:</strong> Dieses Dokument gilt als Single Source of Truth für die Verwaltungsarchitektur.</li>
+<li><strong>Versionierung:</strong> Änderungen per Pull Request, mit Decision Log (<code>docs/PHASE4_DECISIONS.md</code>) und ToDo-Updates.</li>
+<li><strong>Verbindung zu bestehenden Dokumenten:</strong></li>
+<li><code>docs/INGESTION_ARCHITEKTUR.md</code> → beschreibt Pipeline-/Job-Ebene.</li>
+<li><code>docs/PHASE3_GRAPH_SCHEMA.md</code> → definiert Graph-Layer.</li>
+<li><code>docs/toDo.md</code> → Roadmap/Sprintplanung (Phasen 3–6).</li>
+</ul>
+<hr />
+<h2 id="9-nachste-schritte-hands-on">9. Nächste Schritte (Hands-On)<a class="headerlink" href="#9-nachste-schritte-hands-on" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Verwaltungs-Kern als Python-Modul entwerfen (<code>management_core/</code>), inkl. Lifecycle-, Policy- und Registry-Service.</li>
+<li>Contract Registry (SemVer/Dokumentation) implementieren und an Change-Prozess anbinden.</li>
+<li>Observability Bus definieren (Metrics + Logging + Alerts) und in Worker/Handler einbauen.</li>
+<li>Proof-of-Concept: Einen vollständigen Vorgang durch Ingestion → UDS3 Core → Verwaltungs-Kern → Governance testen.</li>
+<li>Dokumentation kontinuierlich pflegen (Lessons Learned, neue Module) und mit Release-Zyklus verzahnen.</li>
+</ol>
+<h3 id="91-umsetzungskalender-kw-3946-q42025">9.1 Umsetzungskalender (KW 39–46 · Q4/2025)<a class="headerlink" href="#91-umsetzungskalender-kw-3946-q42025" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>KW</th>
+<th>Fokus</th>
+<th>Kern-Deliverables</th>
+<th>Verantwortlich</th>
+<th>Definition of Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>39</td>
+<td>Kick-off &amp; Scope-Freeze</td>
+<td>Kick-off-Agenda, Teilnehmerliste, beschlossene Vision &amp; Scope Statement</td>
+<td>Programmleitung + Product</td>
+<td>Kick-off-Notiz im Projekt-Repo (<code>docs/PHASE4_DECISIONS.md</code>), Jira-Epics erstellt</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Management-Kern MVP</td>
+<td><code>management_core/</code> Module (Lifecycle, Policy, Registry) refaktoriert, Basistests grün</td>
+<td>Core Platform Team</td>
+<td>Tests (<code>pytest management_core</code>) grün, API-Signaturen dokumentiert</td>
+</tr>
+<tr>
+<td>41</td>
+<td>API &amp; Auth-Design</td>
+<td>OpenAPI-Spezifikation, AuthN/AuthZ-Konzept, Reverse-Proxy Draft</td>
+<td>Platform + Security</td>
+<td>OpenAPI YAML im Repo, Security Review-Protokoll abgelegt</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Contract Registry Alpha</td>
+<td>SemVer-Registry Modul, CLI <code>mc-contracts</code>, ADR-Automation-Skript</td>
+<td>Architecture Guild</td>
+<td>CLI-Demo, mindestens 3 Contracts registriert, HowTo im <code>docs/management_core/</code></td>
+</tr>
+<tr>
+<td>43</td>
+<td>Observability Bus Foundations</td>
+<td>OTEL Collector Config, Metrics-Schema, Dashboard-Wireframes</td>
+<td>SRE + DataOps</td>
+<td>Collector im Dev-Cluster lauffähig, Dashboard-Mockups im Design-Repo</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Observability Integration</td>
+<td>Handler/Worker senden Events, Alerts in Test-Workspace, Runbooks</td>
+<td>SRE + Core</td>
+<td>Smoke-Test <code>tests/test_observability_bus.py</code> grün, Runbook in <code>docs/management_core/</code></td>
+</tr>
+<tr>
+<td>45</td>
+<td>End-to-End PoC Build</td>
+<td>End-to-End-Flow orchestriert, Synthetic Dataset, Governance-Demo</td>
+<td>Cross Squad</td>
+<td>PoC Demo-Skript (<code>poC_end_to_end.py</code>), Abnahmeprotokoll</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Lessons Learned &amp; Rollout Plan</td>
+<td>Retro-Dokument, Release-Checklist, Rollout-Kommunikation</td>
+<td>Programmleitung</td>
+<td>Retro-Notiz veröffentlicht, Rollout-Plan im README</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92-arbeitspaket-backlog-priorisiert">9.2 Arbeitspaket-Backlog (priorisiert)<a class="headerlink" href="#92-arbeitspaket-backlog-priorisiert" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>MC-CORE-01</strong> – Lifecycle- &amp; Policy-Service Hardening<br />
+<em>Tasks:</em> Monitoring Hooks, Retry-Strategie, Config-Validation.<br />
+<em>Abhängigkeiten:</em> Kick-off (KW39).<br />
+<em>DoD:</em> Alle kritischen Pfade mit Integrationstests (<code>tests/management_core/test_lifecycle.py</code>).</li>
+<li><strong>MC-CORE-02</strong> – Registry REST API + Auth<br />
+<em>Tasks:</em> Token-basierte AuthZ, Scope-Mapping, Audit Log.<br />
+<em>Abhängigkeiten:</em> MC-CORE-01.<br />
+<em>DoD:</em> OpenAPI publiziert, Security Sign-Off dokumentiert.</li>
+<li><strong>MC-CONTRACT-01</strong> – Contract Registry CLI &amp; SemVer Lifecycle<br />
+<em>Tasks:</em> <code>mc-contracts init|publish|deprecate</code>, Git Hooks.<br />
+<em>Abhängigkeiten:</em> API-Design (KW41).<br />
+<em>DoD:</em> CLI mit Unit- &amp; Smoke-Tests, Beispiel-Contract im Repo.</li>
+<li><strong>MC-OBS-01</strong> – Observability Schema &amp; Collector<br />
+<em>Tasks:</em> OTEL-Resource Schema, Exporter Config, Logging-Konventionen.<br />
+<em>Abhängigkeiten:</em> MC-CORE-02.<br />
+<em>DoD:</em> Collector akzeptiert Events, Grafana-Dashboard zeigt Kernmetriken.</li>
+<li><strong>MC-POC-01</strong> – Verwaltungs-PoC Flow<br />
+<em>Tasks:</em> Szenario-Skripte, Synthetic Data, Governance Checkpoints.<br />
+<em>Abhängigkeiten:</em> MC-OBS-01, MC-CONTRACT-01.<br />
+<em>DoD:</em> Demo-Script + Screencast, Feedback von Stakeholdern protokolliert.</li>
+</ol>
+<h3 id="93-risiko-mitigationsubersicht">9.3 Risiko- &amp; Mitigationsübersicht<a class="headerlink" href="#93-risiko-mitigationsubersicht" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Risiko</th>
+<th>Auswirkung</th>
+<th>Eintrittswahrscheinlichkeit</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ressourcenüberlastung in KW 41 (Security Review)</td>
+<td>Verzögerung des Contract Registry Alpha</td>
+<td>Mittel</td>
+<td>Review frühzeitig anfragen, Security-Vertreter im Kick-off fest einplanen</td>
+</tr>
+<tr>
+<td>OTEL Collector Performance</td>
+<td>Verfälschte Metriken im PoC</td>
+<td>Niedrig</td>
+<td>Lasttests in KW43, Fallback auf lokales Logging vorbereitet</td>
+</tr>
+<tr>
+<td>PoC-Datensätze unvollständig</td>
+<td>Demo verliert Aussagekraft</td>
+<td>Mittel</td>
+<td>Dedicated DataOps-Verantwortliche ab KW42, eskalieren in Weekly</td>
+</tr>
+<tr>
+<td>Tooling für ADR-Automation instabil</td>
+<td>Verzögerter Contract Release</td>
+<td>Mittel</td>
+<td>Pilot auf Sample-Repo (KW42), Rollback-Skript bereitstellen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="94-reporting-artefakte">9.4 Reporting &amp; Artefakte<a class="headerlink" href="#94-reporting-artefakte" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Weekly Status (Slack + <code>docs/PHASE4_DECISIONS.md</code> Update) jeden Donnerstag 14:00.</li>
+<li>Diese Artefakte sind verpflichtend zu pflegen:</li>
+<li><strong>Kick-off Notes:</strong> <code>docs/PHASE4_DECISIONS.md</code> Kapitel "Management Layer".</li>
+<li><strong>Contract Registry Cookbook:</strong> <code>docs/management_core/contract_registry.md</code> (neu anzulegen in KW42).</li>
+<li><strong>Observability Runbook:</strong> <code>docs/management_core/observability_runbook.md</code> (Entwurf KW43, final KW44).</li>
+<li><strong>PoC Demo Script &amp; Dataset:</strong> <code>examples/management_core/poc/</code> inkl. README.</li>
+<li>Fortschritt spiegelt sich in <code>docs/toDo.md</code> (Checkbox-Status) und im CHANGELOG wider.</li>
+</ul>
+<hr />
+<p><em>Ende Draft 0.1</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

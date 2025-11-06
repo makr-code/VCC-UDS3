@@ -1,0 +1,1195 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/PHASE2_PLANNING/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Phase 2 Planning: PostgreSQL + CouchDB Batch Operations - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#phase-2-planning-postgresql-couchdb-batch-operations" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Phase 2 Planning: PostgreSQL + CouchDB Batch Operations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Objective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-implementation-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Current Implementation Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Current Implementation Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-database_api_postgresqlpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL (database_api_postgresql.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couchdb-database_api_couchdbpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      CouchDB (database_api_couchdb.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Proposed Solution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Proposed Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-batch-inserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Batch Inserter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couchdb-batch-inserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      CouchDB Batch Inserter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Implementation Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Implementation Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#item-3-postgresql-batch-inserter-15h" class="md-nav__link">
+    <span class="md-ellipsis">
+      Item 3: PostgreSQL Batch Inserter (1.5h)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-4-couchdb-batch-inserter-15h" class="md-nav__link">
+    <span class="md-ellipsis">
+      Item 4: CouchDB Batch Inserter (1.5h)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-5-testing-1h" class="md-nav__link">
+    <span class="md-ellipsis">
+      Item 5: Testing (1h)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-6-documentation-45min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Item 6: Documentation (45min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-7-git-commits-30min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Item 7: Git Commits (30min)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-8-validation-30min" class="md-nav__link">
+    <span class="md-ellipsis">
+      Item 8: Validation (30min)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#success-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Success Criteria
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Success Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Targets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Targets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-vs-phase-1-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Phase 2 vs Phase 1 Comparison
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Risk Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Risk Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#low-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Risk ✅
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Challenges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      📅 Timeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-complete" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Planning Complete
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/PHASE2_PLANNING.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="phase-2-planning-postgresql-couchdb-batch-operations">Phase 2 Planning: PostgreSQL + CouchDB Batch Operations<a class="headerlink" href="#phase-2-planning-postgresql-couchdb-batch-operations" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 20. Oktober 2025<br />
+<strong>Version:</strong> UDS3 2.2.0 (planned)<br />
+<strong>Status:</strong> 📋 Planning Phase<br />
+<strong>Estimated Time:</strong> 3-4 hours</p>
+<hr />
+<h2 id="objective">🎯 Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h2>
+<p>Extend UDS3 batch operations to PostgreSQL and CouchDB for complete database coverage.</p>
+<p><strong>Phase 1 (COMPLETE):</strong>
+- ✅ ChromaDB: 100 vectors/call (80x speedup)
+- ✅ Neo4j: 1000 rels/query (100-187x speedup)</p>
+<p><strong>Phase 2 (THIS PHASE):</strong>
+- 📋 PostgreSQL: 100 documents/batch (+50-100x throughput)
+- 📋 CouchDB: 100 documents/batch (+100-500x throughput)</p>
+<hr />
+<h2 id="current-implementation-analysis">📊 Current Implementation Analysis<a class="headerlink" href="#current-implementation-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="postgresql-database_api_postgresqlpy">PostgreSQL (database_api_postgresql.py)<a class="headerlink" href="#postgresql-database_api_postgresqlpy" title="Permanent link">&para;</a></h3>
+<p><strong>Current Method:</strong> <code>insert_document()</code> (Lines 186-250)</p>
+<pre><code class="language-python">def insert_document(self, document_id: str, file_path: str, classification: str,
+                   content_length: int, legal_terms_count: int, 
+                   created_at: Optional[str] = None,
+                   quality_score: Optional[float] = None,
+                   processing_status: str = 'completed') -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;Single document insert with ON CONFLICT&quot;&quot;&quot;
+    self.cursor.execute(&quot;&quot;&quot;
+        INSERT INTO documents 
+        (document_id, file_path, classification, content_length, 
+         legal_terms_count, created_at, quality_score, processing_status)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        ON CONFLICT (document_id) 
+        DO UPDATE SET ...
+    &quot;&quot;&quot;, (document_id, ...))
+    self.conn.commit()  # ❌ One commit per document!
+</code></pre>
+<p><strong>Problems:</strong>
+- 1 SQL INSERT per document
+- 1 COMMIT per document (slow!)
+- High network overhead (100 docs = 100 round-trips)
+- Inefficient for bulk ingestion</p>
+<p><strong>Performance:</strong></p>
+<pre><code>Current: 100 documents = ~10 seconds (10 inserts/second)
+</code></pre>
+<h3 id="couchdb-database_api_couchdbpy">CouchDB (database_api_couchdb.py)<a class="headerlink" href="#couchdb-database_api_couchdbpy" title="Permanent link">&para;</a></h3>
+<p><strong>Current Method:</strong> <code>create_document()</code> (Lines 84-150)</p>
+<pre><code class="language-python">def create_document(self, doc: Dict[str, Any], doc_id: Optional[str] = None) -&gt; str:
+    &quot;&quot;&quot;Single document insert with idempotency&quot;&quot;&quot;
+    if doc_id:
+        # Check if exists (1 HTTP call)
+        try:
+            existing_doc = self.db[doc_id]
+            return doc_id  # Already exists
+        except:
+            pass
+
+        # Create document (1 HTTP call)
+        self.db[doc_id] = doc
+        return doc_id
+</code></pre>
+<p><strong>Problems:</strong>
+- 1-2 HTTP calls per document
+- High latency (network round-trips)
+- No batching support
+- Inefficient for bulk ingestion</p>
+<p><strong>Performance:</strong></p>
+<pre><code>Current: 100 documents = ~50 seconds (2 inserts/second)
+</code></pre>
+<hr />
+<h2 id="proposed-solution">🚀 Proposed Solution<a class="headerlink" href="#proposed-solution" title="Permanent link">&para;</a></h2>
+<h3 id="postgresql-batch-inserter">PostgreSQL Batch Inserter<a class="headerlink" href="#postgresql-batch-inserter" title="Permanent link">&para;</a></h3>
+<p><strong>Technology:</strong> <code>psycopg2.extras.execute_batch()</code></p>
+<p><strong>Features:</strong>
+- Batch 100 documents in single SQL statement
+- Single COMMIT for entire batch
+- Thread-safe operations
+- Auto-fallback on errors
+- Context manager support</p>
+<p><strong>Implementation Pattern:</strong></p>
+<pre><code class="language-python">from psycopg2.extras import execute_batch
+
+class PostgreSQLBatchInserter:
+    def __init__(self, backend: PostgreSQLRelationalBackend, batch_size: int = 100):
+        self.backend = backend
+        self.batch_size = batch_size
+        self.batch = []
+        self._lock = threading.Lock()
+        self.stats = {'batches': 0, 'fallbacks': 0}
+
+    def add(self, document_id: str, file_path: str, classification: str,
+            content_length: int, legal_terms_count: int, **kwargs):
+        &quot;&quot;&quot;Add document to batch&quot;&quot;&quot;
+        with self._lock:
+            self.batch.append((document_id, file_path, classification, ...))
+
+            if len(self.batch) &gt;= self.batch_size:
+                self._flush_unlocked()  # Auto-flush
+
+    def flush(self) -&gt; bool:
+        &quot;&quot;&quot;Flush batch to database&quot;&quot;&quot;
+        with self._lock:
+            return self._flush_unlocked()
+
+    def _flush_unlocked(self) -&gt; bool:
+        &quot;&quot;&quot;Internal flush (no lock)&quot;&quot;&quot;
+        if not self.batch:
+            return True
+
+        try:
+            # Batch insert with execute_batch()
+            execute_batch(
+                self.backend.cursor,
+                &quot;&quot;&quot;
+                INSERT INTO documents (...) VALUES (%s, %s, ...)
+                ON CONFLICT (document_id) DO UPDATE SET ...
+                &quot;&quot;&quot;,
+                self.batch,
+                page_size=self.batch_size
+            )
+            self.backend.conn.commit()
+
+            self.stats['batches'] += 1
+            self.batch.clear()
+            return True
+
+        except Exception as e:
+            logger.error(f&quot;Batch insert failed: {e}&quot;)
+            self._fallback_single_insert()
+            return False
+</code></pre>
+<p><strong>Expected Performance:</strong></p>
+<pre><code>Batch: 100 documents = ~0.1-0.2 seconds (500-1000 inserts/second)
+Speedup: 50-100x faster!
+</code></pre>
+<h3 id="couchdb-batch-inserter">CouchDB Batch Inserter<a class="headerlink" href="#couchdb-batch-inserter" title="Permanent link">&para;</a></h3>
+<p><strong>Technology:</strong> <code>_bulk_docs</code> API endpoint</p>
+<p><strong>Features:</strong>
+- Batch 100 documents in single HTTP POST
+- Single API call (no loop)
+- Thread-safe operations
+- Auto-fallback on errors
+- Context manager support</p>
+<p><strong>Implementation Pattern:</strong></p>
+<pre><code class="language-python">class CouchDBBatchInserter:
+    def __init__(self, backend: CouchDBDocumentBackend, batch_size: int = 100):
+        self.backend = backend
+        self.batch_size = batch_size
+        self.batch = []
+        self._lock = threading.Lock()
+        self.stats = {'batches': 0, 'fallbacks': 0}
+
+    def add(self, doc: Dict[str, Any], doc_id: Optional[str] = None):
+        &quot;&quot;&quot;Add document to batch&quot;&quot;&quot;
+        with self._lock:
+            if doc_id:
+                doc['_id'] = doc_id
+            self.batch.append(doc)
+
+            if len(self.batch) &gt;= self.batch_size:
+                self._flush_unlocked()
+
+    def flush(self) -&gt; bool:
+        &quot;&quot;&quot;Flush batch to CouchDB&quot;&quot;&quot;
+        with self._lock:
+            return self._flush_unlocked()
+
+    def _flush_unlocked(self) -&gt; bool:
+        &quot;&quot;&quot;Internal flush (no lock)&quot;&quot;&quot;
+        if not self.batch:
+            return True
+
+        try:
+            # Batch insert with _bulk_docs
+            results = self.backend.db.update(self.batch)
+
+            # Check for conflicts
+            conflicts = [r for r in results if 'error' in r]
+            if conflicts:
+                logger.warning(f&quot;{len(conflicts)} conflicts (idempotent)&quot;)
+
+            self.stats['batches'] += 1
+            self.batch.clear()
+            return True
+
+        except Exception as e:
+            logger.error(f&quot;Batch insert failed: {e}&quot;)
+            self._fallback_single_insert()
+            return False
+</code></pre>
+<p><strong>Expected Performance:</strong></p>
+<pre><code>Batch: 100 documents = ~0.1-0.5 seconds (200-1000 inserts/second)
+Speedup: 100-500x faster!
+</code></pre>
+<hr />
+<h2 id="implementation-plan">📋 Implementation Plan<a class="headerlink" href="#implementation-plan" title="Permanent link">&para;</a></h2>
+<h3 id="item-3-postgresql-batch-inserter-15h">Item 3: PostgreSQL Batch Inserter (1.5h)<a class="headerlink" href="#item-3-postgresql-batch-inserter-15h" title="Permanent link">&para;</a></h3>
+<p><strong>Files to Create/Modify:</strong>
+- <code>database/batch_operations.py</code> (extend with PostgreSQLBatchInserter)
+- Import: <code>from psycopg2.extras import execute_batch</code></p>
+<p><strong>Class Structure:</strong></p>
+<pre><code class="language-python">class PostgreSQLBatchInserter:
+    def __init__(self, backend, batch_size=100)
+    def add(self, document_id, file_path, classification, ...)
+    def flush(self) -&gt; bool
+    def _flush_unlocked(self) -&gt; bool
+    def _fallback_single_insert(self)
+    def get_stats(self) -&gt; Dict
+    def __enter__(self)
+    def __exit__(self, exc_type, exc_val, exc_tb)
+</code></pre>
+<p><strong>ENV Variables:</strong></p>
+<pre><code class="language-bash">ENABLE_POSTGRES_BATCH_INSERT=false  # Disabled by default
+POSTGRES_BATCH_INSERT_SIZE=100      # Batch size
+</code></pre>
+<p><strong>Helper Functions:</strong></p>
+<pre><code class="language-python">def should_use_postgres_batch_insert() -&gt; bool
+def get_postgres_batch_size() -&gt; int
+</code></pre>
+<h3 id="item-4-couchdb-batch-inserter-15h">Item 4: CouchDB Batch Inserter (1.5h)<a class="headerlink" href="#item-4-couchdb-batch-inserter-15h" title="Permanent link">&para;</a></h3>
+<p><strong>Files to Create/Modify:</strong>
+- <code>database/batch_operations.py</code> (extend with CouchDBBatchInserter)</p>
+<p><strong>Class Structure:</strong></p>
+<pre><code class="language-python">class CouchDBBatchInserter:
+    def __init__(self, backend, batch_size=100)
+    def add(self, doc: Dict, doc_id: Optional[str] = None)
+    def flush(self) -&gt; bool
+    def _flush_unlocked(self) -&gt; bool
+    def _fallback_single_insert(self)
+    def get_stats(self) -&gt; Dict
+    def __enter__(self)
+    def __exit__(self, exc_type, exc_val, exc_tb)
+</code></pre>
+<p><strong>ENV Variables:</strong></p>
+<pre><code class="language-bash">ENABLE_COUCHDB_BATCH_INSERT=false  # Disabled by default
+COUCHDB_BATCH_INSERT_SIZE=100      # Batch size
+</code></pre>
+<p><strong>Helper Functions:</strong></p>
+<pre><code class="language-python">def should_use_couchdb_batch_insert() -&gt; bool
+def get_couchdb_batch_size() -&gt; int
+</code></pre>
+<h3 id="item-5-testing-1h">Item 5: Testing (1h)<a class="headerlink" href="#item-5-testing-1h" title="Permanent link">&para;</a></h3>
+<p><strong>Test Files:</strong>
+- <code>tests/test_batch_operations_postgres.py</code> (15 unit tests)
+- <code>tests/test_batch_operations_couchdb.py</code> (15 unit tests)
+- Extend <code>tests/test_batch_operations_integration.py</code> (10 integration tests)</p>
+<p><strong>Test Coverage:</strong>
+- Initialization (2 tests)
+- Add single/multiple items (4 tests)
+- Auto-flush on batch full (2 tests)
+- Manual flush (2 tests)
+- Context manager (2 tests)
+- Thread-safety (2 tests)
+- Fallback on errors (2 tests)
+- Stats tracking (2 tests)
+- Performance benchmarks (2 tests)</p>
+<p><strong>Total: 40 new tests</strong></p>
+<h3 id="item-6-documentation-45min">Item 6: Documentation (45min)<a class="headerlink" href="#item-6-documentation-45min" title="Permanent link">&para;</a></h3>
+<p><strong>Files to Update:</strong>
+- <code>docs/BATCH_OPERATIONS.md</code> (add PostgreSQL + CouchDB sections, 500+ lines)
+- <code>CHANGELOG.md</code> (add v2.2.0 entry, 100+ lines)
+- <code>docs/FEATURE_MIGRATION_ROADMAP.md</code> (mark Phase 2 complete)</p>
+<p><strong>Documentation Sections:</strong>
+1. PostgreSQL Batch Operations
+   - Quick Start example
+   - API Reference
+   - Performance benchmarks
+   - Thread-safety
+   - Troubleshooting</p>
+<ol>
+<li>CouchDB Batch Operations</li>
+<li>Quick Start example</li>
+<li>API Reference</li>
+<li>Performance benchmarks</li>
+<li>Conflict handling</li>
+<li>Troubleshooting</li>
+</ol>
+<h3 id="item-7-git-commits-30min">Item 7: Git Commits (30min)<a class="headerlink" href="#item-7-git-commits-30min" title="Permanent link">&para;</a></h3>
+<p><strong>Commit 1: PostgreSQL</strong></p>
+<pre><code>feat(batch): Add PostgreSQL batch operations
+
+- PostgreSQLBatchInserter: 100 docs/batch (+50-100x)
+- Features: psycopg2.extras.execute_batch, thread-safe, auto-fallback
+- Tests: 15 unit + 5 integration PASSED
+- ENV: ENABLE_POSTGRES_BATCH_INSERT=false (default)
+</code></pre>
+<p><strong>Commit 2: CouchDB</strong></p>
+<pre><code>feat(batch): Add CouchDB batch operations
+
+- CouchDBBatchInserter: 100 docs/batch (+100-500x)
+- Features: _bulk_docs API, conflict handling, thread-safe, auto-fallback
+- Tests: 15 unit + 5 integration PASSED
+- ENV: ENABLE_COUCHDB_BATCH_INSERT=false (default)
+</code></pre>
+<p><strong>Commit 3: Documentation</strong></p>
+<pre><code>docs: Update documentation for v2.2.0
+
+- Extend BATCH_OPERATIONS.md (500+ lines)
+- Update CHANGELOG.md with v2.2.0
+- Mark Phase 2 complete in roadmap
+</code></pre>
+<h3 id="item-8-validation-30min">Item 8: Validation (30min)<a class="headerlink" href="#item-8-validation-30min" title="Permanent link">&para;</a></h3>
+<p><strong>Validation Checklist:</strong>
+- [ ] All 40 tests passing (100%)
+- [ ] PostgreSQL: +50-100x throughput validated
+- [ ] CouchDB: +100-500x throughput validated
+- [ ] ENV toggles working (disabled by default)
+- [ ] Backward compatibility preserved
+- [ ] Thread-safety tested (concurrent usage)
+- [ ] Fallback working on errors
+- [ ] Integration with Covina validated</p>
+<hr />
+<h2 id="success-criteria">🎯 Success Criteria<a class="headerlink" href="#success-criteria" title="Permanent link">&para;</a></h2>
+<h3 id="performance-targets">Performance Targets<a class="headerlink" href="#performance-targets" title="Permanent link">&para;</a></h3>
+<p><strong>PostgreSQL:</strong></p>
+<pre><code>Before: 100 documents = ~10 seconds (10 inserts/sec)
+After:  100 documents = ~0.1-0.2 seconds (500-1000 inserts/sec)
+Target: +50-100x throughput
+</code></pre>
+<p><strong>CouchDB:</strong></p>
+<pre><code>Before: 100 documents = ~50 seconds (2 inserts/sec)
+After:  100 documents = ~0.1-0.5 seconds (200-1000 inserts/sec)
+Target: +100-500x throughput
+</code></pre>
+<h3 id="quality-targets">Quality Targets<a class="headerlink" href="#quality-targets" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ 40 tests total (100% pass rate)</li>
+<li>✅ Thread-safe operations</li>
+<li>✅ Auto-fallback on errors</li>
+<li>✅ Context manager support</li>
+<li>✅ Stats tracking (get_stats())</li>
+<li>✅ ENV toggles (disabled by default)</li>
+<li>✅ Backward compatible (no breaking changes)</li>
+<li>✅ Documentation complete (500+ lines)</li>
+</ul>
+<hr />
+<h2 id="phase-2-vs-phase-1-comparison">📊 Phase 2 vs Phase 1 Comparison<a class="headerlink" href="#phase-2-vs-phase-1-comparison" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Phase 1</th>
+<th>Phase 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Databases</strong></td>
+<td>ChromaDB, Neo4j</td>
+<td>PostgreSQL, CouchDB</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Vector search, Graph</td>
+<td>Relational, Document</td>
+</tr>
+<tr>
+<td><strong>Technology</strong></td>
+<td>HTTP batch, Cypher UNWIND</td>
+<td>execute_batch, _bulk_docs</td>
+</tr>
+<tr>
+<td><strong>Batch Size</strong></td>
+<td>100, 1000</td>
+<td>100, 100</td>
+</tr>
+<tr>
+<td><strong>Speedup</strong></td>
+<td>80-187x</td>
+<td>50-500x</td>
+</tr>
+<tr>
+<td><strong>Tests</strong></td>
+<td>52 tests</td>
+<td>40 tests</td>
+</tr>
+<tr>
+<td><strong>Lines</strong></td>
+<td>3,000+</td>
+<td>~2,500 (estimate)</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>~6 hours</td>
+<td>3-4 hours (estimate)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="risk-analysis">🔄 Risk Analysis<a class="headerlink" href="#risk-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="low-risk">Low Risk ✅<a class="headerlink" href="#low-risk" title="Permanent link">&para;</a></h3>
+<p><strong>Reason:</strong> Following proven Phase 1 pattern</p>
+<ul>
+<li>Same class structure (ChromaBatchInserter → PostgreSQLBatchInserter)</li>
+<li>Same threading pattern (threading.Lock)</li>
+<li>Same context manager pattern (<strong>enter</strong>/<strong>exit</strong>)</li>
+<li>Same fallback pattern (_flush_unlocked)</li>
+<li>Same ENV configuration (ENABLE_<em>, </em>_BATCH_SIZE)</li>
+</ul>
+<p><strong>Mitigation:</strong>
+- Copy-paste Phase 1 structure
+- Adapt only database-specific code
+- Reuse test patterns from Phase 1</p>
+<h3 id="known-challenges">Known Challenges<a class="headerlink" href="#known-challenges" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>PostgreSQL Connection Management</strong></li>
+<li>Risk: Connection pool conflicts</li>
+<li>
+<p>Solution: Reuse backend.cursor (no new connections)</p>
+</li>
+<li>
+<p><strong>CouchDB Conflict Handling</strong></p>
+</li>
+<li>Risk: _bulk_docs returns mixed results</li>
+<li>
+<p>Solution: Check results array, log conflicts (idempotent)</p>
+</li>
+<li>
+<p><strong>Performance Validation</strong></p>
+</li>
+<li>Risk: Speedup less than expected</li>
+<li>Solution: Performance benchmarks in tests</li>
+</ol>
+<hr />
+<h2 id="timeline">📅 Timeline<a class="headerlink" href="#timeline" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Task</th>
+<th>Time</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Planning (THIS DOC)</td>
+<td>30min</td>
+<td>0.5h</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PostgreSQL Batch Inserter</td>
+<td>1.5h</td>
+<td>2.0h</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CouchDB Batch Inserter</td>
+<td>1.5h</td>
+<td>3.5h</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Testing (40 tests)</td>
+<td>1h</td>
+<td>4.5h</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Documentation</td>
+<td>45min</td>
+<td>5.25h</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Git Commits</td>
+<td>30min</td>
+<td>5.75h</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Validation</td>
+<td>30min</td>
+<td>6.25h</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total Estimate:</strong> 6.25 hours (vs 3-4h original → adjusted)</p>
+<p><strong>Note:</strong> Original estimate was too optimistic. Realistic: 6-7 hours.</p>
+<hr />
+<h2 id="planning-complete">✅ Planning Complete<a class="headerlink" href="#planning-complete" title="Permanent link">&para;</a></h2>
+<p><strong>Status:</strong> 📋 Planning DONE<br />
+<strong>Next Step:</strong> Item 3 (PostgreSQL Batch Inserter)<br />
+<strong>Estimated Time:</strong> 1.5 hours  </p>
+<p><strong>Ready to proceed?</strong> Yes! All information gathered, pattern proven, risks mitigated.</p>
+<hr />
+<p><strong>Author:</strong> UDS3 Framework Team<br />
+<strong>Date:</strong> 20. Oktober 2025<br />
+<strong>Version:</strong> UDS3 2.2.0 (planned)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

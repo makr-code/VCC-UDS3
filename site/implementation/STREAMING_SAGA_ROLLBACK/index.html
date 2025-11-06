@@ -1,0 +1,1601 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/implementation/STREAMING_SAGA_ROLLBACK/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Streaming Saga Rollback Strategy - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#streaming-saga-rollback-strategy" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href="../.." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Streaming Saga Rollback Strategy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problem-resume-kann-fehlschlagen" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Problem: Resume kann fehlschlagen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Problem: Resume kann fehlschlagen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#szenarien-wo-resume-nicht-funktioniert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szenarien, wo Resume NICHT funktioniert:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhanced-streaming-saga-mit-rollback-strategie" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Enhanced Streaming Saga mit Rollback-Strategie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Enhanced Streaming Saga mit Rollback-Strategie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-saga-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Saga State Machine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-resume-mit-retry-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Resume mit Retry-Limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-compensation-mit-rollback-garantie" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Compensation mit Rollback-Garantie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-integrity-verification-mit-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Integrity Verification mit Rollback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-complete-saga-mit-rollback-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Complete Saga mit Rollback-Flow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-integration-in-uds3_corepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Integration in uds3_core.py
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-monitoring-alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Monitoring &amp; Alerting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testing-rollback-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Testing Rollback Scenarios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zusammenfassung-rollback-strategie" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Zusammenfassung: Rollback-Strategie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ Zusammenfassung: Rollback-Strategie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wann-wird-rollback-ausgelost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wann wird Rollback ausgelöst?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#was-passiert-beim-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Was passiert beim Rollback?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#was-wenn-rollback-fehlschlagt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Was wenn Rollback fehlschlägt?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/implementation/STREAMING_SAGA_ROLLBACK.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="streaming-saga-rollback-strategy">Streaming Saga Rollback Strategy<a class="headerlink" href="#streaming-saga-rollback-strategy" title="Permanent link">&para;</a></h1>
+<p><strong>Datum:</strong> 2. Oktober 2025<br />
+<strong>Status:</strong> Critical Design Extension<br />
+<strong>Priority:</strong> HIGH</p>
+<hr />
+<h2 id="problem-resume-kann-fehlschlagen">🎯 Problem: Resume kann fehlschlagen<a class="headerlink" href="#problem-resume-kann-fehlschlagen" title="Permanent link">&para;</a></h2>
+<h3 id="szenarien-wo-resume-nicht-funktioniert">Szenarien, wo Resume NICHT funktioniert:<a class="headerlink" href="#szenarien-wo-resume-nicht-funktioniert" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Datei wurde zwischenzeitlich gelöscht/verschoben</strong></li>
+<li>Resume versucht fortzusetzen, aber Datei existiert nicht mehr</li>
+<li>
+<p>→ Saga muss Rollback durchführen</p>
+</li>
+<li>
+<p><strong>Chunk-Metadaten korrupt/verloren</strong></p>
+</li>
+<li>Resume kann nicht ermitteln, welche Chunks schon hochgeladen sind</li>
+<li>
+<p>→ Saga muss Rollback durchführen</p>
+</li>
+<li>
+<p><strong>Storage Backend nicht erreichbar</strong></p>
+</li>
+<li>Persistent Fehler, Resume macht keinen Sinn</li>
+<li>
+<p>→ Saga muss nach N Retries aufgeben und Rollback</p>
+</li>
+<li>
+<p><strong>Hash-Mismatch nach Resume</strong></p>
+</li>
+<li>Datei wurde während Pause modifiziert</li>
+<li>
+<p>→ Integrity Check schlägt fehl, Rollback erforderlich</p>
+</li>
+<li>
+<p><strong>Timeout/Resource Exhaustion</strong></p>
+</li>
+<li>Resume versucht, aber System-Ressourcen erschöpft</li>
+<li>
+<p>→ Graceful Rollback statt hängender Operation</p>
+</li>
+<li>
+<p><strong>Maximale Retry-Versuche erreicht</strong></p>
+</li>
+<li>Mehrere Resume-Versuche fehlgeschlagen</li>
+<li>→ Saga gibt auf, führt vollständigen Rollback durch</li>
+</ol>
+<hr />
+<h2 id="enhanced-streaming-saga-mit-rollback-strategie">🔄 Enhanced Streaming Saga mit Rollback-Strategie<a class="headerlink" href="#enhanced-streaming-saga-mit-rollback-strategie" title="Permanent link">&para;</a></h2>
+<h3 id="1-saga-state-machine">1. <strong>Saga State Machine</strong><a class="headerlink" href="#1-saga-state-machine" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class StreamingSagaState(Enum):
+    &quot;&quot;&quot;States für Streaming Saga mit Resume &amp; Rollback&quot;&quot;&quot;
+    INITIALIZED = &quot;initialized&quot;
+    UPLOADING = &quot;uploading&quot;
+    UPLOAD_PAUSED = &quot;upload_paused&quot;
+    UPLOAD_FAILED = &quot;upload_failed&quot;
+    RESUMING = &quot;resuming&quot;
+    RESUME_FAILED = &quot;resume_failed&quot;
+    VERIFYING = &quot;verifying&quot;
+    VERIFY_FAILED = &quot;verify_failed&quot;
+    PROCESSING = &quot;processing&quot;
+    COMPLETED = &quot;completed&quot;
+    ROLLING_BACK = &quot;rolling_back&quot;
+    ROLLED_BACK = &quot;rolled_back&quot;
+    ROLLBACK_FAILED = &quot;rollback_failed&quot;  # Critical!
+
+# State Transitions
+ALLOWED_TRANSITIONS = {
+    INITIALIZED: [UPLOADING, ROLLING_BACK],
+    UPLOADING: [UPLOAD_PAUSED, UPLOAD_FAILED, VERIFYING, ROLLING_BACK],
+    UPLOAD_PAUSED: [RESUMING, ROLLING_BACK],
+    UPLOAD_FAILED: [RESUMING, ROLLING_BACK],
+    RESUMING: [UPLOADING, RESUME_FAILED, ROLLING_BACK],
+    RESUME_FAILED: [RESUMING, ROLLING_BACK],  # Retry oder Aufgeben
+    VERIFYING: [VERIFY_FAILED, PROCESSING, ROLLING_BACK],
+    VERIFY_FAILED: [ROLLING_BACK],
+    PROCESSING: [COMPLETED, ROLLING_BACK],
+    ROLLING_BACK: [ROLLED_BACK, ROLLBACK_FAILED],
+    ROLLED_BACK: [],  # Terminal State
+    ROLLBACK_FAILED: []  # Terminal State (Critical!)
+}
+</code></pre>
+<hr />
+<h3 id="2-resume-mit-retry-limit">2. <strong>Resume mit Retry-Limit</strong><a class="headerlink" href="#2-resume-mit-retry-limit" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">@dataclass
+class StreamingSagaConfig:
+    &quot;&quot;&quot;Configuration für Streaming Saga&quot;&quot;&quot;
+    max_resume_attempts: int = 3
+    resume_retry_delay: float = 5.0  # seconds
+    hash_verification_enabled: bool = True
+    rollback_on_timeout: bool = True
+    timeout_seconds: float = 3600.0  # 1 hour
+    auto_rollback_on_failure: bool = True
+
+
+def chunked_upload_action_with_retry(
+    context: Dict[str, Any],
+    config: StreamingSagaConfig
+) -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;
+    Chunked Upload mit automatischem Retry und Rollback
+
+    Strategy:
+    1. Versuche Upload
+    2. Bei Fehler: Versuche Resume (max N mal)
+    3. Wenn Resume fehlschlägt: Trigger Rollback
+    4. Wenn Rollback fehlschlägt: Critical Error
+    &quot;&quot;&quot;
+    streaming_manager = context['streaming_manager']
+    file_path = context['file_path']
+    destination = context['destination']
+
+    retry_count = 0
+    operation_id = None
+    last_error = None
+
+    while retry_count &lt; config.max_resume_attempts:
+        try:
+            if operation_id is None:
+                # Initial upload attempt
+                logger.info(f&quot;Starting chunked upload (attempt {retry_count + 1})&quot;)
+                operation_id = streaming_manager.upload_large_file(
+                    file_path=file_path,
+                    destination=destination,
+                    progress_callback=context.get('progress_callback')
+                )
+            else:
+                # Resume attempt
+                logger.info(f&quot;Resuming upload (attempt {retry_count + 1})&quot;)
+                operation_id = streaming_manager.resume_upload(
+                    operation_id=operation_id,
+                    file_path=file_path,
+                    destination=destination,
+                    progress_callback=context.get('progress_callback')
+                )
+
+            # Check if completed
+            progress = streaming_manager.get_progress(operation_id)
+
+            if progress.is_complete:
+                logger.info(f&quot;Upload completed successfully&quot;)
+                return {
+                    'operation_id': operation_id,
+                    'uploaded_chunks': progress.chunk_count,
+                    'total_bytes': progress.total_bytes,
+                    'retry_count': retry_count
+                }
+            else:
+                # Upload incomplete but no exception
+                last_error = f&quot;Upload incomplete: {progress.progress_percent}%&quot;
+                logger.warning(last_error)
+                retry_count += 1
+                time.sleep(config.resume_retry_delay)
+
+        except FileNotFoundError as e:
+            # Critical: File was deleted/moved
+            logger.error(f&quot;File not found during upload: {e}&quot;)
+            raise SagaRollbackRequired(
+                reason=&quot;FILE_NOT_FOUND&quot;,
+                message=f&quot;Source file no longer exists: {file_path}&quot;,
+                operation_id=operation_id,
+                retry_count=retry_count
+            )
+
+        except ChunkMetadataCorruptError as e:
+            # Critical: Chunk tracking lost
+            logger.error(f&quot;Chunk metadata corrupt: {e}&quot;)
+            raise SagaRollbackRequired(
+                reason=&quot;METADATA_CORRUPT&quot;,
+                message=&quot;Cannot resume: chunk metadata corrupted&quot;,
+                operation_id=operation_id,
+                retry_count=retry_count
+            )
+
+        except StorageBackendError as e:
+            # Retry-able error
+            logger.warning(f&quot;Storage backend error: {e}&quot;)
+            last_error = str(e)
+            retry_count += 1
+            time.sleep(config.resume_retry_delay)
+
+        except Exception as e:
+            # Unknown error
+            logger.error(f&quot;Unexpected error during upload: {e}&quot;)
+            last_error = str(e)
+            retry_count += 1
+            time.sleep(config.resume_retry_delay)
+
+    # All retry attempts exhausted
+    logger.error(f&quot;Upload failed after {retry_count} attempts: {last_error}&quot;)
+    raise SagaRollbackRequired(
+        reason=&quot;MAX_RETRIES_EXCEEDED&quot;,
+        message=f&quot;Upload failed after {retry_count} resume attempts&quot;,
+        operation_id=operation_id,
+        retry_count=retry_count,
+        last_error=last_error
+    )
+
+
+class SagaRollbackRequired(Exception):
+    &quot;&quot;&quot;
+    Exception signalisiert: Saga muss Rollback durchführen
+
+    Raised when:
+    - Resume attempts exhausted
+    - Critical error (file not found, metadata corrupt)
+    - Timeout exceeded
+    - Integrity check failed
+    &quot;&quot;&quot;
+    def __init__(
+        self,
+        reason: str,
+        message: str,
+        operation_id: Optional[str] = None,
+        retry_count: int = 0,
+        last_error: Optional[str] = None
+    ):
+        self.reason = reason
+        self.message = message
+        self.operation_id = operation_id
+        self.retry_count = retry_count
+        self.last_error = last_error
+        super().__init__(message)
+</code></pre>
+<hr />
+<h3 id="3-compensation-mit-rollback-garantie">3. <strong>Compensation mit Rollback-Garantie</strong><a class="headerlink" href="#3-compensation-mit-rollback-garantie" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def cleanup_chunks_with_verification(context: Dict[str, Any]) -&gt; None:
+    &quot;&quot;&quot;
+    Kompensation: Löscht Chunks mit Verifikation
+
+    CRITICAL: Muss garantiert durchlaufen, auch bei Fehlern
+
+    Strategy:
+    1. Liste alle hochgeladenen Chunks
+    2. Lösche jeden Chunk einzeln
+    3. Verifiziere Löschung
+    4. Bei Fehler: Logge, aber fahre fort (Best Effort)
+    5. Am Ende: Status-Report
+    &quot;&quot;&quot;
+    streaming_manager = context['streaming_manager']
+    operation_id = context.get('operation_id')
+
+    if not operation_id:
+        logger.warning(&quot;No operation_id for cleanup - nothing to do&quot;)
+        return
+
+    try:
+        # Cancel operation if still running
+        if streaming_manager.cancel_operation(operation_id):
+            logger.info(f&quot;Cancelled streaming operation: {operation_id}&quot;)
+
+        # Get all uploaded chunks
+        chunks = streaming_manager.get_operation_chunks(operation_id)
+        total_chunks = len(chunks)
+        deleted_count = 0
+        failed_deletions = []
+
+        logger.info(f&quot;Starting cleanup: {total_chunks} chunks to delete&quot;)
+
+        # Delete each chunk with verification
+        for chunk in chunks:
+            try:
+                # Delete chunk from storage
+                delete_chunk(chunk.chunk_id)
+
+                # Verify deletion
+                if not chunk_exists(chunk.chunk_id):
+                    deleted_count += 1
+                    logger.debug(f&quot;Deleted chunk {chunk.chunk_index}: {chunk.chunk_id}&quot;)
+                else:
+                    failed_deletions.append(chunk.chunk_id)
+                    logger.warning(f&quot;Chunk deletion verification failed: {chunk.chunk_id}&quot;)
+
+            except Exception as e:
+                # Log but continue (Best Effort)
+                failed_deletions.append(chunk.chunk_id)
+                logger.error(f&quot;Failed to delete chunk {chunk.chunk_id}: {e}&quot;)
+
+        # Cleanup operation metadata
+        streaming_manager.cleanup_completed_operations(max_age_seconds=0)
+
+        # Status Report
+        success_rate = (deleted_count / total_chunks * 100) if total_chunks &gt; 0 else 100
+        logger.info(
+            f&quot;Cleanup complete: {deleted_count}/{total_chunks} chunks deleted &quot;
+            f&quot;({success_rate:.1f}% success)&quot;
+        )
+
+        if failed_deletions:
+            logger.warning(
+                f&quot;Failed to delete {len(failed_deletions)} chunks: {failed_deletions[:5]}...&quot;
+            )
+            # Store for manual cleanup
+            store_failed_deletions(operation_id, failed_deletions)
+
+    except Exception as e:
+        # Critical: Cleanup itself failed
+        logger.critical(f&quot;Cleanup failed catastrophically: {e}&quot;)
+        # Store for manual intervention
+        store_critical_cleanup_failure(operation_id, str(e))
+        raise CompensationError(f&quot;Chunk cleanup failed: {e}&quot;)
+
+
+def store_failed_deletions(operation_id: str, failed_chunks: List[str]) -&gt; None:
+    &quot;&quot;&quot;
+    Speichert fehlgeschlagene Löschungen für manuelle Bereinigung
+
+    Storage: Persistent log oder Database table
+    &quot;&quot;&quot;
+    cleanup_log = {
+        'timestamp': datetime.utcnow().isoformat(),
+        'operation_id': operation_id,
+        'failed_chunks': failed_chunks,
+        'status': 'PENDING_MANUAL_CLEANUP'
+    }
+
+    # Persist to database or log file
+    with open('failed_cleanups.json', 'a') as f:
+        f.write(json.dumps(cleanup_log) + '\n')
+
+    logger.info(f&quot;Stored {len(failed_chunks)} failed deletions for manual cleanup&quot;)
+</code></pre>
+<hr />
+<h3 id="4-integrity-verification-mit-rollback">4. <strong>Integrity Verification mit Rollback</strong><a class="headerlink" href="#4-integrity-verification-mit-rollback" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def verify_integrity_action(context: Dict[str, Any]) -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;
+    Verifiziert Datei-Integrität nach Upload/Resume
+
+    Checks:
+    1. Alle Chunks vorhanden
+    2. Chunk-Hashes korrekt
+    3. Gesamt-Hash stimmt mit Original überein
+    4. Datei-Größe korrekt
+
+    Bei Fehler: Trigger Rollback
+    &quot;&quot;&quot;
+    operation_id = context['operation_id']
+    file_path = context['file_path']
+    streaming_manager = context['streaming_manager']
+
+    # Get upload metadata
+    progress = streaming_manager.get_progress(operation_id)
+    chunks = streaming_manager.get_operation_chunks(operation_id)
+
+    # Check 1: All chunks present
+    expected_chunks = progress.chunk_count
+    actual_chunks = len(chunks)
+
+    if actual_chunks != expected_chunks:
+        logger.error(
+            f&quot;Chunk count mismatch: expected {expected_chunks}, got {actual_chunks}&quot;
+        )
+        raise SagaRollbackRequired(
+            reason=&quot;CHUNK_COUNT_MISMATCH&quot;,
+            message=f&quot;Missing chunks: {expected_chunks - actual_chunks}&quot;,
+            operation_id=operation_id
+        )
+
+    # Check 2: Calculate original file hash
+    original_hash = calculate_file_hash(file_path)
+
+    # Check 3: Calculate uploaded chunks hash
+    uploaded_hash = calculate_chunks_hash([c.chunk_hash for c in chunks])
+
+    if original_hash != uploaded_hash:
+        logger.error(
+            f&quot;Hash mismatch: original={original_hash}, uploaded={uploaded_hash}&quot;
+        )
+        raise SagaRollbackRequired(
+            reason=&quot;HASH_MISMATCH&quot;,
+            message=&quot;File was modified during upload or chunks corrupted&quot;,
+            operation_id=operation_id
+        )
+
+    # Check 4: File size
+    original_size = os.path.getsize(file_path)
+    uploaded_size = sum(c.chunk_size for c in chunks)
+
+    if original_size != uploaded_size:
+        logger.error(
+            f&quot;Size mismatch: original={original_size}, uploaded={uploaded_size}&quot;
+        )
+        raise SagaRollbackRequired(
+            reason=&quot;SIZE_MISMATCH&quot;,
+            message=f&quot;Size difference: {original_size - uploaded_size} bytes&quot;,
+            operation_id=operation_id
+        )
+
+    logger.info(&quot;✅ Integrity verification passed&quot;)
+    return {
+        'verified': True,
+        'hash': original_hash,
+        'size': original_size,
+        'chunk_count': actual_chunks
+    }
+</code></pre>
+<hr />
+<h3 id="5-complete-saga-mit-rollback-flow">5. <strong>Complete Saga mit Rollback-Flow</strong><a class="headerlink" href="#5-complete-saga-mit-rollback-flow" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def _build_streaming_upload_saga_definition(
+    context: Dict[str, Any],
+    config: StreamingSagaConfig
+) -&gt; SagaDefinition:
+    &quot;&quot;&quot;
+    Build complete streaming saga with rollback strategy
+
+    Rollback Triggers:
+    - Any SagaRollbackRequired exception
+    - Any unhandled exception after max retries
+    - Explicit cancel by user
+    - Timeout exceeded
+    &quot;&quot;&quot;
+
+    return SagaDefinition(
+        name=&quot;streaming_upload_with_rollback&quot;,
+        steps=[
+            # Step 1: Validate (no compensation needed)
+            SagaStep(
+                name=&quot;validate_file&quot;,
+                action=validate_file_action,
+                compensation=None
+            ),
+
+            # Step 2: Start Streaming
+            SagaStep(
+                name=&quot;start_streaming&quot;,
+                action=start_streaming_action,
+                compensation=lambda ctx: cancel_streaming(ctx['operation_id'])
+            ),
+
+            # Step 3: Chunked Upload mit Retry &amp; Rollback
+            SagaStep(
+                name=&quot;chunked_upload_with_retry&quot;,
+                action=lambda ctx: chunked_upload_action_with_retry(ctx, config),
+                compensation=cleanup_chunks_with_verification
+            ),
+
+            # Step 4: Verify Integrity (critical check)
+            SagaStep(
+                name=&quot;verify_integrity&quot;,
+                action=verify_integrity_action,
+                compensation=None  # Readonly, but triggers rollback on failure
+            ),
+
+            # Step 5: Security &amp; Identity
+            SagaStep(
+                name=&quot;process_security&quot;,
+                action=process_security_action,
+                compensation=remove_security_record
+            ),
+
+            # Step 6: Vector DB Streaming
+            SagaStep(
+                name=&quot;stream_to_vector_db&quot;,
+                action=lambda ctx: stream_to_vector_db_with_retry(ctx, config),
+                compensation=remove_from_vector_db
+            ),
+
+            # Step 7: Graph DB
+            SagaStep(
+                name=&quot;insert_graph&quot;,
+                action=insert_graph_action,
+                compensation=remove_from_graph
+            ),
+
+            # Step 8: Relational DB
+            SagaStep(
+                name=&quot;insert_relational&quot;,
+                action=insert_relational_action,
+                compensation=remove_from_relational
+            ),
+
+            # Step 9: Finalize
+            SagaStep(
+                name=&quot;finalize&quot;,
+                action=finalize_action,
+                compensation=None
+            )
+        ]
+    )
+
+
+def execute_streaming_saga_with_rollback(
+    definition: SagaDefinition,
+    context: Dict[str, Any],
+    config: StreamingSagaConfig
+) -&gt; SagaExecutionResult:
+    &quot;&quot;&quot;
+    Execute streaming saga with automatic rollback on failure
+
+    Rollback Strategy:
+    1. Catch SagaRollbackRequired exception
+    2. Execute compensation chain in reverse
+    3. Verify each compensation succeeded
+    4. Report rollback status
+    &quot;&quot;&quot;
+    saga_id = f&quot;saga-{uuid.uuid4().hex[:12]}&quot;
+    errors = []
+    compensation_errors = []
+    status = SagaStatus.RUNNING
+    executed_steps = []
+
+    try:
+        # Execute saga steps
+        for step in definition.steps:
+            logger.info(f&quot;Executing saga step: {step.name}&quot;)
+
+            try:
+                result = step.action(context)
+                if result:
+                    context.update(result)
+                executed_steps.append(step)
+
+            except SagaRollbackRequired as e:
+                # Explicit rollback request
+                logger.warning(
+                    f&quot;Rollback required at step {step.name}: &quot;
+                    f&quot;{e.reason} - {e.message}&quot;
+                )
+                errors.append(f&quot;{step.name}: {e.message}&quot;)
+                status = SagaStatus.COMPENSATING
+
+                # Perform rollback
+                compensation_errors = perform_compensation(
+                    executed_steps, context, config
+                )
+
+                if compensation_errors:
+                    status = SagaStatus.COMPENSATION_FAILED
+                else:
+                    status = SagaStatus.COMPENSATED
+
+                break
+
+            except Exception as e:
+                # Unexpected error
+                logger.error(f&quot;Step {step.name} failed unexpectedly: {e}&quot;)
+                errors.append(f&quot;{step.name}: {str(e)}&quot;)
+                status = SagaStatus.COMPENSATING
+
+                # Perform rollback
+                compensation_errors = perform_compensation(
+                    executed_steps, context, config
+                )
+
+                if compensation_errors:
+                    status = SagaStatus.COMPENSATION_FAILED
+                else:
+                    status = SagaStatus.COMPENSATED
+
+                break
+
+        # All steps completed successfully
+        if not errors:
+            status = SagaStatus.COMPLETED
+            logger.info(f&quot;Saga {saga_id} completed successfully&quot;)
+
+    except Exception as e:
+        # Critical saga execution error
+        logger.critical(f&quot;Saga execution failed catastrophically: {e}&quot;)
+        errors.append(f&quot;CRITICAL: {str(e)}&quot;)
+        status = SagaStatus.FAILED
+
+    return SagaExecutionResult(
+        saga_id=saga_id,
+        status=status,
+        context=context,
+        errors=errors,
+        compensation_errors=compensation_errors
+    )
+
+
+def perform_compensation(
+    executed_steps: List[SagaStep],
+    context: Dict[str, Any],
+    config: StreamingSagaConfig
+) -&gt; List[str]:
+    &quot;&quot;&quot;
+    Perform compensation (rollback) for executed steps
+
+    Strategy:
+    1. Reverse order (LIFO)
+    2. Execute each compensation
+    3. Log success/failure
+    4. Continue even if compensation fails (Best Effort)
+    5. Return list of compensation errors
+    &quot;&quot;&quot;
+    compensation_errors = []
+
+    logger.info(f&quot;Starting compensation for {len(executed_steps)} steps&quot;)
+
+    for step in reversed(executed_steps):
+        if step.compensation is None:
+            logger.debug(f&quot;Step {step.name}: No compensation needed&quot;)
+            continue
+
+        try:
+            logger.info(f&quot;Compensating step: {step.name}&quot;)
+            step.compensation(context)
+            logger.info(f&quot;✅ Compensation successful: {step.name}&quot;)
+
+        except CompensationError as e:
+            error_msg = f&quot;Compensation failed for {step.name}: {e}&quot;
+            logger.error(error_msg)
+            compensation_errors.append(error_msg)
+            # Continue with other compensations (Best Effort)
+
+        except Exception as e:
+            error_msg = f&quot;Compensation crashed for {step.name}: {e}&quot;
+            logger.critical(error_msg)
+            compensation_errors.append(error_msg)
+            # Continue (Best Effort)
+
+    if compensation_errors:
+        logger.error(
+            f&quot;Compensation completed with {len(compensation_errors)} errors&quot;
+        )
+    else:
+        logger.info(&quot;✅ All compensations successful&quot;)
+
+    return compensation_errors
+</code></pre>
+<hr />
+<h2 id="6-integration-in-uds3_corepy">6. <strong>Integration in uds3_core.py</strong><a class="headerlink" href="#6-integration-in-uds3_corepy" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">class UnifiedDatabaseStrategy:
+
+    def create_document_streaming(
+        self,
+        file_path: str,
+        content: str,
+        chunks: List[str],
+        progress_callback: Optional[Callable] = None,
+        max_resume_attempts: int = 3,
+        **metadata
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Erstellt Dokument mit Streaming und automatischem Rollback
+
+        Rollback wird ausgelöst bei:
+        - Resume fehlschlägt nach N Versuchen
+        - Integrity Check schlägt fehl
+        - Kritische Fehler (File not found, etc.)
+        - Timeout überschritten
+
+        Args:
+            file_path: Pfad zur Datei
+            content: Text-Inhalt
+            chunks: Text-Chunks
+            progress_callback: Progress-Callback
+            max_resume_attempts: Maximale Resume-Versuche (default: 3)
+            **metadata: Dokument-Metadaten
+
+        Returns:
+            Dict mit Ergebnis und rollback_info wenn applicable
+        &quot;&quot;&quot;
+        # Config
+        config = StreamingSagaConfig(
+            max_resume_attempts=max_resume_attempts,
+            resume_retry_delay=5.0,
+            hash_verification_enabled=True,
+            rollback_on_timeout=True,
+            auto_rollback_on_failure=True
+        )
+
+        # Context
+        context = {
+            'file_path': file_path,
+            'content': content,
+            'chunks': chunks,
+            'metadata': metadata,
+            'streaming_manager': self.streaming_manager,
+            'progress_callback': progress_callback,
+            'security_level': metadata.get('security_level'),
+            'embedding_function': self._get_embedding_function(),
+            'create_result': {
+                'success': False,
+                'issues': [],
+                'rollback_performed': False
+            }
+        }
+
+        # Build saga
+        saga_definition = self._build_streaming_upload_saga_definition(
+            context, config
+        )
+
+        # Execute with automatic rollback
+        saga_result = execute_streaming_saga_with_rollback(
+            definition=saga_definition,
+            context=context,
+            config=config
+        )
+
+        # Build result
+        result = {
+            'success': saga_result.status == SagaStatus.COMPLETED,
+            'saga_id': saga_result.saga_id,
+            'status': saga_result.status.value,
+            'operation_id': context.get('operation_id'),
+            'document_id': context.get('document_id'),
+            'errors': saga_result.errors,
+            'compensation_errors': saga_result.compensation_errors
+        }
+
+        # Rollback info
+        if saga_result.status in [SagaStatus.COMPENSATED, SagaStatus.COMPENSATION_FAILED]:
+            result['rollback_performed'] = True
+            result['rollback_status'] = (
+                'success' if saga_result.status == SagaStatus.COMPENSATED 
+                else 'partial_failure'
+            )
+
+            if saga_result.compensation_errors:
+                result['rollback_warnings'] = saga_result.compensation_errors
+                # Store for manual cleanup
+                self._store_rollback_failures(saga_result)
+
+        return result
+
+    def _store_rollback_failures(self, saga_result: SagaExecutionResult) -&gt; None:
+        &quot;&quot;&quot;
+        Speichert fehlgeschlagene Rollbacks für manuelle Intervention
+        &quot;&quot;&quot;
+        failure_record = {
+            'timestamp': datetime.utcnow().isoformat(),
+            'saga_id': saga_result.saga_id,
+            'errors': saga_result.errors,
+            'compensation_errors': saga_result.compensation_errors,
+            'context_snapshot': self._sanitize_context(saga_result.context),
+            'status': 'REQUIRES_MANUAL_CLEANUP'
+        }
+
+        # Persist to database or dedicated log
+        logger.critical(
+            f&quot;Rollback failures detected - manual cleanup required: &quot;
+            f&quot;{saga_result.saga_id}&quot;
+        )
+
+        # Store in dedicated table/file
+        with open('rollback_failures.json', 'a') as f:
+            f.write(json.dumps(failure_record) + '\n')
+</code></pre>
+<hr />
+<h2 id="7-monitoring-alerting">7. <strong>Monitoring &amp; Alerting</strong><a class="headerlink" href="#7-monitoring-alerting" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">class StreamingSagaMonitor:
+    &quot;&quot;&quot;
+    Monitoring für Streaming Sagas mit Rollback-Tracking
+    &quot;&quot;&quot;
+
+    def __init__(self):
+        self.active_sagas = {}
+        self.completed_sagas = {}
+        self.failed_sagas = {}
+        self.rollback_stats = {
+            'total_rollbacks': 0,
+            'successful_rollbacks': 0,
+            'failed_rollbacks': 0,
+            'pending_manual_cleanup': 0
+        }
+
+    def track_saga(self, saga_id: str, context: Dict[str, Any]):
+        &quot;&quot;&quot;Track active saga&quot;&quot;&quot;
+        self.active_sagas[saga_id] = {
+            'started_at': datetime.utcnow(),
+            'operation_id': context.get('operation_id'),
+            'file_path': context.get('file_path'),
+            'status': 'RUNNING'
+        }
+
+    def saga_completed(self, saga_id: str, result: SagaExecutionResult):
+        &quot;&quot;&quot;Saga completed successfully&quot;&quot;&quot;
+        if saga_id in self.active_sagas:
+            self.completed_sagas[saga_id] = {
+                **self.active_sagas[saga_id],
+                'completed_at': datetime.utcnow(),
+                'status': result.status.value
+            }
+            del self.active_sagas[saga_id]
+
+    def saga_rolled_back(
+        self,
+        saga_id: str,
+        result: SagaExecutionResult,
+        compensation_success: bool
+    ):
+        &quot;&quot;&quot;Saga was rolled back&quot;&quot;&quot;
+        self.rollback_stats['total_rollbacks'] += 1
+
+        if compensation_success:
+            self.rollback_stats['successful_rollbacks'] += 1
+        else:
+            self.rollback_stats['failed_rollbacks'] += 1
+            self.rollback_stats['pending_manual_cleanup'] += 1
+
+            # Alert for failed rollback
+            self.alert_rollback_failure(saga_id, result)
+
+        if saga_id in self.active_sagas:
+            self.failed_sagas[saga_id] = {
+                **self.active_sagas[saga_id],
+                'failed_at': datetime.utcnow(),
+                'rollback_status': 'success' if compensation_success else 'failed',
+                'errors': result.errors,
+                'compensation_errors': result.compensation_errors
+            }
+            del self.active_sagas[saga_id]
+
+    def alert_rollback_failure(self, saga_id: str, result: SagaExecutionResult):
+        &quot;&quot;&quot;Send alert for critical rollback failure&quot;&quot;&quot;
+        alert = {
+            'severity': 'CRITICAL',
+            'type': 'ROLLBACK_FAILURE',
+            'saga_id': saga_id,
+            'message': f&quot;Saga {saga_id} rollback failed - manual cleanup required&quot;,
+            'errors': result.errors,
+            'compensation_errors': result.compensation_errors,
+            'timestamp': datetime.utcnow().isoformat()
+        }
+
+        # Send to monitoring system (Prometheus, Grafana, etc.)
+        logger.critical(json.dumps(alert))
+
+        # Could also: Send email, SMS, PagerDuty, etc.
+
+    def get_stats(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Get monitoring statistics&quot;&quot;&quot;
+        return {
+            'active_sagas': len(self.active_sagas),
+            'completed_sagas': len(self.completed_sagas),
+            'failed_sagas': len(self.failed_sagas),
+            'rollback_stats': self.rollback_stats,
+            'success_rate': self._calculate_success_rate()
+        }
+
+    def _calculate_success_rate(self) -&gt; float:
+        &quot;&quot;&quot;Calculate saga success rate&quot;&quot;&quot;
+        total = len(self.completed_sagas) + len(self.failed_sagas)
+        if total == 0:
+            return 100.0
+        return (len(self.completed_sagas) / total) * 100.0
+</code></pre>
+<hr />
+<h2 id="8-testing-rollback-scenarios">8. <strong>Testing Rollback Scenarios</strong><a class="headerlink" href="#8-testing-rollback-scenarios" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python"># Test: Resume fehlschlägt nach 3 Versuchen
+def test_resume_fails_triggers_rollback():
+    &quot;&quot;&quot;
+    Test: Resume schlägt fehl → Automatischer Rollback
+    &quot;&quot;&quot;
+    manager = create_streaming_manager()
+
+    # Create test file
+    test_file = create_test_file(100)  # 100 MB
+
+    # Mock: Resume schlägt immer fehl
+    with mock.patch.object(
+        manager, 
+        'resume_upload', 
+        side_effect=StorageBackendError(&quot;Backend unavailable&quot;)
+    ):
+        # Attempt create_document_streaming
+        result = uds.create_document_streaming(
+            file_path=test_file,
+            content=&quot;&quot;,
+            chunks=[],
+            max_resume_attempts=3
+        )
+
+        # Verify rollback was performed
+        assert result['success'] is False
+        assert result['rollback_performed'] is True
+        assert result['rollback_status'] == 'success'
+        assert 'MAX_RETRIES_EXCEEDED' in str(result['errors'])
+
+        # Verify chunks were deleted
+        chunks = manager.get_operation_chunks(result['operation_id'])
+        assert len(chunks) == 0
+
+
+# Test: Hash Mismatch triggert Rollback
+def test_hash_mismatch_triggers_rollback():
+    &quot;&quot;&quot;
+    Test: Datei wurde während Upload modifiziert → Rollback
+    &quot;&quot;&quot;
+    # Create test file
+    test_file = create_test_file(50)  # 50 MB
+
+    # Mock: Modify file during upload
+    def modify_file_during_upload(progress):
+        if progress.progress_percent &gt; 50:
+            # Modify file
+            with open(test_file, 'a') as f:
+                f.write(b'MODIFIED')
+
+    result = uds.create_document_streaming(
+        file_path=test_file,
+        content=&quot;&quot;,
+        chunks=[],
+        progress_callback=modify_file_during_upload
+    )
+
+    # Verify rollback
+    assert result['success'] is False
+    assert result['rollback_performed'] is True
+    assert 'HASH_MISMATCH' in str(result['errors'])
+
+
+# Test: Rollback selbst schlägt fehl
+def test_rollback_failure_is_logged():
+    &quot;&quot;&quot;
+    Test: Rollback schlägt fehl → Critical Log Entry
+    &quot;&quot;&quot;
+    # Mock: Compensation schlägt fehl
+    with mock.patch(
+        'cleanup_chunks_with_verification',
+        side_effect=CompensationError(&quot;Storage unreachable&quot;)
+    ):
+        result = uds.create_document_streaming(
+            file_path=test_file,
+            content=&quot;&quot;,
+            chunks=[]
+        )
+
+        assert result['rollback_performed'] is True
+        assert result['rollback_status'] == 'partial_failure'
+        assert len(result['compensation_errors']) &gt; 0
+
+        # Verify critical log entry
+        assert os.path.exists('rollback_failures.json')
+</code></pre>
+<hr />
+<h2 id="zusammenfassung-rollback-strategie">✅ Zusammenfassung: Rollback-Strategie<a class="headerlink" href="#zusammenfassung-rollback-strategie" title="Permanent link">&para;</a></h2>
+<h3 id="wann-wird-rollback-ausgelost">Wann wird Rollback ausgelöst?<a class="headerlink" href="#wann-wird-rollback-ausgelost" title="Permanent link">&para;</a></h3>
+<ol>
+<li>✅ <strong>Resume fehlschlägt</strong> nach N Versuchen (default: 3)</li>
+<li>✅ <strong>Integrity Check schlägt fehl</strong> (Hash/Size Mismatch)</li>
+<li>✅ <strong>Datei nicht gefunden</strong> (wurde gelöscht/verschoben)</li>
+<li>✅ <strong>Chunk-Metadaten korrupt</strong> (kann nicht resume)</li>
+<li>✅ <strong>Timeout</strong> überschritten</li>
+<li>✅ <strong>Kritische Fehler</strong> in beliebigem Saga Step</li>
+</ol>
+<h3 id="was-passiert-beim-rollback">Was passiert beim Rollback?<a class="headerlink" href="#was-passiert-beim-rollback" title="Permanent link">&para;</a></h3>
+<ol>
+<li>✅ <strong>Cancel</strong> laufende Streaming-Operation</li>
+<li>✅ <strong>Delete</strong> alle hochgeladenen Chunks (verifiziert)</li>
+<li>✅ <strong>Remove</strong> Security Records</li>
+<li>✅ <strong>Delete</strong> Vector DB Embeddings</li>
+<li>✅ <strong>Remove</strong> Graph DB Entries</li>
+<li>✅ <strong>Delete</strong> Relational DB Metadata</li>
+<li>✅ <strong>Log</strong> Rollback-Status für Monitoring</li>
+</ol>
+<h3 id="was-wenn-rollback-fehlschlagt">Was wenn Rollback fehlschlägt?<a class="headerlink" href="#was-wenn-rollback-fehlschlagt" title="Permanent link">&para;</a></h3>
+<ol>
+<li>✅ <strong>Best Effort:</strong> Fahre mit anderen Compensations fort</li>
+<li>✅ <strong>Log Critical Error</strong> für manuelle Intervention</li>
+<li>✅ <strong>Store Failed Deletions</strong> in <code>rollback_failures.json</code></li>
+<li>✅ <strong>Alert Monitoring System</strong> (Prometheus, etc.)</li>
+<li>✅ <strong>Return Partial Success</strong> mit Warnings</li>
+</ol>
+<h3 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link">&para;</a></h3>
+<ol>
+<li>✅ <strong>Active Sagas</strong> - Laufende Operationen</li>
+<li>✅ <strong>Rollback Rate</strong> - Erfolgsquote</li>
+<li>✅ <strong>Failed Rollbacks</strong> - Manuelle Cleanup nötig</li>
+<li>✅ <strong>Success Rate</strong> - Gesamtübersicht</li>
+<li>✅ <strong>Alerts</strong> - Critical Failures</li>
+</ol>
+<hr />
+<p><strong>Status:</strong> Design Complete ✅<br />
+<strong>Implementation Priority:</strong> CRITICAL<br />
+<strong>Next Step:</strong> Implement in uds3_saga_step_builders.py</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

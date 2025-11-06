@@ -1,0 +1,674 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/UDS3_Konsistenz_ToDo/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>UDS3 Konsistenzanalyse und ToDo-Plan - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uds3-konsistenzanalyse-und-todo-plan" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UDS3 Konsistenzanalyse und ToDo-Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-abgleich-mit-dem-konzept" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Abgleich mit dem Konzept
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Abgleich mit dem Konzept">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-polyglot-persistence-ansatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Polyglot-Persistence-Ansatz
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-uuidaktenzeichen-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 UUID/Aktenzeichen-Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-sagaverteilte-transaktionen" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 SAGA/Verteilte Transaktionen
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-priorisierte-todo-liste-fur-eine-konsistente-erweiterung" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Priorisierte ToDo-Liste für eine konsistente Erweiterung
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-empfohlene-folgeaktionen" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Empfohlene Folgeaktionen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-umsetzungsstand-28092025" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Umsetzungsstand (28.09.2025)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-kurzfristige-arbeitsplanung-kw-40412025" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Kurzfristige Arbeitsplanung (KW 40–41/2025)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/UDS3_Konsistenz_ToDo.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="uds3-konsistenzanalyse-und-todo-plan">UDS3 Konsistenzanalyse und ToDo-Plan<a class="headerlink" href="#uds3-konsistenzanalyse-und-todo-plan" title="Permanent link">&para;</a></h1>
+<p><em>Stand: 28.09.2025</em></p>
+<p>Dieses Dokument fasst den aktuellen Umsetzungsstand der UDS3-Module (<code>uds3_core.py</code> u.a.) im Hinblick auf das "Konzept zur datenbankübergreifenden Konsistenz" zusammen und leitet priorisierte ToDos für eine konsistente Erweiterung ab.</p>
+<h2 id="1-abgleich-mit-dem-konzept">1. Abgleich mit dem Konzept<a class="headerlink" href="#1-abgleich-mit-dem-konzept" title="Permanent link">&para;</a></h2>
+<h3 id="11-polyglot-persistence-ansatz">1.1 Polyglot-Persistence-Ansatz<a class="headerlink" href="#11-polyglot-persistence-ansatz" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Status im Code</strong>: <code>UnifiedDatabaseStrategy</code> beschreibt Rollen, Schemas und CRUD-Strategien für Vector-, Graph-, Relational- und File-Storage-Datenbanken. Über <code>SagaDatabaseCRUD</code> werden reale Adapter aus <code>database/</code> via <code>DatabaseManager</code> angebunden; fehlende optionale Backends (Vector/Graph/File) werden als <code>skipped</code> markiert und sauber kompensiert. Die relationale Persistenz (<code>documents_metadata</code>) ist standardmäßig aktiv, da <code>config</code> seit 27.09.2025 das SQLite-Backend einschaltet. Die Cross-DB-Mapping-Struktur (<code>self.document_mapping</code>) synchronisiert Backend-IDs in den Identity-Service.</li>
+<li><strong>Gap zum Konzept</strong>: Es fehlen programmatische Guardrails, um die Rollenverteilung (kein Content im Graph usw.) strikt durchzusetzen, sowie weitergehende Governance-Regeln und persistente Konsistenzmetriken. Dokument-Mappings werden derzeit nur im Identity-Service abgelegt; ein separates Reporting-Backend steht noch aus.</li>
+</ul>
+<h3 id="12-uuidaktenzeichen-mapping">1.2 UUID/Aktenzeichen-Mapping<a class="headerlink" href="#12-uuidaktenzeichen-mapping" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Status im Code</strong>: Sicherheitsmanager (<code>uds3_security.py</code>) generiert UUID-basierte <code>document_id</code>s. Fallback in <code>UnifiedDatabaseStrategy._generate_document_id</code> erzeugt jedoch Hash-basierte IDs. Eine persistente Mapping-Tabelle existiert nicht; <code>document_mapping</code> wird nicht gespeichert. Aktenzeichen werden nirgendwo extrahiert oder geführt.</li>
+<li><strong>Gap zum Konzept</strong>: Das duale Identitätskonzept (UUID ↔ Aktenzeichen) fehlt vollständig. Die relationale Schema-Definition enthält keine Tabelle <code>identities</code> bzw. <code>aktenzeichen_mapping</code>. Es gibt keine APIs, um Aktenzeichen zu registrieren oder abzurufen.</li>
+</ul>
+<h3 id="13-sagaverteilte-transaktionen">1.3 SAGA/Verteilte Transaktionen<a class="headerlink" href="#13-sagaverteilte-transaktionen" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Status im Code</strong>: <code>uds3_saga_orchestrator.py</code> stellt einen persistenten Saga-Orchestrator mit Event-Logging und Kompensationslogik bereit. <code>create_secure_document</code>, <code>update_secure_document</code> und <code>delete_secure_document</code> nutzen definierte Schrittfolgen (Security &amp; Identity, Vector, Graph, Relational, File, Identity-Mapping, Validation). Aktionen und Kompensationen verwenden <code>SagaDatabaseCRUD</code>; optionale Backends werden als <code>skipped</code> dokumentiert, Validation &amp; Cleanup berücksichtigen diesen Status. Bei fehlendem Orchestrator greift eine lokale Saga-Engine identischer Struktur. Details siehe <code>docs/SAGA_PATTERN_IMPLEMENTATION.md</code>.</li>
+<li><strong>Gap zum Konzept</strong>: Erweiterte Observability (Audit-Pipeline, Retry-Strategien, Metriken) und proaktive Governance-Regeln für Saga-Abhängigkeiten stehen noch aus.</li>
+</ul>
+<h2 id="2-priorisierte-todo-liste-fur-eine-konsistente-erweiterung">2. Priorisierte ToDo-Liste für eine konsistente Erweiterung<a class="headerlink" href="#2-priorisierte-todo-liste-fur-eine-konsistente-erweiterung" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Prio</th>
+<th>Aufgabe</th>
+<th>Beschreibung &amp; Deliverables</th>
+<th>Betroffene Module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[x] <strong>Identity Service &amp; Mapping-Tabelle</strong></td>
+<td>Neues Modul <code>uds3_identity_service.py</code> implementieren. Relationale Tabelle <code>administrative_identities (uuid PRIMARY KEY, aktenzeichen TEXT, status, created_at, updated_at)</code> anlegen. Service-API für <code>create_uuid()</code>, <code>register_aktenzeichen()</code>, <code>resolve_by_uuid()/aktenzeichen</code>. Migration der bisherigen <code>document_id</code>-Erzeugung auf diesen Service.</td>
+<td><code>uds3_core.py</code>, <code>uds3_security.py</code>, <code>database/database_api_*</code>, neuer Service</td>
+</tr>
+<tr>
+<td>1</td>
+<td>[x] <strong>Relationale Schema-Anpassung</strong></td>
+<td><code>UnifiedDatabaseStrategy._create_relational_schema</code> erweitern um Mapping-Tabelle, Audit-Log und Foreign Keys. Synchronisation mit <code>database/database_api_postgresql.py</code> sicherstellen.</td>
+<td><code>uds3_core.py</code>, <code>database/database_api_postgresql.py</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td>[x] <strong>Aktenzeichen-Extraction in Ingestion</strong></td>
+<td><code>CoreIngestHandler</code> ruft jetzt <code>ingestion.services.aktenzeichen</code> auf, erkennt Aktenzeichen in Analyse-/Preview-Texten, generiert UUID-basierte Fallbacks und registriert alles beim Identity Service. Metadaten werden angereichert, Identity-Payloads persistiert; Regressionstests (<code>tests/test_core_ingest_aktenzeichen.py</code>) sichern beide Pfade ab.</td>
+<td><code>ingestion_core.py</code>, <code>ingestion/services/aktenzeichen.py</code>, Identity Service</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[x] <strong>Persistentes Cross-DB-Mapping</strong></td>
+<td><code>document_mapping</code> als <code>administrative_identities</code>-Erweiterung persistieren (Spalten für vector_id, graph_id, relational_id, file_storage_id). Update-Methoden in CRUD-Flows einbauen.</td>
+<td><code>uds3_core.py</code>, relational DB</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[x] <strong>Saga-Orchestrator Basis</strong></td>
+<td>Neues Modul <code>uds3_saga_orchestrator.py</code> erstellen. Einbettung in vorhandenen Core-Orchestrator (ggf. Integration mit <code>uds3_follow_up_orchestrator</code>). Funktionen: Saga-Definition, State Store (relationale Tabelle <code>uds3_sagas</code>), Kompensations-Callbacks.</td>
+<td>Neuer Orchestrator, <code>uds3_core.py</code>, <code>database/</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>[x] <strong>Saga-Definition "NeuesDokumentErfassen"</strong></td>
+<td>Schrittfolge implementiert (Security/Identity → Vector → Graph → Relational → File → Identity-Mapping → Validation) und mit <code>SagaDatabaseCRUD</code> an echte Adapter angebunden. Optional fehlende Backends werden als <code>skipped</code> markiert; Kompensationen berücksichtigen den Status. Tests (Dummy-Orchestrator &amp; CRUD-Fakes) vorhanden.</td>
+<td><code>uds3_saga_orchestrator.py</code>, <code>uds3_core.py</code>, <code>database/</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>[x] <strong>Saga-Definitionen für Update/Delete</strong></td>
+<td>Neue Sagas <code>update_secure_document</code> und <code>delete_secure_document</code> inklusive Kompensationen und Identity-Hand-off implementiert; orchestratorische Pfade laufen über <code>UDS3SagaOrchestrator</code>, Tests (<code>tests/test_saga_orchestrator.py</code>) prüfen Update- und Delete-Flows mit Stub-CRUD.</td>
+<td><code>uds3_core.py</code>, <code>tests/test_saga_orchestrator.py</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Adapter-Härtung &amp; Governance Enforcement</strong></td>
+<td>1) Adapter-Konfiguration zentralisieren (<code>database_manager</code>) und nur freigegebene Operationen exposed; 2) Validatoren implementieren, die Payloads vor Persistierung prüfen (keine Volltexte im Graph, keine Binärdaten im Relational-Store); 3) Governance-Checks in <code>UnifiedDatabaseStrategy</code> verankern (Warnings → Exceptions). <strong>Status:</strong> Basis-Governance via <code>SagaDatabaseCRUD</code> &amp; <code>AdapterGovernance</code> aktiv, Observability protokolliert Governance-Blocks; automatisierte Payload-Tests folgen.</td>
+<td><code>uds3_core.py</code>, <code>database/database_manager.py</code>, Adapter</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Audit &amp; Monitoring</strong></td>
+<td>1) Relationale Tabellen <code>uds3_audit_log</code>, <code>uds3_saga_metrics</code> entwerfen (Status: Schema Draft in Arbeit, Anforderungen gesammelt); 2) Saga-Orchestrator mit strukturiertem Logging + korrelierten Trace-IDs ausstatten; 3) Exportpfad in bestehende Monitoring-Pipeline (OpenTelemetry/ELK) vorbereiten.</td>
+<td>Neuer Audit-Mechanismus, <code>uds3_saga_orchestrator.py</code>, Observability</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Test- &amp; Validierungs-Setup</strong></td>
+<td>1) End-to-End-Tests für Identity ↔ Saga ↔ Adapter-Kette (inkl. Kompensation) erstellen; 2) Contract-Tests für jeden Adapter schreiben; 3) CI-Workflow um Schema-Diff-Check &amp; Smoke-Test (<code>pytest -m smoke</code>) erweitern.</td>
+<td><code>tests/</code>, CI-Pipeline</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-empfohlene-folgeaktionen">3. Empfohlene Folgeaktionen<a class="headerlink" href="#3-empfohlene-folgeaktionen" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Architektur-Review</strong> mit Stakeholdern (IT, Fachbereich, Rechtsabteilung) zur Abnahme der Saga-Flows und Governance-Regeln.</li>
+<li><strong>Roadmap-Planung</strong>: Aufgaben in Sprints priorisieren (zuerst Identity/Mappings, dann Saga-Orchestrator, anschließend Adapter-Härtung).</li>
+<li><strong>Dokumentation &amp; Schulung</strong>: Bedien- und Betriebsdokumente für Identity-Service und SAGA-Orchestrator bereitstellen; Übergabe an DevOps/Operations.</li>
+</ul>
+<h2 id="4-umsetzungsstand-28092025">4. Umsetzungsstand (28.09.2025)<a class="headerlink" href="#4-umsetzungsstand-28092025" title="Permanent link">&para;</a></h2>
+<ul>
+<li>✅ Identity-Service (<code>uds3_identity_service.py</code>) erstellt – umfasst UUID-/Aktenzeichen-Management, Mapping-Persistenz und Audit-Logging.</li>
+<li>✅ Relationale Schemaerweiterung – neue Tabellen <code>administrative_identities</code>, <code>administrative_identity_mappings</code>, <code>administrative_identity_audit</code> in Strategie &amp; SQLite-Backend.</li>
+<li>✅ UDS3 Core Integration – <code>create_secure_document</code> nutzt Identity-Service, persistiert Backend-IDs und liefert Identity-Metadaten.</li>
+<li>✅ Ingestion Aktenzeichen-Handling – <code>CoreIngestHandler</code> nutzt <code>ingestion.services.aktenzeichen</code>, erkennt Aktenzeichen, generiert Fallbacks und registriert alles beim Identity-Service; Metadaten &amp; Identity-Payloads werden konsistent gesetzt.</li>
+<li>✅ Tests – <code>tests/test_identity_service.py</code> validiert Identity-Logik; <code>tests/test_core_ingest_aktenzeichen.py</code> prüft Aktenzeichen-Erkennung und Fallback-Generierung end-to-end.</li>
+<li>✅ Saga-Orchestrator – Modul <code>uds3_saga_orchestrator.py</code> implementiert, inkl. relationaler Persistenz (<code>uds3_sagas</code>, <code>uds3_saga_events</code>) und Kompensationslogik.</li>
+<li>✅ Saga-gestützte Dokumenterstellung – <code>create_secure_document</code> führt Schritte über den Orchestrator aus; Fallback-Engine für Umgebungen ohne Orchestrator vorhanden.</li>
+<li>✅ Update-/Delete-Sagas – <code>update_secure_document</code> und <code>delete_secure_document</code> orchestrieren End-to-End-Flows (Graph, Vector, Relational, File) samt Kompensation und Identity-Hand-off.</li>
+<li>✅ Tests (SAGA) – <code>tests/test_saga_orchestrator.py</code> prüft Ausführung, Kompensation und Core-Integration via Dummy-Orchestrator für Create-, Update- und Delete-Pfade.</li>
+<li>✅ Observability-Governance – <code>SagaDatabaseCRUD</code> markiert Governance-Verstöße (<code>governance_blocked</code>) und schreibt Identitätsmetriken (<code>*.attempt</code>, <code>*.error</code>, <code>*.governance_blocked</code>); Tests (<code>tests/test_saga_crud.py</code>) decken Happy Path, Fehler- und Governance-Fälle ab.</li>
+<li>📄 SAGA-Pattern-Dokumentation – <code>docs/SAGA_PATTERN_IMPLEMENTATION.md</code> beschreibt Komponenten, Schrittfolge, Optional-Handling und Testbefehle.</li>
+<li>📄 Design-Referenz <code>docs/UDS3_Identity_Service_Design.md</code> beschreibt Architektur und Schnittstellen.</li>
+</ul>
+<h2 id="5-kurzfristige-arbeitsplanung-kw-40412025">5. Kurzfristige Arbeitsplanung (KW 40–41/2025)<a class="headerlink" href="#5-kurzfristige-arbeitsplanung-kw-40412025" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Adapter-Governance</strong>: Proof-of-Concept für Validierungs-Layer im <code>database_manager</code> implementieren, anschließend Feature-Flag in <code>UnifiedDatabaseStrategy</code> aktivieren.</li>
+<li><strong>Observability</strong>: Datenbank-Migrationsskript für <code>uds3_audit_log</code>/<code>uds3_saga_metrics</code> vorbereiten und Logging-Hooks in <code>uds3_saga_orchestrator.py</code> verdrahten.<ul>
+<li><em>Update:</em> Identitätsbezogene Governance-Metriken sind implementiert; nächster Schritt ist Audit-/Saga-Metrikpersistenz.</li>
+<li><em>ToDo:</em> Schema-Draft für <code>uds3_saga_metrics</code> (Spalten <code>identity_key</code>, <code>saga_name</code>, <code>stage</code>, <code>status</code>, <code>duration_ms</code>, <code>observed_at</code>) und <code>uds3_audit_log</code> (Audit-ID, Identitätskontext, Aktion, Actor, Payload-Hash) finalisieren; Migration + Testplan vorbereiten.</li>
+</ul>
+</li>
+<li><strong>Testautomatisierung</strong>: Neues Pytest-Marker-Set (<code>smoke</code>, <code>contracts</code>) definieren und GitHub Actions Workflow um entsprechende Jobs erweitern.</li>
+<li><strong>Review &amp; Abnahme</strong>: Ergebnisse in Technical Steering am 03.10.2025 vorstellen, Feedback für Folgeiteration einsammeln.</li>
+</ul>
+<hr />
+<p><em>Vorbereitet von GitHub Copilot (Assistenz).</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

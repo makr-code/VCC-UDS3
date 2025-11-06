@@ -1,0 +1,1087 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/uds3/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>UDS3 Systembeschreibung (Unified Database Strategy v3.0) - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uds3-systembeschreibung-unified-database-strategy-v30" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UDS3 Systembeschreibung (Unified Database Strategy v3.0)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-mission-kontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Mission &amp; Kontext
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modulubersicht-high-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Modulübersicht (High-Level)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-kern-domanenschichten" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Kern-Domänenschichten
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Kern-Domänenschichten">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-security-layer-uds3_security" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Security Layer (uds3_security)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-quality-layer-uds3_quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Quality Layer (uds3_quality)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-relations-layer-uds3_relations_core" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Relations Layer (uds3_relations_core)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-core-strategy-uds3_core" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Core Strategy (uds3_core)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-process-workflow-mining-uds3_process_mining" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Process &amp; Workflow Mining (uds3_process_mining)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-api-backend-knowledge-uds3_api_backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 API Backend &amp; Knowledge (uds3_api_backend)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-datenflusse-vereinfachtes-sequenzmodell" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Datenflüsse (vereinfachtes Sequenzmodell)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Datenflüsse (vereinfachtes Sequenzmodell)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-neues-file-storage-backend-backend-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Neues File-Storage Backend (Backend #4)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architektur-schnittstellen-zum-neuen-ingestion-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Architektur-Schnittstellen zum neuen Ingestion Core
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-qualitats-sicherheits-metrik-ubersicht" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Qualitäts- &amp; Sicherheits-Metrik Übersicht
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erweiterungspunkte-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Erweiterungspunkte &amp; Roadmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Erweiterungspunkte &amp; Roadmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kurzfristig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kurzfristig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mittelfristig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mittelfristig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langfristig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Langfristig
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-risiken-technische-schulden" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Risiken &amp; Technische Schulden
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-glossar-auszug" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Glossar (Auszug)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-nachste-konkrete-schritte-hands-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Nächste konkrete Schritte (Hands-On)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/uds3.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="uds3-systembeschreibung-unified-database-strategy-v30">UDS3 Systembeschreibung (Unified Database Strategy v3.0)<a class="headerlink" href="#uds3-systembeschreibung-unified-database-strategy-v30" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Version: Draft 0.1 • Datum: 24.09.2025<br />
+Scope dieses Dokuments: Technische Gesamtübersicht der im <code>uds3</code> Verzeichnis vorhandenen Module, ihre Rollen, Datenflüsse, Interaktionen und Anschlussfähigkeit an den neuen Ingestion-Core.</p>
+</blockquote>
+<hr />
+<h2 id="1-mission-kontext">1. Mission &amp; Kontext<a class="headerlink" href="#1-mission-kontext" title="Permanent link">&para;</a></h2>
+<p>Die <em>Unified Database Strategy v3.0 (UDS3)</em> bildet einen domänenspezifischen Orchestrierungs- und Qualitätsrahmen für Verwaltungs- und Rechtsdokumente. Ziel ist eine konsistente, nachvollziehbare und auditierbare Verarbeitung über drei primäre Datenbank-Perspektiven:</p>
+<ul>
+<li>Vector DB: Semantische Repräsentation (Embeddings, Chunks, Ähnlichkeitssuche)</li>
+<li>Graph DB: Beziehungen, Hierarchien, Prozess- und Rechtsstrukturen</li>
+<li>Relationale DB: Strukturierte Metadaten, Indizes, Statistiken, Qualitätsmetriken</li>
+</ul>
+<p>Ergänzt um Security- und Quality-Layer (Integrität, Compliance, Qualitäts-Score) sowie ein Relations-Framework (Neo4j Schema + Almanach) für konsistente Kanten-Typen.</p>
+<hr />
+<h2 id="2-modulubersicht-high-level">2. Modulübersicht (High-Level)<a class="headerlink" href="#2-modulubersicht-high-level" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Modul</th>
+<th>Rolle</th>
+<th>Kernfunktion(en)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uds3_core.py</code></td>
+<td>Strategische Hauptlogik</td>
+<td>Processing-Pläne, CRUD-Pläne, Cross-DB Mapping, Security/Quality Integration</td>
+</tr>
+<tr>
+<td><code>uds3_security.py</code></td>
+<td>Sicherheits-Framework</td>
+<td>Hashing, UUID, Integrity Verification, Secure Deletion, Audit Logging</td>
+</tr>
+<tr>
+<td><code>uds3_quality.py</code></td>
+<td>Qualitäts-Framework</td>
+<td>7D-Qualitätsmetrik, Scoring, Cross-DB-Validierung, Reports, Trends</td>
+</tr>
+<tr>
+<td><code>uds3_relations_core.py</code></td>
+<td>Relations / Neo4j Backend</td>
+<td>Schema-Erstellung, Indizes, Relationserstellung, Konsistenzprüfung</td>
+</tr>
+<tr>
+<td><code>uds3_process_mining.py</code></td>
+<td>Prozess-/Workflow-Extraktion</td>
+<td>Regex-basierte Prozessschritt-, Rollen-, Entscheidungsanalyse</td>
+</tr>
+<tr>
+<td><code>uds3_api_backend.py</code></td>
+<td>Wissens- &amp; Prozess-API</td>
+<td>LLM-gestützte Prozessanalyse, Knowledge Base, Vorschläge</td>
+</tr>
+<tr>
+<td><code>uds3_validation_worker.py</code></td>
+<td>(Angedeutet) Validierung</td>
+<td>Plausibilitäts-, Struktur- oder Cross-Checks (Erweiterungspunkt)</td>
+</tr>
+<tr>
+<td><code>uds3_document_classifier.py</code></td>
+<td>Dokumentklassifikation</td>
+<td>(Heuristiken / ML Platzhalter) Kategorisierung für Routing</td>
+</tr>
+<tr>
+<td><code>uds3_enhanced_schema.py</code></td>
+<td>Erweitertes Schema</td>
+<td>Aggregierte Schema-/Strukturdefinitionen (Meta-Schicht)</td>
+</tr>
+<tr>
+<td><code>uds3_schemas.py</code> / <code>uds3_vpb_schema.py</code></td>
+<td>Schemata</td>
+<td>Strukturierte Definitionen für externe/VPB-Objekte</td>
+</tr>
+<tr>
+<td><code>uds3_core_geo.py</code> / <code>uds3_geo_extension.py</code> / <code>uds3_4d_geo_extension.py</code></td>
+<td>Geo-Erweiterungen</td>
+<td>Räumliche Kontexte, 4D-Zeit/Geo-Bezüge</td>
+</tr>
+<tr>
+<td><code>uds3_quality_security</code> (<code>uds3_security_quality.py</code>)</td>
+<td>Kombi-Layer</td>
+<td>Möglicher Brückencode Security ↔ Quality</td>
+</tr>
+<tr>
+<td><code>uds3_process_export_engine.py</code></td>
+<td>Exportlogik</td>
+<td>Prozess-/Analyse-Ergebnisse in Zielsysteme</td>
+</tr>
+<tr>
+<td><code>uds3_follow_up_orchestrator.py</code></td>
+<td>Folgeprozesse</td>
+<td>Trigger für nachgelagerte Operationen</td>
+</tr>
+<tr>
+<td><code>uds3_collection_templates.py</code></td>
+<td>Sammlungs-Templates</td>
+<td>Vorlagen für Collections / Batch-Strukturen</td>
+</tr>
+<tr>
+<td><code>uds3_complete_process_integration.py</code></td>
+<td>Gesamtintegration</td>
+<td>Orchestriert End-2-End Prozess (Meta-Pipeline)</td>
+</tr>
+<tr>
+<td><code>uds3_strategic_insights_analysis.py</code></td>
+<td>Strategische Analyse</td>
+<td>Höhere Auswertungen über Bestände</td>
+</tr>
+<tr>
+<td><code>uds3_admin_types.py</code></td>
+<td>Typen / Enums</td>
+<td>Zentrale Verwaltungstypen (Dokumentklassen etc.)</td>
+</tr>
+<tr>
+<td><code>uds3_epk_process_parser.py</code> / <code>uds3_bpmn_process_parser.py</code></td>
+<td>Parser</td>
+<td>Alternative Prozessmodell-Importer</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-kern-domanenschichten">3. Kern-Domänenschichten<a class="headerlink" href="#3-kern-domanenschichten" title="Permanent link">&para;</a></h2>
+<h3 id="31-security-layer-uds3_security">3.1 Security Layer (<code>uds3_security</code>)<a class="headerlink" href="#31-security-layer-uds3_security" title="Permanent link">&para;</a></h3>
+<p>Zentrale Verantwortlichkeiten:
+- Generierung sicherer Document-IDs (UUID + Hash + HMAC + Salt)
+- Integritätsverifikation (Hash, Checksum, HMAC)
+- Audit Logging (Operationen, Prüfungen, Deletion)
+- Konfigurierbare Security Level (PUBLIC → CONFIDENTIAL)
+- Secure Deletion Workflow (Audit + Bestätigung)</p>
+<p>Integrationstrigger: Wird beim Anlegen neuer Dokumente aus <code>uds3_core</code> aufgerufen (<code>create_secure_document</code>). Gibt <code>security_info</code> zurück für Mapping und spätere Validierungen.</p>
+<h3 id="32-quality-layer-uds3_quality">3.2 Quality Layer (<code>uds3_quality</code>)<a class="headerlink" href="#32-quality-layer-uds3_quality" title="Permanent link">&para;</a></h3>
+<ul>
+<li>7 Dimensionen (Completeness, Consistency, Accuracy, Validity, Uniqueness, Timeliness, Semantic Coherence)</li>
+<li>Gewichtetes Gesamtscoring + Issues + Empfehlungen</li>
+<li>Cross-DB Qualitätsvalidierung (ID, Hash, Titel, Konsistenz)</li>
+<li>Reports (Verteilung, häufige Issues, Action Items)</li>
+<li>Trendanalyse (Regressionsabschätzung / Richtung)</li>
+</ul>
+<p>Eingebunden nach erfolgreichen CRUD/CREATE Operationen zur Bewertung der Datenlage.</p>
+<h3 id="33-relations-layer-uds3_relations_core">3.3 Relations Layer (<code>uds3_relations_core</code>)<a class="headerlink" href="#33-relations-layer-uds3_relations_core" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Nutzt einen Relations-Almanach (Tabelle definierter Relationstypen mit Eigenschaften)</li>
+<li>Erstellt Neo4j Schema (Constraints, Indizes, Fulltext, Composite)</li>
+<li>Erweitert Relations mit UDS3-spezifischen Metadaten (Priorität, Performance Weight)</li>
+<li>Bietet <code>create_relation</code> / inverse Relation Erzeugung</li>
+<li>Konsistenzvalidierung (unbekannte Relationstypen, Dokument ohne Chunks, Orphans)</li>
+</ul>
+<h3 id="34-core-strategy-uds3_core">3.4 Core Strategy (<code>uds3_core</code>)<a class="headerlink" href="#34-core-strategy-uds3_core" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Erzeugt optimierte DB-spezifische Operationpläne (Vector/Graph/Relational)</li>
+<li>CRUD Operation Plans (create/update/delete/read/batch)</li>
+<li>Sicherheits-/Qualitätsintegration (SecurityManager &amp; QualityManager Hooks)</li>
+<li>Synchronisationspläne (Phasen &amp; Sequenzen)</li>
+<li>Konfliktlösung (timestamp-based / authoritative_source)</li>
+<li>Cross-DB Validierung &amp; Mapping (<code>document_mapping</code>)</li>
+</ul>
+<h3 id="35-process-workflow-mining-uds3_process_mining">3.5 Process &amp; Workflow Mining (<code>uds3_process_mining</code>)<a class="headerlink" href="#35-process-workflow-mining-uds3_process_mining" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Regex-basierte Extraktion von Prozessschritten, Rollen, Entscheidungen</li>
+<li>Ableitung von Automatisierungspotenzial (HIGH/MEDIUM/LOW)</li>
+<li>Graph-fähige Knoten/Beziehungslisten (z.B. für Neo4j Import)</li>
+</ul>
+<h3 id="36-api-backend-knowledge-uds3_api_backend">3.6 API Backend &amp; Knowledge (<code>uds3_api_backend</code>)<a class="headerlink" href="#36-api-backend-knowledge-uds3_api_backend" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Enthält verwaltungsrechtlich orientierte Knowledge Base (Domänen: Bau, Gewerbe, Umwelt, Sozial)</li>
+<li>LLM-basierte Prozessanalyse (via Ollama) mit Fallback-Regellogik</li>
+<li>Liefert: Komplexität, Compliance-Issues, Optimierungsvorschläge, Risikoeinschätzung</li>
+<li>Vorschlagsgenerator für fehlende Prozess-Elemente (Legal Checkpoints)</li>
+</ul>
+<hr />
+<h2 id="4-datenflusse-vereinfachtes-sequenzmodell">4. Datenflüsse (vereinfachtes Sequenzmodell)<a class="headerlink" href="#4-datenflusse-vereinfachtes-sequenzmodell" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Ingestion (geplant via neuer Core-Pipeline) liefert Datei + Extrakt (Chunks, Metadaten)</li>
+<li><code>uds3_core.create_secure_document</code>:</li>
+<li>Security-ID erzeugen → DB Operationen planen (vector/graph/relational)</li>
+<li>Mock/Real Execution (später austauschbar) → Ergebnisse sammeln</li>
+<li>Quality Score berechnen → Issues / Empfehlungen</li>
+<li>Relations-Anreicherung (optional):</li>
+<li><code>create_relation</code> für PART_OF / CONTAINS_CHUNK / semantische oder rechtliche Verknüpfungen</li>
+<li>Process Mining (falls Dokument Prozessinstruktion) → Graph-Knoten + Relationen</li>
+<li>API Backend kann Analyse-/Optimierungslayer für Prozessdaten nutzen</li>
+<li>Cross-DB / Cross-Layer Validierungen (Consistency + Quality + Security)</li>
+</ol>
+<h3 id="41-neues-file-storage-backend-backend-4">4.1 Neues File-Storage Backend (Backend #4)<a class="headerlink" href="#41-neues-file-storage-backend-backend-4" title="Permanent link">&para;</a></h3>
+<p>Motivation: Nicht alle Artefakte (Original-PDF, gescannte Bilder, Anlagen, Binärformate) eignen sich für direkte Speicherung in Vector/Graph/Relational-DBs. Das File-Storage Backend ergänzt einen persistenten, referenzierten Speicherort.</p>
+<p>Fokus &amp; Prinzipien:
+- Single Source of Truth für Originaldatei (Auditing, Re-Prozessierung)
+- Versionierung (neue Datei-Versionen bei Updates archivieren statt Überschreiben)
+- Integritätsmetadaten (Hash, Größe, optional Signatur) für spätere Verifikation
+- Retention &amp; Archiv-Strategien (Regulatorik, Legal Hold)</p>
+<p>Implementierung (aktueller Stand Mock in <code>uds3_core</code>):
+- Rolle ergänzt in <code>database_roles[DatabaseRole.FILE]</code>
+- Schema via <code>_create_file_storage_schema()</code> (Retention, Versioning, Integrity Settings)
+- Operationsgenerator <code>_create_file_storage_operations()</code> erzeugt:
+   - <code>store_original_file_reference</code>
+   - <code>store_derivative_manifest</code> (z.B. Text-Extraktion)
+- Execution Helper <code>_execute_file_storage_create()</code> + (Update/Delete/Read Platzhalter)</p>
+<p>CRUD Auswirkungen:
+- CREATE: Sichert Referenz + Derivat-Manifest
+- READ: Liefert File Info + Versionsliste
+- UPDATE: Plant neue Version (Versionierung statt Überschreiben)
+- DELETE: Soft (Archiv) vs. Hard (physische Entfernung) → Rollback möglich</p>
+<p>Validierungserweiterung:
+- Cross-DB Validation erweitert um File-Check (Operationserfolg + referenzierte ID)
+- Quality Layer kann künftig Verfügbarkeit/Lesbarkeit prüfen</p>
+<p>Nächste Ausbaustufen:
+- Physische Speicherung (lokal / S3 / Azure Blob) via Adapter Interface
+- Integritäts-Rehash Cron (periodic_rehash_days)
+- Verschlüsselungsoption (at rest) + Access Control Layer
+- Streaming-Extraktion (große Dateien chunk-basiert extrahieren) zur Speicherschonung</p>
+<hr />
+<h2 id="5-architektur-schnittstellen-zum-neuen-ingestion-core">5. Architektur-Schnittstellen zum neuen Ingestion Core<a class="headerlink" href="#5-architektur-schnittstellen-zum-neuen-ingestion-core" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Ingestion Element</th>
+<th>UDS3 Anschluss</th>
+<th>Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File-Level Job (core_ingest)</td>
+<td>Übergibt Pfad &amp; Basismetadaten</td>
+<td>Potenzieller Hook: Security/Hash sofort</td>
+</tr>
+<tr>
+<td>Transform Job (core_transform)</td>
+<td>Liefert normalisierte Struktur</td>
+<td>Grundlage für Chunking / Vektorisierung</td>
+</tr>
+<tr>
+<td>Export Job (core_api_export)</td>
+<td>Könnte <code>uds3_core.create_secure_document</code> anstoßen</td>
+<td>Übergang in UDS3 CRUD Flow</td>
+</tr>
+<tr>
+<td>Chunk-Level (zukünftig)</td>
+<td><code>vector</code> und <code>graph</code> Operationserweiterung</td>
+<td>PART_OF / CONTAINS_CHUNK Relationen</td>
+</tr>
+</tbody>
+</table>
+<p>Empfohlene Erweiterung: Ein neuer Handler <code>uds3_secure_create</code> der nach <code>core_transform</code> den Secure-Create Prozess (Security + Vector + Graph + Relational + Quality) initiiert.</p>
+<hr />
+<h2 id="6-qualitats-sicherheits-metrik-ubersicht">6. Qualitäts- &amp; Sicherheits-Metrik Übersicht<a class="headerlink" href="#6-qualitats-sicherheits-metrik-ubersicht" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Quelle</th>
+<th>Typ</th>
+<th>Beispiel / Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Completeness</td>
+<td>QualityManager</td>
+<td>Score</td>
+<td>Pflichtfelder vorhanden?</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>QualityManager / Cross-DB</td>
+<td>Score</td>
+<td>ID/Hash/Titel überall gleich</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Regeln (Länge)</td>
+<td>Score</td>
+<td>Inhalt plausible Länge</td>
+</tr>
+<tr>
+<td>Validity</td>
+<td>Schema / Dateiendung</td>
+<td>Score</td>
+<td>Endung erlaubt, ID-Format</td>
+</tr>
+<tr>
+<td>Uniqueness</td>
+<td>ID Modell</td>
+<td>Bool/Score</td>
+<td>Kollisionen? (später DB)</td>
+</tr>
+<tr>
+<td>Timeliness</td>
+<td>Timestamp</td>
+<td>Score</td>
+<td>Alter &lt; definierter Schwellen</td>
+</tr>
+<tr>
+<td>Semantic Coherence</td>
+<td>Heuristik</td>
+<td>Score</td>
+<td>Titel-Content Überdeckung</td>
+</tr>
+<tr>
+<td>Integrity</td>
+<td>SecurityManager</td>
+<td>Bool</td>
+<td>Hash/HMAC vergleichen</td>
+</tr>
+<tr>
+<td>Auditability</td>
+<td>SecurityManager</td>
+<td>Logeinträge</td>
+<td>Operation protokolliert</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-erweiterungspunkte-roadmap">7. Erweiterungspunkte &amp; Roadmap<a class="headerlink" href="#7-erweiterungspunkte-roadmap" title="Permanent link">&para;</a></h2>
+<h3 id="kurzfristig">Kurzfristig<a class="headerlink" href="#kurzfristig" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Handler <code>uds3_secure_create</code> in neuer Pipeline registrieren</li>
+<li>Tatsächliche DB Adapter-Schichten (statt Mock) abstrahieren (Interface Layer)</li>
+<li>Mapping File → Chunks → Graph-Knoten standardisieren (ID-Strategie harmonisieren)</li>
+</ul>
+<h3 id="mittelfristig">Mittelfristig<a class="headerlink" href="#mittelfristig" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Bidirektionale Synchronisation (Change Events → Recompute Embeddings / Graph Aktualisierung)</li>
+<li>Konsolidierter Validation Runner (Security + Quality + Relations in einem Exec-Pfad)</li>
+<li>Capability-basiertes Scheduling (Handler melden <code>provides</code> / <code>consumes</code> → orchestrierter Graph)</li>
+</ul>
+<h3 id="langfristig">Langfristig<a class="headerlink" href="#langfristig" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Policy Engine (Retention, Redaction, Access Windows)</li>
+<li>Adaptive Qualitätsmodelle (ML-basiert)</li>
+<li>Echtzeit Relation Impact Analysis (Traversalkosten / Relevanz-Degeneration)</li>
+</ul>
+<hr />
+<h2 id="8-risiken-technische-schulden">8. Risiken &amp; Technische Schulden<a class="headerlink" href="#8-risiken-technische-schulden" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Risiko</th>
+<th>Gegenmaßnahme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mock Implementierungen</td>
+<td>Diskrepanz zur realen DB</td>
+<td>Layer klare Interfaces, Adapters implementieren</td>
+</tr>
+<tr>
+<td>Hart verdrahtete Pfade</td>
+<td>Geringe Portabilität</td>
+<td>Konfigurationsobjekt / ENV nutzen</td>
+</tr>
+<tr>
+<td>Fehlende Tests</td>
+<td>Regressionsgefahr</td>
+<td>Pytests für Security/Quality/Relations Kernfälle</td>
+</tr>
+<tr>
+<td>Fehlende Chunk-Persistenz</td>
+<td>Verlust semantischer Tiefe</td>
+<td>Frühe Persistenzschicht priorisieren</td>
+</tr>
+<tr>
+<td>LLM Abhängigkeit (Ollama)</td>
+<td>Nicht verfügbar / Timeout</td>
+<td>Fallback + Caching</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-glossar-auszug">9. Glossar (Auszug)<a class="headerlink" href="#9-glossar-auszug" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UDS3</td>
+<td>Unified Database Strategy Version 3.0</td>
+</tr>
+<tr>
+<td>Almanach</td>
+<td>Sammlung definierter Relationstypen + Metadaten</td>
+</tr>
+<tr>
+<td>Chunk</td>
+<td>Teilsegment eines Dokuments für semantische Verarbeitung</td>
+</tr>
+<tr>
+<td>Processing Plan</td>
+<td>Abgeleiteter Satz DB-spezifischer Operationen</td>
+</tr>
+<tr>
+<td>Quality Score</td>
+<td>Aggregierter gewichteter Qualitätsindex</td>
+</tr>
+<tr>
+<td>Secure Document ID</td>
+<td>Kombinierte UUID + Hash + HMAC Identifikation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-nachste-konkrete-schritte-hands-on">10. Nächste konkrete Schritte (Hands-On)<a class="headerlink" href="#10-nachste-konkrete-schritte-hands-on" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Pipeline-Erweiterung: Neue Task <code>uds3_secure_create</code> implementieren → ruft <code>UnifiedDatabaseStrategy.create_secure_document</code> auf.</li>
+<li>Ergebnis-Persistenz: Ergebnisse (vector/graph/relational) in standardisierte Output-Struktur schreiben.</li>
+<li>Relations-Pilot: Nach Secure-Create automatisch <code>CONTAINS_CHUNK</code> Relationen anlegen (Mock → Neo4j Adapter austauschbar).</li>
+<li>Quality Report Batch: Sammlung mehrerer <code>quality_score</code> Ergebnisse in wöchentlichem Report.</li>
+<li>Security Audit Export: Audit-Log serialisieren (JSONL) zur externen Revisionsprüfung.</li>
+</ol>
+<hr />
+<p><em>Ende des Dokuments – Draft 0.1</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

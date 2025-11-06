@@ -1,0 +1,1779 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/BATCH_OPERATIONS/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>UDS3 Batch Operations - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uds3-batch-operations" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UDS3 Batch Operations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Quick Start
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chromadb-batch-insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaDB Batch Insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neo4j-batch-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neo4j Batch Relationships
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activation Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Performance Benchmarks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Performance Benchmarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chromadb-batch-insert_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaDB Batch Insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neo4j-batch-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neo4j Batch Creation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-all-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run All Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Coverage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chromabatchinserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaBatchInserter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neo4jbatchcreator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neo4jBatchCreator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helper-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helper Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Advanced Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thread-safe-concurrent-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thread-Safe Concurrent Use
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fallback-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fallback Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neo4j-apoc-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neo4j APOC Detection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chromadb-batch-insert-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaDB Batch Insert Fails
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neo4j-apoc-not-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neo4j APOC Not Available
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-usage-high" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Usage High
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-batch-operations-new-in-v220" class="md-nav__link">
+    <span class="md-ellipsis">
+      �️ PostgreSQL Batch Operations (NEW in v2.2.0)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="�️ PostgreSQL Batch Operations (NEW in v2.2.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activation Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-reference_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresqlbatchinserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQLBatchInserter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Details
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#couchdb-batch-operations-new-in-v220" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 CouchDB Batch Operations (NEW in v2.2.0)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 CouchDB Batch Operations (NEW in v2.2.0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activation Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-reference_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#couchdbbatchinserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      CouchDBBatchInserter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-details_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Details
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conflict-resolution-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conflict Resolution Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      �📚 References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/BATCH_OPERATIONS.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="uds3-batch-operations">UDS3 Batch Operations<a class="headerlink" href="#uds3-batch-operations" title="Permanent link">&para;</a></h1>
+<p><strong>Version:</strong> 2.2.0<br />
+<strong>Erstellt:</strong> 20. Oktober 2025<br />
+<strong>Status:</strong> ✅ Production Ready</p>
+<hr />
+<h2 id="overview">📋 Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>UDS3 v2.2.0 introduces <strong>batch operations</strong> for all four database backends to dramatically reduce API calls and improve throughput.</p>
+<p><strong>Key Features:</strong>
+- ✅ <strong>ChromaBatchInserter:</strong> 100 vectors/call (-93% API calls)
+- ✅ <strong>Neo4jBatchCreator:</strong> 1000 relationships/query (+100x speedup with UNWIND)
+- ✅ <strong>PostgreSQLBatchInserter:</strong> 100 docs/batch (+50-100x speedup with execute_batch) 🆕
+- ✅ <strong>CouchDBBatchInserter:</strong> 100 docs/request (+100-500x speedup with _bulk_docs) 🆕
+- ✅ <strong>Thread-Safe:</strong> Threading.Lock for concurrent use
+- ✅ <strong>Context Manager:</strong> Auto-flush on exit
+- ✅ <strong>Auto-Fallback:</strong> Per-item insert on batch failure
+- ✅ <strong>Statistics:</strong> Track batches, items, fallbacks, conflicts
+- ✅ <strong>ENV Configuration:</strong> Toggle features on/off</p>
+<hr />
+<h2 id="quick-start">🚀 Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="chromadb-batch-insert">ChromaDB Batch Insert<a class="headerlink" href="#chromadb-batch-insert" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from uds3.database.batch_operations import ChromaBatchInserter
+from uds3.database.database_api_chromadb_remote import ChromaRemoteVectorBackend
+
+# Setup
+chromadb = ChromaRemoteVectorBackend(config)
+chromadb.connect()
+
+# Batch inserter with context manager (auto-flush)
+with ChromaBatchInserter(chromadb, batch_size=100) as inserter:
+    for chunk_id, vector, metadata in chunks:
+        inserter.add(chunk_id, vector, metadata)
+    # Auto-flushes on exit
+
+# Manual control
+inserter = ChromaBatchInserter(chromadb, batch_size=100)
+for chunk_id, vector, metadata in chunks:
+    inserter.add(chunk_id, vector, metadata)
+
+# Flush remaining items
+inserter.flush()
+
+# Get statistics
+stats = inserter.get_stats()
+# {'total_added': 150, 'total_batches': 2, 'total_fallbacks': 0, 'pending': 0}
+</code></pre>
+<h3 id="neo4j-batch-relationships">Neo4j Batch Relationships<a class="headerlink" href="#neo4j-batch-relationships" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from uds3.database.batch_operations import Neo4jBatchCreator
+from uds3.database.database_api_neo4j import Neo4jGraphBackend
+
+# Setup
+neo4j = Neo4jGraphBackend(config)
+neo4j.connect()
+
+# Batch creator with context manager
+with Neo4jBatchCreator(neo4j, batch_size=1000) as creator:
+    for doc_id, chunk_id in document_chunks:
+        creator.add_relationship(
+            from_id=doc_id,
+            to_id=chunk_id,
+            rel_type='HAS_CHUNK',
+            properties={'order': 1}
+        )
+    # Auto-flushes with UNWIND query
+
+# Get statistics
+stats = creator.get_stats()
+# {'total_created': 2500, 'total_batches': 3, 'total_fallbacks': 0, 'pending': 0}
+</code></pre>
+<hr />
+<h2 id="configuration">🔧 Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># ChromaDB Batch Insert
+ENABLE_CHROMA_BATCH_INSERT=false  # Default: off (backward compatible)
+CHROMA_BATCH_INSERT_SIZE=100      # Batch size (1-1000)
+
+# Neo4j Batch Operations
+ENABLE_NEO4J_BATCHING=false       # Default: off
+NEO4J_BATCH_SIZE=1000             # Batch size (1-10000)
+</code></pre>
+<h3 id="activation-example">Activation Example<a class="headerlink" href="#activation-example" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">import os
+
+# Enable batch operations
+os.environ['ENABLE_CHROMA_BATCH_INSERT'] = 'true'
+os.environ['CHROMA_BATCH_INSERT_SIZE'] = '100'
+
+from uds3.database.batch_operations import should_use_chroma_batch_insert
+
+if should_use_chroma_batch_insert():
+    print(&quot;✅ ChromaDB batch insert enabled!&quot;)
+</code></pre>
+<hr />
+<h2 id="performance-benchmarks">📊 Performance Benchmarks<a class="headerlink" href="#performance-benchmarks" title="Permanent link">&para;</a></h2>
+<h3 id="chromadb-batch-insert_1">ChromaDB Batch Insert<a class="headerlink" href="#chromadb-batch-insert_1" title="Permanent link">&para;</a></h3>
+<p><strong>Single Insert (100 vectors):</strong></p>
+<pre><code>100 items × ~400ms = ~40 seconds
+100 API calls
+</code></pre>
+<p><strong>Batch Insert (100 vectors):</strong></p>
+<pre><code>1 batch call = ~0.5 seconds
+1 API call (93% reduction!)
+Speedup: ~80x faster
+</code></pre>
+<p><strong>Real-World Test (Covina Production):</strong></p>
+<pre><code>BEFORE: 2 chunks × ~393ms = ~787ms per document
+AFTER:  2 chunks × ~25ms  = ~50ms per document
+Improvement: -93% latency
+</code></pre>
+<h3 id="neo4j-batch-creation">Neo4j Batch Creation<a class="headerlink" href="#neo4j-batch-creation" title="Permanent link">&para;</a></h3>
+<p><strong>Single Create (1000 relationships):</strong></p>
+<pre><code>1000 × ~150ms = ~150 seconds
+1000 Cypher queries
+</code></pre>
+<p><strong>Batch UNWIND (1000 relationships):</strong></p>
+<pre><code>1 UNWIND query = ~1.5 seconds
+1 Cypher query (99.9% reduction!)
+Speedup: ~100x faster
+</code></pre>
+<p><strong>With APOC (faster):</strong></p>
+<pre><code>1 apoc.merge.relationship query = ~0.8 seconds
+Speedup: ~187x faster
+</code></pre>
+<hr />
+<h2 id="testing">🧪 Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<h3 id="run-all-tests">Run All Tests<a class="headerlink" href="#run-all-tests" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">cd /path/to/uds3
+python -m pytest tests/test_batch_operations.py -v
+</code></pre>
+<p><strong>Expected Output:</strong></p>
+<pre><code>tests/test_batch_operations.py::TestChromaBatchInserterUnit::test_init PASSED
+tests/test_batch_operations.py::TestChromaBatchInserterUnit::test_add_single_item PASSED
+... (29 tests total)
+============================= 29 passed in 6.00s ===============================
+</code></pre>
+<h3 id="test-coverage">Test Coverage<a class="headerlink" href="#test-coverage" title="Permanent link">&para;</a></h3>
+<p><strong>29 Test Cases (100% PASS):</strong></p>
+<p><strong>ChromaBatchInserter (14 tests):</strong>
+- ✅ Initialization
+- ✅ Add single item
+- ✅ Add multiple items (no auto-flush)
+- ✅ Auto-flush on batch full
+- ✅ Manual flush
+- ✅ Flush empty batch
+- ✅ Batch insert success
+- ✅ Fallback on batch failure
+- ✅ Fallback on exception
+- ✅ No add_vectors method (fallback)
+- ✅ Context manager
+- ✅ Get stats
+- ✅ Thread safety (5 threads, 50 items)
+- ✅ Partial fallback failure</p>
+<p><strong>Neo4jBatchCreator (11 tests):</strong>
+- ✅ Initialization
+- ✅ Add relationship
+- ✅ Add multiple relationships
+- ✅ Auto-flush on batch full
+- ✅ Manual flush
+- ✅ Flush empty batch
+- ✅ No driver (fallback)
+- ✅ APOC fallback to manual MERGE
+- ✅ Context manager
+- ✅ Get stats
+- ✅ Thread safety (5 threads, 50 rels)</p>
+<p><strong>Helper Functions (4 tests):</strong>
+- ✅ should_use_chroma_batch_insert()
+- ✅ should_use_neo4j_batching()
+- ✅ get_chroma_batch_size()
+- ✅ get_neo4j_batch_size()</p>
+<hr />
+<h2 id="api-reference">🔍 API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="chromabatchinserter">ChromaBatchInserter<a class="headerlink" href="#chromabatchinserter" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class ChromaBatchInserter:
+    &quot;&quot;&quot;
+    Batch inserter for ChromaDB Remote HTTP API
+
+    Accumulates vectors and flushes them in batches to reduce API calls.
+    Automatically falls back to per-item insert on batch failures.
+    Thread-safe for concurrent use.
+
+    Performance:
+        Single insert: 100 vectors = 100 API calls (~40 seconds)
+        Batch insert: 100 vectors = 1 API call (~0.5 seconds)
+        Speedup: ~80x faster (93% reduction in API calls)
+
+    Examples:
+        &gt;&gt;&gt; inserter = ChromaBatchInserter(chromadb_backend, batch_size=100)
+        &gt;&gt;&gt; for chunk_id, vector, metadata in chunks:
+        ...     inserter.add(chunk_id, vector, metadata)
+        &gt;&gt;&gt; inserter.flush()  # Send remaining items
+    &quot;&quot;&quot;
+
+    def __init__(self, chromadb_backend, batch_size: int = 100):
+        &quot;&quot;&quot;
+        Initialize batch inserter
+
+        Args:
+            chromadb_backend: ChromaDB backend instance (must have add_vectors method)
+            batch_size: Number of vectors to accumulate before auto-flush
+        &quot;&quot;&quot;
+
+    def add(self, chunk_id: str, vector: List[float], metadata: Dict[str, Any]):
+        &quot;&quot;&quot;
+        Add vector to batch (auto-flushes when batch is full)
+
+        Args:
+            chunk_id: Unique chunk identifier
+            vector: Embedding vector (384-dim for all-MiniLM-L6-v2)
+            metadata: Chunk metadata (doc_id, chunk_index, content, etc.)
+        &quot;&quot;&quot;
+
+    def flush(self) -&gt; bool:
+        &quot;&quot;&quot;
+        Flush accumulated vectors to ChromaDB (thread-safe)
+
+        Returns:
+            bool: True if all vectors were added successfully
+        &quot;&quot;&quot;
+
+    def get_stats(self) -&gt; Dict[str, int]:
+        &quot;&quot;&quot;
+        Get batch statistics
+
+        Returns:
+            {
+                'total_added': int,      # Total vectors added
+                'total_batches': int,    # Number of batches flushed
+                'total_fallbacks': int,  # Fallback inserts (errors)
+                'pending': int           # Items in current batch
+            }
+        &quot;&quot;&quot;
+
+    def __enter__(self):
+        &quot;&quot;&quot;Context manager entry&quot;&quot;&quot;
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        &quot;&quot;&quot;Context manager exit (auto-flush)&quot;&quot;&quot;
+</code></pre>
+<h3 id="neo4jbatchcreator">Neo4jBatchCreator<a class="headerlink" href="#neo4jbatchcreator" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class Neo4jBatchCreator:
+    &quot;&quot;&quot;
+    Batch creator for Neo4j relationships using UNWIND
+
+    Accumulates relationships and flushes them in batches using Cypher UNWIND.
+    Automatically falls back to per-item create on batch failures.
+    Thread-safe for concurrent use.
+
+    Performance:
+        Single create: 1000 rels = 1000 Cypher queries (~150 seconds)
+        Batch UNWIND: 1000 rels = 1 Cypher query (~1.5 seconds)
+        Speedup: ~100x faster
+
+    Examples:
+        &gt;&gt;&gt; creator = Neo4jBatchCreator(neo4j_backend, batch_size=1000)
+        &gt;&gt;&gt; for doc_id, chunk_id in chunks:
+        ...     creator.add_relationship(doc_id, chunk_id, 'HAS_CHUNK')
+        &gt;&gt;&gt; creator.flush()
+    &quot;&quot;&quot;
+
+    def __init__(self, neo4j_backend, batch_size: int = 1000):
+        &quot;&quot;&quot;
+        Initialize batch creator
+
+        Args:
+            neo4j_backend: Neo4j backend instance (must have driver/session)
+            batch_size: Number of relationships to accumulate before auto-flush
+        &quot;&quot;&quot;
+
+    def add_relationship(
+        self,
+        from_id: str,
+        to_id: str,
+        rel_type: str,
+        properties: Optional[Dict[str, Any]] = None
+    ):
+        &quot;&quot;&quot;
+        Add relationship to batch (auto-flushes when batch is full)
+
+        Args:
+            from_id: Source node ID (business ID, e.g., 'doc_123')
+            to_id: Target node ID (business ID, e.g., 'chunk_123_0')
+            rel_type: Relationship type (e.g., 'HAS_CHUNK', 'NEXT_CHUNK')
+            properties: Optional relationship properties
+        &quot;&quot;&quot;
+
+    def flush(self) -&gt; bool:
+        &quot;&quot;&quot;
+        Flush accumulated relationships to Neo4j using UNWIND (thread-safe)
+
+        Returns:
+            bool: True if all relationships were created successfully
+
+        Note:
+            Tries APOC first (apoc.merge.relationship) for best performance
+            Falls back to manual MERGE if APOC not available
+        &quot;&quot;&quot;
+
+    def get_stats(self) -&gt; Dict[str, int]:
+        &quot;&quot;&quot;
+        Get batch statistics
+
+        Returns:
+            {
+                'total_created': int,    # Total relationships created
+                'total_batches': int,    # Number of batches flushed
+                'total_fallbacks': int,  # Fallback creates (errors)
+                'pending': int           # Items in current batch
+            }
+        &quot;&quot;&quot;
+</code></pre>
+<h3 id="helper-functions">Helper Functions<a class="headerlink" href="#helper-functions" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def should_use_chroma_batch_insert() -&gt; bool:
+    &quot;&quot;&quot;
+    Check if ChromaDB batch insert is enabled
+
+    Returns:
+        True if ENABLE_CHROMA_BATCH_INSERT=true
+    &quot;&quot;&quot;
+
+def should_use_neo4j_batching() -&gt; bool:
+    &quot;&quot;&quot;
+    Check if Neo4j batching is enabled
+
+    Returns:
+        True if ENABLE_NEO4J_BATCHING=true
+    &quot;&quot;&quot;
+
+def get_chroma_batch_size() -&gt; int:
+    &quot;&quot;&quot;
+    Get ChromaDB batch size from ENV
+
+    Returns:
+        Batch size (default: 100)
+    &quot;&quot;&quot;
+
+def get_neo4j_batch_size() -&gt; int:
+    &quot;&quot;&quot;
+    Get Neo4j batch size from ENV
+
+    Returns:
+        Batch size (default: 1000)
+    &quot;&quot;&quot;
+</code></pre>
+<hr />
+<h2 id="advanced-usage">🛠️ Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permanent link">&para;</a></h2>
+<h3 id="thread-safe-concurrent-use">Thread-Safe Concurrent Use<a class="headerlink" href="#thread-safe-concurrent-use" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from uds3.database.batch_operations import ChromaBatchInserter
+from concurrent.futures import ThreadPoolExecutor
+
+# Shared inserter (thread-safe!)
+inserter = ChromaBatchInserter(chromadb, batch_size=100)
+
+def process_document(doc_chunks):
+    for chunk_id, vector, metadata in doc_chunks:
+        inserter.add(chunk_id, vector, metadata)  # Safe!
+
+# Parallel processing
+with ThreadPoolExecutor(max_workers=10) as executor:
+    executor.map(process_document, document_list)
+
+# Flush remaining items
+inserter.flush()
+</code></pre>
+<h3 id="fallback-handling">Fallback Handling<a class="headerlink" href="#fallback-handling" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from uds3.database.batch_operations import ChromaBatchInserter
+
+inserter = ChromaBatchInserter(chromadb, batch_size=100)
+
+# Add items
+for item in items:
+    inserter.add(item['id'], item['vector'], item['metadata'])
+
+# Flush and check fallbacks
+success = inserter.flush()
+stats = inserter.get_stats()
+
+if stats['total_fallbacks'] &gt; 0:
+    print(f&quot;⚠️ {stats['total_fallbacks']} items used fallback!&quot;)
+    # Check logs for errors
+</code></pre>
+<h3 id="neo4j-apoc-detection">Neo4j APOC Detection<a class="headerlink" href="#neo4j-apoc-detection" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from uds3.database.batch_operations import Neo4jBatchCreator
+
+creator = Neo4jBatchCreator(neo4j, batch_size=1000)
+
+# Add relationships
+for doc_id, chunk_id in chunks:
+    creator.add_relationship(doc_id, chunk_id, 'HAS_CHUNK')
+
+# Flush (tries APOC first)
+creator.flush()
+
+# Check logs for APOC status:
+# &quot;✅ Neo4j Batch Create (APOC): 1000 relationships&quot;
+# or
+# &quot;✅ Neo4j Batch Create (Manual): 1000 relationships&quot;
+</code></pre>
+<hr />
+<h2 id="troubleshooting">⚠️ Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="chromadb-batch-insert-fails">ChromaDB Batch Insert Fails<a class="headerlink" href="#chromadb-batch-insert-fails" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> All items fallback to single insert</p>
+<p><strong>Check:</strong></p>
+<pre><code class="language-python"># 1. Verify backend has add_vectors method
+assert hasattr(chromadb, 'add_vectors'), &quot;Backend missing add_vectors!&quot;
+
+# 2. Check logs for batch failure reason
+# Look for: &quot;[UDS3-BATCH] ⚠️ ChromaDB Batch Insert failed&quot;
+</code></pre>
+<h3 id="neo4j-apoc-not-available">Neo4j APOC Not Available<a class="headerlink" href="#neo4j-apoc-not-available" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Using manual MERGE (slower)</p>
+<p><strong>Solution:</strong></p>
+<pre><code class="language-cypher">-- Install APOC plugin in Neo4j
+-- See: https://neo4j.com/docs/apoc/current/installation/
+
+-- Verify APOC available:
+RETURN apoc.version()
+</code></pre>
+<h3 id="memory-usage-high">Memory Usage High<a class="headerlink" href="#memory-usage-high" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Large batches consume too much memory</p>
+<p><strong>Solution:</strong></p>
+<pre><code class="language-python"># Reduce batch size
+os.environ['CHROMA_BATCH_INSERT_SIZE'] = '50'  # Default: 100
+os.environ['NEO4J_BATCH_SIZE'] = '500'         # Default: 1000
+</code></pre>
+<hr />
+<h2 id="best-practices">🎯 Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Use Context Manager:</strong>
+   ```python
+   # ✅ Auto-flush on exit
+   with ChromaBatchInserter(chromadb) as inserter:
+       for item in items:
+           inserter.add(item)</li>
+</ol>
+<p># ❌ Manual flush (error-prone)
+   inserter = ChromaBatchInserter(chromadb)
+   for item in items:
+       inserter.add(item)
+   inserter.flush()  # Don't forget!
+   ```</p>
+<ol>
+<li>
+<p><strong>Monitor Fallbacks:</strong>
+   <code>python
+   stats = inserter.get_stats()
+   if stats['total_fallbacks'] &gt; stats['total_added'] * 0.1:
+       logger.warning("⚠️ &gt;10% fallback rate - check batch failures!")</code></p>
+</li>
+<li>
+<p><strong>Choose Appropriate Batch Size:</strong>
+   <code>python
+   # ChromaDB: 100-1000 (network-limited)
+   # Neo4j: 1000-10000 (CPU-limited, APOC handles large batches)</code></p>
+</li>
+<li>
+<p><strong>Flush Before Exit:</strong>
+   <code>python
+   try:
+       # Process items
+       pass
+   finally:
+       inserter.flush()  # Ensure no data loss</code></p>
+</li>
+</ol>
+<hr />
+<h2 id="postgresql-batch-operations-new-in-v220">�️ PostgreSQL Batch Operations (NEW in v2.2.0)<a class="headerlink" href="#postgresql-batch-operations-new-in-v220" title="Permanent link">&para;</a></h2>
+<h3 id="overview_1">Overview<a class="headerlink" href="#overview_1" title="Permanent link">&para;</a></h3>
+<p><strong>PostgreSQLBatchInserter</strong> reduces database round-trips by batching INSERT operations using <code>psycopg2.extras.execute_batch</code>.</p>
+<p><strong>Key Benefits:</strong>
+- ✅ <strong>Single Commit:</strong> One transaction per batch (vs one per document)
+- ✅ <strong>execute_batch:</strong> Optimized batch execution with page_size
+- ✅ <strong>+50-100x Faster:</strong> 10 docs/sec → 500-1000 docs/sec
+- ✅ <strong>Thread-Safe:</strong> Concurrent usage with threading.Lock
+- ✅ <strong>Auto-Fallback:</strong> Single inserts on batch failure
+- ✅ <strong>Idempotent:</strong> ON CONFLICT DO UPDATE for safe retries</p>
+<h3 id="quick-start_1">Quick Start<a class="headerlink" href="#quick-start_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from uds3.database.batch_operations import PostgreSQLBatchInserter
+from uds3.database.database_api_postgresql import PostgreSQLRelationalBackend
+
+# Setup
+postgres = PostgreSQLRelationalBackend(config)
+postgres.connect()
+
+# Batch inserter with context manager (auto-flush on exit)
+with PostgreSQLBatchInserter(postgres, batch_size=100) as inserter:
+    for doc in documents:
+        inserter.add(
+            document_id=doc['id'],
+            file_path=doc['path'],
+            classification=doc['type'],
+            content_length=len(doc['content']),
+            legal_terms_count=doc['terms'],
+            quality_score=doc.get('quality', 1.0),
+            processing_status='completed'
+        )
+    # Auto-flushes on exit with single commit
+
+# Manual control
+inserter = PostgreSQLBatchInserter(postgres, batch_size=100)
+for doc in documents:
+    inserter.add(...)
+
+inserter.flush()  # Manual flush with single commit
+
+# Get statistics
+stats = inserter.get_stats()
+# {'total_added': 250, 'total_batches': 3, 'total_fallbacks': 0, 'pending': 0}
+</code></pre>
+<h3 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># PostgreSQL Batch Insert
+ENABLE_POSTGRES_BATCH_INSERT=false  # Default: off (backward compatible)
+POSTGRES_BATCH_INSERT_SIZE=100      # Batch size (1-1000)
+</code></pre>
+<h3 id="activation-example_1">Activation Example<a class="headerlink" href="#activation-example_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">import os
+
+# Enable PostgreSQL batch insert
+os.environ['ENABLE_POSTGRES_BATCH_INSERT'] = 'true'
+os.environ['POSTGRES_BATCH_INSERT_SIZE'] = '100'
+
+from uds3.database.batch_operations import (
+    should_use_postgres_batch_insert,
+    get_postgres_batch_size
+)
+
+if should_use_postgres_batch_insert():
+    print(f&quot;PostgreSQL Batch Insert ENABLED (size: {get_postgres_batch_size()})&quot;)
+    # Use PostgreSQLBatchInserter
+else:
+    print(&quot;PostgreSQL Batch Insert DISABLED&quot;)
+    # Use single inserts
+</code></pre>
+<h3 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># BEFORE (Single Inserts):
+for doc in documents:  # 1000 documents
+    backend.insert_document(...)  # 1 INSERT + 1 COMMIT each
+# Time: ~100 seconds (10 docs/sec)
+# Commits: 1000
+
+# AFTER (Batch Insert):
+with PostgreSQLBatchInserter(backend, batch_size=100) as inserter:
+    for doc in documents:  # 1000 documents
+        inserter.add(...)  # Accumulated
+# Time: ~1-2 seconds (500-1000 docs/sec)
+# Commits: 10 (one per batch)
+# Speedup: +50-100x ⚡
+</code></pre>
+<h3 id="api-reference_1">API Reference<a class="headerlink" href="#api-reference_1" title="Permanent link">&para;</a></h3>
+<h4 id="postgresqlbatchinserter">PostgreSQLBatchInserter<a class="headerlink" href="#postgresqlbatchinserter" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">class PostgreSQLBatchInserter:
+    def __init__(self, postgresql_backend, batch_size: int = 100):
+        &quot;&quot;&quot;
+        Initialize batch inserter.
+
+        Args:
+            postgresql_backend: PostgreSQLRelationalBackend instance
+            batch_size: Number of documents per batch (default: 100)
+        &quot;&quot;&quot;
+
+    def add(self,
+            document_id: str,
+            file_path: str,
+            classification: str,
+            content_length: int,
+            legal_terms_count: int,
+            created_at: Optional[str] = None,
+            quality_score: Optional[float] = None,
+            processing_status: Optional[str] = None) -&gt; None:
+        &quot;&quot;&quot;
+        Add document to batch. Auto-flushes when batch is full.
+
+        Args:
+            document_id: Unique document identifier
+            file_path: Path to document file
+            classification: Document classification
+            content_length: Document content length
+            legal_terms_count: Number of legal terms found
+            created_at: ISO timestamp (default: now)
+            quality_score: Quality score 0-1
+            processing_status: Processing status string
+        &quot;&quot;&quot;
+
+    def flush(self) -&gt; bool:
+        &quot;&quot;&quot;
+        Flush pending batch to database.
+
+        Returns:
+            True if successful, False if batch failed (fallback attempted)
+        &quot;&quot;&quot;
+
+    def get_stats(self) -&gt; Dict[str, int]:
+        &quot;&quot;&quot;
+        Get batch statistics.
+
+        Returns:
+            {
+                'total_added': int,      # Total documents added
+                'total_batches': int,    # Total batches flushed
+                'total_fallbacks': int,  # Total fallback attempts
+                'pending': int           # Documents pending flush
+            }
+        &quot;&quot;&quot;
+
+    def __enter__(self):
+        &quot;&quot;&quot;Context manager entry.&quot;&quot;&quot;
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        &quot;&quot;&quot;Context manager exit (auto-flush).&quot;&quot;&quot;
+        self.flush()
+</code></pre>
+<h3 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h3>
+<p><strong>SQL Query:</strong></p>
+<pre><code class="language-sql">INSERT INTO documents (
+    document_id, file_path, classification,
+    content_length, legal_terms_count, created_at,
+    quality_score, processing_status
+) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+ON CONFLICT (document_id) DO UPDATE SET
+    file_path = EXCLUDED.file_path,
+    classification = EXCLUDED.classification,
+    content_length = EXCLUDED.content_length,
+    legal_terms_count = EXCLUDED.legal_terms_count,
+    quality_score = EXCLUDED.quality_score,
+    processing_status = EXCLUDED.processing_status
+</code></pre>
+<p><strong>Batch Execution:</strong></p>
+<pre><code class="language-python">from psycopg2.extras import execute_batch
+
+execute_batch(
+    cursor,
+    sql_query,
+    batch_data,
+    page_size=batch_size  # Optimized execution
+)
+conn.commit()  # Single commit for entire batch
+</code></pre>
+<p><strong>Fallback Strategy:</strong></p>
+<pre><code class="language-python"># On batch failure:
+conn.rollback()  # Rollback failed batch
+for item in batch_data:
+    backend.insert_document(...)  # Single insert per item
+# Ensures data is not lost
+</code></pre>
+<hr />
+<h2 id="couchdb-batch-operations-new-in-v220">📦 CouchDB Batch Operations (NEW in v2.2.0)<a class="headerlink" href="#couchdb-batch-operations-new-in-v220" title="Permanent link">&para;</a></h2>
+<h3 id="overview_2">Overview<a class="headerlink" href="#overview_2" title="Permanent link">&para;</a></h3>
+<p><strong>CouchDBBatchInserter</strong> reduces HTTP overhead by using CouchDB's <code>_bulk_docs</code> API to insert multiple documents in a single request.</p>
+<p><strong>Key Benefits:</strong>
+- ✅ <strong>Single HTTP Request:</strong> One API call per batch (vs one per document)
+- ✅ <strong>_bulk_docs API:</strong> Native CouchDB batch insert endpoint
+- ✅ <strong>+100-500x Faster:</strong> 2 docs/sec → 200-1000 docs/sec
+- ✅ <strong>Thread-Safe:</strong> Concurrent usage with threading.Lock
+- ✅ <strong>Conflict Handling:</strong> Idempotent behavior (conflicts = success)
+- ✅ <strong>Auto-Fallback:</strong> Single inserts on batch failure</p>
+<h3 id="quick-start_2">Quick Start<a class="headerlink" href="#quick-start_2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from uds3.database.batch_operations import CouchDBBatchInserter
+from uds3.database.database_api_couchdb import CouchDBDocumentBackend
+
+# Setup
+couchdb = CouchDBDocumentBackend(config)
+couchdb.connect()
+
+# Batch inserter with context manager (auto-flush on exit)
+with CouchDBBatchInserter(couchdb, batch_size=100) as inserter:
+    for doc in documents:
+        inserter.add(doc, doc_id=doc.get('_id'))
+    # Auto-flushes on exit with single HTTP request
+
+# Manual control
+inserter = CouchDBBatchInserter(couchdb, batch_size=100)
+for doc in documents:
+    inserter.add(doc, doc_id=doc.get('_id'))
+
+inserter.flush()  # Manual flush
+
+# Get statistics (includes conflict tracking)
+stats = inserter.get_stats()
+# {'total_added': 250, 'total_batches': 3, 'total_fallbacks': 0, 
+#  'total_conflicts': 5, 'pending': 0}
+</code></pre>
+<h3 id="configuration_2">Configuration<a class="headerlink" href="#configuration_2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># CouchDB Batch Insert
+ENABLE_COUCHDB_BATCH_INSERT=false  # Default: off (backward compatible)
+COUCHDB_BATCH_INSERT_SIZE=100      # Batch size (1-1000)
+</code></pre>
+<h3 id="activation-example_2">Activation Example<a class="headerlink" href="#activation-example_2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">import os
+
+# Enable CouchDB batch insert
+os.environ['ENABLE_COUCHDB_BATCH_INSERT'] = 'true'
+os.environ['COUCHDB_BATCH_INSERT_SIZE'] = '100'
+
+from uds3.database.batch_operations import (
+    should_use_couchdb_batch_insert,
+    get_couchdb_batch_size
+)
+
+if should_use_couchdb_batch_insert():
+    print(f&quot;CouchDB Batch Insert ENABLED (size: {get_couchdb_batch_size()})&quot;)
+    # Use CouchDBBatchInserter
+else:
+    print(&quot;CouchDB Batch Insert DISABLED&quot;)
+    # Use single inserts
+</code></pre>
+<h3 id="performance_1">Performance<a class="headerlink" href="#performance_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># BEFORE (Single Inserts):
+for doc in documents:  # 1000 documents
+    backend.create_document(doc)  # 1-2 HTTP requests each
+# Time: ~500 seconds (2 docs/sec)
+# HTTP Requests: 1000-2000
+
+# AFTER (Batch Insert):
+with CouchDBBatchInserter(backend, batch_size=100) as inserter:
+    for doc in documents:  # 1000 documents
+        inserter.add(doc)  # Accumulated
+# Time: ~1-5 seconds (200-1000 docs/sec)
+# HTTP Requests: 10 (one per batch)
+# Speedup: +100-500x 🚀
+</code></pre>
+<h3 id="api-reference_2">API Reference<a class="headerlink" href="#api-reference_2" title="Permanent link">&para;</a></h3>
+<h4 id="couchdbbatchinserter">CouchDBBatchInserter<a class="headerlink" href="#couchdbbatchinserter" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">class CouchDBBatchInserter:
+    def __init__(self, couchdb_backend, batch_size: int = 100):
+        &quot;&quot;&quot;
+        Initialize batch inserter.
+
+        Args:
+            couchdb_backend: CouchDBDocumentBackend instance
+            batch_size: Number of documents per batch (default: 100)
+        &quot;&quot;&quot;
+
+    def add(self, doc: Dict[str, Any], doc_id: Optional[str] = None) -&gt; None:
+        &quot;&quot;&quot;
+        Add document to batch. Auto-flushes when batch is full.
+
+        Args:
+            doc: Document dictionary
+            doc_id: Optional document ID (sets doc['_id'])
+        &quot;&quot;&quot;
+
+    def flush(self) -&gt; bool:
+        &quot;&quot;&quot;
+        Flush pending batch to database.
+
+        Returns:
+            True if successful, False if batch failed (fallback attempted)
+        &quot;&quot;&quot;
+
+    def get_stats(self) -&gt; Dict[str, int]:
+        &quot;&quot;&quot;
+        Get batch statistics.
+
+        Returns:
+            {
+                'total_added': int,      # Total documents added
+                'total_batches': int,    # Total batches flushed
+                'total_fallbacks': int,  # Total fallback attempts
+                'total_conflicts': int,  # Total conflicts (idempotent)
+                'pending': int           # Documents pending flush
+            }
+        &quot;&quot;&quot;
+
+    def __enter__(self):
+        &quot;&quot;&quot;Context manager entry.&quot;&quot;&quot;
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        &quot;&quot;&quot;Context manager exit (auto-flush).&quot;&quot;&quot;
+        self.flush()
+</code></pre>
+<h3 id="implementation-details_1">Implementation Details<a class="headerlink" href="#implementation-details_1" title="Permanent link">&para;</a></h3>
+<p><strong>_bulk_docs API:</strong></p>
+<pre><code class="language-python"># CouchDB native batch insert
+results = db.update(batch_data)
+
+# Results format:
+# [
+#   {'id': 'doc1', 'ok': True, 'rev': '1-abc'},
+#   {'id': 'doc2', 'error': 'conflict'},  # Idempotent
+#   {'id': 'doc3', 'ok': True, 'rev': '1-def'}
+# ]
+</code></pre>
+<p><strong>Conflict Handling (Idempotent):</strong></p>
+<pre><code class="language-python"># Conflicts are treated as success (document already exists)
+conflicts = [r for r in results if r.get('error') == 'conflict']
+if conflicts:
+    self.total_conflicts += len(conflicts)
+    logger.warning(f&quot;CouchDB: {len(conflicts)} conflicts (idempotent skip)&quot;)
+
+# Only non-conflict errors trigger fallback
+errors = [r for r in results if r.get('error') and r['error'] != 'conflict']
+if errors:
+    # Trigger fallback to single inserts
+    return False
+</code></pre>
+<p><strong>Fallback Strategy:</strong></p>
+<pre><code class="language-python"># On batch failure (non-conflict errors):
+for doc in batch_data:
+    backend.create_document(doc)  # Single insert per document
+# Ensures data is not lost
+</code></pre>
+<h3 id="conflict-resolution-example">Conflict Resolution Example<a class="headerlink" href="#conflict-resolution-example" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python"># Scenario: Re-inserting existing documents
+with CouchDBBatchInserter(backend, batch_size=100) as inserter:
+    for doc in documents:
+        inserter.add(doc, doc_id=doc['_id'])
+    # Auto-flush
+
+stats = inserter.get_stats()
+print(f&quot;Added: {stats['total_added']}&quot;)
+print(f&quot;Conflicts: {stats['total_conflicts']}&quot;)  # Idempotent success
+print(f&quot;Fallbacks: {stats['total_fallbacks']}&quot;)  # Only on errors
+
+# Output:
+# Added: 100
+# Conflicts: 25  # 25 documents already existed (OK)
+# Fallbacks: 0   # No errors occurred
+</code></pre>
+<hr />
+<h2 id="references">�📚 References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ChromaDB Batch API:</strong> https://docs.trychroma.com/</li>
+<li><strong>Neo4j UNWIND:</strong> https://neo4j.com/docs/cypher-manual/current/clauses/unwind/</li>
+<li><strong>Neo4j APOC:</strong> https://neo4j.com/docs/apoc/current/</li>
+<li><strong>psycopg2 execute_batch:</strong> https://www.psycopg.org/docs/extras.html#fast-exec</li>
+<li><strong>CouchDB _bulk_docs:</strong> https://docs.couchdb.org/en/stable/api/database/bulk-api.html</li>
+</ul>
+<hr />
+<p><strong>Status:</strong> ✅ <strong>PRODUCTION READY</strong> (v2.2.0)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

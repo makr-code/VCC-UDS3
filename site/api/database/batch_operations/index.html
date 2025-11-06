@@ -1,0 +1,4229 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/api/database/batch_operations/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>database.batch_operations - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#databasebatch_operations" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href="../../.." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              database.batch_operations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database.batch_operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="batch_operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.BATCH_READ_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      BATCH_READ_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CHROMADB_BATCH_READ_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHROMADB_BATCH_READ_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CHROMA_BATCH_INSERT_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHROMA_BATCH_INSERT_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.COUCHDB_BATCH_INSERT_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUCHDB_BATCH_INSERT_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.COUCHDB_BATCH_READ_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUCHDB_BATCH_READ_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ENABLE_BATCH_READ" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENABLE_BATCH_READ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ENABLE_CHROMA_BATCH_INSERT" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENABLE_CHROMA_BATCH_INSERT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ENABLE_COUCHDB_BATCH_INSERT" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENABLE_COUCHDB_BATCH_INSERT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ENABLE_NEO4J_BATCHING" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENABLE_NEO4J_BATCHING
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ENABLE_PARALLEL_BATCH_READ" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENABLE_PARALLEL_BATCH_READ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ENABLE_POSTGRES_BATCH_INSERT" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENABLE_POSTGRES_BATCH_INSERT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.NEO4J_BATCH_READ_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      NEO4J_BATCH_READ_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.NEO4J_BATCH_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      NEO4J_BATCH_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PARALLEL_BATCH_TIMEOUT" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARALLEL_BATCH_TIMEOUT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.POSTGRES_BATCH_INSERT_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      POSTGRES_BATCH_INSERT_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.POSTGRES_BATCH_READ_SIZE" class="md-nav__link">
+    <span class="md-ellipsis">
+      POSTGRES_BATCH_READ_SIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      logger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaBatchInserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaBatchInserter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ChromaBatchInserter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaBatchInserter--or-use-as-context-manager-auto-flush-on-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Or use as context manager (auto-flush on exit):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaBatchInserter.add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaBatchInserter.flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      flush
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaBatchInserter.get_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_stats
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaDBBatchReader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaDBBatchReader
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ChromaDBBatchReader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaDBBatchReader.batch_get" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_get
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ChromaDBBatchReader.batch_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_search
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchInserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      CouchDBBatchInserter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CouchDBBatchInserter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchInserter--or-use-as-context-manager-auto-flush-on-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Or use as context manager (auto-flush on exit):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchInserter.add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchInserter.flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      flush
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchInserter.get_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_stats
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader" class="md-nav__link">
+    <span class="md-ellipsis">
+      CouchDBBatchReader
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CouchDBBatchReader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader--without-full-content-metadata-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Without full content (metadata only):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader--check-existence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check existence:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader.batch_exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_exists
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="batch_exists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader.batch_exists--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader.batch_get" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_get
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="batch_get">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader.batch_get--returns-_id-doc1-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns: [{'_id': 'doc1', 'content': '...', ...}, ...]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader.batch_get_revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_get_revisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="batch_get_revisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.CouchDBBatchReader.batch_get_revisions--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchCreator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neo4jBatchCreator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neo4jBatchCreator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchCreator--or-use-as-context-manager-auto-flush-on-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Or use as context manager (auto-flush on exit):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchCreator.add_relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_relationship
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchCreator.flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      flush
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchCreator.get_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_stats
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchReader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neo4jBatchReader
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neo4jBatchReader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchReader.batch_get_nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_get_nodes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.Neo4jBatchReader.batch_get_relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_get_relationships
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ParallelBatchReader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParallelBatchReader
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ParallelBatchReader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ParallelBatchReader--relational-document-vector-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      {'relational': [...], 'document': [...], 'vector': {...}, 'graph': {...}}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ParallelBatchReader.batch_get_all" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_get_all
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.ParallelBatchReader.batch_search_all" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_search_all
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchInserter" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQLBatchInserter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQLBatchInserter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchInserter--or-use-as-context-manager-auto-flush-on-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Or use as context manager (auto-flush on exit):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchInserter.add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchInserter.flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      flush
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchInserter.get_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_stats
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQLBatchReader
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQLBatchReader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader--with-field-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      With field selection:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader--custom-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom query:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader.batch_exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_exists
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="batch_exists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader.batch_exists--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader.batch_get" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_get
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="batch_get">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader.batch_get--returns-id-doc1-file_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns: [{'id': 'doc1', 'file_path': '...', ...}, ...]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader.batch_query" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_query
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="batch_query">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.PostgreSQLBatchReader.batch_query--returns-doc1-doc2-doc3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns: [[{doc1}, {doc2}], [{doc3}]]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_batch_read_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_batch_read_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_chroma_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_chroma_batch_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_chromadb_batch_read_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_chromadb_batch_read_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_couchdb_batch_read_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_couchdb_batch_read_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_couchdb_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_couchdb_batch_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_neo4j_batch_read_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_neo4j_batch_read_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_neo4j_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_neo4j_batch_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_parallel_batch_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_parallel_batch_timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_postgres_batch_read_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_postgres_batch_read_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.get_postgres_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_postgres_batch_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.should_use_batch_read" class="md-nav__link">
+    <span class="md-ellipsis">
+      should_use_batch_read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.should_use_chroma_batch_insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      should_use_chroma_batch_insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.should_use_couchdb_batch_insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      should_use_couchdb_batch_insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.should_use_neo4j_batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      should_use_neo4j_batching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.should_use_parallel_batch_read" class="md-nav__link">
+    <span class="md-ellipsis">
+      should_use_parallel_batch_read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database.batch_operations.should_use_postgres_batch_insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      should_use_postgres_batch_insert
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/api/database/batch_operations.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="databasebatch_operations">database.batch_operations<a class="headerlink" href="#databasebatch_operations" title="Permanent link">&para;</a></h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="database.batch_operations" class="doc doc-heading">
+            <code>database.batch_operations</code>
+
+
+<a href="#database.batch_operations" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+        <p>batch_operations.py</p>
+<p>batch_operations.py
+UDS3 Batch Operations for Database Backends
+============================================
+Optimized batch insert/update operations for ChromaDB and Neo4j.
+Features:
+- ChromaDB: Batch vector insertion (100+ vectors per API call)
+- Neo4j: Batch relationship creation with UNWIND (1000+ rels per query)
+- Environment-driven toggles (ENABLE_CHROMA_BATCH_INSERT, ENABLE_NEO4J_BATCHING)
+- Automatic fallback to single-item operations on error
+- Thread-safe batch accumulation
+Performance Gains:
+- ChromaDB: -93% API calls (100 items → 1 call)
+- Neo4j: +15-25% throughput (1000 rels/query vs 1 rel/query)
+Integration:
+- Compatible with UDS3 database backends
+- Works with database_api_chromadb_remote.py
+- Works with database_api_neo4j.py
+Author: UDS3 Framework
+Date: Oktober 2025
+Version: 2.1.0
+Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3</p>
+<p>Part of UDS3 (Unified Database Strategy v3)
+Author: Martin Krüger (ma.krueger@outlook.com)
+License: MIT with Government Partnership Commons Clause
+Repository: https://github.com/makr-code/VCC-UDS3</p>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.BATCH_READ_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">BATCH_READ_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;BATCH_READ_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;100&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.BATCH_READ_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.CHROMADB_BATCH_READ_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CHROMADB_BATCH_READ_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;CHROMADB_BATCH_READ_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;500&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.CHROMADB_BATCH_READ_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.CHROMA_BATCH_INSERT_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CHROMA_BATCH_INSERT_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;CHROMA_BATCH_INSERT_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;100&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.CHROMA_BATCH_INSERT_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.COUCHDB_BATCH_INSERT_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COUCHDB_BATCH_INSERT_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;COUCHDB_BATCH_INSERT_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;100&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.COUCHDB_BATCH_INSERT_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.COUCHDB_BATCH_READ_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COUCHDB_BATCH_READ_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;COUCHDB_BATCH_READ_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;1000&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.COUCHDB_BATCH_READ_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.ENABLE_BATCH_READ" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENABLE_BATCH_READ</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ENABLE_BATCH_READ&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.ENABLE_BATCH_READ" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.ENABLE_CHROMA_BATCH_INSERT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENABLE_CHROMA_BATCH_INSERT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ENABLE_CHROMA_BATCH_INSERT&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.ENABLE_CHROMA_BATCH_INSERT" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.ENABLE_COUCHDB_BATCH_INSERT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENABLE_COUCHDB_BATCH_INSERT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ENABLE_COUCHDB_BATCH_INSERT&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.ENABLE_COUCHDB_BATCH_INSERT" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.ENABLE_NEO4J_BATCHING" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENABLE_NEO4J_BATCHING</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ENABLE_NEO4J_BATCHING&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.ENABLE_NEO4J_BATCHING" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.ENABLE_PARALLEL_BATCH_READ" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENABLE_PARALLEL_BATCH_READ</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ENABLE_PARALLEL_BATCH_READ&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.ENABLE_PARALLEL_BATCH_READ" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.ENABLE_POSTGRES_BATCH_INSERT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENABLE_POSTGRES_BATCH_INSERT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ENABLE_POSTGRES_BATCH_INSERT&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.ENABLE_POSTGRES_BATCH_INSERT" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.NEO4J_BATCH_READ_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NEO4J_BATCH_READ_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;NEO4J_BATCH_READ_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;1000&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.NEO4J_BATCH_READ_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.NEO4J_BATCH_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NEO4J_BATCH_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;NEO4J_BATCH_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;1000&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.NEO4J_BATCH_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.PARALLEL_BATCH_TIMEOUT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PARALLEL_BATCH_TIMEOUT</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PARALLEL_BATCH_TIMEOUT&#39;</span><span class="p">,</span> <span class="s1">&#39;30.0&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.PARALLEL_BATCH_TIMEOUT" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.POSTGRES_BATCH_INSERT_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">POSTGRES_BATCH_INSERT_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;POSTGRES_BATCH_INSERT_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;100&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.POSTGRES_BATCH_INSERT_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.POSTGRES_BATCH_READ_SIZE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">POSTGRES_BATCH_READ_SIZE</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;POSTGRES_BATCH_READ_SIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;1000&#39;</span><span class="p">))</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.POSTGRES_BATCH_READ_SIZE" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="database.batch_operations.logger" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#database.batch_operations.logger" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.ChromaBatchInserter" class="doc doc-heading">
+            <code>ChromaBatchInserter</code>
+
+
+<a href="#database.batch_operations.ChromaBatchInserter" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch inserter for ChromaDB Remote HTTP API</p>
+<p>Accumulates vectors and flushes them in batches to reduce API calls.
+Automatically falls back to per-item insert on batch failures.
+Thread-safe for concurrent use.</p>
+
+
+<details class="usage" open>
+  <summary>Usage</summary>
+  <p>inserter = ChromaBatchInserter(chromadb_backend, batch_size=100)
+for chunk_id, vector, metadata in chunks:
+    inserter.add(chunk_id, vector, metadata)
+inserter.flush()  # Send remaining items</p>
+<h4 id="database.batch_operations.ChromaBatchInserter--or-use-as-context-manager-auto-flush-on-exit">Or use as context manager (auto-flush on exit):<a class="headerlink" href="#database.batch_operations.ChromaBatchInserter--or-use-as-context-manager-auto-flush-on-exit" title="Permanent link">&para;</a></h4>
+<p>with ChromaBatchInserter(chromadb_backend) as inserter:
+    for chunk_id, vector, metadata in chunks:
+        inserter.add(chunk_id, vector, metadata)</p>
+</details>
+
+<details class="performance" open>
+  <summary>Performance</summary>
+  <ul>
+<li>Single insert: 100 vectors = 100 API calls (~40 seconds)</li>
+<li>Batch insert: 100 vectors = 1 API call (~0.5 seconds)</li>
+<li>Speedup: ~80x faster (93% reduction in API calls)</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.ChromaBatchInserter.add" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">chunk_id</span><span class="p">,</span> <span class="n">vector</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.ChromaBatchInserter.add" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Add vector to batch (auto-flushes when batch is full)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>chunk_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique chunk identifier</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>vector</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="float">float</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Embedding vector (384-dim for all-MiniLM-L6-v2)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>metadata</code>
+            </td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Chunk metadata (doc_id, chunk_index, content, etc.)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.ChromaBatchInserter.flush" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flush</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.ChromaBatchInserter.flush" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Flush accumulated vectors to ChromaDB (thread-safe)</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>bool</code></td>            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True if all vectors were added successfully</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.ChromaBatchInserter.get_stats" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_stats</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.ChromaBatchInserter.get_stats" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get batch insert statistics</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>dict</code></td>            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Statistics (total_added, total_batches, total_fallbacks, pending)</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.ChromaDBBatchReader" class="doc doc-heading">
+            <code>ChromaDBBatchReader</code>
+
+
+<a href="#database.batch_operations.ChromaDBBatchReader" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch reader for ChromaDB vector backend</p>
+<p>Features:
+- batch_get(): Get multiple vectors by ID
+- batch_search(): Similarity search for multiple queries
+- include_embeddings parameter
+- Metadata filtering</p>
+<p>Performance:
+- Single get: 100 vectors = 1000ms (10ms × 100)
+- Batch get: 100 vectors = 50ms (1 API call)
+- Speedup: 20x faster</p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.ChromaDBBatchReader.batch_get" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_get</span><span class="p">(</span><span class="n">chunk_ids</span><span class="p">,</span> <span class="n">include_embeddings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_documents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_metadatas</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.ChromaDBBatchReader.batch_get" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get multiple vectors in single API call</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.ChromaDBBatchReader.batch_search" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_search</span><span class="p">(</span><span class="n">query_texts</span><span class="p">,</span> <span class="n">n_results</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.ChromaDBBatchReader.batch_search" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Similarity search for multiple queries</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.CouchDBBatchInserter" class="doc doc-heading">
+            <code>CouchDBBatchInserter</code>
+
+
+<a href="#database.batch_operations.CouchDBBatchInserter" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch inserter for CouchDB document backend</p>
+<p>Accumulates documents and flushes them in batches using _bulk_docs API.
+Automatically falls back to single-item insert on batch failures.
+Thread-safe for concurrent use.</p>
+
+
+<details class="usage" open>
+  <summary>Usage</summary>
+  <p>inserter = CouchDBBatchInserter(couchdb_backend, batch_size=100)
+for doc in documents:
+    inserter.add(doc, doc_id='doc_123')
+inserter.flush()  # Send remaining items</p>
+<h4 id="database.batch_operations.CouchDBBatchInserter--or-use-as-context-manager-auto-flush-on-exit">Or use as context manager (auto-flush on exit):<a class="headerlink" href="#database.batch_operations.CouchDBBatchInserter--or-use-as-context-manager-auto-flush-on-exit" title="Permanent link">&para;</a></h4>
+<p>with CouchDBBatchInserter(couchdb_backend) as inserter:
+    for doc in documents:
+        inserter.add(doc, doc_id='doc_123')</p>
+</details>
+
+<details class="performance" open>
+  <summary>Performance</summary>
+  <ul>
+<li>Single insert: 100 documents = ~50 seconds (2 inserts/sec)</li>
+<li>Batch insert: 100 documents = ~0.1-0.5 seconds (200-1000 inserts/sec)</li>
+<li>Speedup: 100-500x faster</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.CouchDBBatchInserter.add" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">doc_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.CouchDBBatchInserter.add" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Add document to batch</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc</code>
+            </td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Document to insert (dict)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc_id</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional document ID (if None, CouchDB generates UUID)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.CouchDBBatchInserter.flush" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flush</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.CouchDBBatchInserter.flush" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Flush accumulated batch to database</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>bool</code></td>            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True if successful, False if fallback occurred</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.CouchDBBatchInserter.get_stats" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_stats</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.CouchDBBatchInserter.get_stats" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get inserter statistics</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dict with total_added, total_batches, total_fallbacks, total_conflicts, pending</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.CouchDBBatchReader" class="doc doc-heading">
+            <code>CouchDBBatchReader</code>
+
+
+<a href="#database.batch_operations.CouchDBBatchReader" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch reader for CouchDB document backend</p>
+<p>Features:
+- batch_get(): Get multiple documents (_all_docs with keys)
+- batch_exists(): Check document existence
+- include_docs parameter (fetch full content or just metadata)
+- Max 1000 documents per request (CouchDB limit)</p>
+<p>Performance:
+- Single GET: 100 docs = 2000ms (20ms × 100)
+- Batch _all_docs: 100 docs = 100ms (1 API call)
+- Speedup: 20x faster</p>
+
+
+<details class="usage" open>
+  <summary>Usage</summary>
+  <p>reader = CouchDBBatchReader(couchdb_backend)
+docs = reader.batch_get(['doc1', 'doc2', 'doc3'])</p>
+<h4 id="database.batch_operations.CouchDBBatchReader--without-full-content-metadata-only">Without full content (metadata only):<a class="headerlink" href="#database.batch_operations.CouchDBBatchReader--without-full-content-metadata-only" title="Permanent link">&para;</a></h4>
+<p>docs = reader.batch_get(['doc1', 'doc2'], include_docs=False)</p>
+<h4 id="database.batch_operations.CouchDBBatchReader--check-existence">Check existence:<a class="headerlink" href="#database.batch_operations.CouchDBBatchReader--check-existence" title="Permanent link">&para;</a></h4>
+<p>exists = reader.batch_exists(['doc1', 'doc2', 'doc3'])</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.CouchDBBatchReader.batch_exists" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_exists</span><span class="p">(</span><span class="n">doc_ids</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.CouchDBBatchReader.batch_exists" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if documents exist (without fetching content - lightweight)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc_ids</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document IDs</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="bool">bool</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary mapping doc_id → exists (bool)</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = CouchDBBatchReader(backend)
+exists = reader.batch_exists(['doc1', 'doc2', 'doc3'])</p>
+<h5 False_="False," True="True" True_="True," _doc1_:="'doc1':" _doc2_:="'doc2':" _doc3_:="'doc3':" id="database.batch_operations.CouchDBBatchReader.batch_exists--returns">Returns:<a class="headerlink" href="#database.batch_operations.CouchDBBatchReader.batch_exists--returns" title="Permanent link">&para;</a></h5>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.CouchDBBatchReader.batch_get" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_get</span><span class="p">(</span><span class="n">doc_ids</span><span class="p">,</span> <span class="n">include_docs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.CouchDBBatchReader.batch_get" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get multiple documents in single API call using _all_docs</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc_ids</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document IDs</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_docs</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Include full document content (default: True)</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>batch_size</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Max documents per request (CouchDB limit: 1000)</p>
+              </div>
+            </td>
+            <td>
+                  <code>1000</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document dictionaries</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = CouchDBBatchReader(backend)
+docs = reader.batch_get(
+    doc_ids=['doc1', 'doc2', 'doc3'],
+    include_docs=True
+)</p>
+<h5 id="database.batch_operations.CouchDBBatchReader.batch_get--returns-_id-doc1-content">Returns: [{'_id': 'doc1', 'content': '...', ...}, ...]<a class="headerlink" href="#database.batch_operations.CouchDBBatchReader.batch_get--returns-_id-doc1-content" title="Permanent link">&para;</a></h5>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.CouchDBBatchReader.batch_get_revisions" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_get_revisions</span><span class="p">(</span><span class="n">doc_ids</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.CouchDBBatchReader.batch_get_revisions" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get document revisions (without fetching content - very lightweight)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc_ids</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document IDs</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary mapping doc_id → revision string</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = CouchDBBatchReader(backend)
+revs = reader.batch_get_revisions(['doc1', 'doc2'])</p>
+<h5 _1-abc123_="'1-abc123'," _2-def456_="'2-def456'" _doc1_:="'doc1':" _doc2_:="'doc2':" id="database.batch_operations.CouchDBBatchReader.batch_get_revisions--returns">Returns:<a class="headerlink" href="#database.batch_operations.CouchDBBatchReader.batch_get_revisions--returns" title="Permanent link">&para;</a></h5>
+</details>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.Neo4jBatchCreator" class="doc doc-heading">
+            <code>Neo4jBatchCreator</code>
+
+
+<a href="#database.batch_operations.Neo4jBatchCreator" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch relationship creator for Neo4j using UNWIND</p>
+<p>Accumulates relationships and creates them in bulk with a single
+Cypher query using UNWIND. Dramatically reduces network overhead.
+Thread-safe for concurrent use.</p>
+<p>Performance:
+- Single insert: 1 relationship per query (~50ms each)
+- Batch insert: 1000 relationships per query (~500ms total)
+- Speedup: ~100x faster for large batches</p>
+
+
+<details class="usage" open>
+  <summary>Usage</summary>
+  <p>creator = Neo4jBatchCreator(neo4j_backend, batch_size=1000)
+for doc_id, chunk_id in chunks:
+    creator.add_relationship(doc_id, chunk_id, "HAS_CHUNK")
+creator.flush()  # Create all relationships</p>
+<h4 id="database.batch_operations.Neo4jBatchCreator--or-use-as-context-manager-auto-flush-on-exit">Or use as context manager (auto-flush on exit):<a class="headerlink" href="#database.batch_operations.Neo4jBatchCreator--or-use-as-context-manager-auto-flush-on-exit" title="Permanent link">&para;</a></h4>
+<p>with Neo4jBatchCreator(neo4j_backend) as creator:
+    for doc_id, chunk_id in chunks:
+        creator.add_relationship(doc_id, chunk_id, "HAS_CHUNK")</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.Neo4jBatchCreator.add_relationship" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add_relationship</span><span class="p">(</span><span class="n">from_id</span><span class="p">,</span> <span class="n">to_id</span><span class="p">,</span> <span class="n">rel_type</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.Neo4jBatchCreator.add_relationship" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Add relationship to batch (auto-flushes when batch is full)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>from_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Source node ID (business ID, e.g., 'doc_123')</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>to_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target node ID (business ID, e.g., 'chunk_123_0')</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rel_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Relationship type (e.g., 'HAS_CHUNK', 'NEXT_CHUNK')</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>properties</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional relationship properties</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.Neo4jBatchCreator.flush" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flush</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.Neo4jBatchCreator.flush" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Flush accumulated relationships to Neo4j using UNWIND (thread-safe)</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>bool</code></td>            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True if all relationships were created successfully</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.Neo4jBatchCreator.get_stats" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_stats</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.Neo4jBatchCreator.get_stats" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get batch create statistics</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>dict</code></td>            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Statistics (total_created, total_batches, total_fallbacks, pending)</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.Neo4jBatchReader" class="doc doc-heading">
+            <code>Neo4jBatchReader</code>
+
+
+<a href="#database.batch_operations.Neo4jBatchReader" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch reader for Neo4j graph backend</p>
+<p>Performance:
+- Single query: 100 nodes = 500ms (5ms × 100)
+- Batch UNWIND: 100 nodes = 30ms (1 query)
+- Speedup: 16x faster</p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.Neo4jBatchReader.batch_get_nodes" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_get_nodes</span><span class="p">(</span><span class="n">node_ids</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.Neo4jBatchReader.batch_get_nodes" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get multiple nodes with UNWIND</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.Neo4jBatchReader.batch_get_relationships" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_get_relationships</span><span class="p">(</span><span class="n">node_ids</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.Neo4jBatchReader.batch_get_relationships" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get relationships for multiple nodes</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.ParallelBatchReader" class="doc doc-heading">
+            <code>ParallelBatchReader</code>
+
+
+<a href="#database.batch_operations.ParallelBatchReader" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Parallel batch reader across all 4 UDS3 databases</p>
+<p>Features:
+- Executes queries in parallel (asyncio.gather)
+- Waits for slowest database (not sum of all)
+- Result merging
+- Timeout handling
+- Error aggregation</p>
+<p>Performance:
+- Sequential: sum(db1, db2, db3, db4) = 500ms
+- Parallel: max(db1, db2, db3, db4) = 200ms
+- Speedup: 2.5x faster</p>
+
+
+<details class="usage" open>
+  <summary>Usage</summary>
+  <p>reader = ParallelBatchReader(postgres, couchdb, chromadb, neo4j)
+results = await reader.batch_get_all(['doc1', 'doc2', 'doc3'])</p>
+<h4 id="database.batch_operations.ParallelBatchReader--relational-document-vector-graph">{'relational': [...], 'document': [...], 'vector': {...}, 'graph': {...}}<a class="headerlink" href="#database.batch_operations.ParallelBatchReader--relational-document-vector-graph" title="Permanent link">&para;</a></h4>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.ParallelBatchReader.batch_get_all" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_get_all</span><span class="p">(</span><span class="n">doc_ids</span><span class="p">,</span> <span class="n">include_embeddings</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#database.batch_operations.ParallelBatchReader.batch_get_all" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get documents from all databases in parallel</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc_ids</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document IDs</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_embeddings</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Include vector embeddings (default: False)</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout in seconds (default: from ENV)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Combined results from all databases</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>{
+'relational': [...],  # PostgreSQL results
+'document': [...],    # CouchDB results
+'vector': {...},      # ChromaDB results
+'graph': {...},       # Neo4j results
+'errors': [...]       # Error list (if any)</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>}</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = ParallelBatchReader(postgres, couchdb, chromadb, neo4j)
+results = await reader.batch_get_all(['doc1', 'doc2'])</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.ParallelBatchReader.batch_search_all" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_search_all</span><span class="p">(</span><span class="n">query_text</span><span class="p">,</span> <span class="n">n_results</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#database.batch_operations.ParallelBatchReader.batch_search_all" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Search across all databases in parallel</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>query_text</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Search query text</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_results</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of results per database (default: 10)</p>
+              </div>
+            </td>
+            <td>
+                  <code>10</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout in seconds (default: from ENV)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Combined search results from all databases</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = ParallelBatchReader(postgres, couchdb, chromadb, neo4j)
+results = await reader.batch_search_all('Vertrag', n_results=5)</p>
+</details>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.PostgreSQLBatchInserter" class="doc doc-heading">
+            <code>PostgreSQLBatchInserter</code>
+
+
+<a href="#database.batch_operations.PostgreSQLBatchInserter" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch inserter for PostgreSQL relational backend</p>
+<p>Accumulates documents and flushes them in batches using psycopg2.extras.execute_batch.
+Automatically falls back to single-item insert on batch failures.
+Thread-safe for concurrent use.</p>
+
+
+<details class="usage" open>
+  <summary>Usage</summary>
+  <p>inserter = PostgreSQLBatchInserter(postgresql_backend, batch_size=100)
+for doc in documents:
+    inserter.add(doc['id'], doc['path'], doc['classification'], ...)
+inserter.flush()  # Send remaining items</p>
+<h4 id="database.batch_operations.PostgreSQLBatchInserter--or-use-as-context-manager-auto-flush-on-exit">Or use as context manager (auto-flush on exit):<a class="headerlink" href="#database.batch_operations.PostgreSQLBatchInserter--or-use-as-context-manager-auto-flush-on-exit" title="Permanent link">&para;</a></h4>
+<p>with PostgreSQLBatchInserter(postgresql_backend) as inserter:
+    for doc in documents:
+        inserter.add(doc['id'], doc['path'], doc['classification'], ...)</p>
+</details>
+
+<details class="performance" open>
+  <summary>Performance</summary>
+  <ul>
+<li>Single insert: 100 documents = ~10 seconds (10 inserts/sec)</li>
+<li>Batch insert: 100 documents = ~0.1-0.2 seconds (500-1000 inserts/sec)</li>
+<li>Speedup: 50-100x faster</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.PostgreSQLBatchInserter.add" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">document_id</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">classification</span><span class="p">,</span> <span class="n">content_length</span><span class="p">,</span> <span class="n">legal_terms_count</span><span class="p">,</span> <span class="n">created_at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">quality_score</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_status</span><span class="o">=</span><span class="s1">&#39;completed&#39;</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.PostgreSQLBatchInserter.add" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Add document to batch</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>document_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique document ID</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>file_path</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>File path</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>classification</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Document classification</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>content_length</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Content length</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>legal_terms_count</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of legal terms</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>created_at</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timestamp (optional, defaults to now)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>quality_score</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="float">float</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Quality score (optional)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>processing_status</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Processing status (default: 'completed')</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;completed&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.PostgreSQLBatchInserter.flush" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flush</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.PostgreSQLBatchInserter.flush" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Flush accumulated batch to database</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>bool</code></td>            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>True if successful, False if fallback occurred</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.PostgreSQLBatchInserter.get_stats" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_stats</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.PostgreSQLBatchInserter.get_stats" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get inserter statistics</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="int">int</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dict with total_added, total_batches, total_fallbacks, pending</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="database.batch_operations.PostgreSQLBatchReader" class="doc doc-heading">
+            <code>PostgreSQLBatchReader</code>
+
+
+<a href="#database.batch_operations.PostgreSQLBatchReader" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Batch reader for PostgreSQL relational backend</p>
+<p>Features:
+- batch_get(): Get multiple documents by ID (IN-Clause)
+- batch_query(): Custom SQL with parameter batching
+- Field selection (fetch only needed columns)
+- Thread-safe</p>
+<p>Performance:
+- Single query: 100 docs = 1000ms (10ms × 100)
+- Batch query: 100 docs = 50ms (1 query)
+- Speedup: 20x faster</p>
+
+
+<details class="usage" open>
+  <summary>Usage</summary>
+  <p>reader = PostgreSQLBatchReader(postgresql_backend)
+docs = reader.batch_get(['doc1', 'doc2', 'doc3'])</p>
+<h4 id="database.batch_operations.PostgreSQLBatchReader--with-field-selection">With field selection:<a class="headerlink" href="#database.batch_operations.PostgreSQLBatchReader--with-field-selection" title="Permanent link">&para;</a></h4>
+<p>docs = reader.batch_get(
+    doc_ids=['doc1', 'doc2'],
+    fields=['id', 'file_path', 'classification']
+)</p>
+<h4 id="database.batch_operations.PostgreSQLBatchReader--custom-query">Custom query:<a class="headerlink" href="#database.batch_operations.PostgreSQLBatchReader--custom-query" title="Permanent link">&para;</a></h4>
+<p>query = "SELECT * FROM documents WHERE classification = %s"
+results = reader.batch_query(query, [('Vertrag',), ('Urteil',)])</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.PostgreSQLBatchReader.batch_exists" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_exists</span><span class="p">(</span><span class="n">doc_ids</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s1">&#39;documents&#39;</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.PostgreSQLBatchReader.batch_exists" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if documents exist (lightweight, no content fetch)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc_ids</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document IDs</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>table</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Table name (default: 'documents')</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;documents&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="bool">bool</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary mapping doc_id → exists (bool)</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = PostgreSQLBatchReader(backend)
+exists = reader.batch_exists(['doc1', 'doc2', 'doc3'])</p>
+<h5 False_="False," True="True" True_="True," _doc1_:="'doc1':" _doc2_:="'doc2':" _doc3_:="'doc3':" id="database.batch_operations.PostgreSQLBatchReader.batch_exists--returns">Returns:<a class="headerlink" href="#database.batch_operations.PostgreSQLBatchReader.batch_exists--returns" title="Permanent link">&para;</a></h5>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.PostgreSQLBatchReader.batch_get" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_get</span><span class="p">(</span><span class="n">doc_ids</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s1">&#39;documents&#39;</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.PostgreSQLBatchReader.batch_get" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get multiple documents in single query using IN-Clause</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>doc_ids</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document IDs</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>fields</code>
+            </td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="str">str</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional field selection (default: all fields)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>table</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Table name (default: 'documents')</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;documents&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of document dictionaries</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = PostgreSQLBatchReader(backend)
+docs = reader.batch_get(
+    doc_ids=['doc1', 'doc2', 'doc3'],
+    fields=['id', 'file_path', 'classification']
+)</p>
+<h5 id="database.batch_operations.PostgreSQLBatchReader.batch_get--returns-id-doc1-file_path">Returns: [{'id': 'doc1', 'file_path': '...', ...}, ...]<a class="headerlink" href="#database.batch_operations.PostgreSQLBatchReader.batch_get--returns-id-doc1-file_path" title="Permanent link">&para;</a></h5>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="database.batch_operations.PostgreSQLBatchReader.batch_query" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">batch_query</span><span class="p">(</span><span class="n">query_template</span><span class="p">,</span> <span class="n">param_sets</span><span class="p">,</span> <span class="n">fetch_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#database.batch_operations.PostgreSQLBatchReader.batch_query" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Execute parameterized query multiple times</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>query_template</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SQL query with placeholders (%s)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>param_sets</code>
+            </td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Tuple">Tuple</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of parameter tuples</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>fetch_all</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Fetch all results (True) or one per query (False)</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of result lists (one per param set)</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <p>reader = PostgreSQLBatchReader(backend)
+query = "SELECT * FROM documents WHERE classification = %s AND created_at &gt; %s"
+params = [
+    ('Vertrag', '2025-01-01'),
+    ('Urteil', '2025-01-01')
+]
+results = reader.batch_query(query, params)</p>
+<h5 id="database.batch_operations.PostgreSQLBatchReader.batch_query--returns-doc1-doc2-doc3">Returns: [[{doc1}, {doc2}], [{doc3}]]<a class="headerlink" href="#database.batch_operations.PostgreSQLBatchReader.batch_query--returns-doc1-doc2-doc3" title="Permanent link">&para;</a></h5>
+</details>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_batch_read_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_batch_read_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_batch_read_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get default batch read size</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_chroma_batch_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_chroma_batch_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_chroma_batch_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get ChromaDB batch size from environment</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_chromadb_batch_read_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_chromadb_batch_read_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_chromadb_batch_read_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get ChromaDB batch read size</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_couchdb_batch_read_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_couchdb_batch_read_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_couchdb_batch_read_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get CouchDB batch read size</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_couchdb_batch_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_couchdb_batch_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_couchdb_batch_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get CouchDB batch size from environment</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_neo4j_batch_read_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_neo4j_batch_read_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_neo4j_batch_read_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get Neo4j batch read size</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_neo4j_batch_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_neo4j_batch_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_neo4j_batch_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get Neo4j batch size from environment</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_parallel_batch_timeout" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_parallel_batch_timeout</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_parallel_batch_timeout" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get parallel batch read timeout</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_postgres_batch_read_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_postgres_batch_read_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_postgres_batch_read_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get PostgreSQL batch read size</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.get_postgres_batch_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_postgres_batch_size</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.get_postgres_batch_size" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get PostgreSQL batch size from environment</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.should_use_batch_read" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">should_use_batch_read</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.should_use_batch_read" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if batch read operations are enabled</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.should_use_chroma_batch_insert" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">should_use_chroma_batch_insert</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.should_use_chroma_batch_insert" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if ChromaDB batch insert should be used</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.should_use_couchdb_batch_insert" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">should_use_couchdb_batch_insert</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.should_use_couchdb_batch_insert" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if CouchDB batch insert should be used</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.should_use_neo4j_batching" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">should_use_neo4j_batching</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.should_use_neo4j_batching" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if Neo4j batch operations should be used</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.should_use_parallel_batch_read" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">should_use_parallel_batch_read</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.should_use_parallel_batch_read" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if parallel batch read is enabled</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="database.batch_operations.should_use_postgres_batch_insert" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">should_use_postgres_batch_insert</span><span class="p">()</span></code>
+
+<a href="#database.batch_operations.should_use_postgres_batch_insert" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if PostgreSQL batch insert should be used</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

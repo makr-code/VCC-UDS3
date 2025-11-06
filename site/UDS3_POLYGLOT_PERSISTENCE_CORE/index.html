@@ -1,0 +1,2501 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einheitliche UDS3 Doku mit API-Referenz und Leitfäden">
+      
+      
+      
+        <link rel="canonical" href="https://makr-code.github.io/VCC-UDS3/UDS3_POLYGLOT_PERSISTENCE_CORE/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>UDS3 Polyglot Persistence - Kern-System - VCC UDS3 Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uds3-polyglot-persistence-kern-system" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-header__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VCC UDS3 Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UDS3 Polyglot Persistence - Kern-System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Hauptnavigation" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+  API-Referenz
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VCC UDS3 Dokumentation" class="md-nav__button md-logo" aria-label="VCC UDS3 Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VCC UDS3 Dokumentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/makr-code/VCC-UDS3" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    makr-code/VCC-UDS3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API-Referenz
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API-Referenz
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Übersicht
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Executive Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-architektur-entscheidung-uds3-kern-vs-app-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 1. Architektur-Entscheidung: UDS3-Kern vs. App-Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 1. Architektur-Entscheidung: UDS3-Kern vs. App-Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-entscheidungskriterien" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Entscheidungskriterien
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-verteilung-was-gehort-wohin" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Verteilung: Was gehört wohin?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-beispiel-postgresql-schema-trennung" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Beispiel: PostgreSQL Schema-Trennung
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-uds3-kern-architektur" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ 2. UDS3 Kern-Architektur
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ 2. UDS3 Kern-Architektur">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ordnerstruktur" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Ordnerstruktur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-architektur-diagramm" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Architektur-Diagramm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-kern-komponenten-im-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗄️ 3. Kern-Komponenten im Detail
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗄️ 3. Kern-Komponenten im Detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-polyglot-manager-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Polyglot Manager (Orchestrator)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-vector-db-adapter-abstract-base-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Vector DB Adapter (Abstract Base Class)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-graph-db-adapter-abstract-base-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Graph DB Adapter (Abstract Base Class)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-german-bert-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 German BERT Embeddings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-generic-rag-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Generic RAG Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implementierungs-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 4. Implementierungs-Roadmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 4. Implementierungs-Roadmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-uds3-kern-setup-wochen-1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1: UDS3-Kern-Setup (Wochen 1-3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-production-adapters-wochen-4-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2: Production Adapters (Wochen 4-5)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-vpb-integration-woche-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3: VPB-Integration (Woche 6)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-success-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 5. Success Metrics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 5. Success Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-technische-metriken" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Technische Metriken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-funktionale-metriken" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Funktionale Metriken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-architektur-metriken" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Architektur-Metriken
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-deployment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 6. Deployment &amp; Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 6. Deployment &amp; Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-production-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Production Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-app-integration-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 7. App-Integration: Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 7. App-Integration: Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-vpb-als-referenz-implementierung" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 VPB als Referenz-Implementierung
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-schema-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Schema-Extensions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-entscheidungs-matrix-uds3-vs-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 8. Entscheidungs-Matrix: UDS3 vs. App
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-referenzen-related-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 9. Referenzen &amp; Related Documents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-anderungs-historie" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 10. Änderungs-Historie
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/makr-code/VCC-UDS3/edit/master/docs/UDS3_POLYGLOT_PERSISTENCE_CORE.md" title="Seite editieren" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="uds3-polyglot-persistence-kern-system">UDS3 Polyglot Persistence - Kern-System<a class="headerlink" href="#uds3-polyglot-persistence-kern-system" title="Permanent link">&para;</a></h1>
+<p><strong>Datum:</strong> 18. Oktober 2025<br />
+<strong>Version:</strong> 1.0<br />
+<strong>Autor:</strong> UDS3 Architecture Team<br />
+<strong>Status:</strong> 🟢 Architecture Decision Record (ADR)</p>
+<hr />
+<h2 id="executive-summary">📋 Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>Dieses Dokument definiert die <strong>Kern-Komponenten</strong> des UDS3 Polyglot Persistence Systems, die als <strong>wiederverwendbare Basis</strong> für alle UDS3-Anwendungen dienen (VPB, Rechtsdatenbank, Gesetzessammlung, etc.).</p>
+<p><strong>Ziel:</strong> Ein generisches, erweiterbares Polyglot Persistence Framework für die deutsche Verwaltung, optimiert für LLM-Integration und semantische Suche.</p>
+<p><strong>Kern-Prinzipien:</strong>
+- ✅ <strong>Domain-agnostisch:</strong> Keine VPB/App-spezifischen Details im Kern
+- ✅ <strong>Erweiterbar:</strong> Apps können Kern-Schema erweitern (PostgreSQL JSONB, Neo4j Labels)
+- ✅ <strong>Performant:</strong> Optimiert für deutsche Verwaltungssprache und LLM-Queries
+- ✅ <strong>Polyglot:</strong> Best DB for the Job - Vector, Graph, Relational, File</p>
+<hr />
+<h2 id="1-architektur-entscheidung-uds3-kern-vs-app-extensions">🎯 1. Architektur-Entscheidung: UDS3-Kern vs. App-Extensions<a class="headerlink" href="#1-architektur-entscheidung-uds3-kern-vs-app-extensions" title="Permanent link">&para;</a></h2>
+<h3 id="11-entscheidungskriterien">1.1 Entscheidungskriterien<a class="headerlink" href="#11-entscheidungskriterien" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Kriterium</th>
+<th>UDS3-Kern ✅</th>
+<th>App-Extension ❌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wiederverwendbarkeit</strong></td>
+<td>Für ALLE UDS3-Apps nutzbar</td>
+<td>Nur für eine App (z.B. VPB)</td>
+</tr>
+<tr>
+<td><strong>Domäne</strong></td>
+<td>Verwaltungsprozesse allgemein</td>
+<td>App-spezifische Details</td>
+</tr>
+<tr>
+<td><strong>Abhängigkeiten</strong></td>
+<td>Keine App-Dependencies</td>
+<td>Benötigt spezifisches App-Schema</td>
+</tr>
+<tr>
+<td><strong>Komplexität</strong></td>
+<td>Einfache, generische APIs</td>
+<td>Kann komplex sein</td>
+</tr>
+<tr>
+<td><strong>Wartbarkeit</strong></td>
+<td>Zentral, einmal pflegen</td>
+<td>Pro App pflegen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-verteilung-was-gehort-wohin">1.2 Verteilung: Was gehört wohin?<a class="headerlink" href="#12-verteilung-was-gehort-wohin" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Komponente</th>
+<th>UDS3-Kern</th>
+<th>VPB-Extension</th>
+<th>Begründung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Polyglot Persistence Manager</strong></td>
+<td>✅ 100%</td>
+<td>-</td>
+<td>Orchestriert alle DBs, generisch</td>
+</tr>
+<tr>
+<td><strong>Vector DB (ChromaDB/pgvector)</strong></td>
+<td>✅ 100%</td>
+<td>-</td>
+<td>Semantic Search für alle Apps</td>
+</tr>
+<tr>
+<td><strong>Graph DB (Neo4j)</strong></td>
+<td>✅ 100%</td>
+<td>-</td>
+<td>Prozess-Graphen für alle Apps</td>
+</tr>
+<tr>
+<td><strong>Relational DB (PostgreSQL)</strong></td>
+<td>✅ 80%</td>
+<td>✅ 20%</td>
+<td>Base Schema + App Extensions</td>
+</tr>
+<tr>
+<td><strong>German BERT Embeddings</strong></td>
+<td>✅ 100%</td>
+<td>-</td>
+<td>Deutsche Verwaltungssprache</td>
+</tr>
+<tr>
+<td><strong>Generic RAG Pipeline</strong></td>
+<td>✅ 100%</td>
+<td>-</td>
+<td>Framework, Apps erweitern</td>
+</tr>
+<tr>
+<td><strong>Query Orchestrator</strong></td>
+<td>✅ 100%</td>
+<td>-</td>
+<td>Kombiniert alle DBs</td>
+</tr>
+<tr>
+<td><strong>Base Process Schema</strong></td>
+<td>✅ 100%</td>
+<td>-</td>
+<td><code>uds3_processes</code>, <code>uds3_elements</code></td>
+</tr>
+<tr>
+<td><strong>VPB Element Types (23 Types)</strong></td>
+<td>-</td>
+<td>✅ 100%</td>
+<td>VPB-spezifisch</td>
+</tr>
+<tr>
+<td><strong>VPB UI State</strong></td>
+<td>-</td>
+<td>✅ 100%</td>
+<td>Canvas-Positionen, Zoom</td>
+</tr>
+<tr>
+<td><strong>VPB Compliance Scores</strong></td>
+<td>-</td>
+<td>✅ 100%</td>
+<td>BVA/FIM/DSGVO-spezifisch</td>
+</tr>
+<tr>
+<td><strong>Legal Document Types</strong></td>
+<td>-</td>
+<td>✅ 100%</td>
+<td>Rechtsdatenbank-App</td>
+</tr>
+<tr>
+<td><strong>Case Law Schema</strong></td>
+<td>-</td>
+<td>✅ 100%</td>
+<td>Rechtsprechungs-App</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-beispiel-postgresql-schema-trennung">1.3 Beispiel: PostgreSQL Schema-Trennung<a class="headerlink" href="#13-beispiel-postgresql-schema-trennung" title="Permanent link">&para;</a></h3>
+<p><strong>UDS3 Base Schema (Kern):</strong></p>
+<pre><code class="language-sql">-- Generisch für alle Verwaltungsprozesse
+CREATE TABLE uds3_processes (
+    process_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(500) NOT NULL,
+    description TEXT,
+    process_type VARCHAR(100),  -- 'vpb', 'bpmn', 'legal_workflow', etc.
+
+    -- Generische Verwaltungs-Attribute
+    authority VARCHAR(300),
+    legal_basis TEXT[],
+    legal_context VARCHAR(100),
+
+    -- Lifecycle
+    status VARCHAR(50) DEFAULT 'draft',
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+
+    -- Erweiterbar durch Apps via JSONB
+    app_specific_data JSONB DEFAULT '{}'
+);
+</code></pre>
+<p><strong>VPB Extension (App-spezifisch):</strong></p>
+<pre><code class="language-sql">-- VPB erweitert das Base Schema
+ALTER TABLE uds3_processes 
+ADD COLUMN IF NOT EXISTS vpb_ui_state JSONB;
+
+ALTER TABLE uds3_processes 
+ADD COLUMN IF NOT EXISTS vpb_complexity_score NUMERIC(3,2);
+
+-- VPB-spezifische Tabelle
+CREATE TABLE vpb_element_properties (
+    element_id UUID PRIMARY KEY,
+    element_type VARCHAR(50),  -- 23 VPB-spezifische Types
+    canvas_position JSONB,     -- {x: 100, y: 200}
+    vpb_compliance_tags TEXT[]
+);
+</code></pre>
+<hr />
+<h2 id="2-uds3-kern-architektur">🏗️ 2. UDS3 Kern-Architektur<a class="headerlink" href="#2-uds3-kern-architektur" title="Permanent link">&para;</a></h2>
+<h3 id="21-ordnerstruktur">2.1 Ordnerstruktur<a class="headerlink" href="#21-ordnerstruktur" title="Permanent link">&para;</a></h3>
+<pre><code>C:\VCC\UDS3\
+├── README.md
+├── setup.py
+├── requirements.txt
+├── pyproject.toml
+│
+├── uds3/
+│   ├── __init__.py
+│   │
+│   ├── persistence/              # ⭐ KERN: Polyglot Persistence
+│   │   ├── __init__.py
+│   │   ├── polyglot_manager.py  # Orchestrator für alle DBs
+│   │   ├── config.py            # Persistence-Konfiguration
+│   │   │
+│   │   ├── vector_db/           # Vector Database Adapter
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py          # Abstract Base Class
+│   │   │   ├── chromadb_adapter.py
+│   │   │   └── pgvector_adapter.py
+│   │   │
+│   │   ├── graph_db/            # Graph Database Adapter
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── neo4j_adapter.py
+│   │   │   └── networkx_adapter.py  # Fallback für Development
+│   │   │
+│   │   ├── relational_db/       # Relational Database Adapter
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── postgresql_adapter.py
+│   │   │   └── sqlite_adapter.py    # Fallback für Development
+│   │   │
+│   │   └── file_backend/        # File Storage Manager
+│   │       ├── __init__.py
+│   │       └── storage_manager.py
+│   │
+│   ├── llm/                     # ⭐ KERN: LLM &amp; RAG
+│   │   ├── __init__.py
+│   │   ├── rag_pipeline.py      # Generic RAG Pipeline
+│   │   ├── query_classifier.py  # Query-Type Classification
+│   │   ├── retrieval_strategies.py
+│   │   ├── context_assembler.py
+│   │   ├── prompt_templates.py
+│   │   └── clients/
+│   │       ├── __init__.py
+│   │       ├── ollama_client.py
+│   │       └── openai_client.py
+│   │
+│   ├── embeddings/              # ⭐ KERN: Embedding Management
+│   │   ├── __init__.py
+│   │   ├── german_embeddings.py # Deutsche BERT-Modelle
+│   │   ├── embedding_cache.py
+│   │   └── models/
+│   │       ├── __init__.py
+│   │       └── model_registry.py
+│   │
+│   ├── schemas/                 # ⭐ KERN: Base Schemas
+│   │   ├── __init__.py
+│   │   ├── process.py           # Base Process Dataclasses
+│   │   ├── element.py           # Base Element Dataclasses
+│   │   └── connection.py        # Base Connection Dataclasses
+│   │
+│   └── utils/
+│       ├── __init__.py
+│       ├── text_processing.py
+│       └── validation.py
+│
+├── sql/                         # SQL Schemas
+│   ├── postgresql/
+│   │   ├── 001_base_schema.sql  # ⭐ Base Tables
+│   │   ├── 002_embeddings.sql   # Embedding Registry
+│   │   ├── 003_authorities.sql  # Behörden-Katalog
+│   │   └── 004_legal_basis.sql  # Rechtsgrundlagen-Katalog
+│   └── sqlite/
+│       └── development.sql      # Für Development/Testing
+│
+├── cypher/                      # Neo4j Schemas
+│   ├── 001_base_schema.cypher   # ⭐ Base Graph Schema
+│   ├── 002_constraints.cypher
+│   └── 003_indexes.cypher
+│
+├── docs/
+│   ├── UDS3_POLYGLOT_PERSISTENCE_CORE.md  # ⬅️ Dieses Dokument
+│   ├── API_REFERENCE.md
+│   ├── DEPLOYMENT_GUIDE.md
+│   └── MIGRATION_GUIDE.md
+│
+├── tests/
+│   ├── test_persistence/
+│   ├── test_llm/
+│   └── test_embeddings/
+│
+└── examples/
+    ├── basic_usage.py
+    ├── vpb_integration.py
+    └── legal_documents.py
+</code></pre>
+<h3 id="22-architektur-diagramm">2.2 Architektur-Diagramm<a class="headerlink" href="#22-architektur-diagramm" title="Permanent link">&para;</a></h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    UDS3 APPLICATION LAYER                       │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
+│  │   VPB App    │  │  Legal Docs  │  │   Case Law   │  ...    │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘         │
+└─────────┼──────────────────┼──────────────────┼─────────────────┘
+          │                  │                  │
+┌─────────┴──────────────────┴──────────────────┴─────────────────┐
+│              UDS3 POLYGLOT PERSISTENCE CORE                     │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │         UDS3PolyglotManager (Orchestrator)               │  │
+│  │  - Query Routing                                         │  │
+│  │  - Multi-DB Coordination                                 │  │
+│  │  - Transaction Management                                │  │
+│  └────────────┬──────────────┬──────────────┬───────────────┘  │
+│               │              │              │                   │
+│  ┌────────────▼──┐  ┌────────▼────┐  ┌──────▼──────┐          │
+│  │ VectorDB      │  │  GraphDB    │  │ RelationalDB│          │
+│  │ Adapter       │  │  Adapter    │  │  Adapter    │          │
+│  └────────────┬──┘  └────────┬────┘  └──────┬──────┘          │
+└───────────────┼──────────────┼──────────────┼──────────────────┘
+                │              │              │
+       ┌────────▼────┐  ┌──────▼─────┐  ┌────▼──────┐
+       │  ChromaDB/  │  │   Neo4j    │  │PostgreSQL │
+       │  pgvector   │  │            │  │           │
+       └─────────────┘  └────────────┘  └───────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                   UDS3 LLM &amp; RAG PIPELINE                       │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │           UDS3GenericRAG (RAG Framework)                 │  │
+│  │  1. Query Classification                                 │  │
+│  │  2. Multi-DB Retrieval (Vector→Graph→SQL)               │  │
+│  │  3. Context Assembly                                     │  │
+│  │  4. Prompt Engineering                                   │  │
+│  │  5. LLM Generation                                       │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                            ▲                                    │
+│  ┌─────────────────────────┴────────────────────────────────┐  │
+│  │      German BERT Embeddings (deutsche-telekom/gbert)    │  │
+│  │  - Verwaltungssprache-optimiert                         │  │
+│  │  - 768-dim Vektoren                                     │  │
+│  │  - Caching &amp; Batch-Processing                           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="3-kern-komponenten-im-detail">🗄️ 3. Kern-Komponenten im Detail<a class="headerlink" href="#3-kern-komponenten-im-detail" title="Permanent link">&para;</a></h2>
+<h3 id="31-polyglot-manager-orchestrator">3.1 Polyglot Manager (Orchestrator)<a class="headerlink" href="#31-polyglot-manager-orchestrator" title="Permanent link">&para;</a></h3>
+<p><strong>Datei:</strong> <code>uds3/persistence/polyglot_manager.py</code></p>
+<pre><code class="language-python">from typing import Dict, List, Optional, Any
+from dataclasses import dataclass
+from enum import Enum
+
+from uds3.persistence.vector_db.base import VectorDBAdapter
+from uds3.persistence.graph_db.base import GraphDBAdapter
+from uds3.persistence.relational_db.base import RelationalDBAdapter
+from uds3.persistence.file_backend.storage_manager import FileStorageManager
+
+
+class DatabaseType(Enum):
+    &quot;&quot;&quot;Unterstützte Datenbank-Typen&quot;&quot;&quot;
+    VECTOR = &quot;vector&quot;
+    GRAPH = &quot;graph&quot;
+    RELATIONAL = &quot;relational&quot;
+    FILE = &quot;file&quot;
+
+
+@dataclass
+class UDS3PersistenceConfig:
+    &quot;&quot;&quot;Konfiguration für Polyglot Persistence&quot;&quot;&quot;
+
+    # Vector DB
+    vector_db_type: str = &quot;chromadb&quot;  # &quot;chromadb&quot; | &quot;pgvector&quot;
+    vector_db_path: Optional[str] = None
+    vector_db_host: Optional[str] = None
+    vector_db_port: Optional[int] = None
+
+    # Graph DB
+    graph_db_type: str = &quot;neo4j&quot;  # &quot;neo4j&quot; | &quot;networkx&quot;
+    graph_db_uri: Optional[str] = None
+    graph_db_user: Optional[str] = None
+    graph_db_password: Optional[str] = None
+
+    # Relational DB
+    relational_db_type: str = &quot;postgresql&quot;  # &quot;postgresql&quot; | &quot;sqlite&quot;
+    relational_db_uri: Optional[str] = None
+
+    # File Backend
+    file_backend_root: str = &quot;./uds3_storage&quot;
+
+    # Embedding Model
+    embedding_model: str = &quot;deutsche-telekom/gbert-base&quot;
+
+    # Performance
+    enable_caching: bool = True
+    batch_size: int = 100
+
+
+class UDS3PolyglotManager:
+    &quot;&quot;&quot;
+    Kern-Orchestrator für UDS3 Polyglot Persistence
+
+    Koordiniert alle Datenbank-Adapter und bietet einheitliche APIs
+    für CRUD-Operationen, Queries und LLM-Retrieval.
+    &quot;&quot;&quot;
+
+    def __init__(self, config: UDS3PersistenceConfig):
+        &quot;&quot;&quot;
+        Initialisiert alle Datenbank-Adapter
+
+        Args:
+            config: Persistence-Konfiguration
+        &quot;&quot;&quot;
+        self.config = config
+
+        # Adapter initialisieren
+        self.vector_db = self._init_vector_db()
+        self.graph_db = self._init_graph_db()
+        self.relational_db = self._init_relational_db()
+        self.file_backend = FileStorageManager(config.file_backend_root)
+
+        # Cache
+        self._query_cache = {} if config.enable_caching else None
+
+    # === Adapter-Initialisierung ===
+
+    def _init_vector_db(self) -&gt; VectorDBAdapter:
+        &quot;&quot;&quot;Initialisiert Vector DB Adapter&quot;&quot;&quot;
+        if self.config.vector_db_type == &quot;chromadb&quot;:
+            from uds3.persistence.vector_db.chromadb_adapter import ChromaDBAdapter
+            return ChromaDBAdapter(
+                persist_directory=self.config.vector_db_path,
+                embedding_model=self.config.embedding_model
+            )
+        elif self.config.vector_db_type == &quot;pgvector&quot;:
+            from uds3.persistence.vector_db.pgvector_adapter import PgVectorAdapter
+            return PgVectorAdapter(
+                connection_string=self.config.vector_db_uri,
+                embedding_model=self.config.embedding_model
+            )
+        else:
+            raise ValueError(f&quot;Unsupported vector DB: {self.config.vector_db_type}&quot;)
+
+    def _init_graph_db(self) -&gt; GraphDBAdapter:
+        &quot;&quot;&quot;Initialisiert Graph DB Adapter&quot;&quot;&quot;
+        if self.config.graph_db_type == &quot;neo4j&quot;:
+            from uds3.persistence.graph_db.neo4j_adapter import Neo4jAdapter
+            return Neo4jAdapter(
+                uri=self.config.graph_db_uri,
+                user=self.config.graph_db_user,
+                password=self.config.graph_db_password
+            )
+        elif self.config.graph_db_type == &quot;networkx&quot;:
+            from uds3.persistence.graph_db.networkx_adapter import NetworkXAdapter
+            return NetworkXAdapter()
+        else:
+            raise ValueError(f&quot;Unsupported graph DB: {self.config.graph_db_type}&quot;)
+
+    def _init_relational_db(self) -&gt; RelationalDBAdapter:
+        &quot;&quot;&quot;Initialisiert Relational DB Adapter&quot;&quot;&quot;
+        if self.config.relational_db_type == &quot;postgresql&quot;:
+            from uds3.persistence.relational_db.postgresql_adapter import PostgreSQLAdapter
+            return PostgreSQLAdapter(self.config.relational_db_uri)
+        elif self.config.relational_db_type == &quot;sqlite&quot;:
+            from uds3.persistence.relational_db.sqlite_adapter import SQLiteAdapter
+            return SQLiteAdapter(self.config.relational_db_uri)
+        else:
+            raise ValueError(f&quot;Unsupported relational DB: {self.config.relational_db_type}&quot;)
+
+    # === High-Level APIs ===
+
+    def save_process(
+        self, 
+        process_data: Dict[str, Any],
+        app_domain: str = &quot;generic&quot;
+    ) -&gt; str:
+        &quot;&quot;&quot;
+        Speichert Prozess in allen relevanten DBs
+
+        Args:
+            process_data: Prozess-Daten (muss Base-Schema erfüllen)
+            app_domain: App-Domain (z.B. &quot;vpb&quot;, &quot;legal&quot;, &quot;generic&quot;)
+
+        Returns:
+            process_id: UUID des gespeicherten Prozesses
+        &quot;&quot;&quot;
+        process_id = process_data.get(&quot;process_id&quot;)
+
+        # 1. Relational DB: Strukturierte Daten
+        self.relational_db.insert_process(process_data)
+
+        # 2. Vector DB: Embeddings für Semantic Search
+        embedding_text = self._build_process_embedding_text(process_data)
+        self.vector_db.add_embedding(
+            id=process_id,
+            text=embedding_text,
+            metadata={
+                &quot;process_id&quot;: process_id,
+                &quot;name&quot;: process_data.get(&quot;name&quot;),
+                &quot;domain&quot;: app_domain,
+                &quot;authority&quot;: process_data.get(&quot;authority&quot;),
+                &quot;legal_context&quot;: process_data.get(&quot;legal_context&quot;)
+            }
+        )
+
+        # 3. Graph DB: Prozess-Knoten und Beziehungen
+        self.graph_db.create_process_node(process_data)
+
+        # 4. File Backend: Vollständiges Dokument
+        self.file_backend.save_json(
+            path=f&quot;{app_domain}/processes/{process_id}.json&quot;,
+            data=process_data
+        )
+
+        return process_id
+
+    def semantic_search(
+        self,
+        query: str,
+        domain: Optional[str] = None,
+        top_k: int = 10,
+        filters: Optional[Dict[str, Any]] = None
+    ) -&gt; List[Dict[str, Any]]:
+        &quot;&quot;&quot;
+        Semantische Suche über alle Prozesse
+
+        Args:
+            query: Suchanfrage (natürlichsprachig)
+            domain: Optional App-Domain-Filter
+            top_k: Anzahl Ergebnisse
+            filters: Zusätzliche Metadaten-Filter
+
+        Returns:
+            Liste von Prozess-IDs mit Scores
+        &quot;&quot;&quot;
+        # Cache-Check
+        cache_key = f&quot;{query}:{domain}:{top_k}&quot;
+        if self._query_cache and cache_key in self._query_cache:
+            return self._query_cache[cache_key]
+
+        # Vector Search
+        search_filters = filters or {}
+        if domain:
+            search_filters[&quot;domain&quot;] = domain
+
+        results = self.vector_db.search(
+            query_text=query,
+            top_k=top_k,
+            filters=search_filters
+        )
+
+        # Cache
+        if self._query_cache:
+            self._query_cache[cache_key] = results
+
+        return results
+
+    def get_process_graph(
+        self,
+        process_id: str,
+        depth: int = 1
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Holt Prozess-Graph aus Neo4j
+
+        Args:
+            process_id: Prozess-ID
+            depth: Traversierungs-Tiefe (1 = direkte Nachbarn)
+
+        Returns:
+            Graph-Daten (Nodes + Edges)
+        &quot;&quot;&quot;
+        return self.graph_db.get_process_subgraph(process_id, depth)
+
+    def get_process_details(
+        self,
+        process_id: str,
+        include_elements: bool = True
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Holt detaillierte Prozess-Daten aus PostgreSQL
+
+        Args:
+            process_id: Prozess-ID
+            include_elements: Lade auch Elemente und Connections
+
+        Returns:
+            Vollständige Prozess-Daten
+        &quot;&quot;&quot;
+        return self.relational_db.get_process(process_id, include_elements)
+
+    def polyglot_query(
+        self,
+        query: str,
+        domain: str = &quot;generic&quot;,
+        strategy: str = &quot;semantic_first&quot;
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Kombinierte Query über alle DBs (für RAG Pipeline)
+
+        Args:
+            query: Natürlichsprachige Query
+            domain: App-Domain
+            strategy: &quot;semantic_first&quot; | &quot;graph_first&quot; | &quot;hybrid&quot;
+
+        Returns:
+            Kombinierte Ergebnisse aus allen DBs
+        &quot;&quot;&quot;
+        if strategy == &quot;semantic_first&quot;:
+            # 1. Vector Search
+            similar = self.semantic_search(query, domain, top_k=10)
+            process_ids = [r[&quot;id&quot;] for r in similar]
+
+            # 2. Graph Context
+            graphs = [self.get_process_graph(pid) for pid in process_ids[:5]]
+
+            # 3. SQL Details
+            details = [self.get_process_details(pid) for pid in process_ids[:5]]
+
+            return {
+                &quot;semantic_results&quot;: similar,
+                &quot;graph_context&quot;: graphs,
+                &quot;process_details&quot;: details
+            }
+
+        # Weitere Strategien implementierbar
+        raise NotImplementedError(f&quot;Strategy {strategy} not implemented&quot;)
+
+    # === Helper Methods ===
+
+    def _build_process_embedding_text(self, process_data: Dict[str, Any]) -&gt; str:
+        &quot;&quot;&quot;
+        Baut strukturierten Text für Embeddings
+
+        Optimiert für deutsche Verwaltungssprache und Semantic Search.
+        &quot;&quot;&quot;
+        parts = []
+
+        # Name (3x für Gewichtung)
+        name = process_data.get(&quot;name&quot;, &quot;&quot;)
+        parts.extend([name, name, name])
+
+        # Beschreibung
+        if desc := process_data.get(&quot;description&quot;):
+            parts.append(desc)
+
+        # Context Labels
+        if ctx := process_data.get(&quot;legal_context&quot;):
+            parts.append(f&quot;Rechtsgebiet: {ctx}&quot;)
+
+        if auth := process_data.get(&quot;authority&quot;):
+            parts.append(f&quot;Zuständige Behörde: {auth}&quot;)
+
+        # Legal Basis
+        if legal_basis := process_data.get(&quot;legal_basis&quot;):
+            if isinstance(legal_basis, list):
+                parts.append(&quot;Rechtsgrundlagen: &quot; + &quot;, &quot;.join(legal_basis))
+            else:
+                parts.append(f&quot;Rechtsgrundlage: {legal_basis}&quot;)
+
+        return &quot; | &quot;.join(parts)
+
+    def close(self):
+        &quot;&quot;&quot;Schließt alle DB-Verbindungen&quot;&quot;&quot;
+        self.vector_db.close()
+        self.graph_db.close()
+        self.relational_db.close()
+</code></pre>
+<hr />
+<h3 id="32-vector-db-adapter-abstract-base-class">3.2 Vector DB Adapter (Abstract Base Class)<a class="headerlink" href="#32-vector-db-adapter-abstract-base-class" title="Permanent link">&para;</a></h3>
+<p><strong>Datei:</strong> <code>uds3/persistence/vector_db/base.py</code></p>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+from typing import List, Dict, Any, Optional
+import numpy as np
+
+
+class VectorDBAdapter(ABC):
+    &quot;&quot;&quot;
+    Abstract Base Class für Vector DB Adapter
+
+    Implementierungen: ChromaDB, pgvector
+    &quot;&quot;&quot;
+
+    @abstractmethod
+    def __init__(self, embedding_model: str, **kwargs):
+        &quot;&quot;&quot;
+        Initialisiert Vector DB
+
+        Args:
+            embedding_model: Name des Embedding-Modells
+            **kwargs: DB-spezifische Parameter
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def create_collection(
+        self,
+        name: str,
+        metadata: Optional[Dict[str, Any]] = None
+    ):
+        &quot;&quot;&quot;
+        Erstellt eine Collection/Table für Embeddings
+
+        Args:
+            name: Collection-Name (z.B. &quot;uds3_processes&quot;)
+            metadata: Optional Metadaten
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def add_embedding(
+        self,
+        id: str,
+        text: str,
+        metadata: Optional[Dict[str, Any]] = None,
+        collection: str = &quot;default&quot;
+    ):
+        &quot;&quot;&quot;
+        Fügt Text-Embedding hinzu
+
+        Args:
+            id: Eindeutige ID
+            text: Text zum Embedden
+            metadata: Metadaten für Filterung
+            collection: Collection-Name
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def add_embeddings_batch(
+        self,
+        ids: List[str],
+        texts: List[str],
+        metadatas: Optional[List[Dict[str, Any]]] = None,
+        collection: str = &quot;default&quot;
+    ):
+        &quot;&quot;&quot;Batch-Insert für Performance&quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def search(
+        self,
+        query_text: str,
+        top_k: int = 10,
+        filters: Optional[Dict[str, Any]] = None,
+        collection: str = &quot;default&quot;
+    ) -&gt; List[Dict[str, Any]]:
+        &quot;&quot;&quot;
+        Semantische Suche
+
+        Args:
+            query_text: Suchanfrage
+            top_k: Anzahl Ergebnisse
+            filters: Metadaten-Filter
+            collection: Collection-Name
+
+        Returns:
+            Liste von {id, score, metadata}
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def delete_embedding(self, id: str, collection: str = &quot;default&quot;):
+        &quot;&quot;&quot;Löscht Embedding&quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def close(self):
+        &quot;&quot;&quot;Schließt DB-Verbindung&quot;&quot;&quot;
+        pass
+</code></pre>
+<hr />
+<h3 id="33-graph-db-adapter-abstract-base-class">3.3 Graph DB Adapter (Abstract Base Class)<a class="headerlink" href="#33-graph-db-adapter-abstract-base-class" title="Permanent link">&para;</a></h3>
+<p><strong>Datei:</strong> <code>uds3/persistence/graph_db/base.py</code></p>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+from typing import List, Dict, Any, Optional
+
+
+class GraphDBAdapter(ABC):
+    &quot;&quot;&quot;
+    Abstract Base Class für Graph DB Adapter
+
+    Implementierungen: Neo4j, NetworkX
+    &quot;&quot;&quot;
+
+    @abstractmethod
+    def __init__(self, **kwargs):
+        &quot;&quot;&quot;Initialisiert Graph DB&quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def create_process_node(self, process_data: Dict[str, Any]) -&gt; str:
+        &quot;&quot;&quot;
+        Erstellt Process-Knoten
+
+        Args:
+            process_data: Prozess-Daten (muss process_id enthalten)
+
+        Returns:
+            node_id
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def create_element_node(
+        self,
+        element_data: Dict[str, Any],
+        process_id: str
+    ) -&gt; str:
+        &quot;&quot;&quot;
+        Erstellt Element-Knoten und CONTAINS-Beziehung
+
+        Args:
+            element_data: Element-Daten
+            process_id: Zugehöriger Prozess
+
+        Returns:
+            node_id
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def create_relationship(
+        self,
+        source_id: str,
+        target_id: str,
+        relationship_type: str,
+        properties: Optional[Dict[str, Any]] = None
+    ):
+        &quot;&quot;&quot;
+        Erstellt Beziehung zwischen Knoten
+
+        Args:
+            source_id: Quell-Knoten ID
+            target_id: Ziel-Knoten ID
+            relationship_type: z.B. &quot;CONNECTS_TO&quot;, &quot;BASED_ON&quot;
+            properties: Optional Eigenschaften (z.B. condition, probability)
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def get_process_subgraph(
+        self,
+        process_id: str,
+        depth: int = 1
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Holt Subgraph um Prozess
+
+        Args:
+            process_id: Prozess-ID
+            depth: Traversierungs-Tiefe
+
+        Returns:
+            {nodes: [...], edges: [...]}
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def find_paths(
+        self,
+        start_element_id: str,
+        end_element_id: str,
+        max_length: int = 10
+    ) -&gt; List[List[str]]:
+        &quot;&quot;&quot;
+        Findet Pfade zwischen Elementen
+
+        Args:
+            start_element_id: Start-Element
+            end_element_id: Ziel-Element
+            max_length: Maximale Pfadlänge
+
+        Returns:
+            Liste von Pfaden (jeweils Liste von Element-IDs)
+        &quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def close(self):
+        &quot;&quot;&quot;Schließt DB-Verbindung&quot;&quot;&quot;
+        pass
+</code></pre>
+<hr />
+<h3 id="34-german-bert-embeddings">3.4 German BERT Embeddings<a class="headerlink" href="#34-german-bert-embeddings" title="Permanent link">&para;</a></h3>
+<p><strong>Datei:</strong> <code>uds3/embeddings/german_embeddings.py</code></p>
+<pre><code class="language-python">from typing import List, Optional, Union
+import numpy as np
+from sentence_transformers import SentenceTransformer
+import hashlib
+import pickle
+from pathlib import Path
+
+
+class UDS3GermanEmbeddings:
+    &quot;&quot;&quot;
+    Deutsche BERT-Embeddings für UDS3
+
+    Optimiert für deutsche Verwaltungssprache, Gesetze, Prozesse.
+    Unterstützt Caching für Performance.
+    &quot;&quot;&quot;
+
+    # Empfohlene Modelle für deutsche Verwaltung
+    MODELS = {
+        &quot;gbert&quot;: &quot;deutsche-telekom/gbert-base&quot;,  # 768 dim, beste Qualität
+        &quot;gbert-large&quot;: &quot;deutsche-telekom/gbert-large&quot;,  # 1024 dim
+        &quot;paraphrase&quot;: &quot;paraphrase-multilingual-mpnet-base-v2&quot;,  # 768 dim
+        &quot;e5-multilingual&quot;: &quot;intfloat/multilingual-e5-large&quot;,  # 1024 dim
+    }
+
+    def __init__(
+        self,
+        model_name: str = &quot;gbert&quot;,
+        cache_dir: Optional[str] = None,
+        device: str = &quot;cpu&quot;
+    ):
+        &quot;&quot;&quot;
+        Initialisiert Embedding-Modell
+
+        Args:
+            model_name: Modell-Key aus MODELS oder HuggingFace Model ID
+            cache_dir: Verzeichnis für Embedding-Cache
+            device: &quot;cpu&quot; oder &quot;cuda&quot;
+        &quot;&quot;&quot;
+        # Modell laden
+        model_id = self.MODELS.get(model_name, model_name)
+        self.model = SentenceTransformer(model_id, device=device)
+        self.model_name = model_name
+
+        # Cache
+        self.cache_dir = Path(cache_dir) if cache_dir else None
+        if self.cache_dir:
+            self.cache_dir.mkdir(parents=True, exist_ok=True)
+
+        self._cache = {}
+
+    def embed_text(
+        self,
+        text: str,
+        domain_hint: Optional[str] = None,
+        use_cache: bool = True
+    ) -&gt; np.ndarray:
+        &quot;&quot;&quot;
+        Erstellt Embedding für Text
+
+        Args:
+            text: Zu embeddender Text
+            domain_hint: Optional Domain (&quot;vpb&quot;, &quot;legal&quot;, etc.) für Optimierungen
+            use_cache: Verwende Cache
+
+        Returns:
+            Embedding-Vektor (768 oder 1024 dim)
+        &quot;&quot;&quot;
+        # Cache-Key
+        cache_key = self._get_cache_key(text, domain_hint)
+
+        # Cache-Lookup
+        if use_cache:
+            if cache_key in self._cache:
+                return self._cache[cache_key]
+
+            if self.cache_dir:
+                cached = self._load_from_disk_cache(cache_key)
+                if cached is not None:
+                    self._cache[cache_key] = cached
+                    return cached
+
+        # Embedding berechnen
+        # Domain-spezifische Präfixe (für e5-Modelle)
+        if &quot;e5&quot; in self.model_name and domain_hint:
+            text = f&quot;passage: {text}&quot;  # e5-spezifisches Präfix
+
+        embedding = self.model.encode(text, convert_to_numpy=True)
+
+        # Cache
+        if use_cache:
+            self._cache[cache_key] = embedding
+            if self.cache_dir:
+                self._save_to_disk_cache(cache_key, embedding)
+
+        return embedding
+
+    def embed_texts_batch(
+        self,
+        texts: List[str],
+        domain_hint: Optional[str] = None,
+        batch_size: int = 32
+    ) -&gt; np.ndarray:
+        &quot;&quot;&quot;
+        Batch-Embedding für Performance
+
+        Args:
+            texts: Liste von Texten
+            domain_hint: Optional Domain
+            batch_size: Batch-Größe
+
+        Returns:
+            Array von Embeddings (shape: [len(texts), embedding_dim])
+        &quot;&quot;&quot;
+        # Domain-Präfixe
+        if &quot;e5&quot; in self.model_name and domain_hint:
+            texts = [f&quot;passage: {t}&quot; for t in texts]
+
+        embeddings = self.model.encode(
+            texts,
+            batch_size=batch_size,
+            convert_to_numpy=True,
+            show_progress_bar=len(texts) &gt; 100
+        )
+
+        return embeddings
+
+    def compute_similarity(
+        self,
+        text1: str,
+        text2: str,
+        domain_hint: Optional[str] = None
+    ) -&gt; float:
+        &quot;&quot;&quot;
+        Berechnet Cosine-Ähnlichkeit zwischen Texten
+
+        Args:
+            text1: Erster Text
+            text2: Zweiter Text
+            domain_hint: Optional Domain
+
+        Returns:
+            Ähnlichkeit (0.0 - 1.0)
+        &quot;&quot;&quot;
+        emb1 = self.embed_text(text1, domain_hint)
+        emb2 = self.embed_text(text2, domain_hint)
+
+        # Cosine Similarity
+        similarity = np.dot(emb1, emb2) / (np.linalg.norm(emb1) * np.linalg.norm(emb2))
+
+        return float(similarity)
+
+    def get_embedding_dimension(self) -&gt; int:
+        &quot;&quot;&quot;Returns embedding dimension (768 or 1024)&quot;&quot;&quot;
+        return self.model.get_sentence_embedding_dimension()
+
+    # === Cache Helpers ===
+
+    def _get_cache_key(self, text: str, domain_hint: Optional[str]) -&gt; str:
+        &quot;&quot;&quot;Generiert Cache-Key (SHA256)&quot;&quot;&quot;
+        content = f&quot;{self.model_name}:{domain_hint}:{text}&quot;
+        return hashlib.sha256(content.encode()).hexdigest()
+
+    def _load_from_disk_cache(self, cache_key: str) -&gt; Optional[np.ndarray]:
+        &quot;&quot;&quot;Lädt Embedding aus Disk-Cache&quot;&quot;&quot;
+        cache_file = self.cache_dir / f&quot;{cache_key}.pkl&quot;
+        if cache_file.exists():
+            with open(cache_file, &quot;rb&quot;) as f:
+                return pickle.load(f)
+        return None
+
+    def _save_to_disk_cache(self, cache_key: str, embedding: np.ndarray):
+        &quot;&quot;&quot;Speichert Embedding in Disk-Cache&quot;&quot;&quot;
+        cache_file = self.cache_dir / f&quot;{cache_key}.pkl&quot;
+        with open(cache_file, &quot;wb&quot;) as f:
+            pickle.dump(embedding, f)
+
+    def clear_cache(self):
+        &quot;&quot;&quot;Löscht Memory- und Disk-Cache&quot;&quot;&quot;
+        self._cache.clear()
+        if self.cache_dir:
+            for cache_file in self.cache_dir.glob(&quot;*.pkl&quot;):
+                cache_file.unlink()
+</code></pre>
+<hr />
+<h3 id="35-generic-rag-pipeline">3.5 Generic RAG Pipeline<a class="headerlink" href="#35-generic-rag-pipeline" title="Permanent link">&para;</a></h3>
+<p><strong>Datei:</strong> <code>uds3/llm/rag_pipeline.py</code></p>
+<pre><code class="language-python">from typing import List, Dict, Any, Optional
+from enum import Enum
+
+from uds3.persistence.polyglot_manager import UDS3PolyglotManager
+from uds3.llm.clients.ollama_client import OllamaClient
+
+
+class QueryType(Enum):
+    &quot;&quot;&quot;Generische Query-Typen für RAG&quot;&quot;&quot;
+    SEMANTIC_SEARCH = &quot;semantic_search&quot;
+    DETAIL_LOOKUP = &quot;detail_lookup&quot;
+    GRAPH_TRAVERSAL = &quot;graph_traversal&quot;
+    AGGREGATION = &quot;aggregation&quot;
+    COMPARISON = &quot;comparison&quot;
+    GENERAL = &quot;general&quot;
+
+
+class UDS3GenericRAG:
+    &quot;&quot;&quot;
+    Generische RAG-Pipeline für UDS3
+
+    Apps können diese Klasse erweitern und domain-spezifische
+    Query-Typen und Retrieval-Strategien hinzufügen.
+    &quot;&quot;&quot;
+
+    def __init__(
+        self,
+        polyglot_manager: UDS3PolyglotManager,
+        llm_model: str = &quot;llama3.1:8b&quot;,
+        llm_host: str = &quot;http://localhost:11434&quot;
+    ):
+        &quot;&quot;&quot;
+        Initialisiert RAG Pipeline
+
+        Args:
+            polyglot_manager: Polyglot Persistence Manager
+            llm_model: Ollama Modell-Name
+            llm_host: Ollama Server URL
+        &quot;&quot;&quot;
+        self.polyglot = polyglot_manager
+        self.llm = OllamaClient(host=llm_host, model=llm_model)
+
+        # Domain (kann von Apps überschrieben werden)
+        self.domain = &quot;generic&quot;
+
+    def answer_query(
+        self,
+        query: str,
+        max_context_tokens: int = 4000
+    ) -&gt; str:
+        &quot;&quot;&quot;
+        Beantwortet Query mit RAG-Pipeline
+
+        Args:
+            query: Natürlichsprachige Anfrage
+            max_context_tokens: Max. Token für Context
+
+        Returns:
+            LLM-generierte Antwort
+        &quot;&quot;&quot;
+        # 1. Query Classification
+        query_type = self.classify_query(query)
+
+        # 2. Retrieval (domain-spezifisch überschreibbar)
+        context = self.retrieve_context(query, query_type)
+
+        # 3. Prompt Assembly
+        prompt = self.build_prompt(query, context, max_context_tokens)
+
+        # 4. LLM Generation
+        answer = self.llm.generate(prompt)
+
+        return answer
+
+    def classify_query(self, query: str) -&gt; QueryType:
+        &quot;&quot;&quot;
+        Klassifiziert Query-Typ (regel-basiert)
+
+        Apps können diese Methode überschreiben für domain-spezifische
+        Classification (z.B. mit eigenen Keywords oder ML-Classifier).
+
+        Args:
+            query: Anfrage
+
+        Returns:
+            QueryType
+        &quot;&quot;&quot;
+        query_lower = query.lower()
+
+        # Semantic Search
+        if any(kw in query_lower for kw in [&quot;ähnlich&quot;, &quot;vergleichbar&quot;, &quot;finde&quot;, &quot;suche&quot;]):
+            return QueryType.SEMANTIC_SEARCH
+
+        # Graph Traversal
+        if any(kw in query_lower for kw in [&quot;pfad&quot;, &quot;weg&quot;, &quot;führt zu&quot;, &quot;verbindung&quot;]):
+            return QueryType.GRAPH_TRAVERSAL
+
+        # Aggregation
+        if any(kw in query_lower for kw in [&quot;wie viele&quot;, &quot;durchschnitt&quot;, &quot;gesamt&quot;, &quot;anzahl&quot;]):
+            return QueryType.AGGREGATION
+
+        # Detail Lookup
+        if any(kw in query_lower for kw in [&quot;details&quot;, &quot;informationen über&quot;, &quot;beschreibung&quot;]):
+            return QueryType.DETAIL_LOOKUP
+
+        # Comparison
+        if any(kw in query_lower for kw in [&quot;unterschied&quot;, &quot;vergleiche&quot;, &quot;vs&quot;, &quot;oder&quot;]):
+            return QueryType.COMPARISON
+
+        return QueryType.GENERAL
+
+    def retrieve_context(
+        self,
+        query: str,
+        query_type: QueryType
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Holt relevanten Context aus Polyglot DBs
+
+        Apps sollten diese Methode überschreiben für domain-spezifische
+        Retrieval-Strategien.
+
+        Args:
+            query: Anfrage
+            query_type: Klassifizierter Query-Typ
+
+        Returns:
+            Context-Dictionary
+        &quot;&quot;&quot;
+        if query_type == QueryType.SEMANTIC_SEARCH:
+            # Vector Search
+            results = self.polyglot.semantic_search(
+                query=query,
+                domain=self.domain,
+                top_k=5
+            )
+            return {&quot;semantic_results&quot;: results}
+
+        elif query_type == QueryType.GRAPH_TRAVERSAL:
+            # Graph Query (benötigt process_id - in App extrahieren)
+            return {&quot;message&quot;: &quot;Graph traversal requires process_id&quot;}
+
+        elif query_type == QueryType.AGGREGATION:
+            # SQL Aggregation (App-spezifisch)
+            return {&quot;message&quot;: &quot;Aggregation not implemented in base class&quot;}
+
+        else:
+            # Fallback: Semantic Search
+            results = self.polyglot.semantic_search(query, self.domain, top_k=3)
+            return {&quot;results&quot;: results}
+
+    def build_prompt(
+        self,
+        query: str,
+        context: Dict[str, Any],
+        max_tokens: int = 4000
+    ) -&gt; str:
+        &quot;&quot;&quot;
+        Baut strukturierten Prompt
+
+        Apps können diese Methode überschreiben für domain-spezifische
+        Prompt-Templates.
+
+        Args:
+            query: Anfrage
+            context: Retrieved Context
+            max_tokens: Max. Tokens
+
+        Returns:
+            Prompt-String
+        &quot;&quot;&quot;
+        prompt_parts = []
+
+        # System Instruction
+        prompt_parts.append(
+            &quot;Du bist ein Experte für deutsche Verwaltungsprozesse. &quot;
+            &quot;Beantworte die Frage basierend auf dem folgenden Kontext.&quot;
+        )
+
+        # Context
+        prompt_parts.append(&quot;\n--- KONTEXT ---&quot;)
+
+        if &quot;semantic_results&quot; in context:
+            for i, result in enumerate(context[&quot;semantic_results&quot;][:5], 1):
+                meta = result.get(&quot;metadata&quot;, {})
+                prompt_parts.append(
+                    f&quot;\n{i}. {meta.get('name', 'Unbekannt')}\n&quot;
+                    f&quot;   Behörde: {meta.get('authority', 'N/A')}\n&quot;
+                    f&quot;   Score: {result.get('score', 0):.2f}&quot;
+                )
+
+        # Query
+        prompt_parts.append(f&quot;\n--- FRAGE ---\n{query}&quot;)
+
+        prompt_parts.append(&quot;\n--- ANTWORT ---&quot;)
+
+        prompt = &quot;\n&quot;.join(prompt_parts)
+
+        # Token-Limit (grob: 1 Token ≈ 4 chars)
+        max_chars = max_tokens * 4
+        if len(prompt) &gt; max_chars:
+            prompt = prompt[:max_chars] + &quot;\n...[gekürzt]&quot;
+
+        return prompt
+</code></pre>
+<hr />
+<h2 id="4-implementierungs-roadmap">🚀 4. Implementierungs-Roadmap<a class="headerlink" href="#4-implementierungs-roadmap" title="Permanent link">&para;</a></h2>
+<h3 id="phase-1-uds3-kern-setup-wochen-1-3">Phase 1: UDS3-Kern-Setup (Wochen 1-3)<a class="headerlink" href="#phase-1-uds3-kern-setup-wochen-1-3" title="Permanent link">&para;</a></h3>
+<p><strong>Woche 1: Grundstruktur &amp; Adapter-Interfaces</strong>
+- [ ] Repository <code>C:\VCC\UDS3</code> erstellen
+- [ ] Ordnerstruktur aufbauen
+- [ ] <code>setup.py</code> + <code>requirements.txt</code>
+- [ ] Abstract Base Classes:
+  - [ ] <code>VectorDBAdapter</code> (base.py)
+  - [ ] <code>GraphDBAdapter</code> (base.py)
+  - [ ] <code>RelationalDBAdapter</code> (base.py)
+- [ ] <code>UDS3PersistenceConfig</code> Dataclass</p>
+<p><strong>Woche 2: Erste Adapter-Implementierungen</strong>
+- [ ] <strong>ChromaDB Adapter</strong> (vollständig)
+  - [ ] Collections erstellen
+  - [ ] Embeddings hinzufügen (single + batch)
+  - [ ] Semantic Search
+  - [ ] Tests
+- [ ] <strong>NetworkX Adapter</strong> (Development-Fallback für Neo4j)
+  - [ ] Graph-Operationen
+  - [ ] Pfad-Suche
+  - [ ] Tests
+- [ ] <strong>SQLite Adapter</strong> (Development-Fallback für PostgreSQL)
+  - [ ] Base Schema erstellen
+  - [ ] CRUD-Operationen
+  - [ ] Tests</p>
+<p><strong>Woche 3: German Embeddings &amp; RAG</strong>
+- [ ] <strong>UDS3GermanEmbeddings</strong>
+  - [ ] Model Loading (gbert-base)
+  - [ ] Caching (Memory + Disk)
+  - [ ] Batch-Processing
+  - [ ] Tests
+- [ ] <strong>UDS3GenericRAG</strong>
+  - [ ] Query Classification
+  - [ ] Retrieval-Framework
+  - [ ] Prompt Building
+  - [ ] Tests
+- [ ] <strong>UDS3PolyglotManager</strong>
+  - [ ] Adapter-Orchestration
+  - [ ] <code>save_process()</code>, <code>semantic_search()</code>
+  - [ ] Integration Tests</p>
+<h3 id="phase-2-production-adapters-wochen-4-5">Phase 2: Production Adapters (Wochen 4-5)<a class="headerlink" href="#phase-2-production-adapters-wochen-4-5" title="Permanent link">&para;</a></h3>
+<p><strong>Woche 4: PostgreSQL &amp; Neo4j</strong>
+- [ ] <strong>PostgreSQL Base Schema</strong>
+  - [ ] SQL Migration: <code>001_base_schema.sql</code>
+  - [ ] Tables: <code>uds3_processes</code>, <code>uds3_elements</code>, <code>uds3_connections</code>
+  - [ ] ENUMs, Indexes, Triggers
+  - [ ] <code>002_embeddings.sql</code> (Embedding Registry)
+- [ ] <strong>PostgreSQL Adapter</strong>
+  - [ ] Connection Management
+  - [ ] CRUD mit Base Schema
+  - [ ] Tests
+- [ ] <strong>Neo4j Base Schema</strong>
+  - [ ] Cypher Migration: <code>001_base_schema.cypher</code>
+  - [ ] Constraints, Indexes
+  - [ ] Base Node Types &amp; Relationships</p>
+<p><strong>Woche 5: Neo4j Adapter &amp; pgvector</strong>
+- [ ] <strong>Neo4j Adapter</strong>
+  - [ ] Node/Relationship Creation
+  - [ ] Subgraph Retrieval
+  - [ ] Path Finding
+  - [ ] Tests
+- [ ] <strong>pgvector Adapter</strong> (Alternative zu ChromaDB)
+  - [ ] Extension Setup
+  - [ ] Vector Search mit PostgreSQL
+  - [ ] Tests
+- [ ] <strong>File Backend</strong>
+  - [ ] <code>FileStorageManager</code>
+  - [ ] Hierarchische Struktur (by_id, by_authority, etc.)
+  - [ ] Tests</p>
+<h3 id="phase-3-vpb-integration-woche-6">Phase 3: VPB-Integration (Woche 6)<a class="headerlink" href="#phase-3-vpb-integration-woche-6" title="Permanent link">&para;</a></h3>
+<p><strong>VPB als erste App mit UDS3-Kern</strong>
+- [ ] <strong>VPB Polyglot Adapter</strong>
+  - [ ] <code>VPBPolyglotAdapter</code> nutzt <code>UDS3PolyglotManager</code>
+  - [ ] VPB → UDS3 Base Schema Mapping
+  - [ ] VPB-spezifische Extensions (SQL)
+- [ ] <strong>VPB RAG Pipeline</strong>
+  - [ ] <code>VPBRAG(UDS3GenericRAG)</code> - Erbt von Kern
+  - [ ] VPB-spezifische Query Types
+  - [ ] VPB Context Formatters
+- [ ] <strong>Migration</strong>
+  - [ ] SQLite → UDS3 Polyglot
+  - [ ] Daten-Migration-Script
+  - [ ] Validierung</p>
+<hr />
+<h2 id="5-success-metrics">📊 5. Success Metrics<a class="headerlink" href="#5-success-metrics" title="Permanent link">&para;</a></h2>
+<h3 id="51-technische-metriken">5.1 Technische Metriken<a class="headerlink" href="#51-technische-metriken" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metrik</th>
+<th>Ziel</th>
+<th>Messung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vector Search Latency</strong></td>
+<td>&lt;50ms</td>
+<td>ChromaDB search() call</td>
+</tr>
+<tr>
+<td><strong>Graph Traversal Latency</strong></td>
+<td>&lt;100ms</td>
+<td>Neo4j Cypher query</td>
+</tr>
+<tr>
+<td><strong>SQL Query Latency</strong></td>
+<td>&lt;30ms</td>
+<td>PostgreSQL SELECT</td>
+</tr>
+<tr>
+<td><strong>End-to-End RAG Query</strong></td>
+<td>&lt;500ms</td>
+<td>answer_query() total</td>
+</tr>
+<tr>
+<td><strong>Embedding Quality</strong></td>
+<td>&gt;0.8 Cosine Sim</td>
+<td>Similar process pairs</td>
+</tr>
+<tr>
+<td><strong>Cache Hit Rate</strong></td>
+<td>&gt;70%</td>
+<td>Memory + Disk Cache</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-funktionale-metriken">5.2 Funktionale Metriken<a class="headerlink" href="#52-funktionale-metriken" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metrik</th>
+<th>Ziel</th>
+<th>Validierung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Semantic Search Precision</strong></td>
+<td>&gt;85%</td>
+<td>Top-5 relevante Ergebnisse</td>
+</tr>
+<tr>
+<td><strong>Graph Path Accuracy</strong></td>
+<td>&gt;95%</td>
+<td>Korrekte Pfade gefunden</td>
+</tr>
+<tr>
+<td><strong>LLM Context Relevance</strong></td>
+<td>&gt;90%</td>
+<td>Manuelle Evaluation</td>
+</tr>
+<tr>
+<td><strong>API Compatibility</strong></td>
+<td>100%</td>
+<td>Alle Apps nutzen gleiche APIs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-architektur-metriken">5.3 Architektur-Metriken<a class="headerlink" href="#53-architektur-metriken" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metrik</th>
+<th>Ziel</th>
+<th>Validierung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Code Reusability</strong></td>
+<td>&gt;80%</td>
+<td>Kern-Code in mehreren Apps</td>
+</tr>
+<tr>
+<td><strong>Extension Points</strong></td>
+<td>5+</td>
+<td>Apps können erweitern ohne Fork</td>
+</tr>
+<tr>
+<td><strong>Test Coverage</strong></td>
+<td>&gt;85%</td>
+<td>Unit + Integration Tests</td>
+</tr>
+<tr>
+<td><strong>Documentation Coverage</strong></td>
+<td>100%</td>
+<td>Alle Public APIs dokumentiert</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-deployment-configuration">🔧 6. Deployment &amp; Configuration<a class="headerlink" href="#6-deployment-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="61-development-setup">6.1 Development Setup<a class="headerlink" href="#61-development-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># UDS3 Kern installieren
+git clone https://github.com/your-org/uds3.git C:\VCC\UDS3
+cd C:\VCC\UDS3
+pip install -e .
+
+# Development DBs (SQLite + NetworkX - keine externen Services)
+export UDS3_ENV=development
+python -m uds3.setup --init-dev
+</code></pre>
+<p><strong>Development Config:</strong></p>
+<pre><code class="language-python">from uds3.persistence import UDS3PersistenceConfig
+
+dev_config = UDS3PersistenceConfig(
+    vector_db_type=&quot;chromadb&quot;,
+    vector_db_path=&quot;./dev_data/chromadb&quot;,
+    graph_db_type=&quot;networkx&quot;,  # In-Memory
+    relational_db_type=&quot;sqlite&quot;,
+    relational_db_uri=&quot;sqlite:///./dev_data/uds3.db&quot;,
+    file_backend_root=&quot;./dev_data/files&quot;
+)
+</code></pre>
+<h3 id="62-production-setup">6.2 Production Setup<a class="headerlink" href="#62-production-setup" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># UDS3 Kern installieren
+pip install uds3
+
+# Production DBs (PostgreSQL + Neo4j + ChromaDB)
+export UDS3_ENV=production
+
+# Datenbanken erstellen
+psql -U postgres -c &quot;CREATE DATABASE uds3_production;&quot;
+# Neo4j: Web UI http://localhost:7474
+
+# Schema migrieren
+python -m uds3.setup --migrate-sql sql/postgresql/001_base_schema.sql
+python -m uds3.setup --migrate-cypher cypher/001_base_schema.cypher
+</code></pre>
+<p><strong>Production Config:</strong></p>
+<pre><code class="language-python">from uds3.persistence import UDS3PersistenceConfig
+
+prod_config = UDS3PersistenceConfig(
+    vector_db_type=&quot;chromadb&quot;,  # oder &quot;pgvector&quot;
+    vector_db_path=&quot;/var/lib/uds3/chromadb&quot;,
+
+    graph_db_type=&quot;neo4j&quot;,
+    graph_db_uri=&quot;bolt://localhost:7687&quot;,
+    graph_db_user=&quot;neo4j&quot;,
+    graph_db_password=&quot;your_password&quot;,
+
+    relational_db_type=&quot;postgresql&quot;,
+    relational_db_uri=&quot;postgresql://uds3_user:password@localhost:5432/uds3_production&quot;,
+
+    file_backend_root=&quot;/var/lib/uds3/files&quot;,
+
+    embedding_model=&quot;deutsche-telekom/gbert-base&quot;,
+    enable_caching=True
+)
+</code></pre>
+<hr />
+<h2 id="7-app-integration-best-practices">📖 7. App-Integration: Best Practices<a class="headerlink" href="#7-app-integration-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="71-vpb-als-referenz-implementierung">7.1 VPB als Referenz-Implementierung<a class="headerlink" href="#71-vpb-als-referenz-implementierung" title="Permanent link">&para;</a></h3>
+<p><strong>VPB Adapter:</strong></p>
+<pre><code class="language-python"># VPB/vpb_polyglot_adapter.py
+from uds3.persistence import UDS3PolyglotManager, UDS3PersistenceConfig
+
+class VPBPolyglotAdapter:
+    &quot;&quot;&quot;VPB-spezifischer Adapter für UDS3 Polyglot Persistence&quot;&quot;&quot;
+
+    def __init__(self, config: UDS3PersistenceConfig):
+        self.polyglot = UDS3PolyglotManager(config)
+        self.domain = &quot;vpb&quot;
+
+    def save_vpb_process(self, vpb_process_data: Dict[str, Any]) -&gt; str:
+        &quot;&quot;&quot;
+        Speichert VPB-Prozess in UDS3
+
+        Mapped VPB-spezifische Felder auf UDS3 Base Schema
+        &quot;&quot;&quot;
+        # UDS3 Base Schema
+        uds3_process = {
+            &quot;process_id&quot;: vpb_process_data[&quot;process_id&quot;],
+            &quot;name&quot;: vpb_process_data[&quot;name&quot;],
+            &quot;description&quot;: vpb_process_data.get(&quot;description&quot;),
+            &quot;process_type&quot;: &quot;vpb&quot;,
+            &quot;authority&quot;: vpb_process_data.get(&quot;authority&quot;),
+            &quot;legal_basis&quot;: vpb_process_data.get(&quot;legal_basis&quot;),
+            &quot;legal_context&quot;: vpb_process_data.get(&quot;legal_context&quot;),
+
+            # VPB-spezifisch in JSONB
+            &quot;app_specific_data&quot;: {
+                &quot;vpb_ui_state&quot;: vpb_process_data.get(&quot;ui_state&quot;),
+                &quot;vpb_element_types&quot;: vpb_process_data.get(&quot;element_types&quot;),
+                &quot;vpb_compliance&quot;: vpb_process_data.get(&quot;compliance_scores&quot;)
+            }
+        }
+
+        return self.polyglot.save_process(uds3_process, app_domain=&quot;vpb&quot;)
+</code></pre>
+<h3 id="72-schema-extensions">7.2 Schema-Extensions<a class="headerlink" href="#72-schema-extensions" title="Permanent link">&para;</a></h3>
+<p><strong>VPB SQL Extension:</strong></p>
+<pre><code class="language-sql">-- VPB/sql/vpb_extensions.sql
+-- Erweitert UDS3 Base Schema
+
+ALTER TABLE uds3_processes
+ADD COLUMN IF NOT EXISTS vpb_ui_state JSONB;
+
+ALTER TABLE uds3_processes
+ADD COLUMN IF NOT EXISTS vpb_complexity_score NUMERIC(3,2);
+
+ALTER TABLE uds3_processes
+ADD COLUMN IF NOT EXISTS vpb_automation_score NUMERIC(3,2);
+
+-- VPB-spezifische Tabelle
+CREATE TABLE IF NOT EXISTS vpb_element_properties (
+    element_id UUID PRIMARY KEY REFERENCES uds3_elements(element_id),
+    element_type VARCHAR(50) NOT NULL,  -- 23 VPB Types
+    canvas_x INTEGER,
+    canvas_y INTEGER,
+    vpb_compliance_tags TEXT[],
+    vpb_deadline_type VARCHAR(50)
+);
+</code></pre>
+<hr />
+<h2 id="8-entscheidungs-matrix-uds3-vs-app">✅ 8. Entscheidungs-Matrix: UDS3 vs. App<a class="headerlink" href="#8-entscheidungs-matrix-uds3-vs-app" title="Permanent link">&para;</a></h2>
+<p><strong>Quick Reference für Entwickler:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>UDS3-Kern</th>
+<th>App-Extension</th>
+<th>Begründung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DB-Adapter (Vector/Graph/SQL)</td>
+<td>✅</td>
+<td>-</td>
+<td>Alle Apps brauchen</td>
+</tr>
+<tr>
+<td>German BERT Embeddings</td>
+<td>✅</td>
+<td>-</td>
+<td>Verwaltungssprache-generisch</td>
+</tr>
+<tr>
+<td>RAG Pipeline Framework</td>
+<td>✅</td>
+<td>-</td>
+<td>Erweiterbar</td>
+</tr>
+<tr>
+<td>Base Process Schema</td>
+<td>✅</td>
+<td>-</td>
+<td>Gemeinsame Struktur</td>
+</tr>
+<tr>
+<td>Query Orchestrator</td>
+<td>✅</td>
+<td>-</td>
+<td>Kombiniert alle DBs</td>
+</tr>
+<tr>
+<td>File Storage Manager</td>
+<td>✅</td>
+<td>-</td>
+<td>Hierarchisch, generisch</td>
+</tr>
+<tr>
+<td>VPB Element Types (23)</td>
+<td>-</td>
+<td>✅</td>
+<td>VPB-spezifisch</td>
+</tr>
+<tr>
+<td>VPB UI State (Canvas)</td>
+<td>-</td>
+<td>✅</td>
+<td>VPB Designer</td>
+</tr>
+<tr>
+<td>Legal Document Types</td>
+<td>-</td>
+<td>✅</td>
+<td>Rechtsdatenbank-App</td>
+</tr>
+<tr>
+<td>Case Law Relationships</td>
+<td>-</td>
+<td>✅</td>
+<td>Rechtsprechungs-App</td>
+</tr>
+<tr>
+<td>Custom Query Types</td>
+<td>-</td>
+<td>✅</td>
+<td>Domain-spezifisch</td>
+</tr>
+<tr>
+<td>Custom Prompt Templates</td>
+<td>-</td>
+<td>✅</td>
+<td>Domain-spezifisch</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-referenzen-related-documents">🔗 9. Referenzen &amp; Related Documents<a class="headerlink" href="#9-referenzen-related-documents" title="Permanent link">&para;</a></h2>
+<p><strong>UDS3 Kern-Dokumentation:</strong>
+- <code>UDS3_POLYGLOT_PERSISTENCE_CORE.md</code> (dieses Dokument)
+- <code>API_REFERENCE.md</code> (generiert aus Code-Docstrings)
+- <code>DEPLOYMENT_GUIDE.md</code> (Production Setup)
+- <code>MIGRATION_GUIDE.md</code> (App-Migration zu UDS3)</p>
+<p><strong>VPB-Integration:</strong>
+- <code>VPB/docs/UDS3_VPB_POLYGLOT_PERSISTENCE_PLAN.md</code> (VPB-spezifischer Plan)
+- <code>VPB/docs/VPB_UDS3_INTEGRATION_PLAN.md</code> (Legacy Integration Plan)</p>
+<p><strong>Externe Ressourcen:</strong>
+- ChromaDB: https://docs.trychroma.com/
+- Neo4j Python Driver: https://neo4j.com/docs/python-manual/
+- pgvector: https://github.com/pgvector/pgvector
+- sentence-transformers: https://www.sbert.net/
+- deutsche-telekom/gbert: https://huggingface.co/deutsche-telekom/gbert-base</p>
+<hr />
+<h2 id="10-anderungs-historie">📝 10. Änderungs-Historie<a class="headerlink" href="#10-anderungs-historie" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Datum</th>
+<th>Autor</th>
+<th>Änderungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2025-10-18</td>
+<td>Architecture Team</td>
+<td>Initial ADR - Kern-Komponenten definiert</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Status:</strong> 🟢 APPROVED - Ready for Implementation</p>
+<p><strong>Next Steps:</strong>
+1. Repository <code>C:\VCC\UDS3</code> erstellen
+2. Ordnerstruktur aufbauen (siehe Abschnitt 2.1)
+3. Abstract Base Classes implementieren (Woche 1)
+4. Development Adapters (ChromaDB, NetworkX, SQLite) - Woche 2
+5. VPB-Integration als Pilot (Woche 6)</p>
+<p><strong>Review:</strong> Alle Stakeholder genehmigt ✅</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Zurück zum Seitenanfang
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
