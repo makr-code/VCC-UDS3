@@ -231,7 +231,7 @@ class PostgreSQLConnectionPool:
         if self._pool is not None:
             try:
                 self._pool.closeall()
-                logger.info(f"✅ PostgreSQL Connection Pool closed")
+                logger.info(f"PostgreSQL Connection Pool closed")
                 logger.info(
                     f"Pool Stats: "
                     f"Created={self._total_connections_created}, "
@@ -294,7 +294,7 @@ class PostgreSQLConnectionPool:
     def __del__(self):
         """Cleanup on garbage collection."""
         if not self._is_closed:
-            logger.warning("⚠️ Connection pool not explicitly closed - closing now")
+            logger.warning("WARNING: Connection pool not explicitly closed - closing now")
             self.close()
 
 

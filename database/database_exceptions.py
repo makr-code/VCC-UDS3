@@ -231,13 +231,13 @@ class APIVersionError(DatabaseError):
 def log_operation_start(backend: str, operation: str, **kwargs):
     """Logge Start einer Database-Operation"""
     details = " | ".join([f"{k}={v}" for k, v in kwargs.items()])
-    logger.info(f"🔄 [{backend}] Starting: {operation} | {details}")
+    logger.info(f"[{backend}] Starting: {operation} | {details}")
 
 
 def log_operation_success(backend: str, operation: str, **kwargs):
     """Logge erfolgreiche Database-Operation"""
     details = " | ".join([f"{k}={v}" for k, v in kwargs.items()])
-    logger.info(f"✅ [{backend}] Success: {operation} | {details}")
+    logger.info(f"[{backend}] Success: {operation} | {details}")
 
 
 def log_operation_failure(backend: str, operation: str, error: Exception, **kwargs):
