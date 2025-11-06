@@ -40,7 +40,7 @@ markdown_extensions:
   - def_list
 
 nav:
-  - Start: index.md
+  - Start: INDEX.md
   - API-Referenz:
       - Übersicht: api/index.md
 

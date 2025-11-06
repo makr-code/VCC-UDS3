@@ -173,3 +173,6 @@ log/
 CLEANUP_PLAN.md.backup
 
 bandit_report.txt
+
+# MkDocs build output (do not commit generated site)
+site/
