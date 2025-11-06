@@ -37,8 +37,27 @@ jobs:
         run: |
           pytest tests/ -v --tb=short || echo "⚠️ Some tests failed (expected without live databases)"
 
+      - name: Run comprehensive test suite
+        if: matrix.python-version == '3.13'
+        run: |
+          pip install numpy
+          pytest tests/comprehensive/ -v --tb=short || echo "⚠️ Some comprehensive tests failed"
+
       - name: Lint with ruff
         if: matrix.python-version == '3.13'
         run: |
           pip install ruff
           ruff check . || true
+
+      - name: Security scan with Bandit
+        if: matrix.python-version == '3.13'
+        run: |
+          pip install bandit
+          bandit -r . -f txt -o bandit_report.txt -x ./tests,./venv,./site || true
+          cat bandit_report.txt
+
+      - name: Type check with mypy
+        if: matrix.python-version == '3.13'
+        run: |
+          pip install mypy
+          mypy --config-file mypy.ini . || true

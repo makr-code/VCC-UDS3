@@ -21,8 +21,12 @@ cryptography>=40.0.0
 
 # Dev tools
 pytest>=7.0.0
+pytest-cov>=4.0.0
 ruff>=0.20.0
 black>=23.9.0
+bandit>=1.8.0
+mypy>=1.0.0
+numpy>=1.26.0
 
 # Notes:
 # - Internal/proprietary modules (e.g., vpb_sqlite_db, collection_manager, veritas_relations_almanach)
