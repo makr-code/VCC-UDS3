@@ -44,7 +44,8 @@ if parent_str not in sys.path:
 # Shared Test Fixtures
 # ============================================================================
 
-from database.database_api_sqlite import SQLiteDatabaseAPI
+# Note: UDS3 uses Backend classes, not direct API classes
+# Import example backends for testing
 
 
 @pytest.fixture(scope="session")
@@ -57,32 +58,43 @@ def temp_dir() -> Generator[Path, None, None]:
 
 
 @pytest.fixture
-def sqlite_db() -> Generator[SQLiteDatabaseAPI, None, None]:
-    """Create temporary SQLite database for testing"""
+def sqlite_db() -> Generator:
+    """Create temporary SQLite backend for testing"""
+    import tempfile
+    from database.database_api_sqlite import SQLiteRelationalBackend
+    
     with tempfile.NamedTemporaryFile(suffix='.db', delete=False) as f:
         db_path = f.name
     
-    db = SQLiteDatabaseAPI(db_path)
+    config = {'database_path': db_path}
+    db = SQLiteRelationalBackend(config)
+    db.connect()
+    
     yield db
     
     # Cleanup
-    db.close()
+    db.disconnect()
     if os.path.exists(db_path):
         os.unlink(db_path)
 
 
 @pytest.fixture
-def populated_db() -> Generator[SQLiteDatabaseAPI, None, None]:
-    """Create SQLite database with test data"""
+def populated_db() -> Generator:
+    """Create SQLite backend with test data"""
+    import tempfile
+    from database.database_api_sqlite import SQLiteRelationalBackend
+    
     with tempfile.NamedTemporaryFile(suffix='.db', delete=False) as f:
         db_path = f.name
     
-    db = SQLiteDatabaseAPI(db_path)
+    config = {'database_path': db_path}
+    db = SQLiteRelationalBackend(config)
+    db.connect()
     
     # Create standard test tables
     db.execute_query("""
         CREATE TABLE test_documents (
-            id INTEGER PRIMARY KEY,
+            id TEXT PRIMARY KEY,
             title TEXT NOT NULL,
             content TEXT,
             category TEXT,
@@ -93,7 +105,7 @@ def populated_db() -> Generator[SQLiteDatabaseAPI, None, None]:
     
     db.execute_query("""
         CREATE TABLE test_users (
-            id INTEGER PRIMARY KEY,
+            id TEXT PRIMARY KEY,
             username TEXT UNIQUE NOT NULL,
             email TEXT,
             role TEXT DEFAULT 'user'
@@ -101,37 +113,38 @@ def populated_db() -> Generator[SQLiteDatabaseAPI, None, None]:
     """)
     
     # Insert test data
+    import uuid
     test_docs = [
-        ("Finance Report 2024", "Q1 financial analysis", "Finance", "2024-01-01", "published"),
-        ("HR Policy Update", "New remote work policy", "HR", "2024-01-15", "published"),
-        ("IT Security Guide", "Security best practices", "IT", "2024-02-01", "draft"),
-        ("Marketing Plan", "2024 marketing strategy", "Marketing", "2024-02-15", "published"),
-        ("Product Roadmap", "Q2-Q4 product plans", "Product", "2024-03-01", "draft")
+        (str(uuid.uuid4()), "Finance Report 2024", "Q1 financial analysis", "Finance", "2024-01-01", "published"),
+        (str(uuid.uuid4()), "HR Policy Update", "New remote work policy", "HR", "2024-01-15", "published"),
+        (str(uuid.uuid4()), "IT Security Guide", "Security best practices", "IT", "2024-02-01", "draft"),
+        (str(uuid.uuid4()), "Marketing Plan", "2024 marketing strategy", "Marketing", "2024-02-15", "published"),
+        (str(uuid.uuid4()), "Product Roadmap", "Q2-Q4 product plans", "Product", "2024-03-01", "draft")
     ]
     
     for doc in test_docs:
         db.execute_query(
-            "INSERT INTO test_documents (title, content, category, created_date, status) VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO test_documents (id, title, content, category, created_date, status) VALUES (?, ?, ?, ?, ?, ?)",
             doc
         )
     
     test_users = [
-        ("admin", "admin@example.com", "admin"),
-        ("user1", "user1@example.com", "user"),
-        ("user2", "user2@example.com", "user"),
-        ("manager", "manager@example.com", "manager")
+        (str(uuid.uuid4()), "admin", "admin@example.com", "admin"),
+        (str(uuid.uuid4()), "user1", "user1@example.com", "user"),
+        (str(uuid.uuid4()), "user2", "user2@example.com", "user"),
+        (str(uuid.uuid4()), "manager", "manager@example.com", "manager")
     ]
     
     for user in test_users:
         db.execute_query(
-            "INSERT INTO test_users (username, email, role) VALUES (?, ?, ?)",
+            "INSERT INTO test_users (id, username, email, role) VALUES (?, ?, ?, ?)",
             user
         )
     
     yield db
     
     # Cleanup
-    db.close()
+    db.disconnect()
     if os.path.exists(db_path):
         os.unlink(db_path)
 
@@ -206,12 +219,12 @@ def sample_file_data(temp_dir):
 @pytest.fixture
 def create_test_table():
     """Factory fixture to create test tables"""
-    def _create_table(db: SQLiteDatabaseAPI, table_name: str, columns: dict):
+    def _create_table(db, table_name: str, columns: dict):
         """
         Create a test table
         
         Args:
-            db: Database connection
+            db: Database backend
             table_name: Name of table
             columns: Dict of {column_name: column_type}
         """
@@ -224,12 +237,12 @@ def create_test_table():
 @pytest.fixture
 def insert_test_data():
     """Factory fixture to insert test data"""
-    def _insert_data(db: SQLiteDatabaseAPI, table_name: str, data: list):
+    def _insert_data(db, table_name: str, data: list):
         """
         Insert test data
         
         Args:
-            db: Database connection
+            db: Database backend
             table_name: Name of table
             data: List of tuples with values
         """
