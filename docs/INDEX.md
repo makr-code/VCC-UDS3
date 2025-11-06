@@ -1,6 +1,10 @@
 # UDS3 Dokumentation
 
-Dieses Verzeichnis enthält die gesamte Dokumentation des UDS3-Systems.
+Willkommen zur offiziellen Dokumentation des UDS3-Systems (Unified Database Strategy v3).
+
+> **📖 API-Referenz:** Die vollständige API-Dokumentation mit Code-Beispielen und Implementierungsdetails findest du auf [GitHub Pages](https://makr-code.github.io/VCC-UDS3/)
+
+Dieses Wiki enthält Leitfäden, Architektur-Dokumentation und Implementierungs-Guides.
 
 ## 📚 Hauptdokumentation
 
@@ -76,9 +80,15 @@ results = api.search_documents("Verwaltungsrecht")
 from uds3.legacy import LegacyCore
 ```
 
-## 📞 Support
+## 📞 Support & Links
 
-Für Fragen zur Dokumentation oder zum System:
-- Prüfe die relevante Dokumentation in diesem Verzeichnis
+**Dokumentation:**
+- 🌐 [API-Referenz (GitHub Pages)](https://makr-code.github.io/VCC-UDS3/) - Automatisch generiert aus dem Quellcode
+- 📚 [GitHub Wiki](https://github.com/makr-code/VCC-UDS3/wiki) - Leitfäden und Implementierungs-Guides (diese Seite)
+- 📦 [PyPI Package](https://pypi.org/project/uds3/) - UDS3 v1.5.0+
+
+**Entwicklung:**
+- Prüfe die relevante Dokumentation in diesem Wiki
 - Für API-Änderungen siehe [UDS3_UPDATE_REPORT.md](UDS3_UPDATE_REPORT.md)
 - Für Entwicklung siehe [DEVELOPMENT.md](DEVELOPMENT.md)
+- Für Sicherheit siehe [SECURITY.md](SECURITY.md)
