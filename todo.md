@@ -65,15 +65,15 @@ Diese Aufgaben adressieren kritische Inkonsistenzen zwischen Code und Dokumentat
 
 Folgende implementierte Features sind nicht oder kaum dokumentiert:
 
-- [ ] **Caching System** dokumentieren
+- [x] **Caching System** dokumentieren
   - 46 Dateien mit Cache-Referenzen
   - core/cache.py (24KB), core/rag_cache.py vorhanden
-  - Guide erstellen: docs/features/caching.md
+  - Guide erstellt: docs/features/caching.md
 
-- [ ] **Geo/Spatial Features** dokumentieren
+- [x] **Geo/Spatial Features** dokumentieren
   - 27 Dateien mit Geo-Referenzen
   - api/geo.py (36KB), api/geo_config.json vorhanden
-  - Guide erstellen: docs/features/geo-spatial.md
+  - Guide erstellt: docs/features/geo-spatial.md
 
 - [ ] **Streaming API** dokumentieren (falls öffentliche API)
   - 26 Dateien mit Streaming-Referenzen
