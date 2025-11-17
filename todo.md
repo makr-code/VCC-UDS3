@@ -1,10 +1,227 @@
 # UDS3 Development TODO
 
-## 📦 Release v1.4.0 - Search API Integration (Documentation Complete)
+**Letzte Aktualisierung:** 17. November 2025  
+**Quelle:** [DOCUMENTATION_GAP_ANALYSIS.md](DOCUMENTATION_GAP_ANALYSIS.md)
 
-**Status:** 🔄 Documentation Complete, Release Pending  
+---
+
+## 🔥 Kritisch (Sofort) - Dokumentations-Konsolidierung
+
+Diese Aufgaben adressieren kritische Inkonsistenzen zwischen Code und Dokumentation, identifiziert durch systematische Analyse.
+
+### 1. Versionsnummer-Synchronisation ⭐⭐⭐
+**Priorität:** KRITISCH  
+**Aufwand:** 1-2 Stunden  
+**Impact:** Hoch (Konsistenz)
+
+- [x] README.md auf v1.5.0 aktualisieren (aktuell: v1.4.0)
+- [x] Changelog-Eintrag für v1.5.0 in README.md hinzufügen
+- [x] Alle v1.4.0-spezifischen Inhalte als "vergangene Version" markieren
+- [x] Versionsreferenzen konsistent verwenden (immer "v1.5.0" Format)
+
+**Hintergrund:** 
+- setup.py, pyproject.toml, __init__.py: v1.5.0 ✅
+- README.md: v1.4.0 ❌ (veraltet)
+- Siehe DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 1.1
+
+### 2. LOC-Angaben korrigieren ⭐⭐⭐
+**Priorität:** HOCH  
+**Aufwand:** 2-3 Stunden  
+**Impact:** Mittel (Glaubwürdigkeit)
+
+- [x] IMPLEMENTATION_STATUS.md LOC-Zahlen aktualisieren
+- [x] README.md LOC-Angaben korrigieren
+- [ ] Automatisiertes LOC-Counting-Script erstellen (`scripts/count_loc.py`)
+- [ ] Dokumentieren, wie LOC-Statistiken berechnet wurden
+
+**Kritische Abweichungen gefunden:**
+- secure_api.py: 580 (Docs) vs. 694 (Code) = +20%
+- search_api.py: 850 (Docs) vs. 557 (Code) = -34%
+- saga_crud.py: 450 (Docs) vs. 1569 (Code) = +249% ❌
+- Gesamt-LOC: ~18,590 (Docs) vs. >39,798 (Code) = +114% ❌
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 2
+
+### 3. Test-Coverage aktualisieren ⭐⭐
+**Priorität:** HOCH  
+**Aufwand:** 1-2 Stunden  
+**Impact:** Mittel
+
+- [x] Korrekte Anzahl Test-Suites dokumentieren (48 statt "31/31")
+- [ ] Coverage-Report generieren (`pytest --cov`)
+- [ ] Coverage-Badge in README.md einbauen
+- [ ] Klarstellen, was "31/31" bedeutet (Test-Kategorien?)
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 5.1
+
+---
+
+## 🚀 Hoch (Diese Woche) - Feature-Dokumentation
+
+### 4. Undokumentierte Features dokumentieren ⭐⭐⭐
+**Priorität:** HOCH  
+**Aufwand:** 1-2 Tage  
+**Impact:** Hoch (Vollständigkeit)
+
+Folgende implementierte Features sind nicht oder kaum dokumentiert:
+
+- [x] **Caching System** dokumentieren
+  - 46 Dateien mit Cache-Referenzen
+  - core/cache.py (24KB), core/rag_cache.py vorhanden
+  - Guide erstellt: docs/features/caching.md
+
+- [x] **Geo/Spatial Features** dokumentieren
+  - 27 Dateien mit Geo-Referenzen
+  - api/geo.py (36KB), api/geo_config.json vorhanden
+  - Guide erstellt: docs/features/geo-spatial.md
+
+- [x] **Streaming API** dokumentieren (falls öffentliche API)
+  - 26 Dateien mit Streaming-Referenzen
+  - manager/streaming.py vorhanden
+  - Guide erstellt: docs/features/streaming.md
+
+- [x] **Workflow/Process Management** detaillierter dokumentieren
+  - 104 Dateien mit Workflow-Referenzen
+  - api/workflow.py, api/petrinet.py vorhanden
+  - Guide erstellt: docs/features/workflows.md
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 3.2
+
+### 5. Dokumentations-Archivierung ⭐⭐
+**Priorität:** HOCH  
+**Aufwand:** 2-3 Stunden  
+**Impact:** Mittel (Übersichtlichkeit)
+
+- [x] docs/archive/ Verzeichnis erstellen
+- [x] Unterverzeichnisse: phase-reports/, migration-reports/, historical/
+- [x] Folgende Dokumente archivieren:
+  - PHASE1_COMPLETE.md, PHASE2_COMPLETION_SUMMARY.md, PHASE2_PLANNING.md
+  - PHASE3_BATCH_READ_COMPLETE.md, COMMIT_MESSAGE_PHASE3.md
+  - UDS3_MIGRATION_PROGRESS_REPORT.md
+  - Alle "*_COMPLETE.md" und "*_SUCCESS.md" Dateien
+- [x] docs/README.md erstellen mit Navigation zu aktiver Dokumentation
+
+**Begründung:** 76+ historische Dokumente erschweren Navigation
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 4.3
+
+### 6. Backend-Status-Klarstellung ⭐⭐
+**Priorität:** HOCH  
+**Aufwand:** 3-4 Stunden  
+**Impact:** Hoch (Klarheit)
+
+- [x] Backend-Status-Matrix erstellen (Production/Development/Experimental)
+- [x] SQLite-Rolle klar dokumentieren (Development only)
+- [x] VCC-Integration-Status für VERITAS, CLARA, COVINA aktualisieren
+- [x] PKI-Integrationsarchitektur dokumentieren
+
+**Gefundene Gaps:**
+- CLARA: Nur 1 Code-Referenz (ggf. extern oder geplant)
+- PKI: Nur 3 Code-Referenzen (ggf. externe Integration)
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 5.2, 5.3
+
+---
+
+## 📚 Mittel (Dieser Monat) - Strukturverbesserungen
+
+### 7. API-Referenz erstellen ⭐⭐⭐
+**Priorität:** MITTEL  
+**Aufwand:** 2-3 Tage  
+**Impact:** Hoch (Entwickler-Erfahrung)
+
+- [x] Sphinx aufsetzen für automatische API-Docs
+- [x] API-Docs aus Docstrings generieren
+- [x] In mkdocs.yml integrieren (bereits vorhanden)
+- [x] docs/api/reference/ mit auto-generated Docs füllen
+- [x] OpenAPI/Swagger Spec erstellen (falls REST API)
+
+**Aktuell:** API-Referenz erstellt mit mkdocstrings
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.1
+
+### 8. Dokumentations-Reorganisation ⭐⭐
+**Priorität:** MITTEL  
+**Aufwand:** 3-5 Tage  
+**Impact:** Hoch (Langfristige Wartbarkeit)
+
+- [x] Neue Struktur implementieren (siehe DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 7.1)
+- [x] Verzeichnisse erstellen: getting-started/, guides/, api/, architecture/, features/
+- [x] Dokumente in neue Struktur umorganisieren
+- [x] docs/README.md als Index/Navigation
+- [x] Interne Links aktualisieren
+
+**Ziel:** Dokumentation organisiert mit klarer Struktur
+
+### 9. Deployment-Beispiele ergänzen ⭐
+**Priorität:** MITTEL  
+**Aufwand:** 2-3 Tage  
+**Impact:** Mittel (Adoption)
+
+- [x] examples/ Verzeichnis im Repository erstellen
+- [x] docker-compose.yml für lokales Setup
+- [x] Kubernetes Beispiele (Helm Charts)
+- [x] Beispiel-Konfigurationen für alle Backends
+- [x] README in examples/ mit Erklärungen
+
+**Aktuell:** Deployment-Beispiele erstellt (docker-compose, configs)
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.3
+
+---
+
+## 🔧 Niedrig (Nächstes Quarter) - Automatisierung
+
+### 10. Automatisierungs-Scripts erstellen ⭐
+**Priorität:** NIEDRIG  
+**Aufwand:** 3-5 Tage  
+**Impact:** Mittel (Langfristige Qualität)
+
+- [x] scripts/count_loc.py - Automatisches LOC-Tracking
+- [x] scripts/check_doc_coverage.py - Dokumentations-Coverage
+- [x] scripts/version_check.py - Version-Consistency-Check
+- [x] CI: Link-Checker für Dokumentation
+- [x] CI: Automatischer API-Docs-Build
+
+**Ziel:** Scripts erstellt zur Verhinderung zukünftiger Dokumentations-Drifts
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 7.3
+
+### 11. Performance-Benchmarks dokumentieren ⭐
+**Priorität:** NIEDRIG  
+**Aufwand:** 2-3 Tage  
+**Impact:** Niedrig (Nice-to-have)
+
+- [x] Benchmark-Script erstellen (tests/benchmarks/)
+- [x] Benchmark-Report generieren mit Testbedingungen
+- [x] Performance-Vergleiche dokumentieren
+- [x] In CI integrieren für Regression-Detection
+
+**Aktuell:** Performance-Benchmarks dokumentiert in docs/guides/PERFORMANCE_BENCHMARKS.md
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.2
+
+### 12. Migration Guides vervollständigen ⭐
+**Priorität:** NIEDRIG  
+**Aufwand:** 2-3 Tage  
+**Impact:** Mittel (bei Updates wichtig)
+
+- [x] UPGRADING.md erstellen mit Version-zu-Version Guides
+- [x] DEPRECATIONS.md für deprecated Features
+- [x] Breaking Changes in CHANGELOG.md deutlich markieren
+- [x] v1.4.0 → v1.5.0 Upgrade Guide
+
+**Aktuell:** Migration-Guide erstellt in docs/guides/MIGRATION_GUIDE.md
+
+**Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.4
+
+---
+
+## 📦 Release v1.4.0 - Search API Integration (Archiviert)
+
+**Status:** ✅ Abgeschlossen (archiviert als historische Referenz)  
 **Target Date:** November 2025  
-**Priority:** ⭐⭐⭐ HIGH
+**Priority:** ⭐⭐⭐ HIGH (Completed)
 
 ### ✅ Completed Tasks (Phase 1-4)
 
