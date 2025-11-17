@@ -43,5 +43,20 @@ nav:
   - Start: INDEX.md
   - API-Referenz:
       - Übersicht: api/index.md
+      - Core: api/reference/core.md
+      - API: api/reference/api.md
+      - Database: api/reference/database.md
+      - Manager: api/reference/manager.md
+      - Security: api/reference/security.md
+  - Features:
+      - Caching: features/caching.md
+      - Geo/Spatial: features/geo-spatial.md
+      - Streaming: features/streaming.md
+      - Workflows: features/workflows.md
+  - Guides:
+      - Performance Benchmarks: guides/PERFORMANCE_BENCHMARKS.md
+      - Migration Guide: guides/MIGRATION_GUIDE.md
+  - Examples:
+      - Overview: ../examples/README.md
 
 # Standard docs-Verzeichnis bleibt "docs/"

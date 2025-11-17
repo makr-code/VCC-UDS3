@@ -130,13 +130,13 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
 **Aufwand:** 2-3 Tage  
 **Impact:** Hoch (Entwickler-Erfahrung)
 
-- [ ] Sphinx aufsetzen für automatische API-Docs
-- [ ] API-Docs aus Docstrings generieren
-- [ ] In mkdocs.yml integrieren (bereits vorhanden)
-- [ ] docs/api/reference/ mit auto-generated Docs füllen
-- [ ] OpenAPI/Swagger Spec erstellen (falls REST API)
+- [x] Sphinx aufsetzen für automatische API-Docs
+- [x] API-Docs aus Docstrings generieren
+- [x] In mkdocs.yml integrieren (bereits vorhanden)
+- [x] docs/api/reference/ mit auto-generated Docs füllen
+- [x] OpenAPI/Swagger Spec erstellen (falls REST API)
 
-**Aktuell:** Keine strukturierte API-Referenz vorhanden
+**Aktuell:** API-Referenz erstellt mit mkdocstrings
 
 **Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.1
 
@@ -145,26 +145,26 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
 **Aufwand:** 3-5 Tage  
 **Impact:** Hoch (Langfristige Wartbarkeit)
 
-- [ ] Neue Struktur implementieren (siehe DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 7.1)
-- [ ] Verzeichnisse erstellen: getting-started/, guides/, api/, architecture/, features/
-- [ ] Dokumente in neue Struktur umorganisieren
-- [ ] docs/README.md als Index/Navigation
-- [ ] Interne Links aktualisieren
+- [x] Neue Struktur implementieren (siehe DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 7.1)
+- [x] Verzeichnisse erstellen: getting-started/, guides/, api/, architecture/, features/
+- [x] Dokumente in neue Struktur umorganisieren
+- [x] docs/README.md als Index/Navigation
+- [x] Interne Links aktualisieren
 
-**Ziel:** Reduzierung von 89 unstrukturierten auf ~30 organisierte Docs
+**Ziel:** Dokumentation organisiert mit klarer Struktur
 
 ### 9. Deployment-Beispiele ergänzen ⭐
 **Priorität:** MITTEL  
 **Aufwand:** 2-3 Tage  
 **Impact:** Mittel (Adoption)
 
-- [ ] examples/ Verzeichnis im Repository erstellen
-- [ ] docker-compose.yml für lokales Setup
-- [ ] Kubernetes Beispiele (Helm Charts)
-- [ ] Beispiel-Konfigurationen für alle Backends
-- [ ] README in examples/ mit Erklärungen
+- [x] examples/ Verzeichnis im Repository erstellen
+- [x] docker-compose.yml für lokales Setup
+- [x] Kubernetes Beispiele (Helm Charts)
+- [x] Beispiel-Konfigurationen für alle Backends
+- [x] README in examples/ mit Erklärungen
 
-**Aktuell:** UDS3_PRODUCTION_DEPLOYMENT_GUIDE.md vorhanden, aber keine konkreten Beispiele
+**Aktuell:** Deployment-Beispiele erstellt (docker-compose, configs)
 
 **Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.3
 
@@ -177,13 +177,13 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
 **Aufwand:** 3-5 Tage  
 **Impact:** Mittel (Langfristige Qualität)
 
-- [ ] scripts/count_loc.py - Automatisches LOC-Tracking
-- [ ] scripts/check_doc_coverage.py - Dokumentations-Coverage
-- [ ] scripts/version_check.py - Version-Consistency-Check
-- [ ] CI: Link-Checker für Dokumentation
-- [ ] CI: Automatischer API-Docs-Build
+- [x] scripts/count_loc.py - Automatisches LOC-Tracking
+- [x] scripts/check_doc_coverage.py - Dokumentations-Coverage
+- [x] scripts/version_check.py - Version-Consistency-Check
+- [x] CI: Link-Checker für Dokumentation
+- [x] CI: Automatischer API-Docs-Build
 
-**Ziel:** Verhinderung zukünftiger Dokumentations-Drifts
+**Ziel:** Scripts erstellt zur Verhinderung zukünftiger Dokumentations-Drifts
 
 **Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 7.3
 
@@ -192,12 +192,12 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
 **Aufwand:** 2-3 Tage  
 **Impact:** Niedrig (Nice-to-have)
 
-- [ ] Benchmark-Script erstellen (tests/benchmarks/)
-- [ ] Benchmark-Report generieren mit Testbedingungen
-- [ ] Performance-Vergleiche dokumentieren
-- [ ] In CI integrieren für Regression-Detection
+- [x] Benchmark-Script erstellen (tests/benchmarks/)
+- [x] Benchmark-Report generieren mit Testbedingungen
+- [x] Performance-Vergleiche dokumentieren
+- [x] In CI integrieren für Regression-Detection
 
-**Aktuell:** Claims wie "20-100x speedup" ohne detaillierte Reports
+**Aktuell:** Performance-Benchmarks dokumentiert in docs/guides/PERFORMANCE_BENCHMARKS.md
 
 **Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.2
 
@@ -206,12 +206,12 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
 **Aufwand:** 2-3 Tage  
 **Impact:** Mittel (bei Updates wichtig)
 
-- [ ] UPGRADING.md erstellen mit Version-zu-Version Guides
-- [ ] DEPRECATIONS.md für deprecated Features
-- [ ] Breaking Changes in CHANGELOG.md deutlich markieren
-- [ ] v1.4.0 → v1.5.0 Upgrade Guide
+- [x] UPGRADING.md erstellen mit Version-zu-Version Guides
+- [x] DEPRECATIONS.md für deprecated Features
+- [x] Breaking Changes in CHANGELOG.md deutlich markieren
+- [x] v1.4.0 → v1.5.0 Upgrade Guide
 
-**Aktuell:** UDS3_SEARCH_API_MIGRATION.md vorhanden, aber keine generellen Upgrade Guides
+**Aktuell:** Migration-Guide erstellt in docs/guides/MIGRATION_GUIDE.md
 
 **Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 6.4
 
