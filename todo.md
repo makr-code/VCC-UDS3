@@ -92,14 +92,14 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
 **Aufwand:** 2-3 Stunden  
 **Impact:** Mittel (Übersichtlichkeit)
 
-- [ ] docs/archive/ Verzeichnis erstellen
-- [ ] Unterverzeichnisse: phase-reports/, migration-reports/, historical/
-- [ ] Folgende Dokumente archivieren:
+- [x] docs/archive/ Verzeichnis erstellen
+- [x] Unterverzeichnisse: phase-reports/, migration-reports/, historical/
+- [x] Folgende Dokumente archivieren:
   - PHASE1_COMPLETE.md, PHASE2_COMPLETION_SUMMARY.md, PHASE2_PLANNING.md
   - PHASE3_BATCH_READ_COMPLETE.md, COMMIT_MESSAGE_PHASE3.md
   - UDS3_MIGRATION_PROGRESS_REPORT.md
   - Alle "*_COMPLETE.md" und "*_SUCCESS.md" Dateien
-- [ ] docs/README.md erstellen mit Navigation zu aktiver Dokumentation
+- [x] docs/README.md erstellen mit Navigation zu aktiver Dokumentation
 
 **Begründung:** 76+ historische Dokumente erschweren Navigation
 
