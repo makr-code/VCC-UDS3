@@ -47,7 +47,7 @@ Diese Aufgaben adressieren kritische Inkonsistenzen zwischen Code und Dokumentat
 **Aufwand:** 1-2 Stunden  
 **Impact:** Mittel
 
-- [ ] Korrekte Anzahl Test-Suites dokumentieren (48 statt "31/31")
+- [x] Korrekte Anzahl Test-Suites dokumentieren (48 statt "31/31")
 - [ ] Coverage-Report generieren (`pytest --cov`)
 - [ ] Coverage-Badge in README.md einbauen
 - [ ] Klarstellen, was "31/31" bedeutet (Test-Kategorien?)
