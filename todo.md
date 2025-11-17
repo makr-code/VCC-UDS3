@@ -75,15 +75,15 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
   - api/geo.py (36KB), api/geo_config.json vorhanden
   - Guide erstellt: docs/features/geo-spatial.md
 
-- [ ] **Streaming API** dokumentieren (falls öffentliche API)
+- [x] **Streaming API** dokumentieren (falls öffentliche API)
   - 26 Dateien mit Streaming-Referenzen
   - manager/streaming.py vorhanden
-  - Guide erstellen: docs/features/streaming.md
+  - Guide erstellt: docs/features/streaming.md
 
-- [ ] **Workflow/Process Management** detaillierter dokumentieren
+- [x] **Workflow/Process Management** detaillierter dokumentieren
   - 104 Dateien mit Workflow-Referenzen
   - api/workflow.py, api/petrinet.py vorhanden
-  - Guide erweitern: docs/features/workflows.md
+  - Guide erstellt: docs/features/workflows.md
 
 **Details:** DOCUMENTATION_GAP_ANALYSIS.md Abschnitt 3.2
 
