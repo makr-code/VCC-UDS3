@@ -14,10 +14,10 @@ Diese Aufgaben adressieren kritische Inkonsistenzen zwischen Code und Dokumentat
 **Aufwand:** 1-2 Stunden  
 **Impact:** Hoch (Konsistenz)
 
-- [ ] README.md auf v1.5.0 aktualisieren (aktuell: v1.4.0)
-- [ ] Changelog-Eintrag für v1.5.0 in README.md hinzufügen
-- [ ] Alle v1.4.0-spezifischen Inhalte als "vergangene Version" markieren
-- [ ] Versionsreferenzen konsistent verwenden (immer "v1.5.0" Format)
+- [x] README.md auf v1.5.0 aktualisieren (aktuell: v1.4.0)
+- [x] Changelog-Eintrag für v1.5.0 in README.md hinzufügen
+- [x] Alle v1.4.0-spezifischen Inhalte als "vergangene Version" markieren
+- [x] Versionsreferenzen konsistent verwenden (immer "v1.5.0" Format)
 
 **Hintergrund:** 
 - setup.py, pyproject.toml, __init__.py: v1.5.0 ✅
@@ -29,8 +29,8 @@ Diese Aufgaben adressieren kritische Inkonsistenzen zwischen Code und Dokumentat
 **Aufwand:** 2-3 Stunden  
 **Impact:** Mittel (Glaubwürdigkeit)
 
-- [ ] IMPLEMENTATION_STATUS.md LOC-Zahlen aktualisieren
-- [ ] README.md LOC-Angaben korrigieren
+- [x] IMPLEMENTATION_STATUS.md LOC-Zahlen aktualisieren
+- [x] README.md LOC-Angaben korrigieren
 - [ ] Automatisiertes LOC-Counting-Script erstellen (`scripts/count_loc.py`)
 - [ ] Dokumentieren, wie LOC-Statistiken berechnet wurden
 

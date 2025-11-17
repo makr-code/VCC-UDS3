@@ -208,7 +208,7 @@ doc = strategy.saga_crud.create_document(
     metadata={"type": "regulation"}
 )
 
-# Search documents (NEW in v1.4.0 ⭐)
+# Search documents
 results = await strategy.search_api.hybrid_search(
     query="Photovoltaics requirements",
     top_k=10
@@ -217,7 +217,7 @@ results = await strategy.search_api.hybrid_search(
 
 ## ✨ Features
 
-### � Security Layer (NEW in v1.4.0 ⭐)
+### 🔐 Security Layer
 
 Enterprise-grade security with PKI integration and least-privilege access control:
 
@@ -250,7 +250,7 @@ Security features:
 
 See [Security Documentation](docs/SECURITY.md) for complete details.
 
-### �🔍 Search API (NEW in v1.4.0)
+### 🔍 Search API
 
 High-level search interface across vector, graph and relational backends:
 
@@ -342,7 +342,7 @@ strategy.dsgvo_core.anonymize_expired_data()
 
 ## 🔄 Migration from v1.3.x
 
-### Search API (v1.4.0)
+### Search API (introduced in v1.4.0)
 
 **Old way (deprecated):**
 ```python
@@ -761,7 +761,7 @@ Economics:
 - ✅ Production validation with 1930 Neo4j documents
 
 **Documentation:**
-- 📄 New: docs/SECURITY.md (680 LOC) - Complete security architecture
+- 📄 New: docs/SECURITY.md (596 LOC) - Complete security architecture
 - 📄 New: UDS3_SEARCH_API_PRODUCTION_GUIDE.md (1950 LOC)
 - 📄 New: UDS3_SEARCH_API_INTEGRATION_DECISION.md (2000 LOC)
 - 📄 Updated: README.md with Security and Search API examples
