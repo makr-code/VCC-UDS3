@@ -110,10 +110,10 @@ Folgende implementierte Features sind nicht oder kaum dokumentiert:
 **Aufwand:** 3-4 Stunden  
 **Impact:** Hoch (Klarheit)
 
-- [ ] Backend-Status-Matrix erstellen (Production/Development/Experimental)
-- [ ] SQLite-Rolle klar dokumentieren (Development only)
-- [ ] VCC-Integration-Status für VERITAS, CLARA, COVINA aktualisieren
-- [ ] PKI-Integrationsarchitektur dokumentieren
+- [x] Backend-Status-Matrix erstellen (Production/Development/Experimental)
+- [x] SQLite-Rolle klar dokumentieren (Development only)
+- [x] VCC-Integration-Status für VERITAS, CLARA, COVINA aktualisieren
+- [x] PKI-Integrationsarchitektur dokumentieren
 
 **Gefundene Gaps:**
 - CLARA: Nur 1 Code-Referenz (ggf. extern oder geplant)
