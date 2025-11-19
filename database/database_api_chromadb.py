@@ -184,12 +184,8 @@ class ChromaVectorBackend(VectorDatabaseBackend):
         otherwise return an empty list (the method exists to satisfy the abstract base)."""
         try:
             col = self.client.get_or_create_collection(collection_name or self.collection_name)
-            # many chroma versions support `query_texts` for text -> embedding search
-            try:
-                res = col.query(query_texts=[query], n_results=n_results)
-            except Exception:
-                # fallback: try plain query with the string as 'query' field (best-effort)
-                res = col.query(query=[query], n_results=n_results)
+            # ChromaDB supports query_texts for text -> embedding search
+            res = col.query(query_texts=[query], n_results=n_results)
             ids = res.get('ids') or []
             distances = res.get('distances') or []
             metadatas = res.get('metadatas') or []

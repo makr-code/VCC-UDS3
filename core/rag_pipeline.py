@@ -225,16 +225,15 @@ class UDS3GenericRAG:
         """
         top_k = top_k or self.top_k_results
         
-        # Generate Query Embedding
-        query_embedding = self.embeddings.embed_text(query)
-        
         # Vector DB Search
         if self.db_manager.vector_backend:
             try:
-                results = self.db_manager.vector_backend.search(
-                    query_vector=query_embedding.tolist(),
-                    top_k=top_k,
-                    metadata_filter={"domain": domain} if domain else None
+                # ChromaDB search_similar nimmt Text-Query direkt (macht intern Embedding)
+                collection_name = domain or self.db_manager.vector_backend.collection_name
+                results = self.db_manager.vector_backend.search_similar(
+                    collection_name=collection_name,
+                    query=query,
+                    n_results=top_k
                 )
                 
                 return results
