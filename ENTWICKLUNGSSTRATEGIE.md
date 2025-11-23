@@ -12,13 +12,24 @@
 
 Dieses Dokument definiert die strategische Weiterentwicklung des **VCC-UDS3 (Unified Database Strategy v3.0)** als zentrales Rückgrat des VCC-Ökosystems (Veritas-Covina-Clara). Die Strategie adressiert die Tatsache, dass UDS3 derzeit nicht vollständig final umgesetzt ist, und legt einen klaren Weg zur Produktionsreife gemäß Stand der Technik und Best Practices fest.
 
+### Grundprinzip: Digitale Souveränität
+
+**On-Premise und Vendor-Lock-In-Freiheit sind fundamentale Architekturprinzipien des VCC-UDS3.**
+
+- **On-Premise Deployment:** Alle Komponenten werden in der eigenen Infrastruktur betrieben
+- **Open-Source First:** Verwendung ausschließlich quelloffener Technologien (PostgreSQL, Neo4j, ChromaDB, CouchDB)
+- **Keine Abhängigkeit von Cloud-Providern:** Vermeidung proprietärer Cloud-Services (AWS, Azure, GCP)
+- **Volle Datenkontrolle:** Sensible Verwaltungsdaten verbleiben unter direkter Kontrolle
+- **Unabhängigkeit von US-Hyperscalern:** Strategische Unabhängigkeit von ausländischen Tech-Konzernen
+
 ### Kernziele
 
-1. **Technische Exzellenz:** Schließung der Lücke zu Hyperscaler-Lösungen bei Wahrung digitaler Souveränität
-2. **VCC-Integration:** Nahtlose Integration aller VCC-Komponenten (Veritas, Covina, Clara)
-3. **Skalierbarkeit:** Enterprise-Grade Skalierung für Behörden auf Landes- und Bundesebene
-4. **Compliance:** Vollständige EU AI Act, DSGVO und eIDAS Konformität
-5. **Innovation:** State-of-the-art RAG-Pipeline, Continuous Learning, Process-native AI
+1. **Digitale Souveränität:** On-Premise Betrieb ohne Vendor-Lock-In bei voller Datenkontrolle
+2. **Technische Exzellenz:** Schließung der Lücke zu Hyperscaler-Lösungen durch Open-Source-Eigenentwicklung
+3. **VCC-Integration:** Nahtlose Integration aller VCC-Komponenten (Veritas, Covina, Clara)
+4. **Skalierbarkeit:** Enterprise-Grade Skalierung für Behörden auf Landes- und Bundesebene
+5. **Compliance:** Vollständige EU AI Act, DSGVO und eIDAS Konformität
+6. **Innovation:** State-of-the-art RAG-Pipeline, Continuous Learning, Process-native AI
 
 ---
 
@@ -48,17 +59,19 @@ Dieses Dokument definiert die strategische Weiterentwicklung des **VCC-UDS3 (Uni
 
 ### 1.2 Vergleich: VCC vs. Hyperscaler
 
-| Komponente | VCC (UDS3) | AWS/Azure/GCP | Handlungsbedarf |
-|------------|------------|---------------|-----------------|
+**Hinweis:** Der Vergleich mit Hyperscaler-Lösungen (AWS/Azure/GCP) dient ausschließlich der technischen Benchmark-Orientierung. VCC-UDS3 wird **nicht** auf Cloud-Plattformen betrieben, sondern ausschließlich **on-premise** mit Open-Source-Komponenten.
+
+| Komponente | VCC (UDS3) | AWS/Azure/GCP (nur als Referenz) | Handlungsbedarf |
+|------------|------------|----------------------------------|-----------------|
 | **Retrieval** | Pure Vector Search | Native Hybrid (Keyword+Vector) | v1.6.0 |
 | **Fusion** | Score Normalization | Reciprocal Rank Fusion (RRF) | v1.6.0 |
 | **Reranking** | Generic LLM | Specialized Cross-Encoder | v1.6.0 |
 | **Multi-hop** | Basic Graph Traversal | Optimized Knowledge Graph | v2.0.0 |
 | **Monitoring** | Basic Logging | Prometheus/Grafana | v1.6.0 |
-| **HA** | Single Instance | Auto-Scaling, Managed Services | v3.0.0 |
+| **HA** | Single Instance | Auto-Scaling, Managed Services | v3.0.0 (on-premise) |
 | **Security** | PKI, RBAC, RLS | Hyperscaler + Compliance | ✅ Par |
 
-**Strategische Entscheidung:** Souveränitätswahrende Eigenentwicklung bei systematischer Aufholung technischer Lücken.
+**Strategische Entscheidung:** Souveränitätswahrende On-Premise-Eigenentwicklung mit Open-Source-Technologien bei systematischer Aufholung technischer Lücken. **Kein Vendor-Lock-In durch Cloud-Provider.**
 
 ---
 
@@ -361,7 +374,9 @@ RETURN path, law.name, regulation.name
 
 #### 2.4.1 Kubernetes Deployment (v3.0.0 - 2027+)
 
-**Ziel:** Enterprise-Grade Orchestrierung für Skalierung und HA
+**Ziel:** Enterprise-Grade Orchestrierung für Skalierung und HA im **On-Premise-Rechenzentrum**
+
+**Deployment-Modell:** Kubernetes wird **on-premise** in behördeneigener Infrastruktur betrieben. **Keine Nutzung von Managed Kubernetes Services** (EKS, AKS, GKE). Vollständige Kontrolle über Cluster-Infrastruktur.
 
 **Komponenten:**
 
@@ -372,7 +387,7 @@ RETURN path, law.name, regulation.name
 
 2. **Auto-Scaling**
    - Horizontal Pod Autoscaler (HPA) basierend auf CPU/Memory/Custom Metrics
-   - Cluster Autoscaler für Node-Pool-Anpassung
+   - Cluster Autoscaler für Node-Pool-Anpassung (on-premise Hardware)
    - **KPI:** Auto-Scale Reaktionszeit < 2min
 
 3. **Rolling Updates**
@@ -380,10 +395,11 @@ RETURN path, law.name, regulation.name
    - Canary Deployments für risikoreiche Updates
    - **KPI:** 99.95% Availability während Updates
 
-4. **Cluster Setup**
-   - Multi-Zone für High Availability
-   - Dedicated Node Pools (Compute, Storage, GPU)
+4. **Cluster Setup (On-Premise)**
+   - Multi-Zone für High Availability (mehrere Rechenzentrumsstandorte)
+   - Dedicated Node Pools (Compute, Storage, GPU) auf eigener Hardware
    - Ingress Controller (NGINX) mit TLS Termination
+   - **Bare-Metal oder VMware-basiert** (keine Cloud-Provider)
 
 **Technischer Ansatz:**
 ```yaml
@@ -419,7 +435,7 @@ uds3:
 **Neo4j:**
 - Causal Clustering (3 Core Members + Read Replicas)
 - Driver-Level Load Balancing
-- Incremental Backups to S3-Compatible Storage
+- Incremental Backups to S3-Compatible Storage (z.B. MinIO on-premise)
 
 **ChromaDB:**
 - Sharding (Horizontal Partitioning by Collection)
@@ -488,7 +504,7 @@ uds3:
 
 - ISO 27001 (Information Security Management)
 - SOC 2 Type II (Service Organization Control)
-- BSI C5 (Cloud Computing Compliance Controls Catalogue)
+- BSI C5 (Cloud Computing Compliance Controls Catalogue) - **Hinweis:** Anwendbar für On-Premise-Infrastruktur mit Cloud-ähnlichen Eigenschaften (Kubernetes)
 
 ---
 
@@ -624,22 +640,29 @@ v1.5.0         v1.6.0         v2.0.0         v2.0.0         v2.5.0         v3.0.
 
 ### 4.1 Architektur-Prinzipien
 
-1. **Polyglot Persistence**
+1. **On-Premise & Vendor-Lock-In-Freiheit** ⭐ **GRUNDPRINZIP**
+   - **Deployment:** Ausschließlich on-premise in behördeneigener Infrastruktur
+   - **Technologie-Stack:** 100% Open-Source (PostgreSQL, Neo4j, ChromaDB, CouchDB, Prometheus, Grafana, Kubernetes)
+   - **Keine Cloud-Dependencies:** Verzicht auf proprietäre Cloud-Services (AWS, Azure, GCP)
+   - **Datensouveränität:** Sensible Verwaltungsdaten verbleiben unter direkter Kontrolle
+   - **Strategische Unabhängigkeit:** Keine Abhängigkeit von ausländischen Tech-Konzernen
+
+2. **Polyglot Persistence**
    - Right Tool for the Job: Jede Datenbank für ihre Stärke
    - No Single Point of Failure durch Multi-Backend
    - SAGA Pattern für transaktionale Integrität
 
-2. **Zero-Trust Architecture**
+3. **Zero-Trust Architecture**
    - Never Trust, Always Verify
    - mTLS für alle Service-Kommunikationen
    - PKI als Trust Anchor
 
-3. **API-First Design**
+4. **API-First Design**
    - OpenAPI/Swagger Specification
    - Versionierung (Semantic Versioning)
    - Backward Compatibility für 2 Major Versions
 
-4. **12-Factor App Methodology**
+5. **12-Factor App Methodology**
    - Codebase: Ein Repo, viele Deployments
    - Dependencies: Explizite Deklaration
    - Config: Externalisierung in Environment
@@ -647,7 +670,55 @@ v1.5.0         v1.6.0         v2.0.0         v2.0.0         v2.5.0         v3.0.
    - Disposability: Fast Startup, Graceful Shutdown
    - Dev/Prod Parity: Minimale Unterschiede
 
-### 4.2 Code Quality Standards
+### 4.2 Technologie-Stack (100% Open-Source)
+
+**Grundprinzip:** Ausschließlich Open-Source-Technologien ohne Vendor-Lock-In. **Keine proprietären Cloud-Services.**
+
+#### Datenbanken (Polyglot Persistence)
+- **PostgreSQL** (Relational): Strukturierte Metadaten, Audit Logs, JSONB
+- **Neo4j** (Graph): Legal Hierarchies, VPB Process Graphs, Relationship Traversal
+- **ChromaDB** (Vector): Semantic Search, Embeddings, RAG Retrieval
+- **CouchDB** (Document): Binary Attachments, Original Documents, Versioning
+- **SQLite** (Development): Local Testing (nicht für Production)
+
+#### Orchestrierung & Infrastructure
+- **Kubernetes**: Container Orchestration (on-premise, bare-metal oder VMware)
+- **Helm**: Package Management für Kubernetes
+- **Docker**: Containerization
+- **Cert-Manager**: Automatisierte Certificate Management
+
+#### Monitoring & Observability
+- **Prometheus**: Metrics Collection & Alerting
+- **Grafana**: Dashboards & Visualization
+- **Jaeger**: Distributed Tracing (OpenTelemetry)
+- **ELK Stack**: Logging (Elasticsearch, Logstash, Kibana)
+
+#### Storage & Backup
+- **MinIO**: S3-Compatible Object Storage (on-premise)
+- **Patroni**: PostgreSQL High Availability & Auto-Failover
+- **Velero**: Kubernetes Backup & Restore
+
+#### Security & Identity
+- **PKI**: Certificate Authority (VCC-PKI, on-premise)
+- **Keycloak**: SSO & Identity Management
+- **Vault** (optional): Secrets Management
+
+#### Machine Learning & AI
+- **Python**: Programmiersprache (3.9+)
+- **PyTorch**: ML Framework (für Clara PEFT/LoRA)
+- **Sentence-Transformers**: Embedding Models
+- **ONNX Runtime**: Model Serving (Cross-Encoder)
+
+#### Entwicklung & CI/CD
+- **Git**: Version Control
+- **GitHub Actions**: CI/CD Pipelines (self-hosted runners)
+- **Ruff**: Python Linter
+- **Black**: Code Formatter
+- **pytest**: Testing Framework
+
+**Wichtig:** Alle genannten Technologien sind Open-Source und können on-premise betrieben werden. **Keine Abhängigkeit von Cloud-Providern (AWS, Azure, GCP) oder proprietären Diensten.**
+
+### 4.3 Code Quality Standards
 
 **Linting & Formatting:**
 - **Ruff:** Python Linter (ersetzt flake8, isort, pylint)
@@ -695,7 +766,7 @@ jobs:
 - Security-relevante PRs: Zusätzliches Security Team Review
 - Performance-kritische PRs: Benchmark-Vergleich
 
-### 4.3 Documentation Standards
+### 4.4 Documentation Standards
 
 **Struktur:**
 ```
@@ -733,7 +804,7 @@ docs/
 - Architektur-Dokumente: Architecture Review Board
 - User-Facing Docs: Technical Writing Review
 
-### 4.4 Monitoring & Observability
+### 4.5 Monitoring & Observability
 
 **Metriken (RED Metrics):**
 - **Rate:** Requests per second
@@ -863,9 +934,11 @@ groups:
 
 ### 6.2 Infrastruktur-Kosten (Schätzung)
 
+**Deployment-Modell:** Alle Kostenschätzungen basieren auf **On-Premise-Deployment** in behördeneigener Infrastruktur. Cloud-Provider werden **nicht** verwendet.
+
 #### v1.6.0 - v2.5.0 (Development/Staging)
 
-**Hinweis:** Alle Kostenangaben in Euro (€), Stand November 2025. Schätzungen basierend auf europäischen Cloud-Provider-Preisen (mittleres Preisniveau). On-Premise-Deployment reduziert laufende Kosten (Opex) bei höheren Anschaffungskosten (Capex). Preise können je nach Provider, Region und Verhandlung variieren.
+**Hinweis:** Alle Kostenangaben in Euro (€), Stand November 2025. Schätzungen basierend auf Hardware-Anschaffung und Betriebskosten für On-Premise-Infrastruktur. Die Vergleichswerte zu Cloud-Provider-Preisen dienen nur als Orientierung - **VCC-UDS3 wird ausschließlich on-premise betrieben**.
 
 | Ressource | Spezifikation | Monatlich (€) | Jährlich (€) |
 |-----------|--------------|---------------|--------------|
@@ -885,10 +958,10 @@ groups:
 | **GPU** | 2x NVIDIA A100 (Clara Training) | 4,000 | 48,000 |
 | **Load Balancers** | Multi-Region | 500 | 6,000 |
 | **Monitoring/Logging** | ELK Stack, Prometheus, Jaeger | 800 | 9,600 |
-| **Backup/DR** | S3-Compatible Storage (50 TB) | 400 | 4,800 |
+| **Backup/DR** | S3-Compatible Storage (50 TB, z.B. MinIO) | 400 | 4,800 |
 | **Gesamt Production** | | **12,200** | **146,400** |
 
-**Hinweis:** On-Premise Alternative reduziert laufende Kosten (Opex), erhöht aber Anschaffungskosten (Capex). Schätzungen unterliegen Marktpreisschwankungen und sollten vor Budgetfreigabe aktualisiert werden.
+**Hinweis:** Alle Kosten basieren auf **On-Premise-Deployment** in behördeneigener Infrastruktur. Die Schätzungen beinhalten Anschaffungskosten (Capex) für Hardware sowie laufende Betriebskosten (Opex). **Kein Cloud-Provider-Einsatz, keine Vendor-Lock-In-Gefahr.** Schätzungen unterliegen Marktpreisschwankungen und sollten vor Budgetfreigabe aktualisiert werden.
 
 ### 6.3 Externe Dienstleistungen
 
