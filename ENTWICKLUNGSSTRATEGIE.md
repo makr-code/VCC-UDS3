@@ -865,39 +865,43 @@ groups:
 
 #### v1.6.0 - v2.5.0 (Development/Staging)
 
-| Ressource | Spezifikation | Monatlich | Jährlich |
-|-----------|--------------|-----------|----------|
-| **Compute (VMs)** | 8 vCPU, 32 GB RAM (x3) | 450 € | 5,400 € |
-| **Storage** | 2 TB SSD | 200 € | 2,400 € |
-| **Databases** | PostgreSQL, Neo4j, ChromaDB | 600 € | 7,200 € |
-| **Monitoring** | Prometheus, Grafana | 100 € | 1,200 € |
-| **Gesamt Development** | | **1,350 €** | **16,200 €** |
+**Hinweis:** Alle Kostenangaben in Euro (€), Stand November 2025. Schätzungen basierend auf europäischen Cloud-Provider-Preisen (mittleres Preisniveau). On-Premise-Deployment reduziert laufende Kosten (Opex) bei höheren Anschaffungskosten (Capex). Preise können je nach Provider, Region und Verhandlung variieren.
+
+| Ressource | Spezifikation | Monatlich (€) | Jährlich (€) |
+|-----------|--------------|---------------|--------------|
+| **Compute (VMs)** | 8 vCPU, 32 GB RAM (x3) | 450 | 5,400 |
+| **Storage** | 2 TB SSD | 200 | 2,400 |
+| **Databases** | PostgreSQL, Neo4j, ChromaDB | 600 | 7,200 |
+| **Monitoring** | Prometheus, Grafana | 100 | 1,200 |
+| **Gesamt Development** | | **1,350** | **16,200** |
 
 #### v3.0.0 (Production - Year 1)
 
-| Ressource | Spezifikation | Monatlich | Jährlich |
-|-----------|--------------|-----------|----------|
-| **Kubernetes Cluster** | 20 Nodes (Multi-Zone) | 3,000 € | 36,000 € |
-| **Database HA** | PostgreSQL Patroni, Neo4j Cluster | 2,500 € | 30,000 € |
-| **Storage** | 10 TB SSD (Replicated) | 1,000 € | 12,000 € |
-| **GPU** | 2x NVIDIA A100 (Clara Training) | 4,000 € | 48,000 € |
-| **Load Balancers** | Multi-Region | 500 € | 6,000 € |
-| **Monitoring/Logging** | ELK Stack, Prometheus, Jaeger | 800 € | 9,600 € |
-| **Backup/DR** | S3-Compatible Storage (50 TB) | 400 € | 4,800 € |
-| **Gesamt Production** | | **12,200 €** | **146,400 €** |
+| Ressource | Spezifikation | Monatlich (€) | Jährlich (€) |
+|-----------|--------------|---------------|--------------|
+| **Kubernetes Cluster** | 20 Nodes (Multi-Zone) | 3,000 | 36,000 |
+| **Database HA** | PostgreSQL Patroni, Neo4j Cluster | 2,500 | 30,000 |
+| **Storage** | 10 TB SSD (Replicated) | 1,000 | 12,000 |
+| **GPU** | 2x NVIDIA A100 (Clara Training) | 4,000 | 48,000 |
+| **Load Balancers** | Multi-Region | 500 | 6,000 |
+| **Monitoring/Logging** | ELK Stack, Prometheus, Jaeger | 800 | 9,600 |
+| **Backup/DR** | S3-Compatible Storage (50 TB) | 400 | 4,800 |
+| **Gesamt Production** | | **12,200** | **146,400** |
 
-**Hinweis:** On-Premise Alternative reduziert laufende Kosten, erhöht aber Capex (Hardware-Anschaffung).
+**Hinweis:** On-Premise Alternative reduziert laufende Kosten (Opex), erhöht aber Anschaffungskosten (Capex). Schätzungen unterliegen Marktpreisschwankungen und sollten vor Budgetfreigabe aktualisiert werden.
 
 ### 6.3 Externe Dienstleistungen
 
-| Service | Phase | Kosten (Schätzung) |
-|---------|-------|-------------------|
-| **Security Audit** | v3.0.0 | 50,000 - 80,000 € |
-| **ISO 27001 Certification** | v3.0.0 | 30,000 - 50,000 € |
-| **DevOps Consulting (Kubernetes)** | v3.0.0 | 40,000 - 60,000 € |
-| **Legal Consulting (EU AI Act)** | v2.5.0 | 20,000 - 30,000 € |
-| **ML Consulting (Cross-Encoder)** | v1.6.0 | 15,000 - 25,000 € |
-| **Gesamt Externe Services** | | **155,000 - 245,000 €** |
+**Hinweis:** Alle Preisangaben in Euro (€), Stand November 2025. Schätzungen basierend auf durchschnittlichen Marktpreisen für entsprechende Dienstleistungen in Deutschland/EU. Tatsächliche Kosten können je nach Anbieter, Umfang und Verhandlung erheblich variieren.
+
+| Service | Phase | Kosten (Schätzung, €) |
+|---------|-------|-----------------------|
+| **Security Audit** | v3.0.0 | 50,000 - 80,000 |
+| **ISO 27001 Certification** | v3.0.0 | 30,000 - 50,000 |
+| **DevOps Consulting (Kubernetes)** | v3.0.0 | 40,000 - 60,000 |
+| **Legal Consulting (EU AI Act)** | v2.5.0 | 20,000 - 30,000 |
+| **ML Consulting (Cross-Encoder)** | v1.6.0 | 15,000 - 25,000 |
+| **Gesamt Externe Services** | | **155,000 - 245,000** |
 
 ---
 
@@ -1180,8 +1184,8 @@ Diese Strategie bedarf der Freigabe durch:
 Für Rückfragen zu dieser Entwicklungsstrategie:
 
 **VCC Development Team**  
-E-Mail: ma.krueger@outlook.com  
-Repository: https://github.com/makr-code/VCC-UDS3
+Repository: https://github.com/makr-code/VCC-UDS3  
+Issues: https://github.com/makr-code/VCC-UDS3/issues
 
 **Lizenz:** Dieses Dokument ist Teil des VCC-UDS3-Projekts und unterliegt der MIT-Lizenz mit Government Partnership Commons Clause.
 
