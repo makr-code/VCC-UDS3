@@ -5,6 +5,10 @@ __init__.py
 
 __init__.py
 Database adapters and utilities package.
+
+v1.6.0 Features:
+- Multi-Hop Reasoning for legal hierarchy traversal
+
 # Database Manager & Extensions
 from uds3.database.database_manager import DatabaseManager
 from uds3.database.extensions import (
@@ -50,6 +54,24 @@ from uds3.database.database_api_neo4j import Neo4jGraphBackend
 from uds3.database.database_api_couchdb import CouchDBAdapter
 from uds3.database.database_api_chromadb_remote import ChromaRemoteVectorBackend
 
+# Multi-Hop Reasoning (v1.6.0)
+MULTI_HOP_AVAILABLE = False
+try:
+    from database.multi_hop import (
+        MultiHopReasoner,
+        LegalLevel,
+        RelationType,
+        LegalNode,
+        LegalPath,
+        TraversalResult,
+        CypherTemplates,
+        create_multi_hop_reasoner,
+        check_multi_hop_available,
+    )
+    MULTI_HOP_AVAILABLE = check_multi_hop_available()
+except ImportError:
+    pass
+
 __all__ = [
     # Manager
     'DatabaseManager',
@@ -61,4 +83,15 @@ __all__ = [
     'Neo4jGraphBackend',
     'CouchDBAdapter',
     'ChromaRemoteVectorBackend',
+    # Multi-Hop Reasoning (v1.6.0)
+    'MultiHopReasoner',
+    'LegalLevel',
+    'RelationType',
+    'LegalNode',
+    'LegalPath',
+    'TraversalResult',
+    'CypherTemplates',
+    'create_multi_hop_reasoner',
+    'check_multi_hop_available',
+    'MULTI_HOP_AVAILABLE',
 ]

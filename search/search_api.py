@@ -116,6 +116,8 @@ class SearchQuery:
         rrf_k: RRF constant (default: 60, industry standard)
         reranker: Reranker type ("none", "cross_encoder") - v1.6.0
         rerank_top_k_multiplier: Fetch multiplier for reranking candidates (default: 3)
+        multi_hop: Enable multi-hop reasoning for graph search - v1.6.0
+        multi_hop_depth: Maximum traversal depth for multi-hop (default: 3)
     """
     query_text: str
     top_k: int = 10
@@ -127,6 +129,8 @@ class SearchQuery:
     rrf_k: int = 60  # RRF constant (standard value)
     reranker: str = "none"  # v1.6.0: Cross-Encoder reranking
     rerank_top_k_multiplier: int = 3  # Fetch top_k * multiplier for reranking
+    multi_hop: bool = False  # v1.6.0: Multi-hop reasoning
+    multi_hop_depth: int = 3  # Maximum traversal depth
     
     def __post_init__(self):
         """Validate and set default weights"""
@@ -231,6 +235,93 @@ class UDS3SearchAPI:
                 return None
         
         return self._reranker
+    
+    def _get_multi_hop_reasoner(self):
+        """
+        Lazy load Multi-Hop Reasoner for legal hierarchy traversal (v1.6.0)
+        
+        Returns:
+            MultiHopReasoner instance or None
+        """
+        if not hasattr(self, '_multi_hop_reasoner'):
+            self._multi_hop_reasoner = None
+        
+        if self._multi_hop_reasoner is None and self.has_graph:
+            try:
+                from database.multi_hop import create_multi_hop_reasoner
+                self._multi_hop_reasoner = create_multi_hop_reasoner(self.strategy.graph_backend)
+                logger.info("✅ Multi-Hop Reasoner loaded")
+            except ImportError:
+                logger.warning("⚠️ Multi-Hop Reasoner not available")
+                return None
+            except Exception as e:
+                logger.warning(f"⚠️ Failed to load Multi-Hop Reasoner: {e}")
+                return None
+        
+        return self._multi_hop_reasoner
+    
+    async def multi_hop_search(
+        self,
+        document_id: str,
+        direction: str = "both",
+        max_depth: int = 3
+    ) -> List[SearchResult]:
+        """
+        Multi-hop reasoning search for legal hierarchy traversal (v1.6.0)
+        
+        Traverses the legal document hierarchy to find related documents.
+        
+        Args:
+            document_id: Starting document ID (e.g., "lbo_bw_58")
+            direction: Traversal direction ("up", "down", "both")
+            max_depth: Maximum traversal depth
+            
+        Returns:
+            List of SearchResult objects from hierarchy traversal
+        """
+        reasoner = self._get_multi_hop_reasoner()
+        if not reasoner:
+            logger.warning("Multi-Hop Reasoner not available")
+            return []
+        
+        try:
+            result = await reasoner.traverse_hierarchy(
+                document_id=document_id,
+                direction=direction,
+                max_depth=max_depth
+            )
+            
+            # Convert paths to SearchResults
+            search_results = []
+            for path in result.paths:
+                for node in path.nodes:
+                    search_results.append(SearchResult(
+                        document_id=node.document_id,
+                        content=node.title,
+                        metadata={
+                            "level": node.level.value,
+                            "type": node.node_type,
+                            "path_depth": path.depth,
+                            "relationships": path.relationships
+                        },
+                        score=path.score,
+                        source="multi_hop"
+                    ))
+            
+            # Deduplicate by document_id
+            seen = set()
+            unique_results = []
+            for r in search_results:
+                if r.document_id not in seen:
+                    seen.add(r.document_id)
+                    unique_results.append(r)
+            
+            logger.info(f"✅ Multi-hop search: {len(unique_results)} unique results")
+            return unique_results
+            
+        except Exception as e:
+            logger.error(f"❌ Multi-hop search failed: {e}")
+            return []
     
     async def vector_search(
         self,
