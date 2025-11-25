@@ -6,6 +6,12 @@ search_api.py
 search_api.py
 UDS3 Search API - High-Level Search Interface
 Provides unified search APIs across Vector, Graph and Relational backends.
+
+v1.6.0 Features:
+- BM25 Keyword Search (PostgreSQL full-text)
+- Reciprocal Rank Fusion (RRF) for hybrid search
+- Prometheus metrics integration
+
 Architecture:
 - Layer 1: Database API (database_api_neo4j.py, database_api_chromadb_remote.py)
 - Layer 2: Search API (THIS FILE - uds3_search_api.py) ✅
@@ -36,11 +42,20 @@ Repository: https://github.com/makr-code/VCC-UDS3
 """
 
 import logging
+import time
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Any
 from enum import Enum
 
 logger = logging.getLogger(__name__)
+
+# Import Prometheus metrics (v1.6.0)
+try:
+    from core.metrics import metrics, measure_latency
+    METRICS_AVAILABLE = True
+except ImportError:
+    METRICS_AVAILABLE = False
+    logger.debug("Metrics not available - running without Prometheus integration")
 
 
 class SearchType(Enum):
@@ -563,77 +578,117 @@ class UDS3SearchAPI:
             "keyword": 0.3
         }
         
+        # Start timing for metrics (v1.6.0)
+        start_time = time.time()
+        status = "success"
+        
         # Collect results per source for RRF
         ranked_lists: Dict[str, List[SearchResult]] = {}
         
         # Determine fetch count (fetch more for better fusion)
         fetch_count = search_query.top_k * 3 if search_query.fusion_method == "rrf" else search_query.top_k * 2
         
-        # 1. Vector Search (if enabled)
-        if "vector" in search_query.search_types and weights.get("vector", 0) > 0:
-            model = self._get_embedding_model()
-            if model:
-                embedding = model.encode(search_query.query_text).tolist()
-                vector_results = await self.vector_search(
-                    embedding,
-                    fetch_count,
-                    search_query.collection
+        try:
+            # 1. Vector Search (if enabled)
+            if "vector" in search_query.search_types and weights.get("vector", 0) > 0:
+                model = self._get_embedding_model()
+                if model:
+                    embedding = model.encode(search_query.query_text).tolist()
+                    vector_results = await self.vector_search(
+                        embedding,
+                        fetch_count,
+                        search_query.collection
+                    )
+                    if vector_results:
+                        ranked_lists["vector"] = vector_results
+                    logger.info(f"Vector search: {len(vector_results)} results")
+            
+            # 2. Graph Search (if enabled)
+            if "graph" in search_query.search_types and weights.get("graph", 0) > 0:
+                graph_results = await self.graph_search(
+                    search_query.query_text,
+                    fetch_count
                 )
-                if vector_results:
-                    ranked_lists["vector"] = vector_results
-                logger.info(f"Vector search: {len(vector_results)} results")
-        
-        # 2. Graph Search (if enabled)
-        if "graph" in search_query.search_types and weights.get("graph", 0) > 0:
-            graph_results = await self.graph_search(
-                search_query.query_text,
-                fetch_count
-            )
-            if graph_results:
-                ranked_lists["graph"] = graph_results
-            logger.info(f"Graph search: {len(graph_results)} results")
-        
-        # 3. Keyword/BM25 Search (if enabled)
-        if "keyword" in search_query.search_types and weights.get("keyword", 0) > 0:
-            keyword_results = await self.keyword_search(
-                search_query.query_text,
-                fetch_count,
-                search_query.filters
-            )
-            if keyword_results:
-                ranked_lists["keyword"] = keyword_results
-            logger.info(f"Keyword/BM25 search: {len(keyword_results)} results")
-        
-        # 4. Fusion based on method
-        if search_query.fusion_method == "rrf":
-            # Reciprocal Rank Fusion (v1.6.0)
-            final_results = self._reciprocal_rank_fusion(
-                ranked_lists=ranked_lists,
-                k=search_query.rrf_k,
-                weights=weights
-            )
-            logger.info(f"✅ RRF Hybrid search: {len(final_results)} unique results")
-        else:
-            # Legacy: Simple weighted sum
-            all_results = []
-            for source, results in ranked_lists.items():
-                source_weight = weights.get(source, 1.0)
-                for result in results:
-                    result.score *= source_weight
-                all_results.extend(results)
+                if graph_results:
+                    ranked_lists["graph"] = graph_results
+                logger.info(f"Graph search: {len(graph_results)} results")
             
-            # Merge by document_id
-            merged = {}
-            for result in all_results:
-                doc_id = result.document_id
-                if doc_id in merged:
-                    merged[doc_id].score += result.score
-                    merged[doc_id].related_docs.extend(result.related_docs)
-                else:
-                    merged[doc_id] = result
+            # 3. Keyword/BM25 Search (if enabled)
+            if "keyword" in search_query.search_types and weights.get("keyword", 0) > 0:
+                keyword_results = await self.keyword_search(
+                    search_query.query_text,
+                    fetch_count,
+                    search_query.filters
+                )
+                if keyword_results:
+                    ranked_lists["keyword"] = keyword_results
+                logger.info(f"Keyword/BM25 search: {len(keyword_results)} results")
             
-            final_results = sorted(merged.values(), key=lambda r: r.score, reverse=True)
+            # 4. Fusion based on method
+            fusion_start = time.time()
+            if search_query.fusion_method == "rrf":
+                # Reciprocal Rank Fusion (v1.6.0)
+                final_results = self._reciprocal_rank_fusion(
+                    ranked_lists=ranked_lists,
+                    k=search_query.rrf_k,
+                    weights=weights
+                )
+                logger.info(f"✅ RRF Hybrid search: {len(final_results)} unique results")
+            else:
+                # Legacy: Simple weighted sum
+                all_results = []
+                for source, results in ranked_lists.items():
+                    source_weight = weights.get(source, 1.0)
+                    for result in results:
+                        result.score *= source_weight
+                    all_results.extend(results)
+                
+                # Merge by document_id
+                merged = {}
+                for result in all_results:
+                    doc_id = result.document_id
+                    if doc_id in merged:
+                        merged[doc_id].score += result.score
+                        merged[doc_id].related_docs.extend(result.related_docs)
+                    else:
+                        merged[doc_id] = result
+                
+                final_results = sorted(merged.values(), key=lambda r: r.score, reverse=True)
+            
+            # Track fusion latency (v1.6.0)
+            if METRICS_AVAILABLE:
+                fusion_duration = time.time() - fusion_start
+                metrics.fusion_latency.labels(method=search_query.fusion_method).observe(fusion_duration)
+                metrics.fusion_requests.labels(
+                    method=search_query.fusion_method,
+                    sources=",".join(sorted(ranked_lists.keys()))
+                ).inc()
+            
             logger.info(f"✅ Weighted Hybrid search: {len(final_results)} unique results")
+        
+        except Exception as e:
+            status = "error"
+            if METRICS_AVAILABLE:
+                metrics.search_errors.labels(
+                    search_type="hybrid",
+                    error_type=type(e).__name__
+                ).inc()
+            raise
+        
+        finally:
+            # Track overall search metrics (v1.6.0)
+            if METRICS_AVAILABLE:
+                duration = time.time() - start_time
+                metrics.search_latency.labels(
+                    search_type="hybrid",
+                    fusion_method=search_query.fusion_method
+                ).observe(duration)
+                metrics.search_requests.labels(
+                    search_type="hybrid",
+                    status=status,
+                    fusion_method=search_query.fusion_method
+                ).inc()
+                metrics.search_results.labels(search_type="hybrid").observe(len(final_results) if 'final_results' in locals() else 0)
         
         return final_results[:search_query.top_k]
     
