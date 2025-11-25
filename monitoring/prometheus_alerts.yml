@@ -1,0 +1,293 @@
+# VCC-UDS3 Prometheus Alert Rules
+# On-Premise Deployment (v1.6.0)
+#
+# Alert rules for production monitoring of UDS3 services.
+# These rules align with the KPIs defined in ENTWICKLUNGSSTRATEGIE.md
+#
+# Usage: Place in /etc/prometheus/rules/uds3_alerts.yml
+#
+# Part of UDS3 (Unified Database Strategy v3)
+# Repository: https://github.com/makr-code/VCC-UDS3
+
+groups:
+  # ============================================================================
+  # Search Performance Alerts
+  # ============================================================================
+  - name: uds3_search_alerts
+    interval: 30s
+    rules:
+      # KPI: retrieval_latency_ms < 100ms (p95)
+      - alert: UDS3SearchLatencyWarning
+        expr: histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket[5m])) by (le)) > 100
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "Search latency exceeds SLA threshold"
+          description: "Search p95 latency is {{ $value | printf \"%.0f\" }}ms (threshold: 100ms)"
+          runbook: "Check database connections, cache hit rates, and query complexity"
+
+      - alert: UDS3SearchLatencyCritical
+        expr: histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket[5m])) by (le)) > 200
+        for: 2m
+        labels:
+          severity: critical
+          team: uds3-ops
+        annotations:
+          summary: "Search latency critically high"
+          description: "Search p95 latency is {{ $value | printf \"%.0f\" }}ms (critical: 200ms)"
+          runbook: "Immediate investigation required. Check all backends."
+
+      - alert: UDS3HighErrorRate
+        expr: sum(rate(uds3_search_errors_total[5m])) / sum(rate(uds3_search_requests_total[5m])) > 0.01
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "Search error rate exceeds 1%"
+          description: "Current error rate: {{ $value | printf \"%.2f\" }}%"
+
+      - alert: UDS3CriticalErrorRate
+        expr: sum(rate(uds3_search_errors_total[5m])) / sum(rate(uds3_search_requests_total[5m])) > 0.05
+        for: 2m
+        labels:
+          severity: critical
+          team: uds3-ops
+        annotations:
+          summary: "Search error rate exceeds 5%"
+          description: "Critical error rate: {{ $value | printf \"%.2f\" }}%. Immediate action required."
+
+  # ============================================================================
+  # SAGA Transaction Alerts
+  # ============================================================================
+  - name: uds3_saga_alerts
+    interval: 30s
+    rules:
+      # KPI: saga_completion_rate > 99.9%
+      - alert: UDS3SAGACompletionRateLow
+        expr: |
+          (sum(rate(uds3_saga_completions_total[5m])) / 
+           sum(rate(uds3_saga_transactions_total[5m]))) < 0.999
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "SAGA completion rate below 99.9%"
+          description: "Current completion rate: {{ $value | printf \"%.2f\" }}%"
+          runbook: "Check compensation logs and database connectivity"
+
+      - alert: UDS3SAGACompensationsHigh
+        expr: sum(rate(uds3_saga_compensations_total[5m])) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "High SAGA compensation rate"
+          description: "{{ $value | printf \"%.2f\" }} compensations/sec"
+
+      - alert: UDS3SAGATransactionTimeout
+        expr: histogram_quantile(0.99, sum(rate(uds3_saga_duration_bucket[5m])) by (le)) > 30
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "SAGA transactions timing out"
+          description: "p99 SAGA duration is {{ $value | printf \"%.0f\" }}s"
+
+  # ============================================================================
+  # Database Backend Alerts
+  # ============================================================================
+  - name: uds3_database_alerts
+    interval: 30s
+    rules:
+      - alert: UDS3PostgreSQLConnectionPoolLow
+        expr: uds3_db_connections{backend="postgresql"} / uds3_db_connection_pool_size{backend="postgresql"} > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-dba
+        annotations:
+          summary: "PostgreSQL connection pool nearing exhaustion"
+          description: "Connection pool usage: {{ $value | printf \"%.0f\" }}%"
+
+      - alert: UDS3Neo4jConnectionPoolLow
+        expr: uds3_db_connections{backend="neo4j"} / uds3_db_connection_pool_size{backend="neo4j"} > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-dba
+        annotations:
+          summary: "Neo4j connection pool nearing exhaustion"
+          description: "Connection pool usage: {{ $value | printf \"%.0f\" }}%"
+
+      - alert: UDS3DatabaseQueryLatencyHigh
+        expr: histogram_quantile(0.95, sum(rate(uds3_db_query_latency_bucket[5m])) by (le, backend)) > 100
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-dba
+        annotations:
+          summary: "Database query latency high for {{ $labels.backend }}"
+          description: "p95 query latency: {{ $value | printf \"%.0f\" }}ms"
+
+      - alert: UDS3DatabaseDown
+        expr: up{job=~"postgresql|neo4j|couchdb"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: uds3-dba
+        annotations:
+          summary: "Database backend {{ $labels.job }} is down"
+          description: "Database unreachable for 1 minute"
+
+  # ============================================================================
+  # Cache Performance Alerts
+  # ============================================================================
+  - name: uds3_cache_alerts
+    interval: 60s
+    rules:
+      - alert: UDS3CacheHitRateLow
+        expr: |
+          sum(rate(uds3_cache_hits_total[5m])) / 
+          (sum(rate(uds3_cache_hits_total[5m])) + sum(rate(uds3_cache_misses_total[5m]))) < 0.5
+        for: 15m
+        labels:
+          severity: info
+          team: uds3-ops
+        annotations:
+          summary: "Cache hit rate below 50%"
+          description: "Current hit rate: {{ $value | printf \"%.0f\" }}%"
+          runbook: "Consider cache warming or TTL adjustment"
+
+      - alert: UDS3CacheMemoryHigh
+        expr: uds3_cache_size / uds3_cache_max_size > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "Cache memory usage high"
+          description: "Cache is {{ $value | printf \"%.0f\" }}% full"
+
+  # ============================================================================
+  # Security Alerts
+  # ============================================================================
+  - name: uds3_security_alerts
+    interval: 60s
+    rules:
+      - alert: UDS3HighFailedLoginAttempts
+        expr: sum(rate(uds3_auth_requests_total{status="failed"}[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-security
+        annotations:
+          summary: "High rate of failed login attempts"
+          description: "{{ $value | printf \"%.0f\" }} failed logins/sec"
+
+      - alert: UDS3CertificateExpiringSoon
+        expr: uds3_certificate_expiry_days < 30
+        for: 1h
+        labels:
+          severity: warning
+          team: uds3-security
+        annotations:
+          summary: "Certificate expiring within 30 days"
+          description: "Certificate {{ $labels.certificate }} expires in {{ $value | printf \"%.0f\" }} days"
+
+      - alert: UDS3CertificateExpiryCritical
+        expr: uds3_certificate_expiry_days < 7
+        for: 10m
+        labels:
+          severity: critical
+          team: uds3-security
+        annotations:
+          summary: "Certificate expiring within 7 days"
+          description: "URGENT: Certificate {{ $labels.certificate }} expires in {{ $value | printf \"%.0f\" }} days"
+
+      - alert: UDS3UnauthorizedAccessAttempt
+        expr: sum(rate(uds3_authz_denials_total[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-security
+        annotations:
+          summary: "High rate of authorization denials"
+          description: "{{ $value | printf \"%.2f\" }} authorization denials/sec"
+
+  # ============================================================================
+  # RAG Pipeline Alerts (v1.6.0)
+  # ============================================================================
+  - name: uds3_rag_alerts
+    interval: 30s
+    rules:
+      - alert: UDS3RerankerLatencyHigh
+        expr: histogram_quantile(0.95, sum(rate(uds3_reranking_latency_bucket[5m])) by (le)) > 500
+        for: 5m
+        labels:
+          severity: warning
+          team: uds3-ml
+        annotations:
+          summary: "Cross-Encoder reranking latency high"
+          description: "Reranking p95 latency: {{ $value | printf \"%.0f\" }}ms"
+
+      - alert: UDS3MultiHopDepthExceeded
+        expr: histogram_quantile(0.95, sum(rate(uds3_multi_hop_depth_bucket[5m])) by (le)) > 5
+        for: 5m
+        labels:
+          severity: info
+          team: uds3-ops
+        annotations:
+          summary: "Multi-hop traversal depth consistently high"
+          description: "Consider optimizing graph structure"
+
+      - alert: UDS3RetrievalQualityDrop
+        expr: avg(uds3_retrieval_recall_at_10) < 0.9
+        for: 1h
+        labels:
+          severity: warning
+          team: uds3-ml
+        annotations:
+          summary: "Retrieval quality (Recall@10) below threshold"
+          description: "Current Recall@10: {{ $value | printf \"%.2f\" }}"
+
+  # ============================================================================
+  # Infrastructure Alerts
+  # ============================================================================
+  - name: uds3_infrastructure_alerts
+    interval: 60s
+    rules:
+      - alert: UDS3ServiceDown
+        expr: up{job="uds3"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: uds3-ops
+        annotations:
+          summary: "UDS3 service is down"
+          description: "UDS3 main service unreachable"
+
+      - alert: UDS3HighMemoryUsage
+        expr: process_resident_memory_bytes{job="uds3"} / 1024 / 1024 / 1024 > 4
+        for: 10m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "UDS3 memory usage exceeds 4GB"
+          description: "Current memory: {{ $value | printf \"%.1f\" }}GB"
+
+      - alert: UDS3HighCPUUsage
+        expr: rate(process_cpu_seconds_total{job="uds3"}[5m]) > 0.8
+        for: 10m
+        labels:
+          severity: warning
+          team: uds3-ops
+        annotations:
+          summary: "UDS3 CPU usage high"
+          description: "CPU usage: {{ $value | printf \"%.0f\" }}%"

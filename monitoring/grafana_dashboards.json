@@ -1,0 +1,300 @@
+{
+  "__meta__": {
+    "description": "VCC-UDS3 Grafana Dashboard Collection for Production Monitoring",
+    "version": "1.6.0",
+    "author": "VCC-UDS3 Team",
+    "repository": "https://github.com/makr-code/VCC-UDS3",
+    "note": "Import these dashboards into your on-premise Grafana instance"
+  },
+  "dashboards": [
+    {
+      "name": "UDS3 Executive Overview",
+      "uid": "uds3-executive",
+      "description": "High-level KPIs for management and stakeholders",
+      "panels": [
+        {
+          "title": "Service Availability",
+          "type": "stat",
+          "query": "avg_over_time(up{job='uds3'}[24h]) * 100",
+          "thresholds": {"green": 99.9, "yellow": 99.0, "red": 0},
+          "unit": "percent"
+        },
+        {
+          "title": "Search Latency (p95)",
+          "type": "stat",
+          "query": "histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket[5m])) by (le))",
+          "thresholds": {"green": 0, "yellow": 100, "red": 200},
+          "unit": "ms"
+        },
+        {
+          "title": "SAGA Completion Rate",
+          "type": "stat",
+          "query": "(sum(rate(uds3_saga_completions_total[24h])) / sum(rate(uds3_saga_transactions_total[24h]))) * 100",
+          "thresholds": {"green": 99.9, "yellow": 99.0, "red": 0},
+          "unit": "percent"
+        },
+        {
+          "title": "Error Rate (24h)",
+          "type": "stat",
+          "query": "sum(rate(uds3_search_errors_total[24h])) / sum(rate(uds3_search_requests_total[24h])) * 100",
+          "thresholds": {"green": 0, "yellow": 1, "red": 5},
+          "unit": "percent"
+        },
+        {
+          "title": "Active Users (Current)",
+          "type": "stat",
+          "query": "sum(uds3_active_sessions)",
+          "thresholds": {"green": 0},
+          "unit": "users"
+        },
+        {
+          "title": "Searches per Hour",
+          "type": "graph",
+          "query": "sum(rate(uds3_search_requests_total[1h])) * 3600",
+          "timeRange": "7d"
+        }
+      ]
+    },
+    {
+      "name": "UDS3 Operations Dashboard",
+      "uid": "uds3-operations",
+      "description": "Detailed operational metrics for DevOps and SRE teams",
+      "panels": [
+        {
+          "title": "Search Latency Distribution",
+          "type": "heatmap",
+          "query": "sum(rate(uds3_search_latency_bucket[5m])) by (le, search_type)",
+          "legend": true
+        },
+        {
+          "title": "Search Types Breakdown",
+          "type": "piechart",
+          "query": "sum(rate(uds3_search_requests_total[1h])) by (search_type)"
+        },
+        {
+          "title": "Database Query Latency by Backend",
+          "type": "graph",
+          "queries": [
+            {"label": "PostgreSQL", "query": "histogram_quantile(0.95, sum(rate(uds3_db_query_latency_bucket{backend='postgresql'}[5m])) by (le))"},
+            {"label": "Neo4j", "query": "histogram_quantile(0.95, sum(rate(uds3_db_query_latency_bucket{backend='neo4j'}[5m])) by (le))"},
+            {"label": "ChromaDB", "query": "histogram_quantile(0.95, sum(rate(uds3_db_query_latency_bucket{backend='chromadb'}[5m])) by (le))"},
+            {"label": "CouchDB", "query": "histogram_quantile(0.95, sum(rate(uds3_db_query_latency_bucket{backend='couchdb'}[5m])) by (le))"}
+          ]
+        },
+        {
+          "title": "Database Connections",
+          "type": "graph",
+          "queries": [
+            {"label": "PostgreSQL", "query": "uds3_db_connections{backend='postgresql'}"},
+            {"label": "Neo4j", "query": "uds3_db_connections{backend='neo4j'}"},
+            {"label": "ChromaDB", "query": "uds3_db_connections{backend='chromadb'}"},
+            {"label": "CouchDB", "query": "uds3_db_connections{backend='couchdb'}"}
+          ]
+        },
+        {
+          "title": "SAGA Transactions",
+          "type": "graph",
+          "queries": [
+            {"label": "Started", "query": "sum(rate(uds3_saga_transactions_total[5m]))"},
+            {"label": "Completed", "query": "sum(rate(uds3_saga_completions_total[5m]))"},
+            {"label": "Compensated", "query": "sum(rate(uds3_saga_compensations_total[5m]))"}
+          ]
+        },
+        {
+          "title": "RRF Fusion Performance",
+          "type": "graph",
+          "query": "histogram_quantile(0.95, sum(rate(uds3_fusion_latency_bucket[5m])) by (le))"
+        },
+        {
+          "title": "Cross-Encoder Reranking Time",
+          "type": "graph",
+          "query": "histogram_quantile(0.95, sum(rate(uds3_reranking_latency_bucket[5m])) by (le))"
+        },
+        {
+          "title": "Multi-Hop Traversal Depth",
+          "type": "histogram",
+          "query": "sum(rate(uds3_multi_hop_depth_bucket[5m])) by (le)"
+        },
+        {
+          "title": "Cache Hit Rate",
+          "type": "stat",
+          "query": "sum(rate(uds3_cache_hits_total[5m])) / (sum(rate(uds3_cache_hits_total[5m])) + sum(rate(uds3_cache_misses_total[5m]))) * 100",
+          "thresholds": {"green": 80, "yellow": 50, "red": 0},
+          "unit": "percent"
+        },
+        {
+          "title": "Error Rate by Type",
+          "type": "graph",
+          "query": "sum(rate(uds3_search_errors_total[5m])) by (error_type)"
+        }
+      ]
+    },
+    {
+      "name": "UDS3 Security Dashboard",
+      "uid": "uds3-security",
+      "description": "Security metrics and compliance monitoring",
+      "panels": [
+        {
+          "title": "Authentication Requests",
+          "type": "graph",
+          "queries": [
+            {"label": "Success", "query": "sum(rate(uds3_auth_requests_total{status='success'}[5m]))"},
+            {"label": "Failed", "query": "sum(rate(uds3_auth_requests_total{status='failed'}[5m]))"}
+          ]
+        },
+        {
+          "title": "Authorization Denials",
+          "type": "graph",
+          "query": "sum(rate(uds3_authz_denials_total[5m])) by (resource)"
+        },
+        {
+          "title": "RBAC Role Distribution",
+          "type": "piechart",
+          "query": "sum(uds3_active_sessions) by (role)"
+        },
+        {
+          "title": "RLS Policy Hits",
+          "type": "graph",
+          "query": "sum(rate(uds3_rls_policy_hits_total[5m])) by (policy)"
+        },
+        {
+          "title": "Certificate Expiry",
+          "type": "table",
+          "query": "uds3_certificate_expiry_days",
+          "columns": ["certificate", "days_remaining"]
+        },
+        {
+          "title": "Sensitive Data Access",
+          "type": "graph",
+          "query": "sum(rate(uds3_sensitive_data_access_total[5m])) by (classification)"
+        },
+        {
+          "title": "Failed Login Attempts (24h)",
+          "type": "stat",
+          "query": "sum(increase(uds3_auth_requests_total{status='failed'}[24h]))",
+          "thresholds": {"green": 0, "yellow": 10, "red": 50}
+        },
+        {
+          "title": "GDPR Data Requests",
+          "type": "stat",
+          "query": "sum(increase(uds3_gdpr_requests_total[30d]))"
+        }
+      ]
+    },
+    {
+      "name": "UDS3 RAG Pipeline Dashboard",
+      "uid": "uds3-rag",
+      "description": "RAG pipeline performance metrics (v1.6.0)",
+      "panels": [
+        {
+          "title": "Search Pipeline Latency Breakdown",
+          "type": "stacked_bar",
+          "queries": [
+            {"label": "BM25 Keyword", "query": "histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket{search_type='keyword'}[5m])) by (le))"},
+            {"label": "Vector Search", "query": "histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket{search_type='vector'}[5m])) by (le))"},
+            {"label": "Graph Search", "query": "histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket{search_type='graph'}[5m])) by (le))"},
+            {"label": "RRF Fusion", "query": "histogram_quantile(0.95, sum(rate(uds3_fusion_latency_bucket[5m])) by (le))"},
+            {"label": "Cross-Encoder", "query": "histogram_quantile(0.95, sum(rate(uds3_reranking_latency_bucket[5m])) by (le))"}
+          ]
+        },
+        {
+          "title": "Recall@10",
+          "type": "stat",
+          "query": "avg(uds3_retrieval_recall_at_10)",
+          "thresholds": {"green": 95, "yellow": 90, "red": 0},
+          "unit": "percent"
+        },
+        {
+          "title": "NDCG@10",
+          "type": "stat",
+          "query": "avg(uds3_retrieval_ndcg_at_10)",
+          "thresholds": {"green": 0.85, "yellow": 0.75, "red": 0},
+          "unit": "decimal"
+        },
+        {
+          "title": "Search Results Count Distribution",
+          "type": "histogram",
+          "query": "sum(rate(uds3_search_results_bucket[5m])) by (le)"
+        },
+        {
+          "title": "Hybrid Search Fusion Methods",
+          "type": "piechart",
+          "query": "sum(rate(uds3_fusion_requests_total[1h])) by (fusion_method)"
+        },
+        {
+          "title": "Reranker Model Performance",
+          "type": "graph",
+          "query": "histogram_quantile(0.95, sum(rate(uds3_reranking_latency_bucket[5m])) by (le, model))"
+        },
+        {
+          "title": "Multi-Hop Path Scores",
+          "type": "histogram",
+          "query": "sum(rate(uds3_multi_hop_score_bucket[5m])) by (le)"
+        },
+        {
+          "title": "Legal Hierarchy Traversals",
+          "type": "graph",
+          "query": "sum(rate(uds3_multi_hop_requests_total[5m])) by (direction)"
+        }
+      ]
+    }
+  ],
+  "alertRules": [
+    {
+      "name": "High Search Latency",
+      "condition": "histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket[5m])) by (le)) > 200",
+      "severity": "warning",
+      "description": "Search latency p95 exceeds 200ms SLA"
+    },
+    {
+      "name": "Critical Search Latency",
+      "condition": "histogram_quantile(0.95, sum(rate(uds3_search_latency_bucket[5m])) by (le)) > 500",
+      "severity": "critical",
+      "description": "Search latency p95 exceeds 500ms critical threshold"
+    },
+    {
+      "name": "Low SAGA Completion Rate",
+      "condition": "(sum(rate(uds3_saga_completions_total[5m])) / sum(rate(uds3_saga_transactions_total[5m]))) < 0.99",
+      "severity": "warning",
+      "description": "SAGA completion rate below 99%"
+    },
+    {
+      "name": "High Error Rate",
+      "condition": "sum(rate(uds3_search_errors_total[5m])) / sum(rate(uds3_search_requests_total[5m])) > 0.01",
+      "severity": "warning",
+      "description": "Error rate exceeds 1%"
+    },
+    {
+      "name": "Database Connection Pool Exhaustion",
+      "condition": "uds3_db_connections / uds3_db_connection_pool_size > 0.9",
+      "severity": "critical",
+      "description": "Database connection pool near exhaustion"
+    },
+    {
+      "name": "Certificate Expiry Warning",
+      "condition": "uds3_certificate_expiry_days < 30",
+      "severity": "warning",
+      "description": "Certificate expiring within 30 days"
+    },
+    {
+      "name": "Cache Hit Rate Low",
+      "condition": "sum(rate(uds3_cache_hits_total[5m])) / (sum(rate(uds3_cache_hits_total[5m])) + sum(rate(uds3_cache_misses_total[5m]))) < 0.5",
+      "severity": "info",
+      "description": "Cache hit rate below 50%"
+    }
+  ],
+  "provisioning": {
+    "datasources": [
+      {
+        "name": "Prometheus",
+        "type": "prometheus",
+        "url": "http://prometheus:9090",
+        "isDefault": true,
+        "note": "On-premise Prometheus instance"
+      }
+    ],
+    "folders": [
+      {"name": "VCC-UDS3", "uid": "uds3"}
+    ]
+  }
+}
