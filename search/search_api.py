@@ -114,6 +114,8 @@ class SearchQuery:
         collection: Optional collection name (for vector search)
         fusion_method: Result fusion method ("weighted" or "rrf") - v1.6.0
         rrf_k: RRF constant (default: 60, industry standard)
+        reranker: Reranker type ("none", "cross_encoder") - v1.6.0
+        rerank_top_k_multiplier: Fetch multiplier for reranking candidates (default: 3)
     """
     query_text: str
     top_k: int = 10
@@ -123,6 +125,8 @@ class SearchQuery:
     collection: Optional[str] = None
     fusion_method: str = "rrf"  # v1.6.0: Default to RRF
     rrf_k: int = 60  # RRF constant (standard value)
+    reranker: str = "none"  # v1.6.0: Cross-Encoder reranking
+    rerank_top_k_multiplier: int = 3  # Fetch top_k * multiplier for reranking
     
     def __post_init__(self):
         """Validate and set default weights"""
@@ -147,6 +151,12 @@ class UDS3SearchAPI:
     Provides unified interface for Vector, Graph and Keyword search.
     Uses Database API Layer (database_api_*.py) for error handling and retry logic.
     
+    v1.6.0 Features:
+    - BM25 Keyword Search (PostgreSQL full-text)
+    - Reciprocal Rank Fusion (RRF) for hybrid search
+    - Cross-Encoder reranking for improved relevance
+    - Prometheus metrics integration
+    
     Architecture:
         Application → UDS3SearchAPI → Database API → Backend
         
@@ -154,6 +164,15 @@ class UDS3SearchAPI:
         strategy = get_optimized_unified_strategy()
         api = UDS3SearchAPI(strategy)
         results = await api.graph_search("Photovoltaik", top_k=10)
+        
+    Example with Reranking (v1.6.0):
+        query = SearchQuery(
+            query_text="§ 58 LBO Abstandsflächen",
+            search_types=["vector", "graph", "keyword"],
+            fusion_method="rrf",
+            reranker="cross_encoder"
+        )
+        results = await api.hybrid_search(query)
     """
     
     def __init__(self, strategy):
@@ -165,6 +184,7 @@ class UDS3SearchAPI:
         """
         self.strategy = strategy
         self._embedding_model = None  # Lazy load sentence-transformers
+        self._reranker = None  # Lazy load Cross-Encoder
         
         # Check backend availability
         self.has_vector = hasattr(strategy, 'vector_backend') and strategy.vector_backend is not None
@@ -184,6 +204,33 @@ class UDS3SearchAPI:
                 logger.warning("⚠️ sentence-transformers not installed - vector search disabled")
                 return None
         return self._embedding_model
+    
+    def _get_reranker(self, reranker_type: str = "cross_encoder"):
+        """
+        Lazy load Cross-Encoder reranker (v1.6.0)
+        
+        Args:
+            reranker_type: Type of reranker ("cross_encoder" or "none")
+            
+        Returns:
+            BaseReranker instance or None
+        """
+        if reranker_type == "none":
+            return None
+        
+        if self._reranker is None:
+            try:
+                from search.reranker import create_reranker
+                self._reranker = create_reranker()
+                logger.info("✅ Cross-Encoder reranker loaded")
+            except ImportError:
+                logger.warning("⚠️ Reranker not available")
+                return None
+            except Exception as e:
+                logger.warning(f"⚠️ Failed to load reranker: {e}")
+                return None
+        
+        return self._reranker
     
     async def vector_search(
         self,
@@ -665,6 +712,20 @@ class UDS3SearchAPI:
                 ).inc()
             
             logger.info(f"✅ Weighted Hybrid search: {len(final_results)} unique results")
+            
+            # 5. Cross-Encoder Reranking (v1.6.0)
+            if search_query.reranker != "none" and final_results:
+                reranker = self._get_reranker(search_query.reranker)
+                if reranker:
+                    rerank_start = time.time()
+                    final_results = await reranker.rerank(
+                        query=search_query.query_text,
+                        candidates=final_results,
+                        top_k=search_query.top_k,
+                        content_field="content"
+                    )
+                    rerank_duration = time.time() - rerank_start
+                    logger.info(f"✅ Cross-Encoder reranking: {rerank_duration:.3f}s")
         
         except Exception as e:
             status = "error"
