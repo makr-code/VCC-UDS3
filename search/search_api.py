@@ -47,8 +47,14 @@ class SearchType(Enum):
     """Available search types"""
     VECTOR = "vector"
     GRAPH = "graph"
-    KEYWORD = "keyword"
+    KEYWORD = "keyword"  # BM25 Full-Text Search
     HYBRID = "hybrid"
+
+
+class FusionMethod(Enum):
+    """Result fusion methods for hybrid search"""
+    WEIGHTED = "weighted"  # Simple weighted sum (legacy)
+    RRF = "rrf"  # Reciprocal Rank Fusion (v1.6.0)
 
 
 @dataclass
@@ -91,22 +97,26 @@ class SearchQuery:
         search_types: Search methods to use (["vector", "graph", "keyword"])
         weights: Score weights for hybrid search ({"vector": 0.5, "graph": 0.3, "keyword": 0.2})
         collection: Optional collection name (for vector search)
+        fusion_method: Result fusion method ("weighted" or "rrf") - v1.6.0
+        rrf_k: RRF constant (default: 60, industry standard)
     """
     query_text: str
     top_k: int = 10
     filters: Optional[Dict] = None
-    search_types: List[str] = field(default_factory=lambda: ["vector", "graph"])
+    search_types: List[str] = field(default_factory=lambda: ["vector", "graph", "keyword"])
     weights: Optional[Dict[str, float]] = None
     collection: Optional[str] = None
+    fusion_method: str = "rrf"  # v1.6.0: Default to RRF
+    rrf_k: int = 60  # RRF constant (standard value)
     
     def __post_init__(self):
         """Validate and set default weights"""
         if self.weights is None:
-            # Default weights
+            # Default weights (used in weighted fusion, also for RRF source weighting)
             self.weights = {
-                "vector": 0.5,
+                "vector": 0.4,
                 "graph": 0.3,
-                "keyword": 0.2
+                "keyword": 0.3
             }
         
         # Normalize weights to sum to 1.0
@@ -161,8 +171,8 @@ class UDS3SearchAPI:
         return self._embedding_model
     
     async def vector_search(
-        self, 
-        query_embedding: List[float], 
+        self,
+        query_embedding: List[float],
         top_k: int = 10,
         collection: Optional[str] = None
     ) -> List[SearchResult]:
@@ -292,7 +302,7 @@ class UDS3SearchAPI:
             
             # Call Database API Layer (with retry logic and error handling!)
             raw_results = backend.execute_query(
-                cypher, 
+                cypher,
                 params={'query': query_text, 'top_k': top_k}
             )
             
@@ -345,19 +355,23 @@ class UDS3SearchAPI:
         filters: Optional[Dict] = None
     ) -> List[SearchResult]:
         """
-        Keyword search using PostgreSQL full-text search
+        BM25-style keyword search using PostgreSQL full-text search
         
-        Uses: strategy.relational_backend.execute_sql() (if available)
+        Uses PostgreSQL's ts_rank_cd for BM25-similar ranking with German stemming.
+        Requires: setup_fulltext_search() to be called once before use.
+        
+        v1.6.0 Implementation:
+        - Native PostgreSQL full-text search with GIN index
+        - German language configuration for stemming
+        - BM25-similar ranking using ts_rank_cd (Cover Density)
         
         Args:
-            query_text: Query string
+            query_text: Query string (e.g., "§ 58 LBO Abstandsflächen")
             top_k: Number of results to return
             filters: Optional filters (e.g., {"document_type": "regulation"})
             
         Returns:
-            List of SearchResult objects
-            
-        Note: Currently not implemented (PostgreSQL has no execute_sql API)
+            List of SearchResult objects with BM25-style scores
         """
         if not self.has_relational:
             logger.warning("Relational backend not available")
@@ -365,116 +379,261 @@ class UDS3SearchAPI:
         
         backend = self.strategy.relational_backend
         
-        # Check if SQL query API exists
-        if not hasattr(backend, 'execute_sql'):
-            logger.warning("PostgreSQL backend has no execute_sql() - skipping keyword search")
-            return []
+        # Check for BM25 full-text search API (v1.6.0)
+        if hasattr(backend, 'fulltext_search'):
+            try:
+                raw_results = backend.fulltext_search(
+                    query_text=query_text,
+                    top_k=top_k,
+                    table="documents",
+                    language="german"
+                )
+                
+                results = []
+                for raw in raw_results:
+                    results.append(SearchResult(
+                        document_id=raw.get('document_id', 'unknown'),
+                        content=raw.get('snippet', ''),  # Highlighted snippet
+                        metadata={
+                            'file_path': raw.get('file_path', ''),
+                            'classification': raw.get('classification', ''),
+                            'content_length': raw.get('content_length', 0)
+                        },
+                        score=float(raw.get('score', 0.0)),
+                        source='keyword_bm25'
+                    ))
+                
+                logger.info(f"✅ BM25 Keyword search: {len(results)} results")
+                return results
+                
+            except Exception as e:
+                logger.error(f"❌ BM25 Keyword search failed: {e}")
+                return []
         
-        # TODO: Implement when PostgreSQL execute_sql() is available
-        logger.warning("⏭️ Keyword search not yet implemented (PostgreSQL API missing)")
+        # Fallback: Check for generic execute_sql API
+        elif hasattr(backend, 'execute_sql'):
+            try:
+                # Basic LIKE search as fallback
+                sql = """
+                    SELECT document_id, file_path, classification, content_length
+                    FROM documents
+                    WHERE file_path ILIKE %s OR document_id ILIKE %s
+                    LIMIT %s
+                """
+                pattern = f"%{query_text}%"
+                raw_results = backend.execute_sql(sql, (pattern, pattern, top_k))
+                
+                results = []
+                for raw in raw_results:
+                    results.append(SearchResult(
+                        document_id=raw.get('document_id', 'unknown'),
+                        content='',
+                        metadata=raw,
+                        score=0.5,  # Default score for LIKE search
+                        source='keyword_like'
+                    ))
+                
+                logger.info(f"✅ LIKE Keyword search (fallback): {len(results)} results")
+                return results
+                
+            except Exception as e:
+                logger.error(f"❌ Keyword search fallback failed: {e}")
+                return []
+        
+        logger.warning("⏭️ Keyword search not available (no fulltext_search or execute_sql method)")
         return []
+    
+    def _reciprocal_rank_fusion(
+        self,
+        ranked_lists: Dict[str, List[SearchResult]],
+        k: int = 60,
+        weights: Optional[Dict[str, float]] = None
+    ) -> List[SearchResult]:
+        """
+        Reciprocal Rank Fusion (RRF) - Industry-standard result fusion
+        
+        RRF combines multiple ranked lists using:
+        RRF_score(d) = Σ (weight_i / (k + rank_i(d)))
+        
+        Benefits over simple weighted sum:
+        - More robust to score scale differences between systems
+        - Better handling of missing documents in some lists
+        - Proven effective for hybrid search (Cormack et al., 2009)
+        
+        Args:
+            ranked_lists: Dict mapping source to ranked SearchResults
+                          e.g., {"vector": [...], "graph": [...], "keyword": [...]}
+            k: RRF constant (default: 60, industry standard)
+            weights: Optional source weights (default: equal weights)
+            
+        Returns:
+            Fused and re-ranked list of SearchResults
+        """
+        if weights is None:
+            weights = {source: 1.0 for source in ranked_lists.keys()}
+        
+        # Normalize weights
+        total_weight = sum(weights.values())
+        if total_weight > 0:
+            weights = {k: v / total_weight for k, v in weights.items()}
+        
+        # Calculate RRF scores
+        rrf_scores: Dict[str, float] = {}
+        doc_data: Dict[str, SearchResult] = {}  # Store best result for each doc
+        
+        for source, results in ranked_lists.items():
+            source_weight = weights.get(source, 1.0)
+            
+            for rank, result in enumerate(results, start=1):
+                doc_id = result.document_id
+                
+                # RRF formula: weight / (k + rank)
+                rrf_contribution = source_weight / (k + rank)
+                
+                if doc_id in rrf_scores:
+                    rrf_scores[doc_id] += rrf_contribution
+                else:
+                    rrf_scores[doc_id] = rrf_contribution
+                    doc_data[doc_id] = result
+                
+                # Merge related_docs if available
+                if doc_id in doc_data and result.related_docs:
+                    existing = doc_data[doc_id].related_docs
+                    for rel_doc in result.related_docs:
+                        if rel_doc not in existing:
+                            existing.append(rel_doc)
+        
+        # Create final results with RRF scores
+        fused_results = []
+        for doc_id, rrf_score in rrf_scores.items():
+            result = doc_data[doc_id]
+            # Create new result with RRF score
+            fused_results.append(SearchResult(
+                document_id=result.document_id,
+                content=result.content,
+                metadata=result.metadata,
+                score=rrf_score,
+                source="rrf_fusion",
+                related_docs=result.related_docs
+            ))
+        
+        # Sort by RRF score (descending)
+        fused_results.sort(key=lambda r: r.score, reverse=True)
+        
+        logger.info(f"✅ RRF Fusion: {len(fused_results)} unique documents from {len(ranked_lists)} sources")
+        
+        return fused_results
     
     async def hybrid_search(
         self,
         search_query: SearchQuery
     ) -> List[SearchResult]:
         """
-        Hybrid search combining Vector + Graph + Keyword
+        Hybrid search combining Vector + Graph + Keyword with RRF fusion
         
-        Workflow:
-        1. Execute searches in parallel (Vector, Graph, Keyword)
-        2. Apply weights to scores
-        3. Merge results by document_id
-        4. Re-rank by final score
-        5. Return top_k results
+        v1.6.0 Enhanced Workflow:
+        1. Execute searches in parallel (Vector, Graph, Keyword/BM25)
+        2. Apply fusion method:
+           - "rrf": Reciprocal Rank Fusion (industry standard)
+           - "weighted": Simple weighted score sum (legacy)
+        3. Re-rank by fused score
+        4. Return top_k results
         
         Args:
-            search_query: SearchQuery configuration
+            search_query: SearchQuery configuration including:
+                - fusion_method: "rrf" (default) or "weighted"
+                - rrf_k: RRF constant (default: 60)
             
         Returns:
-            List of SearchResult objects (top_k, ranked by weighted score)
+            List of SearchResult objects (top_k, ranked by fused score)
             
-        Example:
+        Example (v1.6.0):
             query = SearchQuery(
-                query_text="Photovoltaik",
+                query_text="§ 58 LBO Abstandsflächen",
                 top_k=10,
-                search_types=["vector", "graph"],
-                weights={"vector": 0.5, "graph": 0.5}
+                search_types=["vector", "graph", "keyword"],
+                fusion_method="rrf",
+                weights={"vector": 0.4, "graph": 0.3, "keyword": 0.3}
             )
             results = await api.hybrid_search(query)
         """
         weights = search_query.weights or {
-            "vector": 0.5,
+            "vector": 0.4,
             "graph": 0.3,
-            "keyword": 0.2
+            "keyword": 0.3
         }
         
-        all_results = []
+        # Collect results per source for RRF
+        ranked_lists: Dict[str, List[SearchResult]] = {}
+        
+        # Determine fetch count (fetch more for better fusion)
+        fetch_count = search_query.top_k * 3 if search_query.fusion_method == "rrf" else search_query.top_k * 2
         
         # 1. Vector Search (if enabled)
         if "vector" in search_query.search_types and weights.get("vector", 0) > 0:
-            # Generate embedding from query_text
             model = self._get_embedding_model()
             if model:
                 embedding = model.encode(search_query.query_text).tolist()
                 vector_results = await self.vector_search(
-                    embedding, 
-                    search_query.top_k * 2,
+                    embedding,
+                    fetch_count,
                     search_query.collection
                 )
-                
-                # Apply weight
-                for result in vector_results:
-                    result.score *= weights["vector"]
-                
-                all_results.extend(vector_results)
-                logger.info(f"Vector search: {len(vector_results)} results (weight={weights['vector']:.2f})")
+                if vector_results:
+                    ranked_lists["vector"] = vector_results
+                logger.info(f"Vector search: {len(vector_results)} results")
         
         # 2. Graph Search (if enabled)
         if "graph" in search_query.search_types and weights.get("graph", 0) > 0:
             graph_results = await self.graph_search(
-                search_query.query_text, 
-                search_query.top_k * 2
+                search_query.query_text,
+                fetch_count
             )
-            
-            # Apply weight
-            for result in graph_results:
-                result.score *= weights["graph"]
-            
-            all_results.extend(graph_results)
-            logger.info(f"Graph search: {len(graph_results)} results (weight={weights['graph']:.2f})")
+            if graph_results:
+                ranked_lists["graph"] = graph_results
+            logger.info(f"Graph search: {len(graph_results)} results")
         
-        # 3. Keyword Search (if enabled)
+        # 3. Keyword/BM25 Search (if enabled)
         if "keyword" in search_query.search_types and weights.get("keyword", 0) > 0:
             keyword_results = await self.keyword_search(
-                search_query.query_text, 
-                search_query.top_k * 2,
+                search_query.query_text,
+                fetch_count,
                 search_query.filters
             )
+            if keyword_results:
+                ranked_lists["keyword"] = keyword_results
+            logger.info(f"Keyword/BM25 search: {len(keyword_results)} results")
+        
+        # 4. Fusion based on method
+        if search_query.fusion_method == "rrf":
+            # Reciprocal Rank Fusion (v1.6.0)
+            final_results = self._reciprocal_rank_fusion(
+                ranked_lists=ranked_lists,
+                k=search_query.rrf_k,
+                weights=weights
+            )
+            logger.info(f"✅ RRF Hybrid search: {len(final_results)} unique results")
+        else:
+            # Legacy: Simple weighted sum
+            all_results = []
+            for source, results in ranked_lists.items():
+                source_weight = weights.get(source, 1.0)
+                for result in results:
+                    result.score *= source_weight
+                all_results.extend(results)
             
-            # Apply weight
-            for result in keyword_results:
-                result.score *= weights["keyword"]
+            # Merge by document_id
+            merged = {}
+            for result in all_results:
+                doc_id = result.document_id
+                if doc_id in merged:
+                    merged[doc_id].score += result.score
+                    merged[doc_id].related_docs.extend(result.related_docs)
+                else:
+                    merged[doc_id] = result
             
-            all_results.extend(keyword_results)
-            logger.info(f"Keyword search: {len(keyword_results)} results (weight={weights['keyword']:.2f})")
-        
-        # 4. Merge and Re-Rank
-        merged = {}
-        for result in all_results:
-            doc_id = result.document_id
-            if doc_id in merged:
-                # Combine scores (sum weighted scores)
-                merged[doc_id].score += result.score
-                # Merge related docs
-                merged[doc_id].related_docs.extend(result.related_docs)
-            else:
-                merged[doc_id] = result
-        
-        # Sort by final score (descending)
-        final_results = sorted(merged.values(), key=lambda r: r.score, reverse=True)
-        
-        logger.info(f"✅ Hybrid search: {len(final_results)} unique results (top_k={search_query.top_k})")
+            final_results = sorted(merged.values(), key=lambda r: r.score, reverse=True)
+            logger.info(f"✅ Weighted Hybrid search: {len(final_results)} unique results")
         
         return final_results[:search_query.top_k]
     
