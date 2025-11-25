@@ -710,13 +710,13 @@ v1.5.0         v1.6.0         v2.0.0         v2.0.0         v2.5.0         v3.0.
 - **ONNX Runtime**: Model Serving (Cross-Encoder)
 
 #### Entwicklung & CI/CD
-- **Git**: Version Control
-- **GitHub Actions**: CI/CD Pipelines (self-hosted runners)
+- **Git**: Version Control (on-premise GitLab oder Gitea)
+- **GitLab CI/CD** oder **Jenkins**: CI/CD Pipelines (vollständig on-premise)
 - **Ruff**: Python Linter
 - **Black**: Code Formatter
 - **pytest**: Testing Framework
 
-**Wichtig:** Alle genannten Technologien sind Open-Source und können on-premise betrieben werden. **Keine Abhängigkeit von Cloud-Providern (AWS, Azure, GCP) oder proprietären Diensten.**
+**Wichtig:** Alle genannten Technologien sind Open-Source und können on-premise betrieben werden. **Keine Abhängigkeit von Cloud-Providern (AWS, Azure, GCP) oder proprietären Diensten. Keine GitHub Workflows oder andere externe CI/CD-Dienste.**
 
 ### 4.3 Code Quality Standards
 
@@ -1134,7 +1134,7 @@ groups:
 
 2. **Open-Source-Community**
    - **Neo4j, ChromaDB:** Feature Requests, Bugfixes, Contributions
-   - **Format:** GitHub Issues, Pull Requests, Sponsorship
+   - **Format:** Issue Tracker, Pull Requests, Sponsorship (externe Projekte)
 
 3. **EU-Förderprogramme**
    - **Digital Europe Programme:** AI Testing and Experimentation Facilities
