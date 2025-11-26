@@ -7,12 +7,16 @@ __init__.py
 UDS3 Core Module - Kernkomponenten
 ==================================
 Reorganisiert: 24. Oktober 2025
+v1.6.0: Prometheus Metrics hinzugefügt
+
 Kernkomponenten mit verkürzten Namen:
 - database.py: Hauptdatabase-Strategie (ehemals uds3_core.py)
 - schemas.py: Database-Schemas (ehemals uds3_database_schemas.py)
 - relations.py: Relations-Core (ehemals uds3_relations_core.py)
 - framework.py: Relations-Framework (ehemals uds3_relations_data_framework.py)
 - cache.py: Single-Record-Cache (ehemals uds3_single_record_cache.py)
+- metrics.py: Prometheus Metrics (v1.6.0)
+
 Part of UDS3 (Unified Database Strategy v3)
 Author: Martin Krüger (ma.krueger@outlook.com)
 License: MIT with Government Partnership Commons Clause
@@ -45,6 +49,24 @@ try:
 except ImportError:
     pass
 
+# Prometheus Metrics (v1.6.0)
+METRICS_AVAILABLE = False
+try:
+    from .metrics import (
+        UDS3Metrics, metrics, get_metrics, get_metrics_output,
+        track_search_latency, track_db_query, track_saga_transaction,
+        measure_latency, check_prometheus_available
+    )
+    METRICS_AVAILABLE = True
+    __all__.extend([
+        "UDS3Metrics", "metrics", "get_metrics", "get_metrics_output",
+        "track_search_latency", "track_db_query", "track_saga_transaction",
+        "measure_latency", "check_prometheus_available", "METRICS_AVAILABLE"
+    ])
+except ImportError:
+    # Metrics module is optional; METRICS_AVAILABLE remains False if import fails.
+    pass
+
 # Legacy Exports (für Rückwärtskompatibilität)
 LEGACY_CORE_AVAILABLE = False
 try:
@@ -75,6 +97,18 @@ __all__ = [
     "RelationsDataFramework",
     "SingleRecordCache",
     
+    # Prometheus Metrics (v1.6.0)
+    "UDS3Metrics",
+    "metrics",
+    "get_metrics",
+    "get_metrics_output",
+    "track_search_latency",
+    "track_db_query",
+    "track_saga_transaction",
+    "measure_latency",
+    "check_prometheus_available",
+    "METRICS_AVAILABLE",
+    
     # Legacy Core Manager (Rückwärtskompatibilität)
     "UDS3PolyglotManager",
     # Embeddings
@@ -98,4 +132,4 @@ __all__ = [
 ]
 
 __module_name__ = "core"
-__version__ = "2.0.0"
+__version__ = "2.1.0"  # Updated for v1.6.0 metrics

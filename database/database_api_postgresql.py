@@ -256,7 +256,7 @@ class PostgreSQLRelationalBackend:
     
     
     def insert_document(self, document_id: str, file_path: str, classification: str,
-                       content_length: int, legal_terms_count: int, 
+                       content_length: int, legal_terms_count: int,
                        created_at: Optional[str] = None,
                        quality_score: Optional[float] = None,
                        processing_status: str = 'completed') -> Dict[str, Any]:
@@ -599,7 +599,7 @@ class PostgreSQLRelationalBackend:
                 GROUP BY classification
                 ORDER BY count DESC
             """)
-            classifications = {row['classification']: row['count'] 
+            classifications = {row['classification']: row['count']
                              for row in self.cursor.fetchall()}
             
             # Processing Status
@@ -609,7 +609,7 @@ class PostgreSQLRelationalBackend:
                 GROUP BY processing_status
                 ORDER BY count DESC
             """)
-            statuses = {row['processing_status']: row['count'] 
+            statuses = {row['processing_status']: row['count']
                        for row in self.cursor.fetchall()}
             
             # Quality Score Stats
@@ -923,6 +923,240 @@ class PostgreSQLRelationalBackend:
         
         self.disconnect()
         return False  # Don't suppress exceptions
+
+
+    # ========================================================================
+    # FULL-TEXT SEARCH (BM25) - v1.6.0 Implementation
+    # ========================================================================
+    
+    def setup_fulltext_search(self, content_table: str = "documents", content_column: str = "content"):
+        """
+        Initialisiert PostgreSQL Full-Text Search mit GIN Index
+        
+        Erstellt tsvector Spalte und GIN Index für BM25-ähnliche Suche.
+        Benötigt PostgreSQL Extension pg_trgm für bessere Relevanz.
+        
+        Args:
+            content_table: Tabelle mit Content-Spalte
+            content_column: Spalte mit dem durchsuchbaren Text
+            
+        Returns:
+            Dict mit success und Details
+        """
+        self.connect()
+        
+        try:
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_start("PostgreSQL", "setup_fulltext_search", table=content_table)
+            
+            # 1. Erstelle tsvector-Spalte für optimierte Suche (falls nicht vorhanden)
+            self.cursor.execute(f"""
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 FROM information_schema.columns 
+                        WHERE table_name = '{content_table}' AND column_name = 'search_vector'
+                    ) THEN
+                        ALTER TABLE {content_table} ADD COLUMN search_vector tsvector;
+                    END IF;
+                END $$;
+            """)
+            
+            # 2. Aktualisiere search_vector mit gewichteten Feldern
+            # Gewichtung: A (Titel/Name) > B (Inhalt) > C (Metadaten)
+            self.cursor.execute(f"""
+                UPDATE {content_table} 
+                SET search_vector = 
+                    setweight(to_tsvector('german', COALESCE(document_id, '')), 'A') ||
+                    setweight(to_tsvector('german', COALESCE({content_column}::text, '')), 'B') ||
+                    setweight(to_tsvector('german', COALESCE(classification, '')), 'C')
+                WHERE search_vector IS NULL OR search_vector = '';
+            """)
+            
+            # 3. Erstelle GIN Index für schnelle Suche (falls nicht vorhanden)
+            self.cursor.execute(f"""
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 FROM pg_indexes 
+                        WHERE indexname = '{content_table}_search_idx'
+                    ) THEN
+                        CREATE INDEX {content_table}_search_idx ON {content_table} USING GIN (search_vector);
+                    END IF;
+                END $$;
+            """)
+            
+            # 4. Erstelle Trigger für automatische Updates (optional)
+            self.cursor.execute("""
+                CREATE OR REPLACE FUNCTION update_search_vector()
+                RETURNS TRIGGER AS $$
+                BEGIN
+                    NEW.search_vector := 
+                        setweight(to_tsvector('german', COALESCE(NEW.document_id, '')), 'A') ||
+                        setweight(to_tsvector('german', COALESCE(NEW.content::text, '')), 'B') ||
+                        setweight(to_tsvector('german', COALESCE(NEW.classification, '')), 'C');
+                    RETURN NEW;
+                END
+                $$ LANGUAGE plpgsql;
+            """)
+            
+            self.cursor.execute(f"""
+                DROP TRIGGER IF EXISTS {content_table}_search_trigger ON {content_table};
+                CREATE TRIGGER {content_table}_search_trigger
+                    BEFORE INSERT OR UPDATE ON {content_table}
+                    FOR EACH ROW EXECUTE FUNCTION update_search_vector();
+            """)
+            
+            self.conn.commit()
+            
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_success("PostgreSQL", "setup_fulltext_search", table=content_table)
+            
+            logger.info(f"✅ PostgreSQL Full-Text Search Setup für {content_table} abgeschlossen")
+            
+            return {
+                "success": True,
+                "table": content_table,
+                "index": f"{content_table}_search_idx",
+                "trigger": f"{content_table}_search_trigger"
+            }
+            
+        except Exception as e:
+            self.conn.rollback()
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_failure("PostgreSQL", "setup_fulltext_search", e, table=content_table)
+            logger.error(f"❌ PostgreSQL Full-Text Search Setup fehlgeschlagen: {e}")
+            return {"success": False, "error": str(e)}
+    
+    def fulltext_search(
+        self,
+        query_text: str,
+        top_k: int = 10,
+        table: str = "documents",
+        language: str = "german"
+    ) -> List[Dict[str, Any]]:
+        """
+        Führt BM25-ähnliche Full-Text Suche durch
+        
+        Nutzt PostgreSQL ts_rank_cd für BM25-ähnliches Ranking.
+        Unterstützt deutsche Stemming (german Konfiguration).
+        
+        Args:
+            query_text: Suchanfrage (z.B. "§ 58 LBO Abstandsflächen")
+            top_k: Anzahl der Ergebnisse
+            table: Tabelle für Suche
+            language: Sprachkonfiguration (default: german)
+            
+        Returns:
+            Liste von Dicts mit document_id, content, score, rank
+        """
+        self.connect()
+        
+        try:
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_start("PostgreSQL", "fulltext_search", query=query_text[:50])
+            
+            # BM25-ähnliches Ranking mit ts_rank_cd (Cover Density)
+            # Gewichtung: {0.1, 0.2, 0.4, 1.0} für {D, C, B, A} Gewichte
+            self.cursor.execute(f"""
+                SELECT 
+                    document_id,
+                    file_path,
+                    classification,
+                    content_length,
+                    ts_rank_cd(
+                        search_vector, 
+                        plainto_tsquery('{language}', %s),
+                        32  -- Normalization: length normalization
+                    ) AS rank,
+                    ts_headline(
+                        '{language}',
+                        COALESCE(file_path, ''),
+                        plainto_tsquery('{language}', %s),
+                        'MaxWords=50, MinWords=25, StartSel=<mark>, StopSel=</mark>'
+                    ) AS snippet
+                FROM {table}
+                WHERE search_vector @@ plainto_tsquery('{language}', %s)
+                ORDER BY rank DESC
+                LIMIT %s
+            """, (query_text, query_text, query_text, top_k))
+            
+            results = []
+            for row in self.cursor.fetchall():
+                results.append({
+                    "document_id": row['document_id'],
+                    "file_path": row.get('file_path', ''),
+                    "classification": row.get('classification', ''),
+                    "content_length": row.get('content_length', 0),
+                    "score": float(row['rank']) if row['rank'] else 0.0,
+                    "snippet": row.get('snippet', ''),
+                    "source": "keyword_bm25"
+                })
+            
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_success("PostgreSQL", "fulltext_search", query=query_text[:50], results=len(results))
+            
+            logger.info(f"✅ PostgreSQL Full-Text Search: {len(results)} Ergebnisse für '{query_text[:30]}...'")
+            
+            return results
+            
+        except Exception as e:
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_failure("PostgreSQL", "fulltext_search", e, query=query_text[:50])
+            logger.error(f"❌ PostgreSQL Full-Text Search fehlgeschlagen: {e}")
+            return []
+    
+    def execute_sql(
+        self,
+        sql: str,
+        params: Optional[tuple] = None,
+        fetch: bool = True
+    ) -> List[Dict[str, Any]]:
+        """
+        Führt beliebige SQL-Query aus (für Search API)
+        
+        Ermöglicht flexible Queries für Full-Text Search und andere Anwendungen.
+        
+        Args:
+            sql: SQL Statement
+            params: Parameter für prepared statement
+            fetch: True = fetchall(), False = commit only
+            
+        Returns:
+            Liste von Dict-Rows (bei fetch=True) oder leere Liste
+        """
+        self.connect()
+        
+        try:
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_start("PostgreSQL", "execute_sql", sql=sql[:100])
+            
+            if params:
+                self.cursor.execute(sql, params)
+            else:
+                self.cursor.execute(sql)
+            
+            if fetch:
+                results = []
+                for row in self.cursor.fetchall():
+                    results.append(dict(row))
+                
+                if ERROR_LOGGING_AVAILABLE:
+                    log_operation_success("PostgreSQL", "execute_sql", rows=len(results))
+                
+                return results
+            else:
+                self.conn.commit()
+                if ERROR_LOGGING_AVAILABLE:
+                    log_operation_success("PostgreSQL", "execute_sql", action="commit")
+                return []
+                
+        except Exception as e:
+            self.conn.rollback()
+            if ERROR_LOGGING_AVAILABLE:
+                log_operation_failure("PostgreSQL", "execute_sql", e, sql=sql[:100])
+            logger.error(f"❌ PostgreSQL execute_sql fehlgeschlagen: {e}")
+            return []
 
 
 # Factory Function (analog zu anderen Backends)

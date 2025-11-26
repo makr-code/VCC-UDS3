@@ -25,8 +25,18 @@ from .rag_dataminer import (
     DataMiningResult
 )
 
+# v2.0.0: Process-Aware Queries
+from .process_aware_query import (
+    ProcessAwareQuery,
+    ProcessContext,
+    ProcessAwareSearchResult,
+    ProcessStepType,
+    ProcessStatus,
+    create_process_aware_query,
+)
+
 __module_name__ = "vpb"
-__version__ = "2.1.0"
+__version__ = "2.2.0"  # Updated for v2.0.0 features
 
 __all__ = [
     "VPBAdapter",
@@ -36,4 +46,11 @@ __all__ = [
     "ProcessKnowledgeNode",
     "ProcessKnowledgeGraph",
     "DataMiningResult",
+    # v2.0.0: Process-Aware Queries
+    "ProcessAwareQuery",
+    "ProcessContext",
+    "ProcessAwareSearchResult",
+    "ProcessStepType",
+    "ProcessStatus",
+    "create_process_aware_query",
 ]
