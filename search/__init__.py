@@ -63,6 +63,7 @@ try:
     )
     RERANKER_AVAILABLE = check_reranker_available()
 except ImportError:
+    # Reranker functionality is optional; ignore if not available.
     pass
 
 __all__ = [
