@@ -139,6 +139,12 @@ class MetricsCollector:
         self.multi_hop_latencies: List[float] = []
         self.errors: Dict[str, int] = {}
     
+    def reset(self):
+        """Reset all collected metrics to their initial state."""
+        self.search_latencies = []
+        self.saga_latencies = []
+        self.multi_hop_latencies = []
+        self.errors = {}
     def record_search(self, latency_ms: float):
         self.search_latencies.append(latency_ms)
     
