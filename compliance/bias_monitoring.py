@@ -17,7 +17,6 @@ Author: VCC Development Team
 License: MIT with Government Partnership Commons Clause
 """
 
-import hashlib
 import logging
 import statistics
 from abc import ABC, abstractmethod
