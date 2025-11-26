@@ -64,6 +64,7 @@ try:
         "measure_latency", "check_prometheus_available", "METRICS_AVAILABLE"
     ])
 except ImportError:
+    # Metrics module is optional; METRICS_AVAILABLE remains False if import fails.
     pass
 
 # Legacy Exports (für Rückwärtskompatibilität)
