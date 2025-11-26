@@ -110,8 +110,8 @@ class SecurityControl:
     due_date: Optional[datetime] = None
     
     # Evidence
-    evidence_required: list[str] = field(default_factory=list)
-    evidence_collected: list[str] = field(default_factory=list)
+    evidence_required: List[str] = field(default_factory=list)
+    evidence_collected: List[str] = field(default_factory=list)
     
     # Testing
     last_tested: Optional[datetime] = None
