@@ -70,7 +70,7 @@ try:
     )
     MULTI_HOP_AVAILABLE = check_multi_hop_available()
 except ImportError:
-    # Multi-hop reasoning feature is optional; ignore if not available.
+    pass  # Multi-hop reasoning feature not available
     # If the import fails, MULTI_HOP_AVAILABLE remains False.
     # Optionally, log the import failure for debugging:
     # import logging; logging.warning("Multi-hop reasoning feature not available (ImportError).")
